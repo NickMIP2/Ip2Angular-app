@@ -1,0 +1,21 @@
+.formcontainer{
+  border: 1px solid red;
+  width: 60%;
+  margin: auto;
+}
+textarea{
+  width: 200px;
+  overflow: hidden;
+}
+input{
+  width: 200px;
+}
+label{
+  text-align: left;
+  padding-right: 100px;
+}
+
+.submitbutton{
+  float: right;
+}
+

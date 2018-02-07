@@ -8,6 +8,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {AppRoutingModule} from './/app-routing.module';
 import {ThemeComponent} from './theme/theme.component';
 import {NewThemeComponent} from './new-theme/new-theme.component';
+import { ThemedetailComponent } from './themedetail/themedetail.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {NewThemeComponent} from './new-theme/new-theme.component';
     NavbarComponent,
     DashboardComponent,
     ThemeComponent,
-    NewThemeComponent
+    NewThemeComponent,
+    ThemedetailComponent
 
   ],
   imports: [
