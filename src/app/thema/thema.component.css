@@ -1,0 +1,44 @@
+.scrollul{
+  height: 200px;
+  width: 80%;
+  overflow: hidden;
+  overflow-y: scroll;
+
+}
+ul{
+  width: 80%;
+  margin: auto;
+}
+
+.lititel{
+  font-weight: bold;
+  background-color: grey;
+}
+li{
+  list-style-type: none;
+}
+
+.namespan {
+  width: 25%;
+  float: left;
+
+  text-align: left;
+}
+
+.descriptionspan{
+  width: 55%;
+  float: left;
+  text-align: left;
+}
+
+.tagspan{
+  width: 20%;
+  float: left;
+  text-align: left;
+}
+
+.wrapper{
+  padding: 10px;
+  border: 1px solid red;
+  margin: auto;
+}
