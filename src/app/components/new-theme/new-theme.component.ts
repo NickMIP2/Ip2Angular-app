@@ -9,7 +9,7 @@ import {Theme} from '../../model/theme';
 export class NewThemeComponent implements OnInit {
 
 
-  model = new Theme('', '', '');
+  model = new Theme(0, '', '', '');
 
   submitted = false;
 
@@ -18,7 +18,7 @@ export class NewThemeComponent implements OnInit {
 
   onClickSubmit() {
     // POST met gegevens naar server
-   this.submitted = true;
+    this.submitted = true;
   }
 
 }
