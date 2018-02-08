@@ -11,7 +11,7 @@ import {NewThemeComponent} from './components/new-theme/new-theme.component';
 import { ThemedetailComponent } from './components/themedetail/themedetail.component';
 import {FormsModule} from '@angular/forms';
 import {AlertModule} from 'ngx-bootstrap';
-import { ThemedetailNavbarComponent } from './components/themedetail/themedetail-navbar/themedetail-navbar.component';
+import { ThemedetailNavbarComponent } from './components/themedetail/components/themedetail-navbar/themedetail-navbar.component';
 
 
 @NgModule({

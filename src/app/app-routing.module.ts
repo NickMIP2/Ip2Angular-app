@@ -13,7 +13,8 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'themas', component: ThemesComponent},
   {path: 'thema-toevoegen', component: NewThemeComponent},
-  {path: 'thema-detail', component: ThemedetailComponent}
+  {path: 'thema-detail', component: ThemedetailComponent},
+  {path: 'themas:id', component: ThemedetailComponent}
 ];
 
 @NgModule({
