@@ -3,12 +3,15 @@ import {NgModule} from '@angular/core';
 
 
 import {AppComponent} from './app.component';
-import {NavbarComponent} from './navbar/navbar.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
+import {NavbarComponent} from './components/navbar/navbar.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {AppRoutingModule} from './/app-routing.module';
-import {ThemeComponent} from './theme/theme.component';
-import {NewThemeComponent} from './new-theme/new-theme.component';
-import { ThemedetailComponent } from './themedetail/themedetail.component';
+import {ThemesComponent} from './components/themes/themes.component';
+import {NewThemeComponent} from './components/new-theme/new-theme.component';
+import { ThemedetailComponent } from './components/themedetail/themedetail.component';
+import {FormsModule} from '@angular/forms';
+import {AlertModule} from 'ngx-bootstrap';
+import { ThemedetailNavbarComponent } from './components/themedetail/themedetail-navbar/themedetail-navbar.component';
 
 
 @NgModule({
@@ -16,14 +19,17 @@ import { ThemedetailComponent } from './themedetail/themedetail.component';
     AppComponent,
     NavbarComponent,
     DashboardComponent,
-    ThemeComponent,
+    ThemesComponent,
     NewThemeComponent,
-    ThemedetailComponent
+    ThemedetailComponent,
+    ThemedetailNavbarComponent
 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    AlertModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
