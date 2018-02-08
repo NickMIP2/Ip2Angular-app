@@ -9,7 +9,7 @@ import {AppRoutingModule} from './/app-routing.module';
 import {ThemeComponent} from './theme/theme.component';
 import {NewThemeComponent} from './new-theme/new-theme.component';
 import { ThemedetailComponent } from './themedetail/themedetail.component';
-
+import {RegisterComponent} from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +18,8 @@ import { ThemedetailComponent } from './themedetail/themedetail.component';
     DashboardComponent,
     ThemeComponent,
     NewThemeComponent,
-    ThemedetailComponent
-
+    ThemedetailComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -5,13 +5,15 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {ThemeComponent} from './theme/theme.component';
 import {NewThemeComponent} from './new-theme/new-theme.component';
 import {ThemedetailComponent} from './themedetail/themedetail.component';
+import {RegisterComponent} from './register/register.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'thema', component: ThemeComponent},
   {path: 'thema-toevoegen', component: NewThemeComponent},
-  {path: 'thema-detail', component: ThemedetailComponent}
+  {path: 'thema-detail', component: ThemedetailComponent},
+  {path: 'register', component: RegisterComponent}
 ];
 
 @NgModule({
