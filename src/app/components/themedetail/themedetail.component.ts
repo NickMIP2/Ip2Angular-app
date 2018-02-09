@@ -8,7 +8,7 @@ import {Theme} from '../../model/theme';
 })
 
 export class ThemedetailComponent implements OnInit {
-  @Input() public theme: Theme = {themename: 'Reizen', themedescription: 'op reis', themetag: 'reis'};
+  @Input() public theme: Theme = {id: 10, themename: 'Reizen', themedescription: 'op reis', themetag: 'reis'};
 
   constructor() {
   }

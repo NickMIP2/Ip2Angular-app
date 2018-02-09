@@ -22,7 +22,8 @@ const routes: Routes = [
   {path: 'theme/:id/overview', component: ThemedetailOverviewComponent},
   {path: 'theme/:id/cards', component: ThemedetailCardsComponent},
   {path: 'theme/:id/organisors', component: ThemedetailOrganiserComponent},
-  {path: 'theme/:id/categories', component: ThemedetailCategoriesComponent}
+  {path: 'theme/:id/categories', component: ThemedetailCategoriesComponent},
+  {path: 'themas:id', component: ThemedetailComponent}
 ];
 
 @NgModule({
