@@ -1,12 +1,12 @@
 <div class="wrapper">
   <button routerLink="/thema-toevoegen">Nieuw thema</button>
   <ul>
-    <li class="lititel"> <span class="namespan">name</span> <span class="descriptionspan">description</span> <span
+    <li class="lititel"><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
       class="tagspan">tags</span></li>
   </ul>
   <ul class="scrollul">
 
-    <li><span class="namespan">nekhfskqljluvhjqsiljufsjfuhlighslgame</span> <span class="descriptionspan">descri
+    <li *ngFor="let currenttheme of themes"><span class="namespan">nekhfskqljluvhjqsiljufsjfuhlighslgame</span> <span class="descriptionspan">descri
   background-color: grey;
   background-color: grey;
   background-color: grey;
@@ -19,7 +19,10 @@
   background-color: grey;
   background-color: grey;
   background-color: grey;ption</span> <span
-      class="tagspan">tags</span></li>
+      class="tagspan">tags</span>
+
+      <button [routerLink]="['/theme/',currenttheme.id]">Details</button>
+    </li>
     <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
       class="tagspan">tags</span></li>
     <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
