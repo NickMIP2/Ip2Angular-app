@@ -12,6 +12,10 @@ import { ThemedetailComponent } from './components/themedetail/themedetail.compo
 import {FormsModule} from '@angular/forms';
 import {AlertModule} from 'ngx-bootstrap';
 import { ThemedetailNavbarComponent } from './components/themedetail/themedetail-navbar/themedetail-navbar.component';
+import { ThemedetailOverviewComponent } from './components/themedetail/components/themedetail-overview/themedetail-overview.component';
+import { ThemedetailCardsComponent } from './components/themedetail/components/themedetail-cards/themedetail-cards.component';
+import { ThemedetailOrganiserComponent } from './components/themedetail/components/themedetail-organiser/themedetail-organiser.component';
+import { ThemedetailCategoriesComponent } from './components/themedetail/components/themedetail-categories/themedetail-categories.component';
 
 
 @NgModule({
@@ -22,7 +26,11 @@ import { ThemedetailNavbarComponent } from './components/themedetail/themedetail
     ThemesComponent,
     NewThemeComponent,
     ThemedetailComponent,
-    ThemedetailNavbarComponent
+    ThemedetailNavbarComponent,
+    ThemedetailOverviewComponent,
+    ThemedetailCardsComponent,
+    ThemedetailOrganiserComponent,
+    ThemedetailCategoriesComponent
 
   ],
   imports: [

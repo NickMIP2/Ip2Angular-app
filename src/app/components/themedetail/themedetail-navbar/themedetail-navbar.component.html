@@ -1,7 +1,25 @@
-<div>
+<nav class="navbar navbar-expand-md navbar-light" style="background-color: #ccccb3;">
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarsDefault" aria-controls="navbarsDefault"
+          aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarsDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link font-weight-bold" routerLink="/theme/:id/overview">Overview</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link font-weight-bold" routerLink="/theme/:id/cards">Kaarten</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link font-weight-bold" routerLink="/theme/:id/categories">Categoriën</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link font-weight-bold" routerLink="/theme/:id/organisors">Organisators</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
-  <button >dashboard</button>
-  <button routerLink="/themas">thema</button>
-  <button>nieuwe sessie</button>
-  <button>analyse</button>
-</div>
+<router-outlet></router-outlet>
