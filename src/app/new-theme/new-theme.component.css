@@ -1,31 +1,33 @@
-.formcontainer{
+.formcontainer {
   border: 1px solid red;
   width: 80%;
   margin: auto;
 }
-textarea{
+
+textarea {
 
   display: inline-block;
   float: left;
   width: 200px;
   overflow: hidden;
 }
-input{
+
+input {
   width: 200px;
 }
 
-
-.submitbutton{
+.submitbutton {
   float: right;
 }
 
-label{
+label {
   display: inline-block;
   float: left;
   clear: left;
   width: 100px;
   text-align: right;
 }
+
 input {
   display: inline-block;
   float: left;

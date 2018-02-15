@@ -1,20 +1,22 @@
-.scrollul{
+.scrollul {
   height: 200px;
   width: 80%;
   overflow: hidden;
   overflow-y: scroll;
 
 }
-ul{
+
+ul {
   width: 80%;
   margin: auto;
 }
 
-.lititel{
+.lititel {
   font-weight: bold;
   background-color: grey;
 }
-li{
+
+li {
   list-style-type: none;
 }
 
@@ -25,19 +27,19 @@ li{
   text-align: left;
 }
 
-.descriptionspan{
+.descriptionspan {
   width: 55%;
   float: left;
   text-align: left;
 }
 
-.tagspan{
+.tagspan {
   width: 20%;
   float: left;
   text-align: left;
 }
 
-.wrapper{
+.wrapper {
   padding: 10px;
   border: 1px solid red;
   margin: auto;

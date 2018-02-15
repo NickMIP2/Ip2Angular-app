@@ -5,7 +5,13 @@ import {NavbarComponent} from './navbar/navbar.component';
 import {ThemeComponent} from './theme/theme.component';
 import {NewThemeComponent} from './new-theme/new-theme.component';
 import {ThemedetailComponent} from './themedetail/themedetail.component';
-import {RegisterComponent} from './register/register.component';
+
+import {LoginComponent} from './login/login.component';
+import {UserComponent} from './user/user.component';
+import {AdminComponent} from './admin/admin.component';
+import {AuthGuard} from './guards/auth-guard.service';
+import {AdminAuthGuard} from './guards/admin-auth-guard.service';
+
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -13,7 +19,9 @@ const routes: Routes = [
   {path: 'thema', component: ThemeComponent},
   {path: 'thema-toevoegen', component: NewThemeComponent},
   {path: 'thema-detail', component: ThemedetailComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminAuthGuard]},
+  {path: 'user', component: UserComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
