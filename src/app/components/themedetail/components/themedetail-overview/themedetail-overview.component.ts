@@ -11,7 +11,8 @@ export class ThemedetailOverviewComponent implements OnInit {
     id: 10,
     themename: 'Reizen',
     themedescription: 'op reisop reisop reisop op reisop reisop reisop reisop reis',
-    themetag: ['reis', 'vakantie']
+    themetag: ['reis', 'vakantie'],
+    themeUsers: ['']
   };
 
   editing = 0;
