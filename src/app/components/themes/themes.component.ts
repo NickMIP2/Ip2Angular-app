@@ -9,7 +9,7 @@ import {User} from '../../model/user';
 })
 export class ThemesComponent implements OnInit {
 
-  public user: User = {id: 1, email: 'quinten.didden@student.kdg.be', lastName: 'Didden', firstName: 'Quinten'};
+  public user: User = {id: 1, email: 'quinten.didden@student.kdg.be', lastName: 'Didden', firstName: 'Quinten', organisor: 'true'};
   public theme: Theme = {id: 1, themedescription: 'bla', themename: 'bla', themetag: ['aaa', 'aaa', 'aaa'], themeUsers: [this.user.email]};
 
   public theme2: Theme = {id: 2, themedescription: 'ttt', themename: 'aaa', themetag: ['aaa', 'aaa'], themeUsers: [this.user.email]};

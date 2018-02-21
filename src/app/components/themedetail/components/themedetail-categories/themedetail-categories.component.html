@@ -1,18 +1,16 @@
 <app-themedetail-navbar></app-themedetail-navbar>
+<br/>
 <div id="form-add-category" *ngIf="editing ==1">
-
   <label class="font-weight-bold">Categorienaam: </label>
   <input type="text" [(ngModel)]="editfield">
   <button class="btn btn-primary" (click)="editing === 1 ? save(0) : editing=0">Toevoegen</button>
-
 </div>
 <div id="display-all-categories" *ngIf="editing !==1">
-  <p *ngFor="let category of categories"> {{category.name}}
-    <button class="btn btn-primary">Edit</button>
-    <button class="btn btn-danger">Delete</button>
-  </p>
-  <br/>
   <button class="btn btn-primary" (click)="editing=1">Nieuwe categorie toevoegen</button>
-  <br/>
-
+  <table class="table paddingtop">
+    <tr *ngFor="let category of categories">
+      <td>{{category.name}}</td>
+      <td><button class="btn btn-primary">Edit</button> <button class="btn btn-danger" (click)="deleteCategory()">Delete</button></td>
+    </tr>
+  </table>
 </div>
