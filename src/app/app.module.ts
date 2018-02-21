@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-
+import {NgModule, LOCALE_ID} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
@@ -39,7 +38,7 @@ import {ThemedetailNavbarComponent} from './components/themedetail/components/th
     FormsModule,
     AlertModule.forRoot()
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'nl'}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

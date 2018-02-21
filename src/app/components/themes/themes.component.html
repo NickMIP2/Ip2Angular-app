@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <button routerLink="/thema-toevoegen">Nieuw thema</button>
+  <button name="newthemebutton" routerLink="/thema-toevoegen">Nieuw thema</button>
   <ul>
     <li class="lititel"><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
       class="tagspan">tags</span></li>
@@ -21,7 +21,7 @@
   background-color: grey;ption</span> <span
       class="tagspan">tags</span>
 
-      <button [routerLink]="['/theme/',currenttheme.id]">Details</button>
+      <button name="detailthemebutton"[routerLink]="['/theme/',currenttheme.id]">Details</button>
     </li>
     <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
       class="tagspan">tags</span></li>
