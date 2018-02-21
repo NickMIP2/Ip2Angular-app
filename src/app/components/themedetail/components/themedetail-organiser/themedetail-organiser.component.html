@@ -1,4 +1,8 @@
 <app-themedetail-navbar></app-themedetail-navbar>
-<p>
-  themedetail-organiser works!
-</p>
+<div class="container">
+  <span *ngFor="let user of users">
+    <label>{{user.email + ' ' + user.lastName + ' ' + user.firstName}}</label>
+    <input type="checkbox" class=""/>
+    <br/>
+  </span>
+</div>

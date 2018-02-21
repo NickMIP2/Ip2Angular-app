@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Theme} from '../../model/theme';
+import {User} from '../../model/user';
 
 @Component({
   selector: 'app-themedetail',
@@ -8,7 +9,8 @@ import {Theme} from '../../model/theme';
 })
 
 export class ThemedetailComponent implements OnInit {
-  @Input() public theme: Theme = {id: 10, themename: 'Reizen', themedescription: 'op reis', themetag: 'reis'};
+  public user: User = {id: 1, email: 'quinten.didden@student.kdg.be', lastName: 'Didden', firstName: 'Quinten'};
+  @Input() public theme: Theme = {id: 10, themename: 'Reizen', themedescription: 'op reis', themetag: ['reis'], themeUsers: [this.user.email]};
 
   constructor() {
   }
