@@ -9,11 +9,12 @@ import {Theme} from '../../model/theme';
 export class NewThemeComponent implements OnInit {
 
 
-  model = new Theme(0, '', '', '');
+  model = new Theme(0, '', '', [''], ['']);
 
   submitted = false;
 
   ngOnInit() {
+    window.document.title = 'Nieuw thema';
   }
 
   onClickSubmit() {
