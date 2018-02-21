@@ -10,6 +10,7 @@ export class ThemedetailCardsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    window.document.title = 'Kaarten';
   }
 
 }

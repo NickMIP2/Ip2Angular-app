@@ -20,6 +20,7 @@ export class ThemedetailCategoriesComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.document.title = 'Categoriën';
   }
 
   save(itemId) {

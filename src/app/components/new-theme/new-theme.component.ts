@@ -14,6 +14,7 @@ export class NewThemeComponent implements OnInit {
   submitted = false;
 
   ngOnInit() {
+    window.document.title = 'Nieuw thema';
   }
 
   onClickSubmit() {

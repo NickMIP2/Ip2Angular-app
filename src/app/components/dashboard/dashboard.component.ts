@@ -10,6 +10,7 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    window.document.title = 'Kandoe Dashboard';
   }
 
 }

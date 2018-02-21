@@ -10,6 +10,7 @@ export class ThemedetailOrganiserComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    window.document.title = 'Organisators';
   }
 
 }

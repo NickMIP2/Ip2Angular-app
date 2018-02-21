@@ -1,10 +1,19 @@
 <div class="wrapper">
-  <button routerLink="/thema-toevoegen">Nieuw thema</button>
+  <button class="btn btn-primary" routerLink="/thema-toevoegen">Nieuw thema</button>
   <ul>
     <li class="lititel"><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
       class="tagspan">tags</span></li>
   </ul>
-  <ul class="scrollul">
+  <ul class="scrollul" id="themeOverview">
+    <li *ngFor="let currentTheme of themes">
+      <span class="namespan">{{currentTheme.themename}}</span>
+      <span class="descriptionspan">{{currentTheme.themedescription}}</span>
+      <span class="tagspan">{{currentTheme.themetag}}</span>
+      <button class="btn btn-info font-small" routerLink="/theme/:id/overview">Details</button>
+      <button class="btn btn-danger font-small" [routerLink]="['/theme/',currentTheme.id]">Verwijder</button>
+    </li>
+  </ul>
+  <!--<ul class="scrollul">
 
     <li *ngFor="let currenttheme of themes"><span class="namespan">nekhfskqljluvhjqsiljufsjfuhlighslgame</span> <span class="descriptionspan">descri
   background-color: grey;
@@ -21,7 +30,8 @@
   background-color: grey;ption</span> <span
       class="tagspan">tags</span>
 
-      <button [routerLink]="['/theme/',currenttheme.id]">Details</button>
+      <button class="btn btn-light font-small" routerLink="/theme/:id/overview">Details</button>
+      <button class="btn btn-danger font-small" [routerLink]="['/theme/',currenttheme.id]">Verwijder</button>
     </li>
     <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
       class="tagspan">tags</span></li>
@@ -58,5 +68,5 @@
     <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
       class="tagspan">tags</span></li>
 
-  </ul>
+  </ul>-->
 </div>
