@@ -1,5 +1,8 @@
 <div class="wrapper">
-  <button class="btn btn-primary" routerLink="/thema-toevoegen">Nieuw thema</button>
+  <button name="newthemebutton" routerLink="/thema-toevoegen">Nieuw thema</button>
+
+  <button name="newthemebutton" class="btn btn-primary" routerLink="/thema-toevoegen">Nieuw thema</button>
+
   <ul>
     <li class="lititel"><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
       class="tagspan">tags</span></li>
@@ -30,8 +33,12 @@
   background-color: grey;ption</span> <span
       class="tagspan">tags</span>
 
+<<<<<<< HEAD
+      <button name="detailthemebutton"[routerLink]="['/theme/',currenttheme.id]">Details</button>
+=======
       <button class="btn btn-light font-small" routerLink="/theme/:id/overview">Details</button>
       <button class="btn btn-danger font-small" [routerLink]="['/theme/',currenttheme.id]">Verwijder</button>
+>>>>>>> cb6e67564a345bf37e6e1b7087b6ec2f85d2b766
     </li>
     <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
       class="tagspan">tags</span></li>

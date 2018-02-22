@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule, LOCALE_ID} from '@angular/core';
 import {AuthConfig, AuthHttp} from 'angular2-jwt';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
@@ -73,6 +73,7 @@ export function authHttpServiceFactory(http) {
     AdminAuthGuard,
     AppDataService
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule {
