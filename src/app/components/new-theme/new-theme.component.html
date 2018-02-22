@@ -1,24 +1,20 @@
 <div class="container">
   <form #themeform="ngForm" class="formcontainer">
     <div class="form-group"><label>Naam: </label>
-
       <input class="form-control" id="themename" type="text" required [(ngModel)]="model.themename"
              name="themename"
              #themename="ngModel">
       <div [hidden]="themename.valid || themename.pristine" class="alert alert-danger">
-        Naam is verplicht
+        Naam is verplicht.
       </div>
-
     </div>
-
-
     <div class="form-group"><label>Beschrijving: </label>
       <textarea class="form-control" id="themedescription" cols="40" rows="5" required
                 [(ngModel)]="model.themedescription"
                 name="description"
                 #themedescription="ngModel"></textarea>
       <div [hidden]="themedescription.valid || themedescription.pristine" class="alert alert-danger">
-        Beschrijving is verplicht
+        Beschrijving is verplicht.
       </div>
     </div>
     <div class="form-group"><label>Tags: </label>
@@ -26,17 +22,13 @@
              name="themetag"
              #themetag="ngModel">
       <div [hidden]="themetag.valid || themetag.pristine" class="alert alert-danger">
-
-        Thema moet minstens 1 tag hebben
+        Thema moet minstens 1 tag hebben.
       </div>
     </div>
-
     <button [disabled]="!themeform.form.valid" class="btn btn-primary" routerLink="/theme/:id/overview"
             (click)="onClickSubmit()">toevoegen
     </button>
     <button class="btn btn-secondary" routerLink="/themas">ga terug</button>
-
   </form>
-
 </div>
 
