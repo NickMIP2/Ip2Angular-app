@@ -1,0 +1,42 @@
+
+/*textarea{*/
+
+  /*display: inline-block;*/
+  /*float: left;*/
+  /*width: 200px;*/
+  /*overflow: hidden;*/
+  /*padding: 0px;*/
+/*}*/
+/*input{*/
+  /*width: 200px;*/
+/*}*/
+
+
+/*.submitbutton{*/
+  /*float: right;*/
+/*}*/
+
+/*label{*/
+  /*display: inline-block;*/
+  /*float: left;*/
+  /*clear: left;*/
+  /*width: 100px;*/
+  /*text-align: right;*/
+/*}*/
+/*input {*/
+  /*display: inline-block;*/
+  /*float: left;*/
+/*}*/
+.formcontainer{
+ width: 50%;
+  text-align: left;
+  margin: auto;
+}
+
+.ng-valid[required], .ng-valid.required {
+  border-right: 2px solid green;
+}
+
+.ng-invalid:not(form) {
+  border-right: 2px solid red;
+}

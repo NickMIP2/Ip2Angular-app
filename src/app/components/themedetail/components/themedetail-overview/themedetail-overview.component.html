@@ -1,0 +1,34 @@
+<app-themedetail-navbar></app-themedetail-navbar>
+<div class="overview-container container">
+
+  <div id="themeName">
+    <h1 id="nameField" *ngIf="editing !==1">{{ theme.themename }}</h1>
+
+      <label class="col-form-label font-weight-bold" *ngIf="editing ==1">Themanaam</label>
+    <div >
+      <input type="text" id="nameInput" *ngIf="editing ==1" [(ngModel)]="theme.themename"/>
+    </div>
+  </div>
+  <div id="themeDescription">
+    <label class="col-form-label font-weight-bold">Beschrijving</label>
+    <div>
+      <p class="text-left" id="descField" *ngIf="editing !==1"> {{theme.themedescription }}</p>
+      <textarea class="" type="text" id="descInput" *ngIf="editing ==1" [(ngModel)]="theme.themedescription"></textarea>
+    </div>
+  </div>
+  <div class="themeTags">
+    <label class="col-form-label font-weight-bold">Tags</label>
+    <div *ngFor="let tag of theme.themetag; let i = index">
+      <label class="text-left">{{tag}}</label>
+      <button class="" *ngIf="editing === 1" name="deleteTag" (click)="deleteTag(i)">Verwijder</button>
+    </div>
+    <div *ngIf="editing === 1">
+      <input type="text" id="tagInput" [(ngModel)]="tagValue"/>
+      <button class="btn btn-primary" name="addTag" (click)="addTag()">Tag toevoegen</button>
+    </div>
+  </div>
+  <button class="btn btn-primary" (click)="editing === 1 ? save(1) : editing=1">{{editing===1 ? "Opslaan" :
+    "Wijzigen"}}
+  </button>
+  <button class="btn btn-danger" (click)="deleteTheme()" routerLink="/themas">Verwijderen</button>
+</div>

@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand font-weight-bold" routerLink="/dashboard">Kandoe!</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarsDefault" aria-controls="navbarsDefault"
+          aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarsDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a name="dashboard" class="nav-link" routerLink="/"><p>Dashboard</p></a>
+      </li>
+      <li class="nav-item active">
+        <a name="themes" class="nav-link" routerLink="/themas"><p>Thema's</p></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" name="session">Nieuwe sessie</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" name="analytics">Analyses</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+<router-outlet></router-outlet>

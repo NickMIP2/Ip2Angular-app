@@ -1,0 +1,15 @@
+.borderRed{
+  border: 1px solid red;
+}
+
+.pagecontainer{
+  padding: 5%;
+  padding-top: 1%;
+}
+
+.cardcontainer{
+  width: 30%;
+  float: left;
+  margin: 10px;
+
+}

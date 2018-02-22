@@ -1,0 +1,19 @@
+<app-themedetail-navbar></app-themedetail-navbar>
+<div class="container">
+  <table class="table text-left">
+    <tr>
+      <th>Email</th>
+      <th>Naam</th>
+      <th>Voornaam</th>
+      <th>Organisator</th>
+    </tr>
+    <tr *ngFor="let user of users" >
+      <td>{{user.email}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.firstName}}</td>
+      <td *ngIf="user.organisor === 'true'"><input type="checkbox" class=""  id="{{user.id}}" checked /></td>
+      <td *ngIf="user.organisor === 'false'"><input type="checkbox" class=""  id="{{user.id}}"/></td>
+    </tr>
+  </table>
+  <button class="btn btn-primary" (click)="saveChanges()" name="saveOrganisors">Opslaan</button>
+</div>

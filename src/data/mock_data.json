@@ -1,0 +1,46 @@
+[
+  {
+    "themeId": 1,
+    "name": "Reizen",
+    "description": "De reisbestemming",
+    "tags": [
+      {
+        "tagId": 1,
+        "t_name": "Travel"
+      }
+    ]
+  },
+  {
+    "themeId": 2,
+    "name": "Café van de dag",
+    "description": "In welke bruine kroeg gaan we ons vanavond te pletter drinken?",
+    "tags": [
+      {
+        "tagId": 1,
+        "t_name": "Bar"
+      }
+    ]
+  },
+  {
+    "themeId": 3,
+    "name": "Zomerfestival",
+    "description": "De beste festivalbestemmingen voor 2018",
+    "tags": [
+      {
+        "tagId": 1,
+        "t_name": "Festival"
+      }
+    ]
+  },
+  {
+    "themeId": 4,
+    "name": "Straatwerken",
+    "description": "De geplande straatwerken voor Antwerpen in de periode 2018-2024",
+    "tags": [
+      {
+        "tagId": 1,
+        "t_name": "Verkeer"
+      }
+    ]
+  }
+]
