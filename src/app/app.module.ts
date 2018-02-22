@@ -28,6 +28,7 @@ import {UserService} from './services/user.service';
 import {AuthGuard} from './guards/auth-guard.service';
 import {AdminAuthGuard} from './guards/admin-auth-guard.service';
 import {AppDataService} from './services/app-data.service';
+import { NewSessionComponent } from './components/session/new-session/new-session.component';
 
 export function authHttpServiceFactory(http) {
   return new AuthHttp(new AuthConfig({
@@ -56,7 +57,8 @@ export function authHttpServiceFactory(http) {
     ThemedetailCategoriesComponent,
     UserComponent,
     AdminComponent,
-    LoginComponent
+    LoginComponent,
+    NewSessionComponent
   ],
   imports: [
     BrowserModule,

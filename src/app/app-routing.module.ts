@@ -8,6 +8,7 @@ import {ThemedetailOverviewComponent} from './components/themedetail/components/
 import {ThemedetailCardsComponent} from './components/themedetail/components/themedetail-cards/themedetail-cards.component';
 import {ThemedetailOrganiserComponent} from './components/themedetail/components/themedetail-organiser/themedetail-organiser.component';
 import {ThemedetailCategoriesComponent} from './components/themedetail/components/themedetail-categories/themedetail-categories.component';
+import {NewSessionComponent} from './components/session/new-session/new-session.component';
 import {LoginComponent} from './login/login.component';
 import {UserComponent} from './user/user.component';
 import {AdminComponent} from './admin/admin.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'theme/:id/organisors', component: ThemedetailOrganiserComponent},
   {path: 'theme/:id/categories', component: ThemedetailCategoriesComponent},
   {path: 'themas:id', component: ThemedetailComponent},
+  {path: 'new-session', component: NewSessionComponent},
   {path: 'login', component: LoginComponent},
   {path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminAuthGuard]},
   {path: 'user', component: UserComponent, canActivate: [AuthGuard]}

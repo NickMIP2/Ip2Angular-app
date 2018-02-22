@@ -1,0 +1,50 @@
+.formcontainer {
+  width: 50%;
+  text-align: left;
+  margin: auto;
+}
+
+.ng-valid[required], .ng-valid.required {
+  border-right: 2px solid green;
+}
+
+.ng-invalid:not(form) {
+  border-right: 2px solid red;
+}
+
+.checkbox_width-control {
+  width: 40%;
+  margin: auto;
+}
+
+.checkbox_margin-left {
+  margin-left: 20%;
+}
+
+.borderRed {
+  border: 1px solid red;
+}
+
+.number_margin-top {
+  margin-top: 10%;
+}
+
+.submit_width {
+  width: 50%;
+  margin-left: 25%;
+}
+
+.participants_float{
+  float: left;
+  width: 48%;
+  margin: 1%;
+}
+
+.participants_textarea{
+  width: 100%;
+  min-height: 100px;
+}
+
+.btn_margin-top{
+  margin-top: 5%;
+}

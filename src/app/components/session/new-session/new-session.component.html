@@ -1,0 +1,46 @@
+<div class="container">
+  <form #sessionform="ngForm" class="formcontainer">
+    <div class="form-group ">
+      <label>Naam: </label>
+      <input class="form-control" id="sessionname" type="text" required [(ngModel)]="model.name"
+             name="sessionname"
+             #sessionname="ngModel" placeholder="Naam is een verplicht veld.">
+    </div>
+    <div class="form-group ">
+      <div class="float-left checkbox_width-control checkbox_margin-left ">
+        <label>Kans</label>
+        <input *ngIf="chance===true" type="checkbox" class="form-check" (click)="chanceClicked()" checked>
+        <input *ngIf="chance===false || chance===null" type="checkbox" class="form-check" (click)="chanceClicked()">
+      </div>
+      <div class="float-left checkbox_width-control ">
+        <label>Probleem</label>
+        <input *ngIf="chance===false" type="checkbox" class="form-check" (click)="problemClicked()" checked>
+        <input *ngIf="chance===true || chance===null" type="checkbox" class="form-check" (click)="problemClicked()">
+      </div>
+    </div>
+    <div class="form-group  number_margin-top">
+      <br/>
+      <label>Maximum kaarten: </label>
+      <input type="number" class="form-control" [(ngModel)]="model.maxCards" min="0" placeholder="0">
+      <br/>
+      <label>Aantal rondes: </label>
+      <input type="number" class="form-control" [(ngModel)]="model.noOfRounds" min="1" placeholder="1">
+    </div>
+    <div class="form-group">
+      <div class="participants_float ">
+        <label>Deelnemers: </label><br/>
+        <textarea readonly [(ngModel)]="model.participants"
+                  class="text-left participants_textarea">
+          {{model.participants}}
+        </textarea>
+      </div>
+      <div class="participants_float ">
+        <label>Nieuwe deelnemer: </label>
+        <input type="text" class="form-control" placeholder="Email van een deelnemer"
+        [(ngModel)]="participantEmail">
+        <button class="btn btn-info btn_margin-top" (click)="addParticipant()">Toevoegen</button>
+      </div>
+    </div>
+    <button class="btn btn-primary submit_width form-control" (click)="onClickSubmit()">Sessie maken</button>
+  </form>
+</div>
