@@ -13,12 +13,14 @@ export class DashboardComponent implements OnInit {
   title = '...';
 
   constructor(private titleService: Title, private translateService: TranslateService) {
-this.translateService.setDefaultLang('nl');
+    this.translateService.setDefaultLang('nl');
   }
 
   ngOnInit() {
+    this.translateService.get('dashboard_page_title').subscribe((res: string) => {
+      this.titleService.setTitle(res);
+    });
 
-    this.titleService.setTitle(this.title);
 
   }
 }
