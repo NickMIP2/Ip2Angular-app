@@ -4,6 +4,7 @@ import {AuthConfig, AuthHttp} from 'angular2-jwt';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
@@ -28,6 +29,7 @@ import {UserService} from './services/user.service';
 import {AuthGuard} from './guards/auth-guard.service';
 import {AdminAuthGuard} from './guards/admin-auth-guard.service';
 import {AppDataService} from './services/app-data.service';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 export function authHttpServiceFactory(http) {
   return new AuthHttp(new AuthConfig({
@@ -38,6 +40,12 @@ export function authHttpServiceFactory(http) {
     noTokenScheme: true,
     tokenGetter: (() => localStorage.getItem(TOKEN_NAME))
   }), http);
+}
+
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
 }
 
 @NgModule({
@@ -63,7 +71,14 @@ export function authHttpServiceFactory(http) {
     AppRoutingModule,
     FormsModule,
     AlertModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     {provide: AuthHttp, useFactory: authHttpServiceFactory, deps: [HttpClient]},
@@ -71,10 +86,11 @@ export function authHttpServiceFactory(http) {
     UserService,
     AuthGuard,
     AdminAuthGuard,
-    AppDataService
-  ],
+    AppDataService,
 
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }
