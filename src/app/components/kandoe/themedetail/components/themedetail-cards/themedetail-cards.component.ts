@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Card} from '../../../../model/card';
-import {Category} from '../../../../model/category';
+import {Card} from '../../../../../model/card';
+import {Category} from '../../../../../model/category';
 
 @Component({
   selector: 'app-themedetail-cards',

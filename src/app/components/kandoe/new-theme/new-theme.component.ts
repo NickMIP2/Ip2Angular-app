@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Theme} from '../../model/theme';
+import {Theme} from '../../../model/theme';
 
 @Component({
   selector: 'app-new-theme',

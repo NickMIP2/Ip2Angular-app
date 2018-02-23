@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Theme} from '../../model/theme';
-import {User} from '../../model/user';
+import {Theme} from '../../../model/theme';
+import {User} from '../../../model/user';
 
 @Component({
   selector: 'app-theme',
