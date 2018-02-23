@@ -1,7 +1,7 @@
 <div class="container">
   <form #themeform="ngForm" class="formcontainer">
     <div class="form-group"><label>Naam: </label>
-      <input class="form-control" id="themename" type="text" required [(ngModel)]="model.themename"
+      <input class="form-control" id="themename" type="text" required [(ngModel)]="model.name"
              name="themename"
              #themename="ngModel">
       <div [hidden]="themename.valid || themename.pristine" class="alert alert-danger">
@@ -10,7 +10,7 @@
     </div>
     <div class="form-group"><label>Beschrijving: </label>
       <textarea class="form-control" id="themedescription" cols="40" rows="5" required
-                [(ngModel)]="model.themedescription"
+                [(ngModel)]="model.description"
                 name="description"
                 #themedescription="ngModel"></textarea>
       <div [hidden]="themedescription.valid || themedescription.pristine" class="alert alert-danger">
@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="form-group"><label>Tags: </label>
-      <input class="form-control" id="themetag" type="text" required [(ngModel)]="model.themetag"
+      <input class="form-control" id="themetag" type="text" required [(ngModel)]="model.tags"
              name="themetag"
              #themetag="ngModel">
       <div [hidden]="themetag.valid || themetag.pristine" class="alert alert-danger">

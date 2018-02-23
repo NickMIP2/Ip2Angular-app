@@ -9,5 +9,13 @@ export class AppDataService {
   getUsers() {
     return this.http.get('/springjwt/users').map(res => res.json());
   }
+  getThemes() {
+    return this.http.get('https://kandoe-backend.herokuapp.com/themes').map(res => res.json());
+  }
+
+  getThemeById(id){
+    return this.http.get('https://kandoe-backend.herokuapp.com/themes/' + id).map(res => res.json());
+}
+
 
 }

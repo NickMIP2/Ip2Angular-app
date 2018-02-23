@@ -16,7 +16,7 @@ import {AdminAuthGuard} from './guards/admin-auth-guard.service';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'themas', component: ThemesComponent},
   {path: 'thema-toevoegen', component: NewThemeComponent},

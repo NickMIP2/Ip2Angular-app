@@ -10,7 +10,7 @@ import {User} from '../../model/user';
 
 export class ThemedetailComponent implements OnInit {
   public user: User = {id: 1, email: 'quinten.didden@student.kdg.be', lastName: 'Didden', firstName: 'Quinten', organisor: 'true'};
-  @Input() public theme: Theme = {id: 10, themename: 'Reizen', themedescription: 'op reis', themetag: ['reis'], themeUsers: [this.user.email]};
+  // @Input() public theme: Theme = {id: 10, themename: 'Reizen', themedescription: 'op reis', themetag: ['reis'], themeUsers: [this.user.email]};
 
   constructor() {
   }

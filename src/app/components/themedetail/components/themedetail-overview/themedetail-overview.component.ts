@@ -8,11 +8,9 @@ import {Theme} from '../../../../model/theme';
 })
 export class ThemedetailOverviewComponent implements OnInit {
   @Input() public theme: Theme = {
-    id: 10,
-    themename: 'Reizen',
-    themedescription: 'op reisop reisop reisop op reisop reisop reisop reisop reis',
-    themetag: ['reis', 'vakantie'],
-    themeUsers: ['']
+    name: 'Reizen',
+    description: 'op reisop reisop reisop op reisop reisop reisop reisop reis',
+    tags: 'reis'
   };
 
   editing = 0;
@@ -22,7 +20,8 @@ export class ThemedetailOverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    window.document.title = 'Thema ' + this.theme.themename;
+
+    window.document.title = 'Thema ' + this.theme.name;
   }
 
   save(itemId) {
@@ -30,11 +29,11 @@ export class ThemedetailOverviewComponent implements OnInit {
     // thema opslaan via call in service
   }
   deleteTheme() {}
-  addTag() {
-    this.theme.themetag.push(this.tagValue);
-    this.tagValue = '';
-  }
-  deleteTag(i) {
-    this.theme.themetag.splice(i, 1);
-  }
+ // addTag() {
+   // this.theme.themetag.push(this.tagValue);
+   // this.tagValue = '';
+  // }
+  // deleteTag(i) {
+   // this.theme.themetag.splice(i, 1);
+  // }
 }
