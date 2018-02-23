@@ -10,7 +10,6 @@ export class NewThemeComponent implements OnInit {
 
 
   model = new Theme(0, '', '', [''], ['']);
-
   submitted = false;
 
   ngOnInit() {

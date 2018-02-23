@@ -1,30 +1,61 @@
 <div class="container">
-  <form #sessionform="ngForm" class="formcontainer">
+  <form #sessionform="ngForm" class="formcontainer" name="sessionForm">
     <div class="form-group ">
       <label>Naam: </label>
       <input class="form-control" id="sessionname" type="text" required [(ngModel)]="model.name"
              name="sessionname"
-             #sessionname="ngModel" placeholder="Naam is een verplicht veld.">
+             #sessionname="ngModel" placeholder="Sessienaam is een verplicht veld.">
     </div>
     <div class="form-group ">
       <div class="float-left checkbox_width-control checkbox_margin-left ">
         <label>Kans</label>
-        <input *ngIf="chance===true" type="checkbox" class="form-check" (click)="chanceClicked()" checked>
-        <input *ngIf="chance===false || chance===null" type="checkbox" class="form-check" (click)="chanceClicked()">
+        <input *ngIf="chance===true" type="checkbox" class="form-check"
+               (click)="chanceClicked()" checked name="chanceCheckboxChecked">
+        <input *ngIf="chance===false || chance===null" type="checkbox"
+               class="form-check" (click)="chanceClicked()"
+               name="chanceCheckboxUnchecked">
       </div>
       <div class="float-left checkbox_width-control ">
         <label>Probleem</label>
-        <input *ngIf="chance===false" type="checkbox" class="form-check" (click)="problemClicked()" checked>
-        <input *ngIf="chance===true || chance===null" type="checkbox" class="form-check" (click)="problemClicked()">
+        <input *ngIf="chance===false" type="checkbox" class="form-check"
+               (click)="problemClicked()" checked name="problemCheckboxChecked">
+        <input *ngIf="chance===true || chance===null" type="checkbox"
+               class="form-check" (click)="problemClicked()"
+               name="problemCheckboxUnchecked">
       </div>
     </div>
-    <div class="form-group  number_margin-top">
+    <div class="form-group  number_margin-top numbers_center">
       <br/>
-      <label>Maximum kaarten: </label>
-      <input type="number" class="form-control" [(ngModel)]="model.maxCards" min="0" placeholder="0">
+      <div class="numbers_text_float">
+        <label>Maximum kaarten: </label>
+      </div>
+      <div class="numbers_float">
+        <input type="number" class="form-control" [(ngModel)]="model.maxCards"
+               min="1" placeholder="1" name="inputMaxCards">
+      </div>
       <br/>
-      <label>Aantal rondes: </label>
-      <input type="number" class="form-control" [(ngModel)]="model.noOfRounds" min="1" placeholder="1">
+      <div class="numbers_text_float">
+        <label>Aantal rondes: </label>
+      </div>
+      <div class="numbers_float">
+        <input type="number" class="form-control" [(ngModel)]="model.noOfRounds"
+               min="1" placeholder="1" name="inputNoOfRounds">
+      </div>
+      <br/>
+      <div class="numbers_text_float">
+        <label>Tijd per zet (uur): </label>
+      </div>
+      <div class="numbers_float">
+        <input type="number" class="form-control" [(ngModel)]="model.timePerMoveHour"
+               min="0" placeholder="1" name="inputTimePerMoveHour">
+      </div>
+      <div class="numbers_text_float">
+        <label>Tijd per zet (min): </label>
+      </div>
+      <div class="numbers_float">
+        <input type="number" class="form-control"
+               min="0" max="59" placeholder="0" name="inputTimePerMoveMinute">
+      </div>
     </div>
     <div class="form-group">
       <div class="participants_float ">
@@ -36,11 +67,20 @@
       </div>
       <div class="participants_float ">
         <label>Nieuwe deelnemer: </label>
-        <input type="text" class="form-control" placeholder="Email van een deelnemer"
-        [(ngModel)]="participantEmail">
-        <button class="btn btn-info btn_margin-top" (click)="addParticipant()">Toevoegen</button>
+        <input type="text" class="form-control" placeholder="Emailadres van een deelnemer"
+               [(ngModel)]="participantEmail"
+               name="inputParticipantEmail">
+        <button class="btn btn-info btn_margin-top"
+                (click)="addParticipant()"
+        [disabled]="participantEmail === ''">
+          Toevoegen
+        </button>
       </div>
     </div>
-    <button class="btn btn-primary submit_width form-control" (click)="onClickSubmit()">Sessie maken</button>
+    <button class="btn btn-primary submit_width form-control"
+            (click)="onClickSubmit()"
+            [disabled]="this.model.chance === null">
+      Sessie maken
+    </button>
   </form>
 </div>

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Session} from '../../../model/session';
+import {log} from 'util';
 
 @Component({
   selector: 'app-new-session',
@@ -7,15 +8,17 @@ import {Session} from '../../../model/session';
   styleUrls: ['./new-session.component.css']
 })
 export class NewSessionComponent implements OnInit {
-  model = new Session(0, '', null, null, 0, 0, 0, 'testOwner');
+  model = new Session(0, '', true, null, 1, 1, 0, 'testOwner\n');
   submitted = false;
   chance = null;
   participantEmail = '';
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     window.document.title = 'Nieuwe sessie';
+    console.log(this.participantEmail);
   }
 
   onClickSubmit() {
@@ -26,13 +29,23 @@ export class NewSessionComponent implements OnInit {
   }
 
   chanceClicked() {
-    this.model.chance = true;
-    this.chance = true;
+    if (this.model.chance === true && this.model.name !== '') {
+      this.model.chance = null;
+      this.chance = null;
+    } else {
+      this.model.chance = true;
+      this.chance = true;
+    }
   }
 
   problemClicked() {
-    this.model.chance = false;
-    this.chance = false;
+    if (this.model.chance === false) {
+      this.model.chance = null;
+      this.chance = null;
+    } else {
+      this.model.chance = false;
+      this.chance = false;
+    }
   }
 
   addParticipant() {
