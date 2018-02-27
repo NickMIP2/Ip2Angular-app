@@ -33,6 +33,7 @@ import {AuthenticationComponent} from './components/authentication/authenticatio
 import {RegisterComponent} from './components/authentication/register/register.component';
 import {InMemoryDataService} from './services/in-memory-data.service';
 import {ThemeService} from './services/theme.service';
+import {Interceptor} from './interceptor';
 
 export function authHttpServiceFactory(http) {
   return new AuthHttp(new AuthConfig({
@@ -83,7 +84,8 @@ export function authHttpServiceFactory(http) {
     AuthGuard,
     AdminAuthGuard,
     AppDataService,
-    ThemeService
+    ThemeService,
+    Interceptor
   ],
 
   bootstrap: [AppComponent]
