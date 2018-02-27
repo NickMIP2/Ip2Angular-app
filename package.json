@@ -26,7 +26,7 @@
     "@angular/router": "^5.2.0",
     "angular-in-memory-web-api": "^0.5.3",
     "angular2-jwt": "latest",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.0.0-beta.2",
     "core-js": "^2.4.1",
     "express": "^4.16.2",
     "ngx-bootstrap": "^2.0.2",
