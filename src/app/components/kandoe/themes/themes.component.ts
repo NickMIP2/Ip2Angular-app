@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Theme} from '../../../model/theme';
 import {User} from '../../../model/user';
+import {ThemeService} from '../../../services/theme.service';
 
 @Component({
   selector: 'app-theme',
@@ -22,12 +23,19 @@ export class ThemesComponent implements OnInit {
   public theme8: Theme = {id: 3, themedescription: 'zttt', themename: 'aaaaaaa', themetag: ['aaa', 'aaa'], themeUsers: [this.user.email]};
   public themes = [this.theme, this.theme2, this.theme3, this.theme4, this.theme5, this.theme6, this.theme7, this.theme8];
 
-  constructor() {
-
-  }
+  public themesarray = [];
+  constructor(private themeService: ThemeService) {
+}
 
   ngOnInit() {
     window.document.title = 'Uw thema\'s';
+   this.themeService.getThemes().subscribe(
+     themes => {this.themesarray = themes;
+
+       console.log(this.themesarray[0].themetag);
+     }
+   );
+
   }
 
 }

@@ -3,8 +3,8 @@ import {NgModule, LOCALE_ID} from '@angular/core';
 import {AuthConfig, AuthHttp} from 'angular2-jwt';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-
 import {AppRoutingModule} from './app-routing.module';
+import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 
 import {AppComponent} from './app.component';
 import {DashboardComponent} from './components/kandoe/dashboard/dashboard.component';
@@ -31,6 +31,8 @@ import {AppDataService} from './services/app-data.service';
 import { KandoeComponent } from './components/kandoe/kandoe.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
+import {InMemoryDataService} from './services/in-memory-data.service';
+import {ThemeService} from './services/theme.service';
 
 export function authHttpServiceFactory(http) {
   return new AuthHttp(new AuthConfig({
@@ -69,7 +71,10 @@ export function authHttpServiceFactory(http) {
     AppRoutingModule,
     FormsModule,
     AlertModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, {dataEncapsulation: false}
+    )
   ],
   providers: [
     {provide: AuthHttp, useFactory: authHttpServiceFactory, deps: [HttpClient]},
@@ -77,7 +82,8 @@ export function authHttpServiceFactory(http) {
     UserService,
     AuthGuard,
     AdminAuthGuard,
-    AppDataService
+    AppDataService,
+    ThemeService
   ],
 
   bootstrap: [AppComponent]
