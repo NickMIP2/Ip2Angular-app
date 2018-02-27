@@ -16,11 +16,11 @@ export class LoginComponent implements OnInit {
 
   error:"";
   loading: false;
-  username: string;
-  password: string;
+  usernametext: string;
+  passwordtext: string;
 
   login(): void {
-    this.authService.login(this.username, this.password).subscribe(
+    this.authService.login(this.usernametext, this.passwordtext).subscribe(
       data => {
         this.token.saveToken(data.token);
         this.router.navigate(['dashboard']); // naar dashboard
