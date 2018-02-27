@@ -28,7 +28,6 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
     this.themeService.getTheme(this.urlid).subscribe(theme => {
       this.theme = theme;
     });
-    //window.document.title = 'Thema ' + this.theme.themename;
   }
 
   ngAfterViewChecked() {
