@@ -1,18 +1,40 @@
-.panel-heading {
-  padding: 5px 15px;
+.borderRed{
+  border: red 1px solid;
 }
 
-.panel-footer {
-  padding: 1px 15px;
-  color: #A0A0A0;
+.maxWidth{
+ width: 80%;
 }
 
-.profile-img {
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 10px;
-  display: block;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
+.containerCenter{
+  margin: auto;
+}
+
+.buttonWidth{
+  width: 80%;
+  background-color: blue;
+
+}
+
+.marginTop{
+  margin-top: 2%;
+}
+.marginBottom{
+  margin-bottom: 2%;
+}
+
+.supercontainer{
+  width: 50%;
+  margin: auto;
+  background-color: lightgray;
+  border-radius: 25px;
+
+}
+
+.ng-valid[required], .ng-valid.required {
+  border-right: 2px solid green;
+}
+
+.ng-invalid:not(form) {
+  border-right: 2px solid red;
 }
