@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, Input, OnChanges, OnInit} from '@angular/core';
 import {Theme} from '../../../../../model/theme';
 import {ThemeService} from '../../../../../services/theme.service';
 import {ActivatedRoute} from '@angular/router';
@@ -8,7 +8,7 @@ import {ActivatedRoute} from '@angular/router';
   templateUrl: './themedetail-overview.component.html',
   styleUrls: ['./themedetail-overview.component.css']
 })
-export class ThemedetailOverviewComponent implements OnInit {
+export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
   @Input() public theme: Theme = {
     id: 0,
     themename: 'Oeps',
@@ -28,6 +28,10 @@ export class ThemedetailOverviewComponent implements OnInit {
     this.themeService.getTheme(this.urlid).subscribe(theme => {
       this.theme = theme;
     });
+    //window.document.title = 'Thema ' + this.theme.themename;
+  }
+
+  ngAfterViewChecked() {
     window.document.title = 'Thema ' + this.theme.themename;
   }
 
@@ -41,6 +45,7 @@ export class ThemedetailOverviewComponent implements OnInit {
 
     this.themeService.deleteTheme(theme).subscribe();
   }
+
   // addTag() {
   //   this.theme.themetag.push(this.tagValue);
   //   this.tagValue = '';
