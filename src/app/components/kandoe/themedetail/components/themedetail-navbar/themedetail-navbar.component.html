@@ -7,16 +7,16 @@
   <div class="collapse navbar-collapse" id="navbarsDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link font-weight-bold" routerLink="/theme/:id/overview">Overzicht</a>
+        <a class="nav-link font-weight-bold" [routerLink]="['/theme',themeId,'overview']">Overzicht</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link font-weight-bold" routerLink="/theme/:id/cards">Kaarten</a>
+        <a class="nav-link font-weight-bold" [routerLink]="['/theme',themeId,'cards']">Kaarten</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link font-weight-bold" routerLink="/theme/:id/categories">Categoriën</a>
+        <a class="nav-link font-weight-bold" [routerLink]="['/theme',themeId,'categories']">Categoriën</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link font-weight-bold" routerLink="/theme/:id/organisors">Organisators</a>
+        <a class="nav-link font-weight-bold" [routerLink]="['/theme',themeId,'organisers']">Organisators</a>
       </li>
     </ul>
   </div>

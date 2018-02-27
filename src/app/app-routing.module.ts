@@ -22,7 +22,7 @@ const routes: Routes = [
   {path: 'themas', component: ThemesComponent},
   {path: 'thema-toevoegen', component: NewThemeComponent},
   {path: 'thema-detail', component: ThemedetailComponent},
-  {path: 'theme/:id/', redirectTo: '/theme/:id/overview', pathMatch: 'full'},
+  {path: 'theme/:id', redirectTo: '/theme/:id/overview', pathMatch: 'full'},
   {path: 'theme/:id/overview', component: ThemedetailOverviewComponent},
   {path: 'theme/:id/cards', component: ThemedetailCardsComponent},
   {path: 'theme/:id/organisors', component: ThemedetailOrganiserComponent},

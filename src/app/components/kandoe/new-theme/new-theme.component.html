@@ -25,7 +25,7 @@
         Thema moet minstens 1 tag hebben.
       </div>
     </div>
-    <button [disabled]="!themeform.form.valid" class="btn btn-primary" routerLink="/theme/:id/overview"
+    <button type="button" [disabled]="!themeform.form.valid" class="btn btn-primary" routerLink="/themas"
             (click)="onClickSubmit()">toevoegen
     </button>
     <button class="btn btn-secondary" routerLink="/themas">ga terug</button>

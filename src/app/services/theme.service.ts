@@ -19,6 +19,7 @@ const httpOptions = {
 export class ThemeService {
 
   private themesurl = 'api/themes';
+
   constructor(private http: HttpClient) {
 
   }
@@ -28,17 +29,20 @@ export class ThemeService {
     // return this.http.get('http://.../userid/themes').map((res) => res.json());
   }
 
-  getTheme(id) {
-    return this.http.get('http://.../userid/themes/themeid');
+  getTheme(id: number): Observable<Theme> {
+    const url = `${this.themesurl}/${id}`;
+    return this.http.get<Theme>(url);
   }
 
   updateTheme(theme: Theme): Observable<any> {
-    return this.http.put<Theme>('http://.../userid/themes' + theme.id, theme, httpOptions)
+
+    const url = `${this.themesurl}/${theme.id}`;
+    return this.http.put<Theme>(url, theme, httpOptions)
       .pipe(catchError(this.handleError('updateTheme')));
   }
 
   createTheme(theme: Theme): Observable<any> {
-    return this.http.post<Theme>('http://.../userid/themes', theme, httpOptions)
+    return this.http.post<Theme>(this.themesurl, theme)
       .pipe(
         catchError(this.handleError('createTheme'))
       );

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Theme} from '../../../model/theme';
+import {ThemeService} from '../../../services/theme.service';
 
 @Component({
   selector: 'app-new-theme',
@@ -9,9 +10,13 @@ import {Theme} from '../../../model/theme';
 export class NewThemeComponent implements OnInit {
 
 
-  model = new Theme(0, '', '', [''], ['']);
+  model = new Theme(0, '', '', '', ['']);
 
   submitted = false;
+
+  constructor(private themeService: ThemeService) {
+
+  }
 
   ngOnInit() {
     window.document.title = 'Nieuw thema';
@@ -19,6 +24,8 @@ export class NewThemeComponent implements OnInit {
 
   onClickSubmit() {
     // POST met gegevens naar server
+    this.themeService.createTheme(this.model).subscribe();
+    console.log(this.model);
     this.submitted = true;
   }
 

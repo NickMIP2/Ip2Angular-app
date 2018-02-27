@@ -28,9 +28,9 @@ import {UserService} from './services/user.service';
 import {AuthGuard} from './guards/auth-guard.service';
 import {AdminAuthGuard} from './guards/admin-auth-guard.service';
 import {AppDataService} from './services/app-data.service';
-import { KandoeComponent } from './components/kandoe/kandoe.component';
-import { AuthenticationComponent } from './components/authentication/authentication.component';
-import { RegisterComponent } from './components/authentication/register/register.component';
+import {KandoeComponent} from './components/kandoe/kandoe.component';
+import {AuthenticationComponent} from './components/authentication/authentication.component';
+import {RegisterComponent} from './components/authentication/register/register.component';
 import {InMemoryDataService} from './services/in-memory-data.service';
 import {ThemeService} from './services/theme.service';
 

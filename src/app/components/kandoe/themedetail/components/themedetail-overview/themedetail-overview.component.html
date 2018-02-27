@@ -1,4 +1,4 @@
-<app-themedetail-navbar></app-themedetail-navbar>
+<app-themedetail-navbar [themeId]="urlid"></app-themedetail-navbar>
 <div class="overview-container container">
   <table class="table">
     <tr>
@@ -28,8 +28,8 @@
     </tr>
     <tr>
       <td class="text-left">
-      <div *ngFor="let tag of theme.themetag; let i = index">
-        <label class="text-left">{{tag}}</label>
+      <div>
+        <label class="text-left">{{theme.themetag}}</label>
         <button class="" *ngIf="editing === 1" name="deleteTag" (click)="deleteTag(i)">Verwijder</button>
       </div>
       <div *ngIf="editing === 1">
@@ -39,10 +39,10 @@
       </td>
     </tr>
     <tr><td>
-      <button class="btn btn-primary" (click)="editing === 1 ? save(1) : editing=1">
+      <button class="btn btn-primary" (click)="editing === 1 ? save() : editing=1">
         {{editing===1 ? "Opslaan" : "Wijzigen"}}
       </button>
-      <button class="btn btn-danger" (click)="deleteTheme()" routerLink="/themas">Verwijderen</button>
+      <button class="btn btn-danger" (click)="deleteTheme(theme)" routerLink="/themas">Verwijderen</button>
       </td>
     </tr>
   </table>
