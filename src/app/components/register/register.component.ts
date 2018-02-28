@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../../../model/user';
+import {User} from '../../model/user';
 import {Router, ActivatedRoute} from '@angular/router';
-import {AuthenticationService} from '../../../services/authentication.service';
-import {UserService} from '../../../services/user.service';
+import {AuthenticationService} from '../../services/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -21,13 +20,12 @@ export class RegisterComponent implements OnInit {
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private authenticationService: AuthenticationService,
-              private userService: UserService) {
+              ) {
     this.redirectUrl = this.activatedRoute.snapshot.queryParams['redirectTo'];
   }
 
   ngOnInit() {
     window.document.title = 'Register | Kandoe';
-    this.userService.logout();
   }
 
   onClickRegister() {

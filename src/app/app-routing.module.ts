@@ -8,12 +8,8 @@ import {ThemedetailOverviewComponent} from './components/kandoe/themedetail/comp
 import {ThemedetailCardsComponent} from './components/kandoe/themedetail/components/themedetail-cards/themedetail-cards.component';
 import {ThemedetailOrganiserComponent} from './components/kandoe/themedetail/components/themedetail-organiser/themedetail-organiser.component';
 import {ThemedetailCategoriesComponent} from './components/kandoe/themedetail/components/themedetail-categories/themedetail-categories.component';
-import {LoginComponent} from './components/authentication/login/login.component';
-import {UserComponent} from './components/authentication/user/user.component';
-import {AdminComponent} from './components/authentication/admin/admin.component';
-import {RegisterComponent} from './components/authentication/register/register.component';
-import {AuthGuard} from './guards/auth-guard.service';
-import {AdminAuthGuard} from './guards/admin-auth-guard.service';
+import {LoginComponent} from './components/login/login.component';
+import {RegisterComponent} from './components/register/register.component';
 
 
 const routes: Routes = [
@@ -29,8 +25,6 @@ const routes: Routes = [
   {path: 'theme/:id/categories', component: ThemedetailCategoriesComponent},
   {path: 'themas:id', component: ThemedetailComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminAuthGuard]},
-  {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent}
 ];
 

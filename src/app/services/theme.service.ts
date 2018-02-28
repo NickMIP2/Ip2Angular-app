@@ -35,7 +35,6 @@ export class ThemeService {
   }
 
   updateTheme(theme: Theme): Observable<any> {
-
     const url = `${this.themesurl}/${theme.id}`;
     return this.http.put<Theme>(url, theme, httpOptions)
       .pipe(catchError(this.handleError('updateTheme')));

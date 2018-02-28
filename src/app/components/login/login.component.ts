@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthenticationService} from '../../../services/authentication.service';
-import {TokenStorage} from '../../../token-storage';
+import {TokenStorage} from '../../token-storage';
+import {AuthenticationService} from '../../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +19,16 @@ export class LoginComponent implements OnInit {
   usernametext: string;
   passwordtext: string;
 
-  register(): void{
-    this.authService.register();
+  register(){
+    this.authService.register().subscribe(
+      data => {
+        console.log("User succesfully registered");
+      },
+      error => {
+        console.error("Error registering User!");
+        console.log(error);
+        alert("Unable to register User");
+      });
   }
 
   login(): void {
