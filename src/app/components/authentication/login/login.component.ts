@@ -19,6 +19,10 @@ export class LoginComponent implements OnInit {
   usernametext: string;
   passwordtext: string;
 
+  register(): void{
+    this.authService.register();
+  }
+
   login(): void {
     this.authService.login(this.usernametext, this.passwordtext).subscribe(
       data => {
