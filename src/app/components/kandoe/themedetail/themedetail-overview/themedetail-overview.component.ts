@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Theme} from '../../../../../model/theme';
-import {ThemeService} from '../../../../../services/theme.service';
+import {Theme} from '../../../../model/theme';
+import {ThemeService} from '../../../../services/theme.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({

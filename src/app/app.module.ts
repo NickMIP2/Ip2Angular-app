@@ -10,13 +10,12 @@ import {AppComponent} from './app.component';
 import {DashboardComponent} from './components/kandoe/dashboard/dashboard.component';
 import {ThemesComponent} from './components/kandoe/themes/themes.component';
 import {NewThemeComponent} from './components/kandoe/new-theme/new-theme.component';
-import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
 import {AlertModule} from 'ngx-bootstrap';
-import {ThemedetailOverviewComponent} from './components/kandoe/themedetail/components/themedetail-overview/themedetail-overview.component';
-import {ThemedetailCardsComponent} from './components/kandoe/themedetail/components/themedetail-cards/themedetail-cards.component';
-import {ThemedetailOrganiserComponent} from './components/kandoe/themedetail/components/themedetail-organiser/themedetail-organiser.component';
-import {ThemedetailCategoriesComponent} from './components/kandoe/themedetail/components/themedetail-categories/themedetail-categories.component';
-import {ThemedetailNavbarComponent} from './components/kandoe/themedetail/components/themedetail-navbar/themedetail-navbar.component';
+import {ThemedetailOverviewComponent} from './components/kandoe/themedetail/themedetail-overview/themedetail-overview.component';
+import {ThemedetailCardsComponent} from './components/kandoe/themedetail/themedetail-cards/themedetail-cards.component';
+import {ThemedetailOrganiserComponent} from './components/kandoe/themedetail/themedetail-organiser/themedetail-organiser.component';
+import {ThemedetailCategoriesComponent} from './components/kandoe/themedetail/themedetail-categories/themedetail-categories.component';
+import {ThemedetailNavbarComponent} from './components/kandoe/themedetail/themedetail-navbar/themedetail-navbar.component';
 import {HomeComponent} from './components/kandoe/home/home.component';
 import {NavbarComponent} from './components/kandoe/navbar/navbar.component';
 import {UserComponent} from './components/authentication/user/user.component';
@@ -54,7 +53,6 @@ export function authHttpServiceFactory(http) {
     DashboardComponent,
     ThemesComponent,
     NewThemeComponent,
-    ThemedetailComponent,
     ThemedetailNavbarComponent,
     ThemedetailOverviewComponent,
     ThemedetailCardsComponent,
