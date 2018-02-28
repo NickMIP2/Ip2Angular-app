@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Category} from '../../../../../model/category';
+import {Category} from '../../../../model/category';
+import {Theme} from '../../../../model/theme';
+import {ThemeService} from '../../../../services/theme.service';
 import {ActivatedRoute} from '@angular/router';
-import {ThemeService} from '../../../../../services/theme.service';
-import {Theme} from '../../../../../model/theme';
 
 @Component({
   selector: 'app-themedetail-categories',

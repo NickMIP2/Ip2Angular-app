@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {User} from '../../../../../model/user';
+import { Component, OnInit } from '@angular/core';
+import {User} from '../../../../model/user';
+import {Theme} from '../../../../model/theme';
+import {ThemeService} from '../../../../services/theme.service';
 import {ActivatedRoute} from '@angular/router';
-import {ThemeService} from '../../../../../services/theme.service';
-import {Theme} from '../../../../../model/theme';
+
 
 @Component({
   selector: 'app-themedetail-organiser',
