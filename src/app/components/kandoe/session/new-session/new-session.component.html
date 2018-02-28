@@ -1,67 +1,58 @@
 <div class="container">
   <form #sessionform="ngForm" class="formcontainer" name="sessionForm">
-    <div class="form-group ">
-      <label style="display: inline-block;">Naam:</label>
-      <input class="form-control" id="sessionname" type="text" required [(ngModel)]="model.name"
-             name="sessionname" style="width: 85%;"
-             #sessionname="ngModel" placeholder="Sessienaam is een verplicht veld.">
-      <label style="display: inline-block;">Thema:</label>
-      <select name="themes" style="width: 85%" class="custom-select form-control">
-        <option  *ngFor="let theme of themesArray">{{theme.themename}}</option>
-      </select>
+    <div id="nameThemeContainer" class="form-group ">
+      <table class="table" style="width: 100%; margin: auto;">
+        <tr>
+          <td style="width: 15%;"><label style="display: inline-block;">Naam:</label></td>
+          <td class="" style="width: 85%;">
+            <input class="form-control" id="sessionname" type="text" required
+                   [(ngModel)]="model.name"
+                   name="sessionname" style="width: 100%;"
+                   #sessionname="ngModel"
+                   placeholder="Sessienaam is een verplicht veld.">
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 15%;"><label style="display: inline-block;">Thema:</label></td>
+          <td class="" style="width: 85%;">
+            <select id="themes" name="themes" style="width: 100%" class="custom-select form-control" required>
+              <option *ngFor="let theme of themesArray">{{theme.themename}}</option>
+            </select>
+          </td>
+        </tr>
+      </table>
     </div>
-    <div class="form-group ">
-      <div class="float-left checkbox_width-control checkbox_margin-left ">
-        <label>Kans</label>
-        <input *ngIf="chance===true" type="checkbox" class="form-check"
-               (click)="chanceClicked()" checked name="chanceCheckboxChecked">
-        <input *ngIf="chance===false || chance===null" type="checkbox"
-               class="form-check" (click)="chanceClicked()"
-               name="chanceCheckboxUnchecked">
-      </div>
-      <div class="float-left checkbox_width-control ">
-        <label>Probleem</label>
-        <input *ngIf="chance===false" type="checkbox" class="form-check"
-               (click)="problemClicked()" checked name="problemCheckboxChecked">
-        <input *ngIf="chance===true || chance===null" type="checkbox"
-               class="form-check" (click)="problemClicked()"
-               name="problemCheckboxUnchecked">
-      </div>
+    <div id="chanceCheck" class="form-group ">
+      <table style="width: 50%; margin: auto;" class="table">
+        <tr>
+          <td style="width: 50%"><label class="radio"><input type="radio" name="optKans" (click)="chanceClicked()"> Kans</label></td>
+          <td style="width: 50%"><label class="radio"><input type="radio" name="optKans" (click)="problemClicked()"> Probleem</label></td>
+        </tr>
+      </table>
     </div>
-    <div class="form-group  number_margin-top numbers_center">
-      <br/>
-      <div class="numbers_text_float">
-        <label>Maximum kaarten: </label>
-      </div>
-      <div class="numbers_float">
-        <input type="number" class="form-control" [(ngModel)]="model.maxCards"
-               min="1" placeholder="1" name="inputMaxCards">
-      </div>
-      <br/>
-      <div class="numbers_text_float">
-        <label>Aantal rondes: </label>
-      </div>
-      <div class="numbers_float">
-        <input type="number" class="form-control" [(ngModel)]="model.noOfRounds"
-               min="1" placeholder="1" name="inputNoOfRounds">
-      </div>
-      <br/>
-      <div class="numbers_text_float">
-        <label>Tijd per zet (uur): </label>
-      </div>
-      <div class="numbers_float">
-        <input type="number" class="form-control" [(ngModel)]="model.timePerMoveHour"
-               min="0" placeholder="1" name="inputTimePerMoveHour">
-      </div>
-      <div class="numbers_text_float">
-        <label>Tijd per zet (min): </label>
-      </div>
-      <div class="numbers_float">
-        <input type="number" class="form-control"
-               min="0" max="59" placeholder="0" name="inputTimePerMoveMinute">
-      </div>
+    <div id="numbersContainer" class="form-group  number_margin-top numbers_center">
+      <table style="width: 50%; margin: auto" class="table">
+        <tr>
+          <td style="width: 70%;"><label>Maximum kaarten: </label></td>
+          <td style="width: 30%;">
+            <input type="number" class="form-control" [(ngModel)]="model.maxCards"
+                   min="1" placeholder="1" name="inputMaxCards"></td>
+        </tr>
+        <tr>
+          <td style="width: 70%;"><label>Aantal rondes: </label></td>
+          <td style="width: 30%;">
+            <input type="number" class="form-control" [(ngModel)]="model.noOfRounds"
+                   min="1" placeholder="1" name="inputNoOfRounds"></td>
+        </tr>
+        <tr>
+          <td style="width: 70%;"><label>Tijd per zet (uur): </label></td>
+          <td style="width: 30%;">
+            <input type="number" class="form-control" [(ngModel)]="model.timePerMoveHour"
+                   min="0" placeholder="1" name="inputTimePerMoveHour"></td>
+        </tr>
+      </table>
     </div>
-    <div class="form-group">
+    <div id="participantsContainer" class="form-group">
       <div class="participants_float ">
         <label>Deelnemers: </label><br/>
         <textarea readonly [(ngModel)]="model.participants"
@@ -76,7 +67,7 @@
                name="inputParticipantEmail">
         <button class="btn btn-info btn_margin-top"
                 (click)="addParticipant()"
-        [disabled]="participantEmail === ''">
+                [disabled]="participantEmail === ''">
           Toevoegen
         </button>
       </div>

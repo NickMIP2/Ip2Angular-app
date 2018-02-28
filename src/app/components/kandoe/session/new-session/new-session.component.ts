@@ -9,7 +9,7 @@ import {log} from 'util';
   styleUrls: ['./new-session.component.css']
 })
 export class NewSessionComponent implements OnInit {
-  model = new Session(0, '', true, null, 1, 1, 0, 'testOwner\n');
+  model = new Session(0, '', null, null, 1, 1, 0, 'testOwner\n');
   submitted = false;
   chance = null;
   participantEmail = '';
@@ -37,23 +37,11 @@ export class NewSessionComponent implements OnInit {
   }
 
   chanceClicked() {
-    if (this.model.chance === true && this.model.name !== '') {
-      this.model.chance = null;
-      this.chance = null;
-    } else {
-      this.model.chance = true;
-      this.chance = true;
-    }
+    this.model.chance = true;
   }
 
   problemClicked() {
-    if (this.model.chance === false) {
-      this.model.chance = null;
-      this.chance = null;
-    } else {
-      this.model.chance = false;
-      this.chance = false;
-    }
+    this.model.chance = false;
   }
 
   addParticipant() {
