@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
   onClickRegister() {
     if (this.password === this.passwordCheck) {
       // POST TO USERSERVICE
-      this.loading = true;
+      /*this.loading = true;
       this.authenticationService.register(this.model, this.password, this.username)
         .subscribe(
           result => {
@@ -47,7 +47,8 @@ export class RegisterComponent implements OnInit {
             this.error = 'Registration failed';
             this.loading = false;
           }
-        );
+        );*/
+      this.navigateAfterSuccess();
     }
   }
 
