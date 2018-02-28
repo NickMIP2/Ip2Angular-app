@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../../../model/user';
+import {Theme} from '../../../../model/theme';
+import {ThemeService} from '../../../../services/theme.service';
+import {ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-themedetail-organiser',
@@ -15,11 +19,22 @@ export class ThemedetailOrganiserComponent implements OnInit {
   user5: User = {id: 5, email: 'nick.marcoen@student.kdg.b', lastName: 'Mar', firstName: 'Nick', organisor: 'false'};
   user6: User = {id: 6, email: 'nick.marcoen@student.kdg.be', lastName: 'Ma', firstName: 'Nick', organisor: 'false'};
   users = [this.user1, this.user2, this.user3, this.user4, this.user5, this.user6];
-  constructor() { }
+  public urlid;
+  public theme: Theme;
+
+  constructor(private themeService: ThemeService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
+
+    this.urlid = +this.route.snapshot.paramMap.get('id');
+    this.themeService.getTheme(this.urlid).subscribe(theme => {
+      this.theme = theme;
+    });
+
     window.document.title = 'Organisators';
   }
+
   saveChanges() {
     alert('wijzigingen zijn bewaard');
   }

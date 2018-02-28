@@ -3,7 +3,6 @@ import {Router} from '@angular/router';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {TokenStorage} from '../../../token-storage';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +11,7 @@ import {TokenStorage} from '../../../token-storage';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private authService: AuthenticationService, private token: TokenStorage){
+  constructor(private router: Router, private authService: AuthenticationService, private tokenStorage: TokenStorage){
   }
 
   error:"";
@@ -23,8 +22,8 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.authService.login(this.usernametext, this.passwordtext).subscribe(
       data => {
-        this.token.saveToken(data.token);
-        this.router.navigate(['dashboard']); // naar dashboard
+        this.tokenStorage.saveToken(data.token);
+        this.router.navigate(['dashboard']);
       }
     );
   }

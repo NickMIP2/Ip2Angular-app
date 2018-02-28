@@ -33,6 +33,7 @@ import {RegisterComponent} from './components/authentication/register/register.c
 import {InMemoryDataService} from './services/in-memory-data.service';
 import {ThemeService} from './services/theme.service';
 import {Interceptor} from './interceptor';
+import {RouterLinkDirectiveStub} from './testing/router-link-directive-stub';
 
 export function authHttpServiceFactory(http) {
   return new AuthHttp(new AuthConfig({
@@ -63,7 +64,8 @@ export function authHttpServiceFactory(http) {
     LoginComponent,
     KandoeComponent,
     AuthenticationComponent,
-    RegisterComponent
+    RegisterComponent,
+    RouterLinkDirectiveStub
   ],
   imports: [
     BrowserModule,
