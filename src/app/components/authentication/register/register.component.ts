@@ -31,24 +31,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onClickRegister() {
-    if (this.password === this.passwordCheck) {
-      // POST TO USERSERVICE
-      this.loading = true;
-      this.authenticationService.register(this.model, this.password, this.username)
-        .subscribe(
-          result => {
-            this.loading = false;
-            if (result) {
-              this.navigateAfterSuccess();
-            } else {
-              this.error = 'Registration failed';
-            }
-          }, error => {
-            this.error = 'Registration failed';
-            this.loading = false;
-          }
-        );
-    }
   }
 
   private navigateAfterSuccess() {
