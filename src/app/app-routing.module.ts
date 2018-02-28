@@ -14,6 +14,7 @@ import {AdminComponent} from './components/authentication/admin/admin.component'
 import {RegisterComponent} from './components/authentication/register/register.component';
 import {AuthGuard} from './guards/auth-guard.service';
 import {AdminAuthGuard} from './guards/admin-auth-guard.service';
+import {NewSessionComponent} from './components/kandoe/session/new-session/new-session.component';
 
 
 const routes: Routes = [
@@ -31,7 +32,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminAuthGuard]},
   {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
-  {path: 'register', component: RegisterComponent}
+  {path: 'register', component: RegisterComponent},
+  {path: 'new-session', component: NewSessionComponent}
 ];
 
 @NgModule({

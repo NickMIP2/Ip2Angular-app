@@ -1,10 +1,14 @@
 <div class="container">
   <form #sessionform="ngForm" class="formcontainer" name="sessionForm">
     <div class="form-group ">
-      <label>Naam: </label>
+      <label style="display: inline-block;">Naam:</label>
       <input class="form-control" id="sessionname" type="text" required [(ngModel)]="model.name"
-             name="sessionname"
+             name="sessionname" style="width: 85%;"
              #sessionname="ngModel" placeholder="Sessienaam is een verplicht veld.">
+      <label style="display: inline-block;">Thema:</label>
+      <select name="themes" style="width: 85%" class="custom-select form-control">
+        <option  *ngFor="let theme of themesArray">{{theme.themename}}</option>
+      </select>
     </div>
     <div class="form-group ">
       <div class="float-left checkbox_width-control checkbox_margin-left ">

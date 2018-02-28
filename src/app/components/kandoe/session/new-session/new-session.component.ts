@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Session} from '../../../../model/session';
+import {ThemeService} from '../../../../services/theme.service';
 import {log} from 'util';
 
 @Component({
@@ -12,13 +13,20 @@ export class NewSessionComponent implements OnInit {
   submitted = false;
   chance = null;
   participantEmail = '';
+  public themesArray = [];
 
-  constructor() {
+  constructor(private themeService: ThemeService) {
   }
 
   ngOnInit() {
     window.document.title = 'Nieuwe sessie';
     console.log(this.participantEmail);
+    this.themeService.getThemes().subscribe(
+      themes => {
+        this.themesArray = themes;
+        console.log('Themes loaded' + themes[0].themename);
+      }
+    );
   }
 
   onClickSubmit() {
