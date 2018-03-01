@@ -6,36 +6,37 @@ import {AuthenticationService} from '../../services/authentication.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  providers: [AuthenticationService]
+
 })
 export class RegisterComponent implements OnInit {
-  model = new User(0, '', '', '', '');
-  username = '';
-  password = '';
+  model = new User(0, '', '', '', '', '', '');
   passwordCheck = '';
-  redirectUrl: string;
   error = '';
   loading = false;
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private authenticationService: AuthenticationService,
+              private authService: AuthenticationService,
               ) {
-    this.redirectUrl = this.activatedRoute.snapshot.queryParams['redirectTo'];
   }
 
   ngOnInit() {
     window.document.title = 'Register | Kandoe';
   }
 
-  onClickRegister() {
+  register(){
+    this.authService.register(this.model).subscribe(
+      data => {
+        console.log("User succesfully registered");
+        this.router.navigate(['/login']);
+      },
+      error => {
+        console.error("Error registering User!");
+        console.log(error);
+        alert("Unable to register User");
+      });
   }
 
-  private navigateAfterSuccess() {
-    if (this.redirectUrl) {
-      this.router.navigateByUrl(this.redirectUrl);
-    } else {
-      this.router.navigate(['/login']);
-    }
-  }
 }

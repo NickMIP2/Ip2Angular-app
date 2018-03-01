@@ -5,7 +5,6 @@ import {Router} from '@angular/router';
 import 'rxjs/add/operator/do';
 import {TokenStorage} from './token-storage';
 
-/*
 const TOKEN_HEADER_KEY = 'Authorization';
 
 @Injectable()
@@ -32,4 +31,3 @@ export class Interceptor implements HttpInterceptor{
     );
   }
 }
-*/
