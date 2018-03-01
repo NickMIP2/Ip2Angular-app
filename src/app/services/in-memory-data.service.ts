@@ -23,6 +23,27 @@ export class InMemoryDataService implements InMemoryDbService {
         'themedescription': 'blabla',
         'themetag': ['bla', 'TAG'],
         'themeUsers': ['user1', 'user2']
+      },
+      {
+        'id': 4,
+        'themename': 'nog een thema',
+        'themedescription': 'blabla',
+        'themetag': ['bla', 'TAG'],
+        'themeUsers': ['user1', 'user2']
+      },
+      {
+        'id': 5,
+        'themename': 'nog een thema',
+        'themedescription': 'blabla',
+        'themetag': ['bla', 'TAG'],
+        'themeUsers': ['user1', 'user2']
+      },
+      {
+        'id': 6,
+        'themename': 'nog een thema',
+        'themedescription': 'blabla',
+        'themetag': ['bla', 'TAG'],
+        'themeUsers': ['user1', 'user2']
       }];
 return {themes};
 }

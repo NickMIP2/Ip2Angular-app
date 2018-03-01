@@ -1,7 +1,6 @@
 <div class="wrapper">
   <button name="newthemebutton" class="btn btn-primary" routerLink="/thema-toevoegen">Nieuw thema</button>
-
-  <ul>
+  <!--<ul>
     <li class="lititel"><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
       class="tagspan">tags</span></li>
   </ul>
@@ -13,65 +12,22 @@
       <button class="btn btn-info font-small" [routerLink]="['/theme',currentTheme.id,'overview']">Details</button>
       <button class="btn btn-danger font-small" (click)="deleteTheme(currentTheme)">Verwijder</button>
     </li>
-  </ul>
-  <!--<ul class="scrollul">
-
-    <li *ngFor="let currenttheme of themes"><span class="namespan">nekhfskqljluvhjqsiljufsjfuhlighslgame</span> <span class="descriptionspan">descri
-  background-color: grey;
-  background-color: grey;
-  background-color: grey;
-  background-color: grey;
-  background-color: grey;
-  background-color: grey;
-  background-color: grey;
-  background-color: grey;
-  background-color: grey;
-  background-color: grey;
-  background-color: grey;
-  background-color: grey;ption</span> <span
-      class="tagspan">tags</span>
-
-<<<<<<< HEAD
-      <button name="detailthemebutton"[routerLink]="['/theme/',currenttheme.id]">Details</button>
-=======
-      <button class="btn btn-light font-small" routerLink="/theme/:id/overview">Details</button>
-      <button class="btn btn-danger font-small" [routerLink]="['/theme/',currenttheme.id]">Verwijder</button>
->>>>>>> cb6e67564a345bf37e6e1b7087b6ec2f85d2b766
-    </li>
-    <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-    <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-    <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-    <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-    <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-    <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-    <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-    <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-    <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-    <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-    <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-    <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-    <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-    <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-    <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-    <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-    <li><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-
   </ul>-->
+  <table id="themesList" style="display: block;" class="table themetable-overflow">
+    <tr class="tablerow" [hidden]="false">
+      <th class="nameColumn text-left">Name</th>
+      <th class="descColumn text-left">Description</th>
+      <th class="tagColumn text-left">Tags</th>
+      <th class="buttonColumn"> </th>
+    </tr>
+    <tr class="tablerow" *ngFor="let currentTheme of themesarray" [hidden]="false">
+      <td class="nameColumn text-left">{{currentTheme.themename}}</td>
+      <td class="descColumn text-left">{{currentTheme.themedescription}}</td>
+      <td class="tagColumn text-left">{{currentTheme.themetag}}</td>
+      <td class="buttonColumn">
+        <button class="btn btn-info font-small btnCss" [routerLink]="['/theme',currentTheme.id,'overview']">Details</button>
+        <button class="btn btn-danger font-small btnCss" (click)="deleteTheme(currentTheme)">Verwijder</button>
+      </td>
+    </tr>
+  </table>
 </div>
