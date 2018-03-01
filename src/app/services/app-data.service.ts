@@ -9,17 +9,16 @@ export class AppDataService {
   getUsers() {
     return this.http.get('/springjwt/users').map(res => res.json());
   }
+
   getThemes() { // alle thema's, niet van 1 user
     return this.http.get('https://kandoe-backend.herokuapp.com/themes').map(res => res.json());
   }
 
-  getThemesOfUser(id){
+  getThemesOfUser(id) {
     return this.http.get('https://kandoe-backend.herokuapp.com/users/' + id + '/themes').map(res => res.json());
   }
 
-  getThemeById(id){
+  getThemeById(id) {
     return this.http.get('https://kandoe-backend.herokuapp.com/themes/' + id).map(res => res.json());
-}
-
-
+  }
 }

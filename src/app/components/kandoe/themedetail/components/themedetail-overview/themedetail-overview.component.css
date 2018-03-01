@@ -1,0 +1,17 @@
+.overview-container {
+  width: 80%;
+  margin: auto;
+}
+
+textarea{
+
+width: 500px;
+overflow: hidden;
+padding: 0px;
+}
+
+.formcontainer{
+  width: 50%;
+  text-align: left;
+  margin: auto;
+}

@@ -1,12 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import 'rxjs/add/operator/map';
-
 import {TOKEN_AUTH_PASSWORD, TOKEN_AUTH_USERNAME} from './auth.constant';
 
 @Injectable()
 export class AuthenticationService {
-  static AUTH_TOKEN = '/oauth/token';
 
   constructor(private http: HttpClient) {
   }
@@ -26,5 +24,22 @@ export class AuthenticationService {
         }
         return null;
       });
+  }
+
+  register() {
+    const testregi = {
+      username: 'Nicktestdsdsq',
+      password: 'passwdo',
+      firstname: 'nickjwt',
+      lastname: 'marcoenjwt',
+      email: 'testmail@nick.com'
+    };
+    this.http.post('https://kandoe-backend.herokuapp.com/register', testregi);
+  }
+
+  login(username: string, password: string): Observable<any> {
+    const credentials = {username: username, password: password};
+    return this.http.post('https://kandoe-backend.herokuapp.com/token/generate-token', credentials);
+
   }
 }

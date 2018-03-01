@@ -3,32 +3,37 @@ import {NgModule, LOCALE_ID} from '@angular/core';
 import {AuthConfig, AuthHttp} from 'angular2-jwt';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {AppRoutingModule} from './app-routing.module';
-
+import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {AppComponent} from './app.component';
-import {DashboardComponent} from './components/dashboard/dashboard.component';
-import {ThemesComponent} from './components/themes/themes.component';
-import {NewThemeComponent} from './components/new-theme/new-theme.component';
-import {ThemedetailComponent} from './components/themedetail/themedetail.component';
+import {DashboardComponent} from './components/kandoe/dashboard/dashboard.component';
+import {ThemesComponent} from './components/kandoe/themes/themes.component';
+import {NewThemeComponent} from './components/kandoe/new-theme/new-theme.component';
+import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
 import {AlertModule} from 'ngx-bootstrap';
-import {ThemedetailOverviewComponent} from './components/themedetail/components/themedetail-overview/themedetail-overview.component';
-import {ThemedetailCardsComponent} from './components/themedetail/components/themedetail-cards/themedetail-cards.component';
-import {ThemedetailOrganiserComponent} from './components/themedetail/components/themedetail-organiser/themedetail-organiser.component';
-import {ThemedetailCategoriesComponent} from './components/themedetail/components/themedetail-categories/themedetail-categories.component';
-import {ThemedetailNavbarComponent} from './components/themedetail/components/themedetail-navbar/themedetail-navbar.component';
-import {HomeComponent} from './home/home.component';
-import {NavbarComponent} from './components/navbar/navbar.component';
-import {UserComponent} from './user/user.component';
-import {AdminComponent} from './admin/admin.component';
-import {LoginComponent} from './login/login.component';
+import {ThemedetailOverviewComponent} from './components/kandoe/themedetail/components/themedetail-overview/themedetail-overview.component';
+import {ThemedetailCardsComponent} from './components/kandoe/themedetail/components/themedetail-cards/themedetail-cards.component';
+import {ThemedetailOrganiserComponent} from './components/kandoe/themedetail/components/themedetail-organiser/themedetail-organiser.component';
+import {ThemedetailCategoriesComponent} from './components/kandoe/themedetail/components/themedetail-categories/themedetail-categories.component';
+import {ThemedetailNavbarComponent} from './components/kandoe/themedetail/components/themedetail-navbar/themedetail-navbar.component';
+import {HomeComponent} from './components/kandoe/home/home.component';
+import {NavbarComponent} from './components/kandoe/navbar/navbar.component';
+import {UserComponent} from './components/authentication/user/user.component';
+import {AdminComponent} from './components/authentication/admin/admin.component';
+import {LoginComponent} from './components/authentication/login/login.component';
 import {TOKEN_NAME} from './services/auth.constant';
 import {AuthenticationService} from './services/authentication.service';
 import {UserService} from './services/user.service';
 import {AuthGuard} from './guards/auth-guard.service';
 import {AdminAuthGuard} from './guards/admin-auth-guard.service';
 import {AppDataService} from './services/app-data.service';
+import {KandoeComponent} from './components/kandoe/kandoe.component';
+import {AuthenticationComponent} from './components/authentication/authentication.component';
+import {RegisterComponent} from './components/authentication/register/register.component';
+import {InMemoryDataService} from './services/in-memory-data.service';
+import {ThemeService} from './services/theme.service';
+import {Interceptor} from './interceptor';
+import {RouterLinkDirectiveStub} from './testing/router-link-directive-stub';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 export function authHttpServiceFactory(http) {
@@ -64,7 +69,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     ThemedetailCategoriesComponent,
     UserComponent,
     AdminComponent,
-    LoginComponent
+    LoginComponent,
+    KandoeComponent,
+    AuthenticationComponent,
+    RegisterComponent,
+    RouterLinkDirectiveStub
   ],
   imports: [
     BrowserModule,
@@ -72,13 +81,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     AlertModule.forRoot(),
     HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    })
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, {dataEncapsulation: false}
+    )
   ],
   providers: [
     {provide: AuthHttp, useFactory: authHttpServiceFactory, deps: [HttpClient]},
@@ -87,10 +92,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     AuthGuard,
     AdminAuthGuard,
     AppDataService,
-
+    ThemeService,
+    Interceptor
   ],
+
   bootstrap: [AppComponent]
 })
-
 export class AppModule {
 }

@@ -1,7 +1,8 @@
 export class Theme {
-  constructor(
-              public name: string,
-              public description: string,
-              public tags:  string) {
+  constructor(public id: number,
+              public themename: string,
+              public themedescription: string,
+              public themetag: string,
+              public themeUsers: Array<string>) {
   }
 }

@@ -13,12 +13,7 @@ import {TranslateService} from '@ngx-translate/core';
 export class AppComponent implements AfterViewChecked {
   title = 'Kandoe';
 
-  constructor(private router: Router, private userService: UserService, private cdRef: ChangeDetectorRef, private translate: TranslateService) {
-    translate.setDefaultLang('nl');
-  }
-
-  switchLanguage(language: string) {
-    this.translate.use(language);
+  constructor(private router: Router, private userService: UserService, private cdRef: ChangeDetectorRef) {
   }
 
   ngAfterViewChecked() {
