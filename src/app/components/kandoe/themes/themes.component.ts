@@ -42,7 +42,7 @@ export class ThemesComponent implements OnInit {
 
   deleteTheme(theme) {
     this.themesarray = this.themesarray.filter(deletedtheme => deletedtheme !== theme);
-    this.themeService.deleteTheme(theme).subscribe();
+    // this.themeService.deleteTheme(theme).subscribe();
   }
 
 }
