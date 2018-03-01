@@ -1,0 +1,30 @@
+<form class="form-group">
+  <table class="table" style="width: 80%; margin: auto;">
+    <tr>
+      <td class="descCol">Title</td>
+      <td class="editCol">
+        <input type="text" class="editInput" [(ngModel)]="card.title" placeholder="Title">
+      </td>
+    </tr>
+    <tr>
+      <td class="descCol">Description</td>
+      <td class="editCol">
+        <input type="text" class="editInput" [(ngModel)]="card.description" placeholder="Description">
+      </td>
+    </tr>
+    <tr>
+      <td class="descCol">Image</td>
+      <td class="editCol">
+        <input type="image" class="editInput" [(ngModel)]="card.image" placeholder="Image">
+      </td>
+    </tr>
+    <tr>
+      <td class="descCol">Categories</td>
+      <td class="editCol">
+        <select name="categories">
+          <option *ngFor="let cat of categories">{{cat.name}}</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+</form>

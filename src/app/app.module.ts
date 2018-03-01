@@ -35,6 +35,7 @@ import {ThemeService} from './services/theme.service';
 import {Interceptor} from './interceptor';
 import {RouterLinkDirectiveStub} from './testing/router-link-directive-stub';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {CardEditComponent} from './components/kandoe/themedetail/components/themedetail-cards/card-edit/card-edit.component';
 
 export function authHttpServiceFactory(http) {
   return new AuthHttp(new AuthConfig({
@@ -73,7 +74,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     KandoeComponent,
     AuthenticationComponent,
     RegisterComponent,
-    RouterLinkDirectiveStub
+    RouterLinkDirectiveStub,
+    CardEditComponent
   ],
   imports: [
     BrowserModule,
