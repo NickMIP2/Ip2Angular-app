@@ -3,7 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import {Router} from '@angular/router';
 import 'rxjs/add/operator/do';
-import {TokenStorage} from './token-storage';
+import {TokenStorage} from './sessionStorage/token-storage';
 
 const TOKEN_HEADER_KEY = 'Authorization';
 

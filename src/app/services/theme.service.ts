@@ -8,10 +8,7 @@ import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 import {of} from 'rxjs/observable/of';
 
 const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': 'my-auth-token'
-  })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
 
 
@@ -22,6 +19,11 @@ export class ThemeService {
 
   constructor(private http: HttpClient) {
 
+  }
+
+  createTheme(theme: Theme, userId: number): Observable<any> {
+    let body = JSON.stringify(theme);
+    return this.http.post("https://kandoe-backend.herokuapp.com/users/" + userId + "/themes", body , httpOptions);
   }
 
   getThemes(): Observable<Theme[]> {
@@ -38,13 +40,6 @@ export class ThemeService {
     const url = `${this.themesurl}/${theme.id}`;
     return this.http.put<Theme>(url, theme, httpOptions)
       .pipe(catchError(this.handleError('updateTheme')));
-  }
-
-  createTheme(theme: Theme): Observable<any> {
-    return this.http.post<Theme>(this.themesurl, theme)
-      .pipe(
-        catchError(this.handleError('createTheme'))
-      );
   }
 
   deleteTheme(theme: Theme): Observable<{}> {

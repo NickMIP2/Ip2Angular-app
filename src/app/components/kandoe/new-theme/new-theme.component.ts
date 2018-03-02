@@ -1,32 +1,40 @@
 import {Component, OnInit} from '@angular/core';
 import {Theme} from '../../../model/theme';
 import {ThemeService} from '../../../services/theme.service';
+import { Router} from '@angular/router';
+import {UseridStorage} from '../../../sessionStorage/userid-storage';
 
 @Component({
   selector: 'app-new-theme',
   templateUrl: './new-theme.component.html',
-  styleUrls: ['./new-theme.component.css']
+  styleUrls: ['./new-theme.component.css'],
+  providers: [ThemeService]
 })
 export class NewThemeComponent implements OnInit {
 
-
-  model = new Theme(0, '', '', '', ['']);
+  public theme = new Theme(0, '', '',  ['']);
+  private userId;
 
   submitted = false;
 
-  constructor(private themeService: ThemeService) {
-
+  constructor(private themeService: ThemeService, private router: Router, private userIdStorage: UseridStorage) {
+    this.userId = userIdStorage.getUserId();
   }
 
   ngOnInit() {
     window.document.title = 'Nieuw thema';
   }
 
-  onClickSubmit() {
-    // POST met gegevens naar server
-    this.themeService.createTheme(this.model).subscribe();
-    console.log(this.model);
-    this.submitted = true;
+  createTheme() {
+    this.themeService.createTheme(this.theme, this.userId).subscribe(
+      data => {
+        this.router.navigate(['theme/' + data.id + '/overview']); // id van teruggekregen thema
+      },
+      error => {
+        console.error("Error creating theme!");
+        console.log(error);
+        alert("Error creating theme");
+      });
   }
 
 }

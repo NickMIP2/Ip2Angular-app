@@ -3,10 +3,10 @@
   <table class="table">
     <tr>
       <td>
-      <h1 id="nameField" *ngIf="editing !==1">{{ theme.themename }}</h1>
+      <h1 id="nameField" *ngIf="editing !==1">{{ theme.name }}</h1>
       <label class="col-form-label font-weight-bold" *ngIf="editing ==1">Themanaam</label>
       <div >
-        <input type="text" id="nameInput" *ngIf="editing ==1" [(ngModel)]="theme.themename"/>
+        <input type="text" id="nameInput" *ngIf="editing ==1" [(ngModel)]="theme.name"/>
       </div>
       </td>
     </tr>
@@ -17,8 +17,8 @@
     </tr>
     <tr>
       <td class="text-left">
-      <p class="text-left" id="descField" *ngIf="editing !==1"> {{theme.themedescription }}</p>
-      <textarea class="" type="text" id="descInput" *ngIf="editing ==1" [(ngModel)]="theme.themedescription"></textarea>
+      <p class="text-left" id="descField" *ngIf="editing !==1"> {{theme.description }}</p>
+      <textarea class="" type="text" id="descInput" *ngIf="editing ==1" [(ngModel)]="theme.description"></textarea>
       </td>
     </tr>
     <tr>
@@ -29,7 +29,7 @@
     <tr>
       <td class="text-left">
       <div>
-        <label class="text-left">{{theme.themetag}}</label>
+        <label class="text-left">{{theme.tags}}</label>
         <button class="" *ngIf="editing === 1" name="deleteTag" (click)="deleteTag(i)">Verwijder</button>
       </div>
       <div *ngIf="editing === 1">

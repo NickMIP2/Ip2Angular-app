@@ -7,9 +7,9 @@
   </ul>
   <ul class="scrollul" id="themeOverview">
     <li *ngFor="let currentTheme of themesarray">
-      <span class="namespan">{{currentTheme.themename}}</span>
-      <span class="descriptionspan">{{currentTheme.themedescription}}</span>
-      <span class="tagspan">{{currentTheme.themetag}}</span>
+      <span class="namespan">{{currentTheme.name}}</span>
+      <span class="descriptionspan">{{currentTheme.description}}</span>
+      <span class="tagspan">{{currentTheme.tags}}</span>
       <button class="btn btn-info font-small" [routerLink]="['/theme',currentTheme.id,'overview']">Details</button>
       <button class="btn btn-danger font-small" (click)="deleteTheme(currentTheme)">Verwijder</button>
     </li>

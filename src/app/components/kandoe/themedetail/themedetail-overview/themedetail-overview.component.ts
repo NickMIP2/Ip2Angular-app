@@ -31,7 +31,7 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked() {
-    window.document.title = 'Thema ' + this.theme.themename;
+    window.document.title = 'Thema ' + this.theme.name;
   }
 
   save() {
@@ -46,11 +46,11 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
   }
 
   // addTag() {
-  //   this.theme.themetag.push(this.tagValue);
+  //   this.theme.tags.push(this.tagValue);
   //   this.tagValue = '';
   // }
   //
   // deleteTag(i) {
-  //   this.theme.themetag.splice(i, 1);
+  //   this.theme.tags.splice(i, 1);
   // }
 }
