@@ -1,7 +1,7 @@
 import {AfterViewChecked, AfterViewInit, Component, Input, OnChanges, OnInit} from '@angular/core';
 import {Theme} from '../../../../../model/theme';
 import {ThemeService} from '../../../../../services/theme.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 @Component({
   selector: 'app-themedetail-overview',
@@ -16,18 +16,25 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
     themetag: '',
     themeUsers: ['']
   };
-  public urlid;
+  public themeId;
   editing = 0;
   tagValue = '';
+  sub;
+  parentRouteId;
+  url;
 
-  constructor(private themeService: ThemeService, private route: ActivatedRoute) {
+  constructor(private themeService: ThemeService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
-    this.urlid = +this.route.snapshot.paramMap.get('id');
-    this.themeService.getTheme(this.urlid).subscribe(theme => {
-      this.theme = theme;
+    this.themeId = this.route.parent.params.forEach((params: Params) => {
+      this.themeId = +params['themeId'];
+      this.themeService.getTheme(this.themeId).subscribe(theme => {
+        this.theme = theme;
+      });
     });
+
+
   }
 
   ngAfterViewChecked() {

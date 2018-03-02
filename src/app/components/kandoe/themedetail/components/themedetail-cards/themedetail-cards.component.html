@@ -1,4 +1,3 @@
-<app-themedetail-navbar [themeId]="urlid"></app-themedetail-navbar>
 <div class="pagecontainer">
   <table class="table" style="width: 80%; margin: auto;">
     <tr>
@@ -18,10 +17,9 @@
         </table>
       </td>
       <td class="btnCol">
-        <button class="btn btn-primary cardbtn" [routerLink]="['/cardeditor',card.id]">Wijzig</button>
+        <button class="btn btn-primary cardbtn" [routerLink]="[card.id]">Wijzig</button>
         <button class="btn btn-danger cardbtn">Verwijder</button>
       </td>
     </tr>
   </table>
-
 </div>

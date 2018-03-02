@@ -19,25 +19,26 @@ import {CardEditComponent} from './components/kandoe/themedetail/components/them
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
-  {path: 'themas', component: ThemesComponent},
+  {path: 'themes', component: ThemesComponent},
   {path: 'thema-toevoegen', component: NewThemeComponent},
-  {path: 'thema-detail', component: ThemedetailComponent},
-  {path: 'theme/:id/', redirectTo: '/theme/:id/overview', pathMatch: 'full'},
-  {path: 'theme/:id/overview', component: ThemedetailOverviewComponent},
-  {path: 'theme/:id/cards', component: ThemedetailCardsComponent},
-  {path: 'theme/:id/organisors', component: ThemedetailOrganiserComponent},
-  {path: 'theme/:id', redirectTo: '/theme/:id/overview', pathMatch: 'full'},
-  {path: 'theme/:id/overview', component: ThemedetailOverviewComponent},
-  {path: 'theme/:id/cards', component: ThemedetailCardsComponent},
-  {path: 'theme/:id/organisers', component: ThemedetailOrganiserComponent},
-  {path: 'theme/:id/categories', component: ThemedetailCategoriesComponent},
-  {path: 'themas:id', component: ThemedetailComponent},
+  {
+    path: 'themes/:themeId', component: ThemedetailComponent,
+    children: [
+      {path: '', redirectTo: 'overview', pathMatch: 'full'},
+      {path: 'overview', component: ThemedetailOverviewComponent},
+      {path: 'cards', component: ThemedetailCardsComponent},
+      {path: 'cards/:cardId', component: CardEditComponent}
+
+      ,
+      {path: 'organisers', component: ThemedetailOrganiserComponent},
+      {path: 'categories', component: ThemedetailCategoriesComponent}
+    ]
+  },
   {path: 'login', component: LoginComponent},
   {path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminAuthGuard]},
   {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
   {path: 'user', component: UserComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent},
-  {path: 'cardeditor/:id', component: CardEditComponent}
 ];
 
 @NgModule({

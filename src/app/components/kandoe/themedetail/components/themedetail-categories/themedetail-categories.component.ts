@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Category} from '../../../../../model/category';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import {ThemeService} from '../../../../../services/theme.service';
 import {Theme} from '../../../../../model/theme';
 
@@ -19,19 +19,19 @@ export class ThemedetailCategoriesComponent implements OnInit {
   categories = [this.categorie1, this.categorie2, this.categorie3];
   editfield = '';
 
-  public urlid;
+  public themeId;
   public theme: Theme;
 
   constructor(private themeService: ThemeService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-
-    this.urlid = +this.route.snapshot.paramMap.get('id');
-    this.themeService.getTheme(this.urlid).subscribe(theme => {
-      this.theme = theme;
+    this.themeId = this.route.parent.params.forEach((params: Params) => {
+      this.themeId = +params['themeId'];
+      this.themeService.getTheme(this.themeId).subscribe(theme => {
+        this.theme = theme;
+      });
     });
-
     window.document.title = 'Categoriën';
   }
 
