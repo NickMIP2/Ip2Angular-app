@@ -7,7 +7,9 @@ import {UseridStorage} from '../../../../sessionStorage/userid-storage';
 @Component({
   selector: 'app-themedetail-overview',
   templateUrl: './themedetail-overview.component.html',
-  styleUrls: ['./themedetail-overview.component.css']
+  styleUrls: ['./themedetail-overview.component.css'],
+  providers: [ThemeService, UseridStorage]
+
 })
 export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
   public theme: Theme = {
