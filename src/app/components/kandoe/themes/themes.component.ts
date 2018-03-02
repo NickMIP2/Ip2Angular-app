@@ -25,18 +25,11 @@ export class ThemesComponent implements OnInit {
 
   public themesarray = [];
 
-  constructor(private themeService: ThemeService) {
+  constructor() {
   }
 
   ngOnInit() {
     window.document.title = 'Uw thema\'s';
-    this.themeService.getThemes().subscribe(
-      themes => {
-        this.themesarray = themes;
-
-        console.log(this.themesarray[0].tags);
-      }
-    );
 
   }
 

@@ -2,6 +2,7 @@ import {Component, Input, OnInit, AfterViewChecked} from '@angular/core';
 import {Theme} from '../../../../model/theme';
 import {ThemeService} from '../../../../services/theme.service';
 import {ActivatedRoute} from '@angular/router';
+import {UseridStorage} from '../../../../sessionStorage/userid-storage';
 
 @Component({
   selector: 'app-themedetail-overview',
@@ -9,25 +10,30 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./themedetail-overview.component.css']
 })
 export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
-  @Input() public theme: Theme = {
+  public theme: Theme = {
     id: 0,
-    themename: 'Oeps',
-    themedescription: 'Er ging iets fout bij het ophalen van dit thema, probeer opnieuw',
-    themetag: '',
-    themeUsers: ['']
+    name: 'Oeps',
+    description: 'Er ging iets fout bij het ophalen van dit thema, probeer opnieuw',
+    tags: ['']
   };
-  public urlid;
+  public themeId;
+  i = 0;
   editing = 0;
   tagValue = '';
 
-  constructor(private themeService: ThemeService, private route: ActivatedRoute) {
+  constructor(private themeService: ThemeService, private route: ActivatedRoute, private useridStorage: UseridStorage) {
+    this.themeId = route.snapshot.params['id'];
   }
 
   ngOnInit() {
-    this.urlid = +this.route.snapshot.paramMap.get('id');
-    this.themeService.getTheme(this.urlid).subscribe(theme => {
-      this.theme = theme;
-    });
+    this.themeService.getTheme(this.themeId, this.useridStorage.getUserId()).subscribe(data => {
+      this.theme = data;
+    },
+      error => {
+        console.error("Error loading theme details!");
+        console.log(error);
+        alert("Error loading theme details");
+      });
   }
 
   ngAfterViewChecked() {
@@ -45,12 +51,12 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
     this.themeService.deleteTheme(theme).subscribe();
   }
 
-  // addTag() {
-  //   this.theme.tags.push(this.tagValue);
-  //   this.tagValue = '';
-  // }
-  //
-  // deleteTag(i) {
-  //   this.theme.tags.splice(i, 1);
-  // }
+  addTag() {
+    this.theme.tags.push(this.tagValue);
+     this.tagValue = '';
+   }
+
+   deleteTag(i) {
+     this.theme.tags.splice(i, 1);
+   }
 }

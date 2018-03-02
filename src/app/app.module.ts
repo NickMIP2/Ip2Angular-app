@@ -24,6 +24,10 @@ import {RegisterComponent} from './components/register/register.component';
 import {InMemoryDataService} from './services/in-memory-data.service';
 import {ThemeService} from './services/theme.service';
 import {RouterLinkDirectiveStub} from './testing/router-link-directive-stub';
+import {HTTP_INTERCEPTORS } from '@angular/common/http';
+import {Interceptor} from './interceptor';
+import {TokenStorage} from './sessionStorage/token-storage';
+
 
 
 @NgModule({
@@ -50,6 +54,14 @@ import {RouterLinkDirectiveStub} from './testing/router-link-directive-stub';
     FormsModule,
     AlertModule.forRoot(),
     HttpClientModule
+  ],
+  providers: [
+    TokenStorage,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
+    }
   ],
 
   bootstrap: [AppComponent]

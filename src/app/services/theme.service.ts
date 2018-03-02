@@ -4,7 +4,6 @@ import {HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Theme} from '../model/theme';
 import {catchError} from 'rxjs/operators';
-import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 import {of} from 'rxjs/observable/of';
 
 const httpOptions = {
@@ -23,17 +22,18 @@ export class ThemeService {
 
   createTheme(theme: Theme, userId: number): Observable<any> {
     let body = JSON.stringify(theme);
+    console.log("user id: " + userId);
+    console.log("json body:" + body);
     return this.http.post("https://kandoe-backend.herokuapp.com/users/" + userId + "/themes", body , httpOptions);
+  }
+
+  getTheme(id: number, userId: number): Observable<any> {
+    return this.http.get("https://kandoe-backend.herokuapp.com/users/" + userId + "/themes/" + id);
   }
 
   getThemes(): Observable<Theme[]> {
     return this.http.get<Theme[]>(this.themesurl);
     // return this.http.get('http://.../userid/themes').map((res) => res.json());
-  }
-
-  getTheme(id: number): Observable<Theme> {
-    const url = `${this.themesurl}/${id}`;
-    return this.http.get<Theme>(url);
   }
 
   updateTheme(theme: Theme): Observable<any> {

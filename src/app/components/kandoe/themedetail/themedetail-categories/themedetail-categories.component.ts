@@ -28,9 +28,6 @@ export class ThemedetailCategoriesComponent implements OnInit {
   ngOnInit() {
 
     this.urlid = +this.route.snapshot.paramMap.get('id');
-    this.themeService.getTheme(this.urlid).subscribe(theme => {
-      this.theme = theme;
-    });
 
     window.document.title = 'Categoriën';
   }

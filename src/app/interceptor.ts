@@ -1,4 +1,4 @@
-import {HttpInterceptor, HttpRequest, HttpHandler, HttpUserEvent, HttpErrorResponse} from '@angular/common/http';
+import {HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse, HttpEvent} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import {Router} from '@angular/router';
@@ -13,7 +13,7 @@ export class Interceptor implements HttpInterceptor{
 
   constructor(private token: TokenStorage, private router: Router) { }
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpUserEvent<any>>{
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     let authReq = req;
     if (this.token.getToken() != null) {
       authReq = req.clone({headers: req.headers.set(TOKEN_HEADER_KEY, 'Bearer ' + this.token.getToken())});
@@ -22,7 +22,6 @@ export class Interceptor implements HttpInterceptor{
     return next.handle(authReq).do(
       (err: any) => {
         if (err instanceof HttpErrorResponse) {
-
           if (err.status === 401) {
             this.router.navigate(['login']);
           }

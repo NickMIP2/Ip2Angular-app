@@ -8,11 +8,11 @@ import {UseridStorage} from '../../../sessionStorage/userid-storage';
   selector: 'app-new-theme',
   templateUrl: './new-theme.component.html',
   styleUrls: ['./new-theme.component.css'],
-  providers: [ThemeService]
+  providers: [ThemeService, UseridStorage]
 })
 export class NewThemeComponent implements OnInit {
 
-  public theme = new Theme(0, '', '',  ['']);
+  public theme = new Theme(0, '', '',  ['tag1', 'tag2']);
   private userId;
 
   submitted = false;
