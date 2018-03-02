@@ -26,6 +26,7 @@ export class AuthenticationService {
   login(username: string, password: string): Observable<any>{
     const credentials = {username: username, password: password};
     let body = JSON.stringify(credentials);
+    console.log(body);
     return this.http.post('https://kandoe-backend.herokuapp.com/token/generate-token', body, httpOptions);
   }
 
