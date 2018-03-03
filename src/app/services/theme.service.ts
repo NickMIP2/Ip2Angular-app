@@ -13,8 +13,6 @@ const httpOptions = {
 @Injectable()
 export class ThemeService {
 
-  private themesurl = 'api/themes';
-
   constructor(private http: HttpClient) {
 
   }
