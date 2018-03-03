@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, AfterViewChecked} from '@angular/core';
+import {Component,OnInit, AfterViewChecked} from '@angular/core';
 import {Theme} from '../../../../model/theme';
 import {ThemeService} from '../../../../services/theme.service';
 import {ActivatedRoute} from '@angular/router';
