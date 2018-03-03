@@ -38,7 +38,7 @@ export class ThemeService {
   }
 
   deleteTheme(id: number): Observable<{}> {
-    return this.http.delete("https://kandoe-backend.herokuapp.com/users/" + id, httpOptions);
+    return this.http.delete("https://kandoe-backend.herokuapp.com/themes/" + id, httpOptions);
   }
 
   getThemesOfUser(userId: number): Observable<any> {
