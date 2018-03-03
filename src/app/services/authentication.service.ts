@@ -12,8 +12,6 @@ const httpOptions = {
 @Injectable()
 export class AuthenticationService {
 
-
-
   constructor(private http: HttpClient) {
   }
 
