@@ -10,6 +10,7 @@ import {ThemedetailCategoriesComponent} from './components/kandoe/themedetail/co
 import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {ThemedetailOverviewComponent} from './components/kandoe/themedetail/components/themedetail-overview/themedetail-overview.component';
+import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},

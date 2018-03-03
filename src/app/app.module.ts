@@ -21,7 +21,7 @@ import {LoginComponent} from './components/login/login.component';
 import {AuthenticationService} from './services/authentication.service';
 import {KandoeComponent} from './components/kandoe/kandoe.component';
 import {RegisterComponent} from './components/register/register.component';
-import {InMemoryDataService} from './services/in-memory-data.service';
+// import {InMemoryDataService} from './services/in-memory-data.service';
 import {ThemeService} from './services/theme.service';
 import {RouterLinkDirectiveStub} from './testing/router-link-directive-stub';
 import {HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -31,6 +31,7 @@ import {TokenStorage} from './sessionStorage/token-storage';
 import {CardEditComponent} from './components/kandoe/themedetail/components/themedetail-cards/card-edit/card-edit.component';
 import {CardService} from './services/card.service';
 import {CategoryService} from './services/category.service';
+import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import {CategoryService} from './services/category.service';
     KandoeComponent,
     RegisterComponent,
     RouterLinkDirectiveStub,
-    CardEditComponent
+    CardEditComponent,
+    ThemedetailComponent
   ],
   imports: [
     BrowserModule,

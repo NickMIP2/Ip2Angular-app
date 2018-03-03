@@ -18,29 +18,29 @@ export class ThemeService {
   }
 
   createTheme(theme: Theme, userId: number): Observable<any> {
-    let body = JSON.stringify(theme);
-    console.log("user id: " + userId);
-    console.log("json body:" + body);
-    return this.http.post("https://kandoe-backend.herokuapp.com/users/" + userId + "/themes", body , httpOptions);
+    const body = JSON.stringify(theme);
+    console.log('user id: ' + userId);
+    console.log('json body:' + body);
+    return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes', body , httpOptions);
   }
 
   getTheme(id: number, userId: number): Observable<any> {
-    return this.http.get("https://kandoe-backend.herokuapp.com/users/" + userId + "/themes/" + id);
+    return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + id);
   }
 
   updateTheme(theme: Theme, userId: number): Observable<any> {
-    let body = JSON.stringify(theme);
-    console.log("user id: " + userId);
-    console.log("json body:" + body);
-    return this.http.put("https://kandoe-backend.herokuapp.com/users/" + userId + "/themes/" + theme.id, body , httpOptions);
+    const body = JSON.stringify(theme);
+    console.log('user id: ' + userId);
+    console.log('json body:' + body);
+    return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + theme.id, body , httpOptions);
   }
 
   deleteTheme(id: number): Observable<{}> {
-    return this.http.delete("https://kandoe-backend.herokuapp.com/themes/" + id, httpOptions);
+    return this.http.delete('https://kandoe-backend.herokuapp.com/themes/' + id, httpOptions);
   }
 
   getThemesOfUser(userId: number): Observable<any> {
-    return this.http.get("https://kandoe-backend.herokuapp.com/users/" + userId + "/themes");
+    return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes');
   }
 
 }

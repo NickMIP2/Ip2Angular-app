@@ -1,7 +1,7 @@
-import {Component,OnInit, AfterViewChecked} from '@angular/core';
+import {Component, OnInit, AfterViewChecked} from '@angular/core';
 import {Theme} from '../../../../../model/theme';
 import {ThemeService} from '../../../../../services/theme.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Params} from '@angular/router';
 import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
 
 @Component({
@@ -24,18 +24,21 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
   tagValue = '';
 
   constructor(private themeService: ThemeService, private route: ActivatedRoute, private useridStorage: UseridStorage) {
-    this.themeId = route.snapshot.params['id'];
+
   }
 
   ngOnInit() {
-    this.themeService.getTheme(this.themeId, this.useridStorage.getUserId()).subscribe(data => {
-      this.theme = data;
-    },
-      error => {
-        console.error("Error loading theme details!");
-        console.log(error);
-        alert("Error loading theme details");
-      });
+    this.themeId = this.route.parent.params.forEach((params: Params) => {
+      this.themeId = +params['themeId'];
+      this.themeService.getTheme(this.themeId, this.useridStorage.getUserId()).subscribe(data => {
+          this.theme = data;
+        },
+        error => {
+          console.error('Error loading theme details!');
+          console.log(error);
+          alert('Error loading theme details');
+        });
+    });
   }
 
   ngAfterViewChecked() {
@@ -45,12 +48,12 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
   save() {
     this.themeService.updateTheme(this.theme, this.useridStorage.getUserId()).subscribe(data => {
         this.theme = data;
-      // routing naar andere component
+        // routing naar andere component
       },
       error => {
-        console.error("Error saving Theme!");
+        console.error('Error saving Theme!');
         console.log(error);
-        alert("Error saving Theme");
+        alert('Error saving Theme');
       });
     this.editing = 0;
   }
@@ -60,18 +63,18 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
         // routing naar andere component
       },
       error => {
-        console.error("Error deleting theme!");
+        console.error('Error deleting theme!');
         console.log(error);
-        alert("Error deleting theme");
+        alert('Error deleting theme');
       });
   }
 
   addTag() {
     this.theme.tags.push(this.tagValue);
-     this.tagValue = '';
-   }
+    this.tagValue = '';
+  }
 
-   deleteTag(i) {
-     this.theme.tags.splice(i, 1);
-   }
+  deleteTag(i) {
+    this.theme.tags.splice(i, 1);
+  }
 }

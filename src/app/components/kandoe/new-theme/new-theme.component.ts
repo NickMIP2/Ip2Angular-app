@@ -28,7 +28,7 @@ export class NewThemeComponent implements OnInit {
   createTheme() {
     this.themeService.createTheme(this.theme, this.userId).subscribe(
       data => {
-        this.router.navigate(['theme/' + data.id + '/overview']); // id van teruggekregen thema
+        this.router.navigate(['themes/' + data.id + '/overview']); // id van teruggekregen thema
       },
       error => {
         console.error("Error creating theme!");
