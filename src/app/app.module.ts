@@ -1,10 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule, LOCALE_ID} from '@angular/core';
-import {AuthConfig, AuthHttp} from 'angular2-jwt';
+import {NgModule} from '@angular/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
-import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {AppComponent} from './app.component';
 import {DashboardComponent} from './components/kandoe/dashboard/dashboard.component';
 import {ThemesComponent} from './components/kandoe/themes/themes.component';
@@ -21,7 +19,6 @@ import {LoginComponent} from './components/login/login.component';
 import {AuthenticationService} from './services/authentication.service';
 import {KandoeComponent} from './components/kandoe/kandoe.component';
 import {RegisterComponent} from './components/register/register.component';
-// import {InMemoryDataService} from './services/in-memory-data.service';
 import {ThemeService} from './services/theme.service';
 import {RouterLinkDirectiveStub} from './testing/router-link-directive-stub';
 import {HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -32,6 +29,7 @@ import {CardEditComponent} from './components/kandoe/themedetail/components/them
 import {CardService} from './services/card.service';
 import {CategoryService} from './services/category.service';
 import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
+import {UseridStorage} from './sessionStorage/userid-storage';
 
 
 @NgModule({
@@ -72,7 +70,8 @@ import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.
     ThemeService,
     CardService,
     CategoryService,
-    Interceptor
+    Interceptor,
+    UseridStorage
   ],
 
   bootstrap: [AppComponent]

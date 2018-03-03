@@ -5,6 +5,7 @@ import {CategoryService} from '../../../../../../services/category.service';
 import {Card} from '../../../../../../model/card';
 import {Theme} from '../../../../../../model/theme';
 import {ActivatedRoute, Params} from '@angular/router';
+import {UseridStorage} from '../../../../../../sessionStorage/userid-storage';
 
 @Component({
   selector: 'app-card-edit',
@@ -18,15 +19,16 @@ export class CardEditComponent implements OnInit {
   public categories = null;
   public theme: Theme = {
     id: 0,
-    themename: 'Oeps',
-    themedescription: 'Er ging iets fout bij het ophalen van dit thema, probeer opnieuw',
-    themetag: '',
-    themeUsers: ['']
+    name: 'Oeps',
+    description: 'Er ging iets fout bij het ophalen van dit thema, probeer opnieuw',
+    tags: ['']
   };
+
   constructor(private themeService: ThemeService,
               private cardService: CardService,
               private categoryService: CategoryService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private useridStorage: UseridStorage) {
   }
 
   ngOnInit() {
@@ -34,7 +36,7 @@ export class CardEditComponent implements OnInit {
     this.card = this.cardService.getCard(this.cardId);
     this.themeId = this.route.parent.params.forEach((params: Params) => {
       this.themeId = +params['themeId'];
-      this.themeService.getTheme(this.themeId).subscribe(theme => {
+      this.themeService.getTheme(this.themeId, this.useridStorage.getUserId()).subscribe(theme => {
         this.theme = theme;
       });
       console.log(this.themeId + ' theme id');
