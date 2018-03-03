@@ -43,14 +43,27 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
   }
 
   save() {
-    this.themeService.updateTheme(this.theme).subscribe();
+    this.themeService.updateTheme(this.theme, this.useridStorage.getUserId()).subscribe(data => {
+        this.theme = data;
+      // routing naar andere component
+      },
+      error => {
+        console.error("Error saving Theme!");
+        console.log(error);
+        alert("Error saving Theme");
+      });
     this.editing = 0;
-    // thema opslaan via call in service
   }
 
-  deleteTheme(theme) {
-
-    this.themeService.deleteTheme(theme).subscribe();
+  deleteTheme() {
+    this.themeService.deleteTheme(this.themeId).subscribe(data => {
+        // routing naar andere component
+      },
+      error => {
+        console.error("Error deleting theme!");
+        console.log(error);
+        alert("Error deleting theme");
+      });
   }
 
   addTag() {
