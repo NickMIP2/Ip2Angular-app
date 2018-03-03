@@ -1,8 +1,8 @@
 import {Component,OnInit, AfterViewChecked} from '@angular/core';
-import {Theme} from '../../../../model/theme';
-import {ThemeService} from '../../../../services/theme.service';
+import {Theme} from '../../../../../model/theme';
+import {ThemeService} from '../../../../../services/theme.service';
 import {ActivatedRoute} from '@angular/router';
-import {UseridStorage} from '../../../../sessionStorage/userid-storage';
+import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
 
 @Component({
   selector: 'app-themedetail-overview',

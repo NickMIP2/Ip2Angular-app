@@ -24,6 +24,8 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "@ngx-translate/core": "^9.1.1",
+    "@ngx-translate/http-loader": "^2.0.1",
     "angular-in-memory-web-api": "^0.5.3",
     "angular2-jwt": "latest",
     "bootstrap": "^4.0.0-beta.2",

@@ -10,11 +10,11 @@ import {DashboardComponent} from './components/kandoe/dashboard/dashboard.compon
 import {ThemesComponent} from './components/kandoe/themes/themes.component';
 import {NewThemeComponent} from './components/kandoe/new-theme/new-theme.component';
 import {AlertModule} from 'ngx-bootstrap';
-import {ThemedetailOverviewComponent} from './components/kandoe/themedetail/themedetail-overview/themedetail-overview.component';
-import {ThemedetailCardsComponent} from './components/kandoe/themedetail/themedetail-cards/themedetail-cards.component';
-import {ThemedetailOrganiserComponent} from './components/kandoe/themedetail/themedetail-organiser/themedetail-organiser.component';
-import {ThemedetailCategoriesComponent} from './components/kandoe/themedetail/themedetail-categories/themedetail-categories.component';
-import {ThemedetailNavbarComponent} from './components/kandoe/themedetail/themedetail-navbar/themedetail-navbar.component';
+import {ThemedetailOverviewComponent} from './components/kandoe/themedetail/components/themedetail-overview/themedetail-overview.component';
+import {ThemedetailCardsComponent} from './components/kandoe/themedetail/components/themedetail-cards/themedetail-cards.component';
+import {ThemedetailOrganiserComponent} from './components/kandoe/themedetail/components/themedetail-organiser/themedetail-organiser.component';
+import {ThemedetailCategoriesComponent} from './components/kandoe/themedetail/components/themedetail-categories/themedetail-categories.component';
+import {ThemedetailNavbarComponent} from './components/kandoe/themedetail/components/themedetail-navbar/themedetail-navbar.component';
 import {HomeComponent} from './components/kandoe/home/home.component';
 import {NavbarComponent} from './components/kandoe/navbar/navbar.component';
 import {LoginComponent} from './components/login/login.component';
@@ -28,6 +28,9 @@ import {HTTP_INTERCEPTORS } from '@angular/common/http';
 import {Interceptor} from './interceptor';
 import {TokenStorage} from './sessionStorage/token-storage';
 
+import {CardEditComponent} from './components/kandoe/themedetail/components/themedetail-cards/card-edit/card-edit.component';
+import {CardService} from './services/card.service';
+import {CategoryService} from './services/category.service';
 
 
 @NgModule({
@@ -46,7 +49,8 @@ import {TokenStorage} from './sessionStorage/token-storage';
     LoginComponent,
     KandoeComponent,
     RegisterComponent,
-    RouterLinkDirectiveStub
+    RouterLinkDirectiveStub,
+    CardEditComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,12 @@ import {TokenStorage} from './sessionStorage/token-storage';
       provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
       multi: true
-    }
+    },
+    AuthenticationService,
+    ThemeService,
+    CardService,
+    CategoryService,
+    Interceptor
   ],
 
   bootstrap: [AppComponent]

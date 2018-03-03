@@ -15,7 +15,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
   }
 
-  register(user: User): Observable<any>{
+  register(user: User): Observable<any> {
     let body = JSON.stringify(user);
     console.log(body);
     return this.http.post("https://kandoe-backend.herokuapp.com/register", body, httpOptions);

@@ -1,4 +1,3 @@
-<app-themedetail-navbar [themeId]="themeId"></app-themedetail-navbar>
 <div class="overview-container container">
   <table class="table">
     <tr>
@@ -42,7 +41,7 @@
       <button class="btn btn-primary" (click)="editing === 1 ? save() : editing=1">
         {{editing===1 ? "Opslaan" : "Wijzigen"}}
       </button>
-      <button class="btn btn-danger" (click)="deleteTheme(theme)" routerLink="/themas">Verwijderen</button>
+      <button class="btn btn-danger" (click)="deleteTheme(theme)" routerLink="/themes">Verwijderen</button>
       </td>
     </tr>
   </table>

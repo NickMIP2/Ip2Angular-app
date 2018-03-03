@@ -1,0 +1,25 @@
+<div class="pagecontainer">
+  <table class="table" style="width: 80%; margin: auto;">
+    <tr>
+      <th class="text-left titleCol">Title</th>
+      <th class="text-left descCol">Description</th>
+      <th class="text-left imgCol">Image</th>
+      <th class="text-left catCol">Categories</th>
+      <th class="btnCol"></th>
+    </tr>
+    <tr *ngFor="let card of cards" style="max-height: 50px">
+      <td class="text-left titleCol">{{card.title}}</td>
+      <td class="text-left descCol">{{card.description}}</td>
+      <td class="text-left imgCol">{{card.image}}</td>
+      <td class="text-left catCol">
+        <table style="display: block; max-height: 100px; overflow-y: scroll">
+          <tr *ngFor="let cat of card.categories">{{cat.name}}</tr>
+        </table>
+      </td>
+      <td class="btnCol">
+        <button class="btn btn-primary cardbtn" [routerLink]="[card.id]">Wijzig</button>
+        <button class="btn btn-danger cardbtn">Verwijder</button>
+      </td>
+    </tr>
+  </table>
+</div>

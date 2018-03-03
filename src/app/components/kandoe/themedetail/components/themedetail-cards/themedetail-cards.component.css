@@ -1,0 +1,28 @@
+.borderRed {
+  border: 1px solid red;
+}
+
+.pagecontainer {
+  padding: 5%;
+  padding-top: 1%;
+}
+.titleCol {
+  width: 15%;
+}
+.descCol {
+  width: 35%
+}
+.imgCol {
+  width: 20%;
+}
+.catCol {
+  width: 20%;
+}
+.btnCol {
+  width: 10%;
+}
+.cardbtn{
+  display: inline-block;
+  margin: 2%;
+  width: 100%;
+}

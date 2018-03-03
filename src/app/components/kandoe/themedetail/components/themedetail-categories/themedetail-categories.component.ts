@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Category} from '../../../../model/category';
-import {Theme} from '../../../../model/theme';
-import {ThemeService} from '../../../../services/theme.service';
+import {Category} from '../../../../../model/category';
+import {Theme} from '../../../../../model/theme';
+import {ThemeService} from '../../../../../services/theme.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -19,16 +19,13 @@ export class ThemedetailCategoriesComponent implements OnInit {
   categories = [this.categorie1, this.categorie2, this.categorie3];
   editfield = '';
 
-  public urlid;
+  public themeId;
   public theme: Theme;
 
   constructor(private themeService: ThemeService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-
-    this.urlid = +this.route.snapshot.paramMap.get('id');
-
     window.document.title = 'Categoriën';
   }
 
@@ -41,5 +38,9 @@ export class ThemedetailCategoriesComponent implements OnInit {
     console.log(categorie.name + ' cat_name: ' + cat_name + ' editfield: ' + this.editfield);
     this.editfield = '';
     // thema opslaan via call in service
+  }
+
+  deleteCategory(){
+
   }
 }

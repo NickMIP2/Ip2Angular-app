@@ -15,7 +15,6 @@ import {UseridStorage} from '../../../sessionStorage/userid-storage';
 export class ThemesComponent implements OnInit {
 
   public themes = [];
-
   constructor(private themeService: ThemeService, private useridStorage: UseridStorage) {
   }
 
