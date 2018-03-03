@@ -8,7 +8,6 @@ import {Component, Input, OnInit} from '@angular/core';
 
 export class ThemedetailComponent implements OnInit {
 
-
   constructor() {
   }
 
