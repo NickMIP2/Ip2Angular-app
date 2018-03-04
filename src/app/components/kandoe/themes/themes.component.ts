@@ -2,35 +2,44 @@ import {Component, OnInit} from '@angular/core';
 import {Theme} from '../../../model/theme';
 import {User} from '../../../model/user';
 import {ThemeService} from '../../../services/theme.service';
+import {ActivatedRoute} from '@angular/router';
+import {UseridStorage} from '../../../sessionStorage/userid-storage';
 
 @Component({
   selector: 'app-theme',
   templateUrl: './themes.component.html',
-  styleUrls: ['./themes.component.css']
+  styleUrls: ['./themes.component.css'],
+  providers: [ThemeService, UseridStorage]
+
 })
 export class ThemesComponent implements OnInit {
 
-  public user: User = {id: 1, email: 'quinten.didden@student.kdg.be', lastName: 'Didden', firstName: 'Quinten', organisor: 'true'};
-  public themesarray = [];
+  public themes = [];
+  constructor(private themeService: ThemeService, private useridStorage: UseridStorage) {
 
-  constructor(private themeService: ThemeService) {
   }
 
   ngOnInit() {
     window.document.title = 'Uw thema\'s';
-    this.themeService.getThemes().subscribe(
-      themes => {
-        this.themesarray = themes;
-
-        console.log(this.themesarray[0].themetag);
-      }
-    );
-
+    this.themeService.getThemesOfUser(this.useridStorage.getUserId()).subscribe(data => {
+        this.themes = data;
+      },
+      error => {
+        console.error("Error loading themes!");
+        console.log(error);
+        alert("Error loading themes");
+      });
   }
 
-  deleteTheme(theme) {
-    this.themesarray = this.themesarray.filter(deletedtheme => deletedtheme !== theme);
-    this.themeService.deleteTheme(theme).subscribe();
+  deleteTheme(id:number) {
+    this.themeService.deleteTheme(id, this.useridStorage.getUserId()).subscribe(data => {
+      this.themes = data;
+      },
+      error => {
+        console.error('Error deleting theme!');
+        console.log(error);
+        alert('Error deleting theme');
+      });
   }
 
 }

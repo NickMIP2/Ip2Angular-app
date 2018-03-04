@@ -1,6 +1,13 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import 'rxjs/add/operator/catch';
+import {User} from '../model/user';
+
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class AuthenticationService {
@@ -8,16 +15,17 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
   }
 
-
-  register() {
-    const testregi = {username: 'Nicktestdsdsq', password: 'passwdo', firstname: 'nickjwt', lastname: 'marcoenjwt', email: 'testmail@nick.com'};
-    this.http.post('https://kandoe-backend.herokuapp.com/register', testregi);
+  register(user: User): Observable<any> {
+    let body = JSON.stringify(user);
+    console.log(body);
+    return this.http.post("https://kandoe-backend.herokuapp.com/register", body, httpOptions);
   }
 
   login(username: string, password: string): Observable<any>{
     const credentials = {username: username, password: password};
-    return this.http.post('https://kandoe-backend.herokuapp.com/token/generate-token', credentials);
-
+    let body = JSON.stringify(credentials);
+    console.log(body);
+    return this.http.post('https://kandoe-backend.herokuapp.com/token/generate-token', body, httpOptions);
   }
 
 }

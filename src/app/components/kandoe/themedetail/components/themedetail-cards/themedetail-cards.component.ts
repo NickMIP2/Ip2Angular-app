@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Card} from '../../../../../model/card';
 import {Category} from '../../../../../model/category';
-import {ActivatedRoute, Params} from '@angular/router';
-import {ThemeService} from '../../../../../services/theme.service';
 import {Theme} from '../../../../../model/theme';
+import {ThemeService} from '../../../../../services/theme.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-themedetail-cards',
@@ -82,22 +82,15 @@ export class ThemedetailCardsComponent implements OnInit {
   public themeId;
   public theme: Theme = {
     id: 0,
-    themename: 'Oeps',
-    themedescription: 'Er ging iets fout bij het ophalen van dit thema, probeer opnieuw',
-    themetag: '',
-    themeUsers: ['']
+    name: 'Oeps',
+    description: 'Er ging iets fout bij het ophalen van dit thema, probeer opnieuw',
+    tags: ['']
   };
 
   constructor(private themeService: ThemeService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.themeId = this.route.parent.params.forEach((params: Params) => {
-      this.themeId = +params['themeId'];
-      this.themeService.getTheme(this.themeId).subscribe(theme => {
-        this.theme = theme;
-      });
-    });
     window.document.title = 'Kaarten';
   }
 

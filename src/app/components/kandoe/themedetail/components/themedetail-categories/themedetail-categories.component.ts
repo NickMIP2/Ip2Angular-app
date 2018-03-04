@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Category} from '../../../../../model/category';
-import {ActivatedRoute, Params} from '@angular/router';
-import {ThemeService} from '../../../../../services/theme.service';
 import {Theme} from '../../../../../model/theme';
+import {ThemeService} from '../../../../../services/theme.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-themedetail-categories',
@@ -26,12 +26,6 @@ export class ThemedetailCategoriesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.themeId = this.route.parent.params.forEach((params: Params) => {
-      this.themeId = +params['themeId'];
-      this.themeService.getTheme(this.themeId).subscribe(theme => {
-        this.theme = theme;
-      });
-    });
     window.document.title = 'Categoriën';
   }
 
@@ -44,5 +38,9 @@ export class ThemedetailCategoriesComponent implements OnInit {
     console.log(categorie.name + ' cat_name: ' + cat_name + ' editfield: ' + this.editfield);
     this.editfield = '';
     // thema opslaan via call in service
+  }
+
+  deleteCategory(){
+
   }
 }
