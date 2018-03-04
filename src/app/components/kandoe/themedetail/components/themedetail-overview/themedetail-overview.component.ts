@@ -24,12 +24,12 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
   tagValue = '';
 
   constructor(private themeService: ThemeService, private route: ActivatedRoute, private useridStorage: UseridStorage, private router: Router) {
+    this.themeId = this.route.parent.snapshot.params['themeId'];
+    console.log("themeId = " + this.themeId);
 
   }
 
   ngOnInit() {
-    this.themeId = this.route.parent.params.forEach((params: Params) => {
-      this.themeId = +params['themeId'];
       this.themeService.getTheme(this.themeId, this.useridStorage.getUserId()).subscribe(data => {
           this.theme = data;
         },
@@ -38,9 +38,7 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
           console.log(error);
           alert('Error loading theme details');
         });
-    });
 
-    console.log(this.themeId.valueAsNumber + " is theme id");
   }
 
   ngAfterViewChecked() {
