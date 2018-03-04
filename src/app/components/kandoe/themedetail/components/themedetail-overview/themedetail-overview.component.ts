@@ -1,22 +1,21 @@
 import {Component, OnInit, AfterViewChecked} from '@angular/core';
 import {Theme} from '../../../../../model/theme';
 import {ThemeService} from '../../../../../services/theme.service';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
 
 @Component({
   selector: 'app-themedetail-overview',
   templateUrl: './themedetail-overview.component.html',
-  styleUrls: ['./themedetail-overview.component.css']
-  // ,
-  // providers: [ThemeService, UseridStorage]
+  styleUrls: ['./themedetail-overview.component.css'] ,
+  providers: [ThemeService, UseridStorage]
 
 })
 export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
   public theme: Theme = {
     id: 0,
-    name: 'Oeps',
-    description: 'Er ging iets fout bij het ophalen van dit thema, probeer opnieuw',
+    name: '',
+    description: '',
     tags: ['']
   };
   public themeId;
@@ -24,7 +23,7 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
   editing = 0;
   tagValue = '';
 
-  constructor(private themeService: ThemeService, private route: ActivatedRoute, private useridStorage: UseridStorage) {
+  constructor(private themeService: ThemeService, private route: ActivatedRoute, private useridStorage: UseridStorage, private router: Router) {
 
   }
 
@@ -40,6 +39,8 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
           alert('Error loading theme details');
         });
     });
+
+    console.log(this.themeId.valueAsNumber + " is theme id");
   }
 
   ngAfterViewChecked() {
@@ -59,12 +60,12 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
     this.editing = 0;
   }
 
-  deleteTheme() {
-    this.themeService.deleteTheme(this.themeId).subscribe(data => {
-        // routing naar andere component
+  deleteTheme(id: number) {
+    this.themeService.deleteThemeInOverview(id, this.useridStorage.getUserId()).subscribe(data => {
+        this.router.navigate(['themes']);
       },
       error => {
-        console.error('Error deleting theme!');
+        console.error('Error deleting theme!' + this.themeId);
         console.log(error);
         alert('Error deleting theme');
       });

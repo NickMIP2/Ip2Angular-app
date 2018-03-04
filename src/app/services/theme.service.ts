@@ -35,8 +35,12 @@ export class ThemeService {
     return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + theme.id, body , httpOptions);
   }
 
-  deleteTheme(id: number): Observable<{}> {
-    return this.http.delete('https://kandoe-backend.herokuapp.com/themes/' + id, httpOptions);
+  deleteTheme(id: number, userId: number): Observable<any> {
+    return this.http.delete('https://kandoe-backend.herokuapp.com/users/' + userId + "/themes/" + id, httpOptions);
+  }
+
+  deleteThemeInOverview(id: number, userId: number): Observable<any> {
+    return this.http.delete('https://kandoe-backend.herokuapp.com/users/' + userId + "/themes/" + id + "/overview", httpOptions);
   }
 
   getThemesOfUser(userId: number): Observable<any> {

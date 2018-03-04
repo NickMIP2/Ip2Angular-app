@@ -41,7 +41,7 @@
       <button class="btn btn-primary" (click)="editing === 1 ? save() : editing=1">
         {{editing===1 ? "Opslaan" : "Wijzigen"}}
       </button>
-      <button class="btn btn-danger" (click)="deleteTheme(theme)" routerLink="/themes">Verwijderen</button>
+      <button class="btn btn-danger" (click)="deleteTheme(theme.id)" routerLink="/themes">Verwijderen</button>
       </td>
     </tr>
   </table>

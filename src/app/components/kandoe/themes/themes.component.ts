@@ -16,6 +16,7 @@ export class ThemesComponent implements OnInit {
 
   public themes = [];
   constructor(private themeService: ThemeService, private useridStorage: UseridStorage) {
+
   }
 
   ngOnInit() {
@@ -30,9 +31,15 @@ export class ThemesComponent implements OnInit {
       });
   }
 
-  deleteTheme(theme) {
-    this.themes = this.themes.filter(deletedtheme => deletedtheme !== theme);
-    // this.themeService.deleteTheme(theme).subscribe();
+  deleteTheme(id:number) {
+    this.themeService.deleteTheme(id, this.useridStorage.getUserId()).subscribe(data => {
+      this.themes = data;
+      },
+      error => {
+        console.error('Error deleting theme!');
+        console.log(error);
+        alert('Error deleting theme');
+      });
   }
 
 }
