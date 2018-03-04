@@ -11,8 +11,8 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./themedetail-cards.component.css']
 })
 export class ThemedetailCardsComponent implements OnInit {
-  public category1: Category = {id: 1, name: 'mockCategory'};
-  public category2: Category = {id: 2, name: 'mockCategory2'};
+  public category1: Category = {id: 1, name: 'mockCategory', themeId: 7};
+  public category2: Category = {id: 2, name: 'mockCategory2', themeId: 7};
 
   public card1: Card = {
     id: 1,

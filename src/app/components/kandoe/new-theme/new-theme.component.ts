@@ -31,9 +31,9 @@ export class NewThemeComponent implements OnInit {
         this.router.navigate(['themes/' + data.id + '/overview']); // id van teruggekregen thema
       },
       error => {
-        console.error("Error creating theme!");
+        console.error('Error creating theme!');
         console.log(error);
-        alert("Error creating theme");
+        alert('Error creating theme');
       });
   }
 

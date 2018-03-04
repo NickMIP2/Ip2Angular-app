@@ -25,8 +25,8 @@ export class CardService {
   }
 
   getCard(id: number): Card {
-    const category1: Category = {id: 1, name: 'mockCategory'};
-    const category2: Category = {id: 2, name: 'mockCategory2'};
+    const category1: Category = {id: 1, name: 'mockCategory', themeId: 7};
+    const category2: Category = {id: 2, name: 'mockCategory2', themeId: 7};
     return {
       id: 1,
       themeId: 1,
