@@ -16,6 +16,7 @@ export class CardEditComponent implements OnInit {
   @Input() cardId: number;
   public card: Card = {id: 0, themeId: 0, title: 'No card found.', description: 'Oops, something went wrong!', image: '', categories: null};
   public themeId;
+  public userId;
   public categories = null;
   public theme: Theme = {
     id: 0,
@@ -28,7 +29,8 @@ export class CardEditComponent implements OnInit {
               private cardService: CardService,
               private categoryService: CategoryService,
               private route: ActivatedRoute,
-              private useridStorage: UseridStorage) {
+              private userIdStorage: UseridStorage) {
+    this.userId = userIdStorage.getUserId();
   }
 
   ngOnInit() {
@@ -36,11 +38,11 @@ export class CardEditComponent implements OnInit {
     this.card = this.cardService.getCard(this.cardId);
     this.themeId = this.route.parent.params.forEach((params: Params) => {
       this.themeId = +params['themeId'];
-      this.themeService.getTheme(this.themeId, this.useridStorage.getUserId()).subscribe(theme => {
+      this.themeService.getTheme(this.themeId, this.userIdStorage.getUserId()).subscribe(theme => {
         this.theme = theme;
       });
       console.log(this.themeId + ' theme id');
-      this.categories = this.categoryService.getCategoriesByTheme(this.themeId);
+      this.categories = this.categoryService.getCategoriesByTheme(this.themeId, this.userId);
     });
 
   }

@@ -13,17 +13,12 @@ import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
 })
 export class ThemedetailCategoriesComponent implements OnInit {
   editing = 0;
-  categorie1: Category = {id: 1, name: 'Frankrijk', themeId: 7};
-
-  categorie2: Category = {id: 2, name: 'Frankrijk', themeId: 7};
-
-  categorie3: Category = {id: 3, name: 'Duitsland', themeId: 7};
-  categories = [this.categorie1, this.categorie2, this.categorie3];
+  categories = [];
   editfield = '';
+  public currentCategory: Category;
 
   public themeId;
-  public theme: Theme;
-  private userId;
+  public userId;
 
   constructor(private themeService: ThemeService, private router: Router, private categoryService: CategoryService, private route: ActivatedRoute, private userIdStorage: UseridStorage) {
     this.userId = userIdStorage.getUserId();
@@ -31,17 +26,16 @@ export class ThemedetailCategoriesComponent implements OnInit {
 
   ngOnInit() {
     window.document.title = 'Categoriën';
-  }
-
-  save(itemId) {
-    this.editing = 0;
-    // post naar service met edit als naam
-    const cat_name = this.editfield;
-    const categorie: Category = {id: -1, name: cat_name, themeId: 7};
-    this.categories.push(categorie);
-    console.log(categorie.name + ' cat_name: ' + cat_name + ' editfield: ' + this.editfield);
-    this.editfield = '';
-    // thema opslaan via call in service
+    this.themeId = this.route.parent.snapshot.params['themeId'];
+    // get categories of theme
+    this.categoryService.getCategoriesByTheme(this.themeId, this.userId).subscribe(data => {
+        this.categories = data;
+      },
+      error => {
+        console.error('Error loading categories!');
+        console.log(error);
+        alert('Error loading categories!');
+      });
   }
 
   createCategory() {
@@ -51,7 +45,7 @@ export class ThemedetailCategoriesComponent implements OnInit {
     this.categoryService.createCategory(category, this.themeId, this.userId).subscribe(
       data => {
         this.categories.push(data);
-        // this.router.navigate(['themes/' + id + '/categories']);  id van teruggekregen category (data.id) indien nodig
+        this.editfield = '';
       },
       error => {
         console.error('Error creating category!');
@@ -60,7 +54,27 @@ export class ThemedetailCategoriesComponent implements OnInit {
       });
   }
 
-  deleteCategory(){
+  deleteCategory(id: number) {
+    this.categoryService.deleteCategory(id, this.userId, this.themeId).subscribe(data => {
+        this.categories = data;
+      },
+      error => {
+        console.error('Error deleting category!' + id);
+        console.log(error);
+        alert('Error deleting category!');
+      });
+  }
 
+  updateCategory() {
+    this.currentCategory.name = this.editfield;
+    this.categoryService.updateCategory(this.currentCategory, this.themeId, this.userId).subscribe(data => {
+          this.currentCategory = data;
+      },
+      error => {
+        console.error('Error saving Theme!');
+        console.log(error);
+        alert('Error saving Theme');
+      });
+    this.editing = 0;
   }
 }
