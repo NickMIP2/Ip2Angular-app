@@ -13,7 +13,7 @@ import {User} from '../../../model/user';
   styleUrls: ['./new-session.component.css']
 })
 export class NewSessionComponent implements OnInit {
-
+  public oldSessions = [];
   public newUser: User = {id: 0, email: '', password: '', username: '', firstname: '', lastname: '', organiser: ''};
   public users = [];
   public noneSelected = true;
@@ -52,6 +52,11 @@ export class NewSessionComponent implements OnInit {
     console.log(this.newSession);
   }
 
+
+  cloneSession(sessionId) {
+    this.newSession = this.oldSessions[sessionId];
+    this.newSession.id = 0;
+  }
 
   addNewUser() {
     this.userToAdd = this.newUser.email;
