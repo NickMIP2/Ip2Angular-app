@@ -41,7 +41,7 @@ export class CardEditComponent implements OnInit {
   updateCard() {
     this.cardService.updateCard(this.card, this.themeId, this.userId).subscribe(data => {
         this.card = data;
-        this.router.navigate(['themes/' + this.themeId + '/cards']); // id van teruggekregen thema
+        this.router.navigate(['kandoe/themes/' + this.themeId + '/cards']); // id van teruggekregen thema
       },
       error => {
         console.error('Error saving card!');
