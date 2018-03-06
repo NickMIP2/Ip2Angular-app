@@ -1,17 +1,22 @@
 <div class="wrapper">
   <button name="newthemebutton" class="btn btn-primary" routerLink="/thema-toevoegen">Nieuw thema</button>
-
-  <ul>
-    <li class="lititel"><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-  </ul>
-  <ul class="scrollul" id="themeOverview">
-    <li  *ngFor="let currentTheme of themes">
-      <span class="namespan">{{currentTheme.name}}</span>
-      <span class="descriptionspan">{{currentTheme.description}}</span>
-      <span class="tagspan">{{currentTheme.tags}}</span>
-      <button class="btn btn-info font-small" [routerLink]="['/themes',currentTheme.id,'overview']">Details</button>
-      <button class="btn btn-danger font-small" (click)="deleteTheme(currentTheme.id)">Verwijder</button>
-    </li>
-  </ul>
+  <table id="themesList" style="display: block;" class="table themetable-overflow">
+    <tr class="tablerow" [hidden]="false">
+      <th class="nameColumn text-left">Name</th>
+      <th class="descColumn text-left">Description</th>
+      <th class="tagColumn text-left">Tags</th>
+      <th class="buttonColumn"> </th>
+    </tr>
+    <tr class="tablerow" *ngFor="let currentTheme of themes" [hidden]="false">
+      <td class="nameColumn text-left">{{currentTheme.name}}</td>
+      <td class="descColumn text-left">{{currentTheme.description}}</td>
+      <!--
+      <td class="tagColumn text-left">{{currentTheme.themetag}}</td>
+      -->
+      <td class="buttonColumn">
+        <button class="btn btn-info font-small btnCss" [routerLink]="['/themes',currentTheme.id,'overview']">Details</button>
+        <button class="btn btn-danger font-small btnCss" (click)="deleteTheme(currentTheme.id)">Verwijder</button>
+      </td>
+    </tr>
+  </table>
 </div>
