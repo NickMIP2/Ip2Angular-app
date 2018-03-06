@@ -1,18 +1,5 @@
 <div class="wrapper">
   <button name="newthemebutton" class="btn btn-primary" routerLink="/thema-toevoegen">Nieuw thema</button>
-  <!--<ul>
-    <li class="lititel"><span class="namespan">name</span> <span class="descriptionspan">description</span> <span
-      class="tagspan">tags</span></li>
-  </ul>
-  <ul class="scrollul" id="themeOverview">
-    <li *ngFor="let currentTheme of themesarray">
-      <span class="namespan">{{currentTheme.themename}}</span>
-      <span class="descriptionspan">{{currentTheme.themedescription}}</span>
-      <span class="tagspan">{{currentTheme.themetag}}</span>
-      <button class="btn btn-info font-small" [routerLink]="['/theme',currentTheme.id,'overview']">Details</button>
-      <button class="btn btn-danger font-small" (click)="deleteTheme(currentTheme)">Verwijder</button>
-    </li>
-  </ul>-->
   <table id="themesList" style="display: block;" class="table themetable-overflow">
     <tr class="tablerow" [hidden]="false">
       <th class="nameColumn text-left">Name</th>
@@ -20,13 +7,15 @@
       <th class="tagColumn text-left">Tags</th>
       <th class="buttonColumn"> </th>
     </tr>
-    <tr class="tablerow" *ngFor="let currentTheme of themesarray" [hidden]="false">
-      <td class="nameColumn text-left">{{currentTheme.themename}}</td>
-      <td class="descColumn text-left">{{currentTheme.themedescription}}</td>
+    <tr class="tablerow" *ngFor="let currentTheme of themes" [hidden]="false">
+      <td class="nameColumn text-left">{{currentTheme.name}}</td>
+      <td class="descColumn text-left">{{currentTheme.description}}</td>
+      <!--
       <td class="tagColumn text-left">{{currentTheme.themetag}}</td>
+      -->
       <td class="buttonColumn">
         <button class="btn btn-info font-small btnCss" [routerLink]="['/theme',currentTheme.id,'overview']">Details</button>
-        <button class="btn btn-danger font-small btnCss" (click)="deleteTheme(currentTheme)">Verwijder</button>
+        <button class="btn btn-danger font-small btnCss" (click)="deleteTheme(currentTheme.id)">Verwijder</button>
       </td>
     </tr>
   </table>

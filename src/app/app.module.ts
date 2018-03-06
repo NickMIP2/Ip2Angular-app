@@ -1,16 +1,12 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule, LOCALE_ID} from '@angular/core';
-import {AuthConfig, AuthHttp} from 'angular2-jwt';
+import {NgModule} from '@angular/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
-import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
-
 import {AppComponent} from './app.component';
 import {DashboardComponent} from './components/kandoe/dashboard/dashboard.component';
 import {ThemesComponent} from './components/kandoe/themes/themes.component';
 import {NewThemeComponent} from './components/kandoe/new-theme/new-theme.component';
-import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
 import {AlertModule} from 'ngx-bootstrap';
 import {ThemedetailOverviewComponent} from './components/kandoe/themedetail/components/themedetail-overview/themedetail-overview.component';
 import {ThemedetailCardsComponent} from './components/kandoe/themedetail/components/themedetail-cards/themedetail-cards.component';
@@ -19,32 +15,23 @@ import {ThemedetailCategoriesComponent} from './components/kandoe/themedetail/co
 import {ThemedetailNavbarComponent} from './components/kandoe/themedetail/components/themedetail-navbar/themedetail-navbar.component';
 import {HomeComponent} from './components/kandoe/home/home.component';
 import {NavbarComponent} from './components/kandoe/navbar/navbar.component';
-import {UserComponent} from './components/authentication/user/user.component';
-import {AdminComponent} from './components/authentication/admin/admin.component';
 import {LoginComponent} from './components/authentication/login/login.component';
-import {TOKEN_NAME} from './services/auth.constant';
 import {AuthenticationService} from './services/authentication.service';
-import {UserService} from './services/user.service';
-import {AuthGuard} from './guards/auth-guard.service';
-import {AdminAuthGuard} from './guards/admin-auth-guard.service';
-import {AppDataService} from './services/app-data.service';
 import {KandoeComponent} from './components/kandoe/kandoe.component';
-import {AuthenticationComponent} from './components/authentication/authentication.component';
 import {RegisterComponent} from './components/authentication/register/register.component';
-import {InMemoryDataService} from './services/in-memory-data.service';
 import {ThemeService} from './services/theme.service';
 import {NewSessionComponent} from './components/kandoe/session/new-session/new-session.component';
+import {RouterLinkDirectiveStub} from './testing/router-link-directive-stub';
+import {HTTP_INTERCEPTORS } from '@angular/common/http';
+import {Interceptor} from './interceptor';
+import {TokenStorage} from './sessionStorage/token-storage';
 
-export function authHttpServiceFactory(http) {
-  return new AuthHttp(new AuthConfig({
-    headerPrefix: 'Bearer',
-    tokenName: TOKEN_NAME,
-    globalHeaders: [{'Content-Type': 'application/json'}],
-    noJwtError: false,
-    noTokenScheme: true,
-    tokenGetter: (() => localStorage.getItem(TOKEN_NAME))
-  }), http);
-}
+import {CardEditComponent} from './components/kandoe/themedetail/components/themedetail-cards/card-edit/card-edit.component';
+import {CardService} from './services/card.service';
+import {CategoryService} from './services/category.service';
+import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
+import {UseridStorage} from './sessionStorage/userid-storage';
+
 
 @NgModule({
   declarations: [
@@ -54,38 +41,39 @@ export function authHttpServiceFactory(http) {
     DashboardComponent,
     ThemesComponent,
     NewThemeComponent,
-    ThemedetailComponent,
     ThemedetailNavbarComponent,
     ThemedetailOverviewComponent,
     ThemedetailCardsComponent,
     ThemedetailOrganiserComponent,
     ThemedetailCategoriesComponent,
-    UserComponent,
-    AdminComponent,
     LoginComponent,
     KandoeComponent,
-    AuthenticationComponent,
     RegisterComponent,
-    NewSessionComponent
+    NewSessionComponent,
+    RouterLinkDirectiveStub,
+    CardEditComponent,
+    ThemedetailComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     AlertModule.forRoot(),
-    HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, {dataEncapsulation: false}
-    )
+    HttpClientModule
   ],
   providers: [
-    {provide: AuthHttp, useFactory: authHttpServiceFactory, deps: [HttpClient]},
+    TokenStorage,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
+    },
     AuthenticationService,
-    UserService,
-    AuthGuard,
-    AdminAuthGuard,
-    AppDataService,
-    ThemeService
+    ThemeService,
+    CardService,
+    CategoryService,
+    Interceptor,
+    UseridStorage
   ],
 
   bootstrap: [AppComponent]

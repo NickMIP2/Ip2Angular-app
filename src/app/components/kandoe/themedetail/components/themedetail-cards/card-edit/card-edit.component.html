@@ -1,0 +1,38 @@
+<form class="form-group" style="margin: auto; width: 60%">
+  <table class="table" style="width: 80%; margin: auto;">
+    <tr>
+      <td class="descCol">Title</td>
+      <td class="editCol">
+        <input type="text" class="editInput" name="editcardtitle" [(ngModel)]="card.title" placeholder="Title">
+      </td>
+    </tr>
+    <tr>
+      <td class="descCol">Description</td>
+      <td class="editCol">
+        <input type="text" class="editInput" name="editcarddescription" [(ngModel)]="card.description" placeholder="Description">
+      </td>
+    </tr>
+    <tr>
+      <td class="descCol">Image</td>
+      <td class="editCol">
+        <input type="image" class="editInput" name="editcardimage" [(ngModel)]="card.image" placeholder="Image">
+      </td>
+    </tr>
+    <tr>
+      <td class="descCol">Categories</td>
+      <td class="editCol">
+        <select name="categories">
+          <option *ngFor="let cat of categories" id="{{cat.id}}">{{cat.name}}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 50%">
+        <button class="btn btn-primary" style="width: 50%; margin: auto;" [routerLink]="['/themes',theme.id,'cards']">Save changes</button>
+      </td>
+      <td style="width: 50%">
+        <button class="btn btn-danger" style="width: 50%; margin: auto;" [routerLink]="['/themes',theme.id,'cards']">Discard changes</button>
+      </td>
+    </tr>
+  </table>
+</form>

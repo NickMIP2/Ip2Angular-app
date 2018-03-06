@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {Input} from 'angular2/core';
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-themedetail-navbar',
@@ -7,8 +6,6 @@ import {Input} from 'angular2/core';
   styleUrls: ['./themedetail-navbar.component.css']
 })
 export class ThemedetailNavbarComponent implements OnInit {
-
-  @Input() public themeId: number;
 
   constructor() {
   }

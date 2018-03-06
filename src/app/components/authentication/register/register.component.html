@@ -6,19 +6,19 @@
       </div>
       <div class="inputcontainer containerCenter maxWidth">
         <input id="firstNameInput" name="firstName" type="text"
-               [(ngModel)]="model.firstName"
+               [(ngModel)]="model.firstname"
                class="form-control marginTop" placeholder="First name" required>
         <input id="lastNameInput" name="lastName" type="text"
-               [(ngModel)]="model.lastName"
+               [(ngModel)]="model.lastname"
                class="form-control marginTop" placeholder="Last name" required>
         <input id="emailInput" name="email" type="email"
                [(ngModel)]="model.email"
                class="form-control marginTop" placeholder="Email address" required>
         <input id="usernameInput" name="username" type="text"
-               [(ngModel)]="username"
+               [(ngModel)]="model.username"
                class="form-control marginTop" placeholder="Username" required>
         <input id="pwInput" name="pw" type="password"
-               [(ngModel)]="password"
+               [(ngModel)]="model.password"
                class="form-control marginTop" placeholder="Password" required>
         <input id="pwCheckInput" name="pwCheck" type="password"
                [(ngModel)]="passwordCheck"
@@ -26,8 +26,8 @@
       </div>
       <div class="buttoncontainer containerCenter marginTop">
         <button type="button" class="btn btn-primary buttonWidth marginBottom"
-                [disabled]="!registerForm.form.valid || password !== passwordCheck"
-                (click)="onClickRegister()"
+                [disabled]="!registerForm.form.valid || model.password !== passwordCheck"
+                (click)="register()"
                 name="registerButton">Register</button>
       </div>
     </div>
