@@ -21,12 +21,7 @@ export class NewSessionComponent implements OnInit {
   ngOnInit() {
     window.document.title = 'Nieuwe sessie';
     console.log(this.participantEmail);
-    this.themeService.getThemes().subscribe(
-      themes => {
-        this.themesArray = themes;
-        console.log('Themes loaded' + themes[0].themename);
-      }
-    );
+
   }
 
   onClickSubmit() {

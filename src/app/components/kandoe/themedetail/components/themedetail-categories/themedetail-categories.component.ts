@@ -17,7 +17,7 @@ export class ThemedetailCategoriesComponent implements OnInit {
   editfield = '';
   public currentCategory: Category;
 
-  public themeId;
+  public themeId = 0;
   public userId;
 
   constructor(private themeService: ThemeService, private router: Router, private categoryService: CategoryService, private route: ActivatedRoute, private userIdStorage: UseridStorage) {
