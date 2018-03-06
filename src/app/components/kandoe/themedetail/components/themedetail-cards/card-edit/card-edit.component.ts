@@ -1,10 +1,7 @@
-import {AfterViewChecked, AfterViewInit, Component, Input, OnChanges, OnInit} from '@angular/core';
-import {ThemeService} from '../../../../../../services/theme.service';
+import { Component, OnInit} from '@angular/core';
 import {CardService} from '../../../../../../services/card.service';
-import {CategoryService} from '../../../../../../services/category.service';
 import {Card} from '../../../../../../model/card';
-import {Theme} from '../../../../../../model/theme';
-import {ActivatedRoute, Params} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UseridStorage} from '../../../../../../sessionStorage/userid-storage';
 
 @Component({
@@ -13,36 +10,43 @@ import {UseridStorage} from '../../../../../../sessionStorage/userid-storage';
   styleUrls: ['./card-edit.component.css']
 })
 export class CardEditComponent implements OnInit {
-  @Input() cardId: number;
-  public card: Card = {id: 0, themeId: 0, title: 'No card found.', description: 'Oops, something went wrong!', image: '', categories: null};
+  public cardId;
+  public card = new Card(0,0, '','','');
   public themeId;
-  public categories = null;
-  public theme: Theme = {
-    id: 0,
-    name: 'Oeps',
-    description: 'Er ging iets fout bij het ophalen van dit thema, probeer opnieuw',
-    tags: ['']
-  };
+  public userId;
 
-  constructor(private themeService: ThemeService,
+  constructor(
               private cardService: CardService,
-              private categoryService: CategoryService,
               private route: ActivatedRoute,
-              private useridStorage: UseridStorage) {
+              private userIdStorage: UseridStorage,
+              private router: Router) {
+    this.userId = userIdStorage.getUserId();
   }
 
   ngOnInit() {
     window.document.title = 'Cardeditor';
-    this.card = this.cardService.getCard(this.cardId);
-    this.themeId = this.route.parent.params.forEach((params: Params) => {
-      this.themeId = +params['themeId'];
-      this.themeService.getTheme(this.themeId, this.useridStorage.getUserId()).subscribe(theme => {
-        this.theme = theme;
+    this.themeId = this.route.parent.snapshot.params['themeId'];
+    this.cardId = this.route.snapshot.params['cardId'];
+    // get card
+    this.cardService.getCard(this.cardId, this.themeId, this.userId).subscribe(data => {
+        this.card = data;
+      },
+      error => {
+        console.error('Error loading card!');
+        console.log(error);
+        alert('Error loading card!');
       });
-      console.log(this.themeId + ' theme id');
-      this.categories = this.categoryService.getCategoriesByTheme(this.themeId);
-    });
-
   }
 
+  updateCard() {
+    this.cardService.updateCard(this.card, this.themeId, this.userId).subscribe(data => {
+        this.card = data;
+        this.router.navigate(['themes/' + this.themeId + '/cards']); // id van teruggekregen thema
+      },
+      error => {
+        console.error('Error saving card!');
+        console.log(error);
+        alert('Error saving card');
+      });
+  }
 }

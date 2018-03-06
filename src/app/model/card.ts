@@ -4,9 +4,8 @@ export class Card{
   constructor(
     public id: number,
     public themeId: number,
-    public title: string,
+    public name: string,
     public description: string,
     public image: string,
-    public categories: Array<Category>
   ) {}
 }

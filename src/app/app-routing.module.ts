@@ -7,9 +7,9 @@ import {ThemedetailCardsComponent} from './components/kandoe/themedetail/compone
 import {CardEditComponent} from './components/kandoe/themedetail/components/themedetail-cards/card-edit/card-edit.component';
 import {ThemedetailOrganiserComponent} from './components/kandoe/themedetail/components/themedetail-organiser/themedetail-organiser.component';
 import {ThemedetailCategoriesComponent} from './components/kandoe/themedetail/components/themedetail-categories/themedetail-categories.component';
-
 import {ThemedetailOverviewComponent} from './components/kandoe/themedetail/components/themedetail-overview/themedetail-overview.component';
 import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
+import {CardNewComponent} from './components/kandoe/themedetail/components/themedetail-cards/card-new/card-new.component';
 import {LoginComponent} from './components/authentication/login/login.component';
 import {NewSessionComponent} from './components/kandoe/session/new-session/new-session.component';
 import {RegisterComponent} from './components/authentication/register/register.component';
@@ -25,9 +25,8 @@ const routes: Routes = [
       {path: '', redirectTo: 'overview', pathMatch: 'full'},
       {path: 'overview', component: ThemedetailOverviewComponent},
       {path: 'cards', component: ThemedetailCardsComponent},
-      {path: 'cards/:cardId', component: CardEditComponent}
-
-      ,
+      {path: 'card-new', component: CardNewComponent},
+      {path: 'cards/:cardId', component: CardEditComponent},
       {path: 'organisers', component: ThemedetailOrganiserComponent},
       {path: 'categories', component: ThemedetailCategoriesComponent}
     ]

@@ -12,29 +12,42 @@ import {Category} from '../model/category';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': 'my-auth-token'
   })
 };
 
 @Injectable()
 export class CardService {
 
-  private cardsurl = '/api/cards';
-
-  constructor(private httpClient: HttpClient) {
+  constructor(private http: HttpClient) {
   }
 
-  getCard(id: number): Card {
-    const category1: Category = {id: 1, name: 'mockCategory', themeId: 7};
-    const category2: Category = {id: 2, name: 'mockCategory2', themeId: 7};
-    return {
-      id: 1,
-      themeId: 1,
-      title: 'Kaart 1',
-      description: 'De eerste kaart',
-      image: '',
-      categories: [category1, category2, category2, category2, category2]
-    };
+  createCard(card: Card, themeId: number, userId: number): Observable<any> {
+    const body = JSON.stringify(card);
+    console.log('theme id: ' + themeId);
+    console.log('json body:' + body);
+    return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/cards', body , httpOptions);
   }
 
+  updateCard(card: Card, themeId: number, userId: number): Observable<any> {
+    const body = JSON.stringify(card);
+    console.log('theme id: ' + themeId);
+    console.log('json body:' + body);
+    return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/cards/' + card.id, body , httpOptions);
+  }
+
+  deleteCard(id: number, userId: number, themeId: number): Observable<any> {
+    return this.http.delete('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/cards/' + id, httpOptions);
+  }
+
+  getCardsByTheme(themeId: number, userId: number): Observable<any> {
+    return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/cards');
+  }
+
+  getCardsByCategory(categoryId: number, themeId: number, userId: number): Observable<any> {
+    return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/categories/' + categoryId + '/cards');
+  }
+
+  getCard(cardId: number, themeId: number, userId: number): Observable<any> {
+    return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/cards/' + cardId);
+  }
 }

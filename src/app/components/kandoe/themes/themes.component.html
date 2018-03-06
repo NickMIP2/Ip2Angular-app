@@ -14,7 +14,7 @@
       <td class="tagColumn text-left">{{currentTheme.themetag}}</td>
       -->
       <td class="buttonColumn">
-        <button class="btn btn-info font-small btnCss" [routerLink]="['/theme',currentTheme.id,'overview']">Details</button>
+        <button class="btn btn-info font-small btnCss" [routerLink]="['/themes',currentTheme.id,'overview']">Details</button>
         <button class="btn btn-danger font-small btnCss" (click)="deleteTheme(currentTheme.id)">Verwijder</button>
       </td>
     </tr>
