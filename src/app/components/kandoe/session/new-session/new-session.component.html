@@ -15,8 +15,18 @@
         <tr>
           <td style="width: 15%;"><label style="display: inline-block;">Thema:</label></td>
           <td class="" style="width: 85%;">
-            <select id="themes" name="themes" style="width: 100%" class="custom-select form-control" required>
-              <option *ngFor="let theme of themesArray">{{theme.themename}}</option>
+            <select [(ngModel)]="themeIndexId" (change)="setCategory()" id="themes" name="themes" style="width: 100%" class="custom-select form-control" required>
+              <option>Selecteer thema</option>
+              <option *ngFor="let theme of themesArray;let i = index" [ngValue]="theme.id">{{theme.name}}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 15%;"><label style="display: inline-block;">Categorieën:</label></td>
+          <td class="" style="width: 85%;">
+            <select  id="categories" name="categories" style="width: 100%" class="custom-select form-control">
+              <option>Geen categorie</option>
+              <option *ngFor="let category of categoryArray">{{category.name}}</option>
             </select>
           </td>
         </tr>
@@ -55,7 +65,7 @@
     <div id="participantsContainer" class="form-group">
       <div class="participants_float ">
         <label>Deelnemers: </label><br/>
-        <textarea readonly [(ngModel)]="model.participants"
+        <textarea name="participants" readonly [(ngModel)]="model.participants"
                   class="text-left participants_textarea">
           {{model.participants}}
         </textarea>
