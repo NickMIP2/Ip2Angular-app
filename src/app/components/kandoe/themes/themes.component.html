@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <button name="newthemebutton" class="btn btn-primary" routerLink="/thema-toevoegen">Nieuw thema</button>
+  <button name="newthemebutton" class="btn btn-primary" routerLink="thema-toevoegen">Nieuw thema</button>
   <table id="themesList" style="display: block;" class="table themetable-overflow">
     <tr class="tablerow" [hidden]="false">
       <th class="nameColumn text-left">Name</th>
@@ -14,7 +14,7 @@
       <td class="tagColumn text-left">{{currentTheme.themetag}}</td>
       -->
       <td class="buttonColumn">
-        <button class="btn btn-info font-small btnCss" [routerLink]="['/themes',currentTheme.id,'overview']">Details</button>
+        <button class="btn btn-info font-small btnCss" [routerLink]="[currentTheme.id]">Details</button>
         <button class="btn btn-danger font-small btnCss" (click)="deleteTheme(currentTheme.id)">Verwijder</button>
       </td>
     </tr>

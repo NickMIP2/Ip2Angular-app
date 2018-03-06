@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component,OnInit} from '@angular/core';
 import {ThemeService} from '../../../../../../services/theme.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryService} from '../../../../../../services/category.service';
@@ -13,7 +13,6 @@ import {CardService} from '../../../../../../services/card.service';
 })
 export class CardNewComponent implements OnInit {
 
-  @Input() cardId: number;
   public card = new Card(0, 0, '', '', '');
   public themeId;
   public userId;
@@ -35,7 +34,7 @@ export class CardNewComponent implements OnInit {
   createCard() {
     this.cardService.createCard(this.card, this.themeId, this.userId).subscribe(data => {
         this.card = data;
-        this.router.navigate(['themes/' + this.themeId + '/cards']);
+        this.router.navigate(['kandoe/themes/' + this.themeId + '/cards']);
       },
       error => {
         console.error('Error creating card!');
