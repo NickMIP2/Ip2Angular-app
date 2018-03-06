@@ -25,7 +25,7 @@ const routes: Routes = [
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
       {path: 'dashboard', component: DashboardComponent},
       {path: 'themes', component: ThemesComponent},
-      {path: 'thema-toevoegen', component: NewThemeComponent},
+      {path: 'themes/thema-toevoegen', component: NewThemeComponent},
       {path: 'new-session', component: NewSessionComponent},
       {
         path: 'themes/:themeId', component: ThemedetailComponent,
@@ -33,7 +33,7 @@ const routes: Routes = [
           {path: '', redirectTo: 'overview', pathMatch: 'full'},
           {path: 'overview', component: ThemedetailOverviewComponent},
           {path: 'cards', component: ThemedetailCardsComponent},
-          {path: 'card-new', component: CardNewComponent},
+          {path: 'cards/card-new', component: CardNewComponent},
           {path: 'cards/:cardId', component: CardEditComponent},
           {path: 'organisers', component: ThemedetailOrganiserComponent},
           {path: 'categories', component: ThemedetailCategoriesComponent}

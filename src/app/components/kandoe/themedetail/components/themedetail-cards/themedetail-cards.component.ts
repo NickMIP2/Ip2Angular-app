@@ -46,4 +46,8 @@ export class ThemedetailCardsComponent implements OnInit {
         alert('Error deleting card!');
       });
   }
+
+  navigateNewCard() {
+    this.router.navigate(["kandoe/themes/" + this.themeId + "/cards/card-new"]);
+  }
 }

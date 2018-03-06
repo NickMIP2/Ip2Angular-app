@@ -1,5 +1,5 @@
 <div class="pagecontainer">
-  <button class="btn btn-primary" [routerLink]="['/themes',themeId,'card-new']">Nieuwe kaart toevoegen</button>
+  <button class="btn btn-primary" (click)="navigateNewCard()">Nieuwe kaart toevoegen</button>
   <table class="table" style="width: 80%; margin: auto;">
     <tr>
       <th class="text-left titleCol">Title</th>
