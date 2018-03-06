@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
       data => {
         this.tokenStorage.saveToken(data.authToken);
         this.userIdStorage.saveUserId(data.userId);
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['kandoe/dashboard']);
       },
       error => {
         console.error('Error logging in!');
