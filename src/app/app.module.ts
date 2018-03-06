@@ -30,6 +30,7 @@ import {CardService} from './services/card.service';
 import {CategoryService} from './services/category.service';
 import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
 import {UseridStorage} from './sessionStorage/userid-storage';
+import { NewSessionComponent } from './components/kandoe/new-session/new-session.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import {UseridStorage} from './sessionStorage/userid-storage';
     RegisterComponent,
     RouterLinkDirectiveStub,
     CardEditComponent,
-    ThemedetailComponent
+    ThemedetailComponent,
+    NewSessionComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,79 @@
+<form class="form-group" style="margin: auto; width: 60%">
+  <label>Type sessie:</label>
+  <select name="sessionType" [(ngModel)]="newSession.type">
+    <option value="1" selected="selected">Chance</option>
+    <option value="0">Problem</option>
+  </select>
+  <table class="table" style="width: 80%; margin: auto;">
+    <tr>
+      <td class="descCol">SessieTitel</td>
+      <td class="editCol">
+        <input type="text" class="editInput" name="editsessiontitle" [(ngModel)]="newSession.name" placeholder="Title">
+      </td>
+    </tr>
+    <tr>
+      <td class="descCol">
+        <label>Kies thema waarvoor je een sessie wilt aanmaken: </label>
+      </td>
+      <td class="editCol">
+        <select (change)="setSessionTheme($event.target.value)" class="form-control" id="select1">
+          <option *ngIf="noneSelected" value="">Kies een thema</option>
+          <option *ngFor="let currentTheme of themes" [value]="currentTheme.id">{{currentTheme.name}}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="descCol">Maximum aantal kaarten</td>
+      <td class="editCol">
+        <input type="number" class="editInput" name="editsessionmaxcards" [(ngModel)]="newSession.maxCards"
+               placeholder="0">
+      </td>
+    </tr>
+    <tr>
+      <td class="descCol">Aantal ronden</td>
+      <td class="editCol">
+        <input type="number" class="editInput" name="editsessionrounds" [(ngModel)]="newSession.totalRounds"
+               placeholder="0">
+      </td>
+    </tr>
+    <tr>
+      <td class="descCol">Tijd per zet in seconden</td>
+      <td class="editCol">
+        <input type="number" class="editInput" name="editsessionrounds" [(ngModel)]="newSession.timeForMove"
+               placeholder="0">
+      </td>
+    </tr>
+    <tr>
+      <td class="descCol">Categorie</td>
+      <td class="editCol">
+        <select name="categories">
+          <option *ngFor="let cat of categories" id="{{cat.id}}">{{cat.name}}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="descCol">Voeg deelnemer toe</td>
+      <td class="editCol">
+        <input type="text" class="editInput" name="editsessionparticipant" [(ngModel)]="newUser.email" placeholder="gebruiker@email.com">
+        <button (click)="addNewUser()">Voeg toe</button>
+      </td>
+    </tr>
+    <tr>
+      <td class="descCol">Deelnemers
+
+      <td>
+        <ul>
+          <li class="participantslist" *ngFor="let user of users">{{user}}</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="width: 50%">
+        <button (click)="saveSession()" class="btn btn-primary" style="width: 50%; margin: auto;"
+                [routerLink]="['/sessionoverview']">Sessie opslaan
+        </button>
+      </td>
+    </tr>
+  </table>
+</form>
+

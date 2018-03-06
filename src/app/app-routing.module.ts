@@ -11,11 +11,13 @@ import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {ThemedetailOverviewComponent} from './components/kandoe/themedetail/components/themedetail-overview/themedetail-overview.component';
 import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
+import {NewSessionComponent} from './components/kandoe/new-session/new-session.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'themes', component: ThemesComponent},
+  {path: 'new-session', component: NewSessionComponent},
   {path: 'thema-toevoegen', component: NewThemeComponent},
   {
     path: 'themes/:themeId', component: ThemedetailComponent,
