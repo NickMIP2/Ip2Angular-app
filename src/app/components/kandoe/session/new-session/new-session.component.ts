@@ -4,6 +4,7 @@ import {ThemeService} from '../../../../services/theme.service';
 import {log} from 'util';
 import {CategoryService} from '../../../../services/category.service';
 import {UseridStorage} from '../../../../sessionStorage/userid-storage';
+import {Theme} from '../../../../model/theme';
 
 @Component({
   selector: 'app-new-session',
@@ -37,9 +38,13 @@ export class NewSessionComponent implements OnInit {
         alert('Error loading themes');
       }, () => {
         this.setCategory();
+        this.themesArray.reverse();
       });
   }
 
+  compareFn(t1: Theme, t2: Theme): boolean {
+    return t1 && t2 ? t1.id === t2.id : t1 === t2;
+  }
 
   setCategory() {
     this.categoryService.getCategoriesByTheme(this.themeIndexId, this.userId).subscribe(data => {

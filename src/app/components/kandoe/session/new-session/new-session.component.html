@@ -16,8 +16,7 @@
           <td style="width: 15%;"><label style="display: inline-block;">Thema:</label></td>
           <td class="" style="width: 85%;">
             <select [(ngModel)]="themeIndexId" (change)="setCategory()" id="themes" name="themes" style="width: 100%" class="custom-select form-control" required>
-              <option>Selecteer thema</option>
-              <option *ngFor="let theme of themesArray;let i = index" [ngValue]="theme.id">{{theme.name}}</option>
+              <option *ngFor="let theme of themesArray;let i = index" [selected]="themesArray[0]" [ngValue]="theme.id">{{theme.name}}</option>
             </select>
           </td>
         </tr>
