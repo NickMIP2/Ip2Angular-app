@@ -7,6 +7,7 @@
       <th>Voornaam</th>
       <th>Organisator</th>
     </tr>
+    <!--
     <tr *ngFor="let user of users" >
       <td>{{user.email}}</td>
       <td>{{user.lastname}}</td>
@@ -14,6 +15,7 @@
       <td *ngIf="user.organiser === 'true'"><input type="checkbox" class="" id="{{user.id}}" checked /></td>
       <td *ngIf="user.organiser === 'false'"><input type="checkbox" class="" id="{{user.id}}"/></td>
     </tr>
+    -->
   </table>
   <button class="btn btn-primary" (click)="saveChanges()" name="saveOrganisors">Opslaan</button>
 </div>
