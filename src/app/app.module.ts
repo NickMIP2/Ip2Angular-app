@@ -15,11 +15,12 @@ import {ThemedetailCategoriesComponent} from './components/kandoe/themedetail/co
 import {ThemedetailNavbarComponent} from './components/kandoe/themedetail/components/themedetail-navbar/themedetail-navbar.component';
 import {HomeComponent} from './components/kandoe/home/home.component';
 import {NavbarComponent} from './components/kandoe/navbar/navbar.component';
-import {LoginComponent} from './components/login/login.component';
+import {LoginComponent} from './components/authentication/login/login.component';
 import {AuthenticationService} from './services/authentication.service';
 import {KandoeComponent} from './components/kandoe/kandoe.component';
-import {RegisterComponent} from './components/register/register.component';
+import {RegisterComponent} from './components/authentication/register/register.component';
 import {ThemeService} from './services/theme.service';
+import {NewSessionComponent} from './components/kandoe/session/new-session/new-session.component';
 import {RouterLinkDirectiveStub} from './testing/router-link-directive-stub';
 import {HTTP_INTERCEPTORS } from '@angular/common/http';
 import {Interceptor} from './interceptor';
@@ -48,6 +49,7 @@ import {UseridStorage} from './sessionStorage/userid-storage';
     LoginComponent,
     KandoeComponent,
     RegisterComponent,
+    NewSessionComponent,
     RouterLinkDirectiveStub,
     CardEditComponent,
     ThemedetailComponent
