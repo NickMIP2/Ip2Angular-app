@@ -11,6 +11,7 @@ import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {ThemedetailOverviewComponent} from './components/kandoe/themedetail/components/themedetail-overview/themedetail-overview.component';
 import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
+import {CardNewComponent} from './components/kandoe/themedetail/components/themedetail-cards/card-new/card-new.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -23,9 +24,8 @@ const routes: Routes = [
       {path: '', redirectTo: 'overview', pathMatch: 'full'},
       {path: 'overview', component: ThemedetailOverviewComponent},
       {path: 'cards', component: ThemedetailCardsComponent},
-      {path: 'cards/:cardId', component: CardEditComponent}
-
-      ,
+      {path: 'card-new', component: CardNewComponent},
+      {path: 'cards/:cardId', component: CardEditComponent},
       {path: 'organisers', component: ThemedetailOrganiserComponent},
       {path: 'categories', component: ThemedetailCategoriesComponent}
     ]

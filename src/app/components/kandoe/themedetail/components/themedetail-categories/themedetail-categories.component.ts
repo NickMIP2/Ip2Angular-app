@@ -71,9 +71,9 @@ export class ThemedetailCategoriesComponent implements OnInit {
           this.currentCategory = data;
       },
       error => {
-        console.error('Error saving Theme!');
+        console.error('Error saving Category!');
         console.log(error);
-        alert('Error saving Theme');
+        alert('Error saving Category');
       });
     this.editing = 0;
   }
