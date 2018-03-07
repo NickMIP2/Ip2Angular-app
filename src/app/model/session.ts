@@ -4,10 +4,10 @@ export class Session {
   constructor(public id: number,
               public name: string,
               public chance: boolean,
-              public theme: Theme,
+              public themeId: number,
+              public categoryId: number,
               public maxCards: number,
               public noOfRounds: number,
               public timePerMoveHour: number,
-              public participants: string,
-  ) {}
+              public participants: string[]) {}
 }

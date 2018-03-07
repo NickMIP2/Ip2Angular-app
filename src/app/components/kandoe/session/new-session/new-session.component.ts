@@ -5,6 +5,8 @@ import {log} from 'util';
 import {CategoryService} from '../../../../services/category.service';
 import {UseridStorage} from '../../../../sessionStorage/userid-storage';
 import {Theme} from '../../../../model/theme';
+import {SessionService} from '../../../../services/session.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-new-session',
@@ -12,18 +14,16 @@ import {Theme} from '../../../../model/theme';
   styleUrls: ['./new-session.component.css']
 })
 export class NewSessionComponent implements OnInit {
-  model = new Session(0, '', null, null, 1, 1, 0, '');
-  submitted = false;
-  chance = null;
+  newSession = new Session(0, '', null, 0, 0, 1, 1, 0, []);
   participantEmail = '';
   public themesArray = [];
   public categoryArray = [];
   public userId;
-  public themeIndexId = 0;
+  public themeIndexId;
+  public categoryIndexId;
 
-  constructor(private themeService: ThemeService, private categoryService: CategoryService, private useridStorage: UseridStorage) {
+  constructor(private router: Router, private sessionService: SessionService, private themeService: ThemeService, private categoryService: CategoryService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
-
   }
 
   ngOnInit() {
@@ -37,13 +37,9 @@ export class NewSessionComponent implements OnInit {
         console.log(error);
         alert('Error loading themes');
       }, () => {
+        this.themeIndexId = this.themesArray.length;
         this.setCategory();
-        this.themesArray.reverse();
       });
-  }
-
-  compareFn(t1: Theme, t2: Theme): boolean {
-    return t1 && t2 ? t1.id === t2.id : t1 === t2;
   }
 
   setCategory() {
@@ -58,22 +54,39 @@ export class NewSessionComponent implements OnInit {
   }
 
   onClickSubmit() {
-    if (this.model.chance === true || this.model.chance === false) {
-      // POST met gegevens naar server
-      this.submitted = true;
+    if (this.newSession.chance === true || this.newSession.chance === false) {
+      this.newSession.themeId = this.themeIndexId;
+      this.newSession.categoryId = this.categoryIndexId;
+      this.sessionService.createSession(this.newSession, this.userId).subscribe(
+        data => {
+          this.router.navigate(['dashboard']);
+        },
+        error => {
+          console.error('Error creating session!');
+          console.log(error);
+          alert('Error creating session');
+        });
     }
   }
 
   chanceClicked() {
-    this.model.chance = true;
+    this.newSession.chance = true;
   }
 
   problemClicked() {
-    this.model.chance = false;
+    this.newSession.chance = false;
   }
 
   addParticipant() {
-    this.model.participants += this.participantEmail + '\n';
-    this.participantEmail = null;
+    if (this.newSession.participants.indexOf(this.participantEmail) === -1) {
+      this.newSession.participants.push(this.participantEmail);
+      this.participantEmail = '';
+    } else {
+      alert('E-mail al geselecteerd!');
+    }
+  }
+
+  removeFromList(id) {
+    this.newSession.participants.splice(id, 1);
   }
 }

@@ -32,6 +32,7 @@ import {CategoryService} from './services/category.service';
 import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
 import {UseridStorage} from './sessionStorage/userid-storage';
 import { CardNewComponent } from './components/kandoe/themedetail/components/themedetail-cards/card-new/card-new.component';
+import {SessionService} from './services/session.service';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { CardNewComponent } from './components/kandoe/themedetail/components/the
     ThemeService,
     CardService,
     CategoryService,
+    SessionService,
     Interceptor,
     UseridStorage
   ],

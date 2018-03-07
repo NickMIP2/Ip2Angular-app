@@ -6,7 +6,7 @@
           <td style="width: 15%;"><label style="display: inline-block;">Naam:</label></td>
           <td class="" style="width: 85%;">
             <input class="form-control" id="sessionname" type="text" required
-                   [(ngModel)]="model.name"
+                   [(ngModel)]="newSession.name"
                    name="sessionname" style="width: 100%;"
                    #sessionname="ngModel"
                    placeholder="Sessienaam is een verplicht veld.">
@@ -16,16 +16,16 @@
           <td style="width: 15%;"><label style="display: inline-block;">Thema:</label></td>
           <td class="" style="width: 85%;">
             <select [(ngModel)]="themeIndexId" (change)="setCategory()" id="themes" name="themes" style="width: 100%" class="custom-select form-control" required>
-              <option *ngFor="let theme of themesArray;let i = index" [selected]="themesArray[0]" [ngValue]="theme.id">{{theme.name}}</option>
+              <option *ngFor="let theme of themesArray;let i = index" [ngValue]="theme.id" [selected]="themesArray[0]">{{theme.name}}</option>
             </select>
           </td>
         </tr>
         <tr>
           <td style="width: 15%;"><label style="display: inline-block;">Categorieën:</label></td>
           <td class="" style="width: 85%;">
-            <select  id="categories" name="categories" style="width: 100%" class="custom-select form-control">
+            <select [(ngModel)]="categoryIndexId" id="categories" name="categories" style="width: 100%" class="custom-select form-control">
               <option>Geen categorie</option>
-              <option *ngFor="let category of categoryArray">{{category.name}}</option>
+              <option *ngFor="let category of categoryArray" [ngValue]="category.id">{{category.name}}</option>
             </select>
           </td>
         </tr>
@@ -44,19 +44,19 @@
         <tr>
           <td style="width: 70%;"><label>Maximum kaarten: </label></td>
           <td style="width: 30%;">
-            <input type="number" class="form-control" [(ngModel)]="model.maxCards"
+            <input type="number" class="form-control" [(ngModel)]="newSession.maxCards"
                    min="1" placeholder="1" name="inputMaxCards"></td>
         </tr>
         <tr>
           <td style="width: 70%;"><label>Aantal rondes: </label></td>
           <td style="width: 30%;">
-            <input type="number" class="form-control" [(ngModel)]="model.noOfRounds"
+            <input type="number" class="form-control" [(ngModel)]="newSession.noOfRounds"
                    min="1" placeholder="1" name="inputNoOfRounds"></td>
         </tr>
         <tr>
           <td style="width: 70%;"><label>Tijd per zet (uur): </label></td>
           <td style="width: 30%;">
-            <input type="number" class="form-control" [(ngModel)]="model.timePerMoveHour"
+            <input type="number" class="form-control" [(ngModel)]="newSession.timePerMoveHour"
                    min="0" placeholder="1" name="inputTimePerMoveHour"></td>
         </tr>
       </table>
@@ -64,10 +64,9 @@
     <div id="participantsContainer" class="form-group">
       <div class="participants_float ">
         <label>Deelnemers: </label><br/>
-        <textarea name="participants" readonly [(ngModel)]="model.participants"
-                  class="text-left participants_textarea">
-          {{model.participants}}
-        </textarea>
+        <div contenteditable="false">
+          <p *ngFor="let participant of newSession.participants; let i = index"><button class="btn btn-danger" (click)="removeFromList(i)">-</button>&emsp;{{participant}}</p>
+        </div>
       </div>
       <div class="participants_float ">
         <label>Nieuwe deelnemer: </label>
@@ -83,7 +82,7 @@
     </div>
     <button class="btn btn-primary submit_width form-control"
             (click)="onClickSubmit()"
-            [disabled]="this.model.chance === null">
+            [disabled]="this.newSession.chance === null">
       Sessie maken
     </button>
   </form>
