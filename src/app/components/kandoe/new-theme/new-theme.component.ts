@@ -12,7 +12,7 @@ import {UseridStorage} from '../../../sessionStorage/userid-storage';
 })
 export class NewThemeComponent implements OnInit {
 
-  public theme = new Theme(0, '', '',  ['tag1', 'tag2']);
+  public theme = new Theme(0, '', '',  ['tag1', 'tag2'], '');
   private userId;
 
   submitted = false;
@@ -26,6 +26,7 @@ export class NewThemeComponent implements OnInit {
   }
 
   createTheme() {
+    console.log('themeName: ' + this.theme.name + '; image: ' + this.theme.image.substring(0, 30) + '...');
     this.themeService.createTheme(this.theme, this.userId).subscribe(
       data => {
         this.router.navigate(['kandoe/themes/' + data.id + '/overview']); // id van teruggekregen thema
@@ -37,4 +38,16 @@ export class NewThemeComponent implements OnInit {
       });
   }
 
+  changeListener($event) {
+    this.readThis($event.target);
+  }
+
+  readThis(inputValue: any): void {
+    const file: File = inputValue.files[0];
+    const myReader: FileReader = new FileReader();
+    myReader.onloadend = (e) => {
+      this.theme.image = myReader.result;
+    };
+    myReader.readAsDataURL(file);
+  }
 }

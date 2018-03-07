@@ -16,7 +16,8 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
     id: 0,
     name: '',
     description: '',
-    tags: ['']
+    tags: [''],
+    image: ''
   };
   public themeId;
   i = 0;
@@ -25,7 +26,7 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
 
   constructor(private themeService: ThemeService, private route: ActivatedRoute, private useridStorage: UseridStorage, private router: Router) {
     this.themeId = this.route.parent.snapshot.params['themeId'];
-    console.log("themeId = " + this.themeId);
+    console.log('themeId = ' + this.themeId);
 
   }
 

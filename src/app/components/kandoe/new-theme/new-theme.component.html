@@ -17,6 +17,10 @@
         Beschrijving is verplicht.
       </div>
     </div>
+    <div class="form-group">
+      <label>Afbeelding: </label>
+      <input type="file" class="editInput" name="newThemeImage" accept=".jpg, .jpeg, .png" (change)="changeListener($event)">
+    </div>
     <button type="button" [disabled]="!themeform.form.valid" class="btn btn-primary"
             (click)="createTheme()">toevoegen
     </button>
