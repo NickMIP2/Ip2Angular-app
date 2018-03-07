@@ -1,4 +1,4 @@
-<div class="wrapper">
+<!--<div class="wrapper">
   <button name="newthemebutton" class="btn btn-primary" routerLink="thema-toevoegen">Nieuw thema</button>
   <table id="themesList" style="display: block;" class="table themetable-overflow">
     <tr class="tablerow" [hidden]="false">
@@ -10,13 +10,32 @@
     <tr class="tablerow" *ngFor="let currentTheme of themes" [hidden]="false">
       <td class="nameColumn text-left">{{currentTheme.name}}</td>
       <td class="descColumn text-left">{{currentTheme.description}}</td>
-      <!--
+      &lt;!&ndash;
       <td class="tagColumn text-left">{{currentTheme.themetag}}</td>
-      -->
+      &ndash;&gt;
       <td class="buttonColumn">
         <button class="btn btn-info font-small btnCss" [routerLink]="[currentTheme.id]">Details</button>
         <button class="btn btn-danger font-small btnCss" (click)="deleteTheme(currentTheme.id)">Verwijder</button>
       </td>
     </tr>
   </table>
+</div>-->
+<button name="newthemebutton" class="btn btn-primary" style="margin: 1%;" routerLink="thema-toevoegen">Nieuw thema
+</button>
+<div class="borderBlue">
+  <div *ngFor="let currentTheme of themes" class="borderRed themeBox"
+       style="background: url('Vacation.jpg') no-repeat;background-size:contain;">
+    <h1>{{currentTheme.name}}</h1>
+    <h5 class="subtitle">Description</h5>
+    <div class="descriptionContainer">{{currentTheme.description}}</div>
+    <h5 class="subtitle">Tags</h5>
+    <div class="descriptionContainer">tags, tags, tags, tags, tags, tags, tags, tags, tags, tags, tags, tags, tags,
+      tags, tags, tags, tags, tags, tags, tags, tags, tags, tags, tags, tags, tags, tags, tags, tags, tags, tags, tags,
+      tags, tags, tags,
+    </div>
+    <div>
+      <button class="btn btn-info font-small buttonCss" [routerLink]="[currentTheme.id]">Details</button>
+      <button class="btn btn-danger font-small buttonCss" (click)="deleteTheme(currentTheme.id)">Verwijder</button>
+    </div>
+  </div>
 </div>

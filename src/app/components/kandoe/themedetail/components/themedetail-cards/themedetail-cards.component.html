@@ -1,4 +1,4 @@
-<div class="pagecontainer">
+<!--<div class="pagecontainer">
   <button class="btn btn-primary" (click)="navigateNewCard()">Nieuwe kaart toevoegen</button>
   <table class="table" style="width: 80%; margin: auto;">
     <tr>
@@ -17,4 +17,17 @@
       </td>
     </tr>
   </table>
+</div>-->
+
+<button class="btn btn-primary" style="margin: 1%;" (click)="navigateNewCard()">Nieuwe kaart toevoegen</button>
+<div class="">
+  <div *ngFor="let card of cards" class="borderRed cardBox">
+    <h1>{{card.name}}</h1>
+    <h5 class="subtitle">Description</h5>
+    <div class="descriptionContainer">{{card.description}}</div>
+    <div>
+      <button class="btn btn-primary buttonCss" [routerLink]="[card.id]">Wijzig</button>
+      <button class="btn btn-danger buttonCss" (click)="deleteCard(card.id)">Verwijder</button>
+    </div>
+  </div>
 </div>

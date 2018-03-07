@@ -13,7 +13,6 @@ import {UseridStorage} from '../../../sessionStorage/userid-storage';
 
 })
 export class ThemesComponent implements OnInit {
-
   public themes = [];
   constructor(private themeService: ThemeService, private useridStorage: UseridStorage) {
 
@@ -25,13 +24,13 @@ export class ThemesComponent implements OnInit {
         this.themes = data;
       },
       error => {
-        console.error("Error loading themes!");
+        console.error('Error loading themes!');
         console.log(error);
-        alert("Error loading themes");
+        alert('Error loading themes');
       });
   }
 
-  deleteTheme(id:number) {
+  deleteTheme(id: number) {
     this.themeService.deleteTheme(id, this.useridStorage.getUserId()).subscribe(data => {
       this.themes = data;
       },
