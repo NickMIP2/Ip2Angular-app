@@ -21,9 +21,14 @@ export class NewSessionComponent implements OnInit {
   public userId;
   public themeIndexId;
   public categoryIndexId;
-
+  public oldSessions = [];
+  public oldSession;
   constructor(private router: Router, private sessionService: SessionService, private themeService: ThemeService, private categoryService: CategoryService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
+  }
+
+  cloneSession() {
+    this.newSession = this.oldSession;
   }
 
   ngOnInit() {
@@ -40,7 +45,16 @@ export class NewSessionComponent implements OnInit {
         this.themeIndexId = this.themesArray.length;
         this.setCategory();
       });
+    this.sessionService.getSessionsOfUser(this.userId).subscribe(data => {
+      this.oldSessions = data;
+      console.log(this.oldSessions);
+    },
+      error => {
+        console.error('Error loading sessions!');
+        console.log(error);
+      });
   }
+
 
   setCategory() {
     this.categoryService.getCategoriesByTheme(this.themeIndexId, this.userId).subscribe(data => {

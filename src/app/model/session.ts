@@ -7,7 +7,7 @@ export class Session {
               public themeId: number,
               public categoryId: number,
               public maxCards: number,
-              public noOfRounds: number,
-              public timePerMoveHour: number,
+              public totalRounds: number,
+              public timeForMove: number,
               public participants: string[]) {}
 }
