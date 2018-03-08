@@ -21,10 +21,12 @@
 
 <button class="btn btn-primary" style="margin: 1%;" (click)="navigateNewCard()">Nieuwe kaart toevoegen</button>
 <div class="">
-  <div *ngFor="let card of cards" class="borderRed cardBox">
+  <div *ngFor="let card of cards" class="cardBox"
+       style="background-size: 100% 100%"
+       [ngStyle]="{'background-image': 'url(' + card.image + ')'}">
     <h1>{{card.name}}</h1>
-    <h5 class="subtitle">Description</h5>
     <div class="descriptionContainer">{{card.description}}</div>
+    <div>--- image: {{card.image.substring(0,30)}} ---</div>
     <div>
       <button class="btn btn-primary buttonCss" [routerLink]="[card.id]">Wijzig</button>
       <button class="btn btn-danger buttonCss" (click)="deleteCard(card.id)">Verwijder</button>

@@ -21,7 +21,10 @@
 
 .descriptionContainer{
   text-align: left;
-  word-break: normal;
+  width: 95%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .buttonCss{

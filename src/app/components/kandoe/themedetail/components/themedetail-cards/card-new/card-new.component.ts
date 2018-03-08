@@ -12,7 +12,7 @@ import {CardService} from '../../../../../../services/card.service';
   styleUrls: ['./card-new.component.css']
 })
 export class CardNewComponent implements OnInit {
-
+  public myfile: any;
   public card = new Card(0, 0, '', '', '');
   public themeId;
   public userId;
@@ -55,5 +55,8 @@ export class CardNewComponent implements OnInit {
       this.card.image = myReader.result;
     };
     myReader.readAsDataURL(file);
+  }
+  navigateAbort() {
+    this.router.navigate(['kandoe/themes/' + this.themeId + '/cards']);
   }
 }

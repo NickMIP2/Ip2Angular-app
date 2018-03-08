@@ -1,0 +1,13 @@
+.descCol{
+  width: 20%;
+}
+.editCol{
+  width: 80%;
+}
+.editInput{
+  width: 100%;
+}
+
+tr{
+  margin: 1%;
+}

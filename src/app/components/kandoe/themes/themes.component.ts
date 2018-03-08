@@ -4,6 +4,8 @@ import {User} from '../../../model/user';
 import {ThemeService} from '../../../services/theme.service';
 import {ActivatedRoute} from '@angular/router';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
+import {forEachComment} from 'tslint';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-theme',
@@ -14,6 +16,7 @@ import {UseridStorage} from '../../../sessionStorage/userid-storage';
 })
 export class ThemesComponent implements OnInit {
   public themes = [];
+
   constructor(private themeService: ThemeService, private useridStorage: UseridStorage) {
 
   }
@@ -22,17 +25,21 @@ export class ThemesComponent implements OnInit {
     window.document.title = 'Uw thema\'s';
     this.themeService.getThemesOfUser(this.useridStorage.getUserId()).subscribe(data => {
         this.themes = data;
+        for (const theme of this.themes) {
+          console.log('themeId: ' + theme.id + '; image: ' + theme.image);
+        }
       },
       error => {
         console.error('Error loading themes!');
         console.log(error);
         alert('Error loading themes');
       });
+
   }
 
   deleteTheme(id: number) {
     this.themeService.deleteTheme(id, this.useridStorage.getUserId()).subscribe(data => {
-      this.themes = data;
+        this.themes = data;
       },
       error => {
         console.error('Error deleting theme!');

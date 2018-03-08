@@ -46,8 +46,12 @@ export class NewThemeComponent implements OnInit {
     const file: File = inputValue.files[0];
     const myReader: FileReader = new FileReader();
     myReader.onloadend = (e) => {
-      this.theme.image = myReader.result;
+      this.theme.image = myReader.result.toString();
     };
     myReader.readAsDataURL(file);
+  }
+
+  navigateAbort() {
+    this.router.navigate(['kandoe/themes/']);
   }
 }
