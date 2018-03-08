@@ -39,9 +39,9 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  sendMessage(message) {
-    const usernameMessage = this.userIdStorage.getUsername() + ': ' +  message ;
-    this.stompClient.send('/app/send/message' , {}, usernameMessage);
+  sendMessage(message){
+    let usernameMessage = this.userIdStorage.getUsername() +': ' +  message ;
+    this.stompClient.send('/app/send/message/1' , {}, usernameMessage);
     $('#input').val('');
   }
 
