@@ -2,18 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import * as $ from 'jquery';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
+import {UseridStorage} from '../../../sessionStorage/userid-storage';
 
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
+  providers: [UseridStorage]
 })
 export class ChatComponent implements OnInit {
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
   private stompClient;
+  public username;
 
-  constructor() {
+  constructor(private userIdStorage: UseridStorage) {
+    this.username = userIdStorage.getUsername();
   }
 
   ngOnInit() {
@@ -25,9 +29,10 @@ export class ChatComponent implements OnInit {
     this.stompClient = Stomp.over(ws);
     let that = this;
     this.stompClient.connect({}, function(frame) {
+      console.log("hier");
       that.stompClient.subscribe("/chat", (message) => {
         if(message.body) {
-          $(".chat").append("<div class='message'>"+message.body+"</div>");
+          $(".chat").append("<div class='message'>" + message.body+"</div>");
           console.log(message.body);
         }
       });
@@ -35,7 +40,8 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage(message){
-    this.stompClient.send("/app/send/message" , {}, message);
+    let usernameMessage = this.userIdStorage.getUsername() +': ' +  message ;
+    this.stompClient.send("/app/send/message" , {}, usernameMessage);
     $('#input').val('');
   }
 
