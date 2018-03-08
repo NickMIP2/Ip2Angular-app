@@ -14,7 +14,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./new-session.component.css']
 })
 export class NewSessionComponent implements OnInit {
-  newSession = new Session(0, '', null, 0, 0, 1, 1, 0, []);
+  newSession = new Session(0, '', null, 0, 0, 1, 1, [], [], 0, [], 0);
   participantEmail = '';
   public themesArray = [];
   public categoryArray = [];
@@ -23,6 +23,7 @@ export class NewSessionComponent implements OnInit {
   public categoryIndexId;
   public oldSessions = [];
   public oldSession;
+
   constructor(private router: Router, private sessionService: SessionService, private themeService: ThemeService, private categoryService: CategoryService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
   }
@@ -46,9 +47,9 @@ export class NewSessionComponent implements OnInit {
         this.setCategory();
       });
     this.sessionService.getSessionsOfUser(this.userId).subscribe(data => {
-      this.oldSessions = data;
-      console.log(this.oldSessions);
-    },
+        this.oldSessions = data;
+        console.log(this.oldSessions);
+      },
       error => {
         console.error('Error loading sessions!');
         console.log(error);
@@ -68,7 +69,7 @@ export class NewSessionComponent implements OnInit {
   }
 
   onClickSubmit() {
-    if (this.newSession.chance === true || this.newSession.chance === false) {
+    if (this.newSession.type === 0 || this.newSession.type === 1) {
       this.newSession.themeId = this.themeIndexId;
       this.newSession.categoryId = this.categoryIndexId;
       this.sessionService.createSession(this.newSession, this.userId).subscribe(
@@ -84,11 +85,11 @@ export class NewSessionComponent implements OnInit {
   }
 
   chanceClicked() {
-    this.newSession.chance = true;
+    this.newSession.type = 0;
   }
 
   problemClicked() {
-    this.newSession.chance = false;
+    this.newSession.type = 1;
   }
 
   addParticipant() {
