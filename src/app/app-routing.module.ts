@@ -14,11 +14,13 @@ import {LoginComponent} from './components/authentication/login/login.component'
 import {NewSessionComponent} from './components/kandoe/session/new-session/new-session.component';
 import {RegisterComponent} from './components/authentication/register/register.component';
 import {KandoeComponent} from './components/kandoe/kandoe.component';
+import {ChatComponent} from './components/kandoe/chat/chat.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'chat', component: ChatComponent},
   {
     path: 'kandoe', component: KandoeComponent,
     children: [

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import Stomp from 'stompjs';
-import SockJS from 'sockjs-client';
-import $ from 'jquery';
+import * as $ from 'jquery';
+import * as SockJS from 'sockjs-client';
+import * as Stomp from 'stompjs';
+
 
 @Component({
   selector: 'app-chat',
@@ -10,14 +11,13 @@ import $ from 'jquery';
 })
 export class ChatComponent implements OnInit {
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
-  private title = 'WebSockets chat';
   private stompClient;
 
   constructor() {
-    this.initializeWebSocketConnection();
   }
 
   ngOnInit() {
+    this.initializeWebSocketConnection();
   }
 
   initializeWebSocketConnection(){
@@ -27,7 +27,7 @@ export class ChatComponent implements OnInit {
     this.stompClient.connect({}, function(frame) {
       that.stompClient.subscribe("/chat", (message) => {
         if(message.body) {
-          $(".chat").append("<div class='message'>"+message.body+"</div>")
+          $(".chat").append("<div class='message'>"+message.body+"</div>");
           console.log(message.body);
         }
       });
