@@ -16,14 +16,14 @@ export class AuthenticationService {
   }
 
   register(user: User): Observable<any> {
-    let body = JSON.stringify(user);
+    const body = JSON.stringify(user);
     console.log(body);
-    return this.http.post("https://kandoe-backend.herokuapp.com/register", body, httpOptions);
+    return this.http.post('https://kandoe-backend.herokuapp.com/register', body, httpOptions);
   }
 
-  login(username: string, password: string): Observable<any>{
+  login(username: string, password: string): Observable<any> {
     const credentials = {username: username, password: password};
-    let body = JSON.stringify(credentials);
+    const body = JSON.stringify(credentials);
     console.log(body);
     return this.http.post('https://kandoe-backend.herokuapp.com/token/generate-token', body, httpOptions);
   }

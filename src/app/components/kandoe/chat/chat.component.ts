@@ -24,24 +24,24 @@ export class ChatComponent implements OnInit {
     this.initializeWebSocketConnection();
   }
 
-  initializeWebSocketConnection(){
-    let ws = new SockJS(this.serverUrl);
+  initializeWebSocketConnection() {
+    const ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
-    let that = this;
+    const that = this;
     this.stompClient.connect({}, function(frame) {
-      console.log("hier");
-      that.stompClient.subscribe("/chat", (message) => {
-        if(message.body) {
-          $(".chat").append("<div class='message'>" + message.body+"</div>");
+      console.log('hier');
+      that.stompClient.subscribe('/chat', (message) => {
+        if (message.body) {
+          $('.chat').append('<div class=\'message\'>' + message.body + '</div>');
           console.log(message.body);
         }
       });
     });
   }
 
-  sendMessage(message){
-    let usernameMessage = this.userIdStorage.getUsername() +': ' +  message ;
-    this.stompClient.send("/app/send/message" , {}, usernameMessage);
+  sendMessage(message) {
+    const usernameMessage = this.userIdStorage.getUsername() + ': ' +  message ;
+    this.stompClient.send('/app/send/message' , {}, usernameMessage);
     $('#input').val('');
   }
 
