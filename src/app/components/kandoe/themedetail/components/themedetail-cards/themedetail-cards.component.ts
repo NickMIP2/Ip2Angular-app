@@ -28,9 +28,6 @@ export class ThemedetailCardsComponent implements OnInit {
     // get cards of theme
     this.cardService.getCardsByTheme(this.themeId, this.userId).subscribe(data => {
         this.cards = data;
-        for (const card of this.cards){
-          console.log(card.name + ' cardname; ' + card.image + ' cardimage;');
-        }
       },
       error => {
         console.error('Error loading cards!');

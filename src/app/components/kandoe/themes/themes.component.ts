@@ -25,9 +25,6 @@ export class ThemesComponent implements OnInit {
     window.document.title = 'Uw thema\'s';
     this.themeService.getThemesOfUser(this.useridStorage.getUserId()).subscribe(data => {
         this.themes = data;
-        for (const theme of this.themes) {
-          console.log('themeId: ' + theme.id + '; image: ' + theme.image);
-        }
       },
       error => {
         console.error('Error loading themes!');

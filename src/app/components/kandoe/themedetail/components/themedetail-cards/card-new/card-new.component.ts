@@ -32,10 +32,6 @@ export class CardNewComponent implements OnInit {
   }
 
   createCard() {
-    console.log('cardName: ' + this.card.name + '; image: ' + this.card.image.substring(0, 30) + '...;');
-    if (typeof this.card.image === 'string') {
-      console.log('cardimage is a string!');
-    }
     this.cardService.createCard(this.card, this.themeId, this.userId).subscribe(data => {
         this.card = data;
         this.router.navigate(['kandoe/themes/' + this.themeId + '/cards']);
