@@ -1,9 +1,9 @@
-import { Component, Input, Output, ElementRef, forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {Component, forwardRef} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'app-file-upload',
-  template:  `<label for="file-upload" class="custom-file-upload">
+  template: `<label for="file-upload" class="custom-file-upload">
   </label>
   <input id="file-upload" type="file" (change)="changeListener($event)"/>`,
   providers: [
@@ -16,22 +16,28 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class FileUploadComponent implements ControlValueAccessor {
   selectedFileName: string = null;
-  showFileNameInput=false;
-  uploadButtonText="Upload File";
+  showFileNameInput = false;
+  uploadButtonText = 'Upload File';
 
   writeValue(value: any) {
 // Handle write value
   }
-  propagateChange = (_: any) => { };
+
+  propagateChange = (_: any) => {
+  };
+
   registerOnChange(fn) {
     this.propagateChange = fn;
   }
-  registerOnTouched() { }
+
+  registerOnTouched() {
+  }
 
   changeListener($event): void {
     // debugger; // uncomment this for debugging purposes
     this.readThis($event.target);
   }
+
   readThis(inputValue: any): void {
     // debugger; // uncomment this for debugging purposes
     const file: File = inputValue.files[0];

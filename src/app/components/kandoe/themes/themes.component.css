@@ -1,12 +1,14 @@
-.borderRed{
+.borderRed {
   border: 1px solid red;
 }
-<!---->
-.borderBlue{
+
+<!--
+-->
+.borderBlue {
   border: solid blue 1px;
 }
 
-.themeBox{
+.themeBox {
   width: 35%;
   display: inline-block;
   margin: 1%;
@@ -15,11 +17,11 @@
   border: 1px solid;
 }
 
-.subtitle{
+.subtitle {
   text-align: left;
 }
 
-.descriptionContainer{
+.descriptionContainer {
   text-align: left;
   width: 95%;
   white-space: nowrap;
@@ -27,7 +29,7 @@
   text-overflow: ellipsis;
 }
 
-.buttonCss{
+.buttonCss {
   width: 47%;
   display: inline-block;
   margin: 1%;

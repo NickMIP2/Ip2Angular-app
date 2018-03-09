@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../../../model/user';
-import {Router, ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../../../services/authentication.service';
 
 @Component({
@@ -18,8 +18,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private authService: AuthenticationService,
-              ) {
+              private authService: AuthenticationService,) {
   }
 
   ngOnInit() {

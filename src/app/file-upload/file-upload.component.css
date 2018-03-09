@@ -17,10 +17,11 @@
   filter: alpha(opacity=0);
 }
 
-.upload-file{
+.upload-file {
   width: auto;
   display: inherit;
 }
+
 .form-control {
   width: auto;
   display: inherit;
