@@ -1,7 +1,7 @@
-import {Component, OnInit, AfterViewChecked} from '@angular/core';
+import {AfterViewChecked, Component, OnInit} from '@angular/core';
 import {Theme} from '../../../../../model/theme';
 import {ThemeService} from '../../../../../services/theme.service';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
 
 @Component({

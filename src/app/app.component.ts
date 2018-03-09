@@ -1,6 +1,5 @@
-import {AfterViewChecked, Component} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {ChangeDetectorRef} from '@angular/core';
 
 @Component({
   selector: 'app-root',

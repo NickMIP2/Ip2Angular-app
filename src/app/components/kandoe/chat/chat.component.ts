@@ -30,7 +30,7 @@ export class ChatComponent implements OnInit {
     const ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
     const that = this;
-    this.stompClient.connect({}, function(frame) {
+    this.stompClient.connect({}, function (frame) {
       that.stompClient.subscribe('/chat/2', (message) => { // ipv 2 -> sessionId
         if (message.body) {
           $('.chat').append('<div class=\'message\'>' + message.body + '</div>');
@@ -39,18 +39,19 @@ export class ChatComponent implements OnInit {
       });
     });
   }
-  sendMessage(message){
-    let usernameMessage = this.userIdStorage.getUsername() +': ' +  message ;
-    let dbMessage = new Message( usernameMessage);
+
+  sendMessage(message) {
+    let usernameMessage = this.userIdStorage.getUsername() + ': ' + message;
+    let dbMessage = new Message(usernameMessage);
     this.messageService.sendMessage(dbMessage, 2).subscribe(data => { // ipv 2 naar sessionId
-        console.log("message successfully send to database");
+        console.log('message successfully send to database');
       },
       error => {
-        console.error("Error sending message!");
+        console.error('Error sending message!');
         console.log(error);
-        alert("Error sending message");
+        alert('Error sending message');
       });
-    this.stompClient.send('/app/send/message/2' , {}, usernameMessage); // ipv 2 -> sessionId
+    this.stompClient.send('/app/send/message/2', {}, usernameMessage); // ipv 2 -> sessionId
     $('#input').val('');
   }
 

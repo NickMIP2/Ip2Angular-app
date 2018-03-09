@@ -8,6 +8,6 @@ export class Session {
               public maxCards: number,
               public noOfRounds: number,
               public timePerMoveHour: number,
-              public participants: string,
-  ) {}
+              public participants: string,) {
+  }
 }
