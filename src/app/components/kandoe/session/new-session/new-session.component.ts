@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Session} from '../../../../model/session';
 import {ThemeService} from '../../../../services/theme.service';
-import {log} from 'util';
+import {Theme} from '../../../../model/theme';
 
 @Component({
   selector: 'app-new-session',
@@ -13,7 +13,7 @@ export class NewSessionComponent implements OnInit {
   submitted = false;
   chance = null;
   participantEmail = '';
-  public themesArray = [];
+  public themes: Set<Theme> = new Set<Theme>();
 
   constructor(private themeService: ThemeService) {
   }
