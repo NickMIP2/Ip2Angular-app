@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import Stomp from 'stompjs';
-import SockJS from 'sockjs-client';
-import $ from 'jquery';
+import {Component, OnInit} from '@angular/core';
+import * as $ from 'jquery';
+import * as SockJS from 'sockjs-client';
+import * as Stomp from 'stompjs';
+
 
 @Component({
   selector: 'app-chat',
@@ -10,32 +11,31 @@ import $ from 'jquery';
 })
 export class ChatComponent implements OnInit {
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
-  private title = 'WebSockets chat';
   private stompClient;
 
   constructor() {
-    this.initializeWebSocketConnection();
   }
 
   ngOnInit() {
+    this.initializeWebSocketConnection();
   }
 
-  initializeWebSocketConnection(){
-    let ws = new SockJS(this.serverUrl);
+  initializeWebSocketConnection() {
+    const ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
-    let that = this;
-    this.stompClient.connect({}, function(frame) {
-      that.stompClient.subscribe("/chat", (message) => {
-        if(message.body) {
-          $(".chat").append("<div class='message'>"+message.body+"</div>")
+    const that = this;
+    this.stompClient.connect({}, function (frame) {
+      that.stompClient.subscribe('/chat', (message) => {
+        if (message.body) {
+          $('.chat').append('<div class=\'message\'>' + message.body + '</div>');
           console.log(message.body);
         }
       });
     });
   }
 
-  sendMessage(message){
-    this.stompClient.send("/app/send/message" , {}, message);
+  sendMessage(message) {
+    this.stompClient.send('/app/send/message', {}, message);
     $('#input').val('');
   }
 

@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {Theme} from '../../../model/theme';
-import {User} from '../../../model/user';
 import {ThemeService} from '../../../services/theme.service';
-import {ActivatedRoute} from '@angular/router';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
+<<<<<<< HEAD
 import {forEachComment} from 'tslint';
 import {forEach} from '@angular/router/src/utils/collection';
+=======
+import {Theme} from '../../../model/theme';
+>>>>>>> master
 
 @Component({
   selector: 'app-theme',
@@ -15,7 +16,8 @@ import {forEach} from '@angular/router/src/utils/collection';
 
 })
 export class ThemesComponent implements OnInit {
-  public themes = [];
+
+  public themes: Set<Theme> = new Set<Theme>();
 
   constructor(private themeService: ThemeService, private useridStorage: UseridStorage) {
 

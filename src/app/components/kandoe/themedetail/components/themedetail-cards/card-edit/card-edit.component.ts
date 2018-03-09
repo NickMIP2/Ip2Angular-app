@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CardService} from '../../../../../../services/card.service';
 import {Card} from '../../../../../../model/card';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -15,8 +15,7 @@ export class CardEditComponent implements OnInit {
   public themeId;
   public userId;
 
-  constructor(
-              private cardService: CardService,
+  constructor(private cardService: CardService,
               private route: ActivatedRoute,
               private userIdStorage: UseridStorage,
               private router: Router) {

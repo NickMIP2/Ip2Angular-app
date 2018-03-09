@@ -7,7 +7,7 @@ import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
 @Component({
   selector: 'app-themedetail-overview',
   templateUrl: './themedetail-overview.component.html',
-  styleUrls: ['./themedetail-overview.component.css'] ,
+  styleUrls: ['./themedetail-overview.component.css'],
   providers: [ThemeService, UseridStorage]
 
 })
@@ -31,14 +31,14 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
-      this.themeService.getTheme(this.themeId, this.useridStorage.getUserId()).subscribe(data => {
-          this.theme = data;
-        },
-        error => {
-          console.error('Error loading theme details!');
-          console.log(error);
-          alert('Error loading theme details');
-        });
+    this.themeService.getTheme(this.themeId, this.useridStorage.getUserId()).subscribe(data => {
+        this.theme = data;
+      },
+      error => {
+        console.error('Error loading theme details!');
+        console.log(error);
+        alert('Error loading theme details');
+      });
 
   }
 
