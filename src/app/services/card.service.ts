@@ -24,7 +24,7 @@ export class CardService {
   createCard(card: Card, themeId: number, userId: number): Observable<any> {
     const body = JSON.stringify(card);
     console.log('theme id: ' + themeId);
-    console.log('json body:' + body.substring(0, 100));
+    console.log('json body:' + body);
     return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/cards', body, httpOptions);
   }
 

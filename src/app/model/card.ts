@@ -1,6 +1,4 @@
-import {Category} from './category';
-
-export class Card{
+export class Card {
   constructor(
     public id: number,
     public themeId: number,

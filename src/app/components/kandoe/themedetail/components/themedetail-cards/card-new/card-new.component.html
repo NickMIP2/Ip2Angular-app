@@ -16,8 +16,7 @@
     <tr>
       <td class="descCol">Image</td>
       <td class="editCol">
-        <input type="file" class="editInput" name="newCardImage" accept=".jpg, .jpeg, .png"
-               (change)="changeListener($event)">
+        <app-file-upload name="fileupload" [showFileNameInput]="false" allowedTypes="image/*" uploadButtonText="Upload File" [(ngModel)]="card.image"></app-file-upload>
       </td>
     </tr>
     <tr>

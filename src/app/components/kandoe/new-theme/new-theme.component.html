@@ -19,8 +19,7 @@
     </div>
     <div class="form-group">
       <label>Afbeelding: </label>
-      <input type="file" class="editInput" name="newThemeImage" accept=".jpg, .jpeg, .png"
-             (change)="changeListener($event)">
+      <app-file-upload name="fileupload" [showFileNameInput]="false" allowedTypes="image/*" uploadButtonText="Upload File" [(ngModel)]="theme.image"></app-file-upload>
     </div>
     <button type="button" [disabled]="!themeform.form.valid" class="btn btn-primary"
             (click)="createTheme()">toevoegen

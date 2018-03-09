@@ -33,6 +33,7 @@ import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.
 import {UseridStorage} from './sessionStorage/userid-storage';
 import { CardNewComponent } from './components/kandoe/themedetail/components/themedetail-cards/card-new/card-new.component';
 import { ChatComponent } from './components/kandoe/chat/chat.component';
+import { FileUploadComponent } from './components/kandoe/file-upload-component/file-upload-component.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { ChatComponent } from './components/kandoe/chat/chat.component';
     CardEditComponent,
     ThemedetailComponent,
     CardNewComponent,
-    ChatComponent
+    ChatComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
