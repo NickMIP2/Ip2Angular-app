@@ -33,6 +33,8 @@ import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.
 import {UseridStorage} from './sessionStorage/userid-storage';
 import { CardNewComponent } from './components/kandoe/themedetail/components/themedetail-cards/card-new/card-new.component';
 import {SessionService} from './services/session.service';
+import {MatButtonModule, MatCheckboxModule, MatTabsModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -62,6 +64,9 @@ import {SessionService} from './services/session.service';
     AppRoutingModule,
     FormsModule,
     AlertModule.forRoot(),
+    MatTabsModule,
+    MatButtonModule, MatCheckboxModule,
+    BrowserAnimationsModule,
     HttpClientModule
   ],
   providers: [

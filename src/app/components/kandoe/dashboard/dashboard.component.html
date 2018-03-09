@@ -1,8 +1,29 @@
-
-<title>Title</title>
-<div class="sessions">
-  <ul>
-    geplande sessies:
-    <li *ngFor="let session of oldSessions">sessienaam :{{session.name}}</li>
-  </ul>
-</div>
+<mat-tab-group [selectedIndex]="1">
+  <mat-tab label="Geplande sessies">
+    <h1>Geplande sessies</h1>
+    <ul>
+      <li *ngFor="let session of plannedSessions">
+        Sessienaam: {{session.name}}
+        Begin: 16-03-2018, 16:00
+      </li>
+    </ul>
+  </mat-tab>
+  <mat-tab label="Huidige sessies">
+    <h1>Huidige sessies</h1>
+    <ul>
+      <li *ngFor="let session of currentSessions">
+        Sessienaam: {{session.name}}
+        <button mat-raised-button color="primary">Hervat</button>
+      </li>
+    </ul>
+  </mat-tab>
+  <mat-tab label="Afgelopen sessies">
+    <h1>Afgelopen sessies</h1>
+    <ul>
+      <li *ngFor="let session of pastSessions">
+        Sessienaam: {{session.name}}
+        <button mat-raised-button color="primary">Analyse</button>
+      </li>
+    </ul>
+  </mat-tab>
+</mat-tab-group>
