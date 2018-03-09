@@ -33,6 +33,7 @@ import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.
 import {UseridStorage} from './sessionStorage/userid-storage';
 import { CardNewComponent } from './components/kandoe/themedetail/components/themedetail-cards/card-new/card-new.component';
 import { ChatComponent } from './components/kandoe/chat/chat.component';
+import {MessageService} from './services/message.service';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { ChatComponent } from './components/kandoe/chat/chat.component';
     CardService,
     CategoryService,
     Interceptor,
-    UseridStorage
+    UseridStorage,
+    MessageService
   ],
 
   bootstrap: [AppComponent]
