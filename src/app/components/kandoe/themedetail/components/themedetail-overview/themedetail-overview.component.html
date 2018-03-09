@@ -8,9 +8,7 @@
         </div>
       </td>
     </tr>
-    <tr *ngIf="editing ==1" style="text-align: left">
-      <td><input type="text" id="nameInput" *ngIf="editing ==1" [(ngModel)]="theme.name"/></td>
-    </tr>
+    <tr *ngIf="editing ==1" style="text-align: left"><td><input type="text" id="nameInput" *ngIf="editing ==1" [(ngModel)]="theme.name"/></td></tr>
     <tr>
       <td class="text-left">
         <label class="col-form-label font-weight-bold text-left">Beschrijving</label>

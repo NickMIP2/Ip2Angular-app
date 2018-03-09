@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Theme} from '../../../model/theme';
 import {ThemeService} from '../../../services/theme.service';
-import {Router} from '@angular/router';
+import { Router} from '@angular/router';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
 
 @Component({
@@ -12,7 +12,7 @@ import {UseridStorage} from '../../../sessionStorage/userid-storage';
 })
 export class NewThemeComponent implements OnInit {
 
-  public theme = new Theme(0, '', '', ['tag1', 'tag2'], '');
+  public theme = new Theme(0, '', '',  ['tag1', 'tag2'], '');
   private userId;
 
   submitted = false;

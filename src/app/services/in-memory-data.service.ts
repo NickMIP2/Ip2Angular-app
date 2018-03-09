@@ -3,13 +3,13 @@ import {InMemoryDbService} from 'angular-in-memory-web-api';
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const themes = [
-      {
-        'id': 1,
-        'themename': 'reizen',
-        'themedescription': 'Waar gaan we op reis ............................................',
-        'themetag': ['bla'],
-        'themeUsers': ['user1', 'user2']
-      },
+        {
+          'id': 1,
+          'themename': 'reizen',
+          'themedescription': 'Waar gaan we op reis ............................................',
+          'themetag': ['bla'],
+          'themeUsers': ['user1', 'user2']
+        },
       {
         'id': 2,
         'themename': 'winkelen',
@@ -45,8 +45,8 @@ export class InMemoryDataService implements InMemoryDbService {
         'themetag': ['bla', 'TAG'],
         'themeUsers': ['user1', 'user2']
       }];
-    return {themes};
-  }
+return {themes};
+}
 }
 
 
