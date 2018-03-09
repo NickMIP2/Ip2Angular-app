@@ -12,7 +12,7 @@ import {CardService} from '../../../../../../services/card.service';
   styleUrls: ['./card-new.component.css']
 })
 export class CardNewComponent implements OnInit {
-
+  public myfile: any;
   public card = new Card(0, 0, '', '', '');
   public themeId;
   public userId;
@@ -43,4 +43,20 @@ export class CardNewComponent implements OnInit {
       });
   }
 
+  changeListener($event) {
+    this.readThis($event.target);
+  }
+
+  readThis(inputValue: any): void {
+    const file: File = inputValue.files[0];
+    const myReader: FileReader = new FileReader();
+    myReader.onloadend = (e) => {
+      this.card.image = myReader.result.toString();
+    };
+    myReader.readAsDataURL(file);
+  }
+
+  navigateAbort() {
+    this.router.navigate(['kandoe/themes/' + this.themeId + '/cards']);
+  }
 }

@@ -28,6 +28,7 @@ export class ThemesComponent implements OnInit {
         console.log(error);
         alert('Error loading themes');
       });
+
   }
 
   deleteTheme(id: number) {

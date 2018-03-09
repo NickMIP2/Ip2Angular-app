@@ -15,7 +15,8 @@ export class MessageService {
 
   sendMessage(message: Message, id: number): Observable<any>{
     const body = JSON.stringify(message);
-    return this.http.post('https://kandoe-backend.herokuapp.com/sessions/' + id + "messages" , body , httpOptions);
+    console.log(body);
+    return this.http.post('https://kandoe-backend.herokuapp.com/sessions/' + id + "/messages" , body , httpOptions);
   }
 
 }

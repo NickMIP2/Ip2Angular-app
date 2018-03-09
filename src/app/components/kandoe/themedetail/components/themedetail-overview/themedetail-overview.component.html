@@ -2,46 +2,59 @@
   <table class="table">
     <tr>
       <td>
-      <h1 id="nameField" *ngIf="editing !==1">{{ theme.name }}</h1>
-      <label class="col-form-label font-weight-bold" *ngIf="editing ==1">Themanaam</label>
-      <div >
-        <input type="text" id="nameInput" *ngIf="editing ==1" [(ngModel)]="theme.name"/>
-      </div>
+        <h1 id="nameField" *ngIf="editing !==1">{{ theme.name }}</h1>
+        <div style="text-align: left">
+          <label class="col-form-label font-weight-bold text-left" *ngIf="editing ==1">Themanaam</label>
+        </div>
+      </td>
+    </tr>
+    <tr *ngIf="editing ==1" style="text-align: left"><td><input type="text" id="nameInput" *ngIf="editing ==1" [(ngModel)]="theme.name"/></td></tr>
+    <tr>
+      <td class="text-left">
+        <label class="col-form-label font-weight-bold text-left">Beschrijving</label>
       </td>
     </tr>
     <tr>
       <td class="text-left">
-      <label class="col-form-label font-weight-bold text-left">Beschrijving</label>
+        <p class="text-left" id="descField" *ngIf="editing !==1"> {{theme.description }}</p>
+        <textarea class="" type="text" id="descInput" *ngIf="editing ==1" [(ngModel)]="theme.description"></textarea>
       </td>
     </tr>
     <tr>
       <td class="text-left">
-      <p class="text-left" id="descField" *ngIf="editing !==1"> {{theme.description }}</p>
-      <textarea class="" type="text" id="descInput" *ngIf="editing ==1" [(ngModel)]="theme.description"></textarea>
+        <label class="col-form-label font-weight-bold" *ngIf="editing === 0">Tags</label>
       </td>
     </tr>
     <tr>
       <td class="text-left">
-      <label class="col-form-label font-weight-bold">Tags</label>
+        <span *ngIf="editing === 0">{{theme.tags}}</span>
+        <div style="width: 100%;">
+          <table *ngIf="editing === 1" style="width: 80%;">
+            <tr>
+              <th>Tags</th>
+            </tr>
+            <tr *ngFor="let tag of theme.tags; let i = index">
+              <td>
+                <label class="text-left" style="width: 75%;">{{tag}}</label>
+              </td>
+              <td>
+                <button class="btn btn-danger" name="deleteTag" (click)="deleteTag(i)">Verwijder</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div *ngIf="editing === 1">
+          <input type="text" id="tagInput" [(ngModel)]="tagValue"/>
+          <button class="btn btn-primary" name="addTag" (click)="addTag()">Tag toevoegen</button>
+        </div>
       </td>
     </tr>
     <tr>
-      <td class="text-left">
-      <div>
-        <label class="text-left">{{theme.tags}}</label>
-        <button class="" *ngIf="editing === 1" name="deleteTag" (click)="deleteTag(i)">Verwijder</button>
-      </div>
-      <div *ngIf="editing === 1">
-        <input type="text" id="tagInput" [(ngModel)]="tagValue"/>
-        <button class="btn btn-primary" name="addTag" (click)="addTag()">Tag toevoegen</button>
-      </div>
-      </td>
-    </tr>
-    <tr><td>
-      <button class="btn btn-primary" (click)="editing === 1 ? save() : editing=1">
-        {{editing===1 ? "Opslaan" : "Wijzigen"}}
-      </button>
-      <button class="btn btn-danger" (click)="deleteTheme(theme.id)" routerLink="/themes">Verwijderen</button>
+      <td>
+        <button class="btn btn-primary" (click)="editing === 1 ? save() : editing=1">
+          {{editing===1 ? "Opslaan" : "Wijzigen"}}
+        </button>
+        <button class="btn btn-danger" (click)="deleteTheme(theme.id)" routerLink="/themes">Verwijderen</button>
       </td>
     </tr>
   </table>

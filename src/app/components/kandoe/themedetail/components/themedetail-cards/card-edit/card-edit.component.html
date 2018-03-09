@@ -15,7 +15,7 @@
     <tr>
       <td class="descCol">Image</td>
       <td class="editCol">
-        <input type="image" class="editInput" name="editcardimage" [(ngModel)]="card.image" placeholder="Image">
+        <input type="file" class="editInput" name="editcardimage" accept=".jpg, .jpeg, .png" (change)="changeListener($event)">
       </td>
     </tr>
     <tr>
