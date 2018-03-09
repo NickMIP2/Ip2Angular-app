@@ -26,16 +26,16 @@ export class RegisterComponent implements OnInit {
     window.document.title = 'Register | Kandoe';
   }
 
-  register(){
+  register() {
     this.authService.register(this.model).subscribe(
       data => {
-        console.log("User succesfully registered");
+        console.log('User succesfully registered');
         this.router.navigate(['/login']);
       },
       error => {
-        console.error("Error registering User!");
+        console.error('Error registering User!');
         console.log(error);
-        alert("Unable to register User");
+        alert('Unable to register User');
       });
   }
 
