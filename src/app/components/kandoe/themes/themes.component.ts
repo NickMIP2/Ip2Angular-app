@@ -1,12 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ThemeService} from '../../../services/theme.service';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
-<<<<<<< HEAD
-import {forEachComment} from 'tslint';
-import {forEach} from '@angular/router/src/utils/collection';
-=======
 import {Theme} from '../../../model/theme';
->>>>>>> master
 
 @Component({
   selector: 'app-theme',
