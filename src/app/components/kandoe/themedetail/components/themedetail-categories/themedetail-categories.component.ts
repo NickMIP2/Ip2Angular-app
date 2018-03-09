@@ -68,7 +68,7 @@ export class ThemedetailCategoriesComponent implements OnInit {
   updateCategory() {
     this.currentCategory.name = this.editfield;
     this.categoryService.updateCategory(this.currentCategory, this.themeId, this.userId).subscribe(data => {
-          this.currentCategory = data;
+        this.currentCategory = data;
       },
       error => {
         console.error('Error saving Category!');

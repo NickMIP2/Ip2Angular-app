@@ -6,7 +6,7 @@ import {Theme} from '../model/theme';
 
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
 
@@ -21,7 +21,7 @@ export class ThemeService {
     const body = JSON.stringify(theme);
     console.log('user id: ' + userId);
     console.log('json body:' + body);
-    return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes', body , httpOptions);
+    return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes', body, httpOptions);
   }
 
   getTheme(id: number, userId: number): Observable<any> {
@@ -32,15 +32,15 @@ export class ThemeService {
     const body = JSON.stringify(theme);
     console.log('user id: ' + userId);
     console.log('json body:' + body);
-    return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + theme.id, body , httpOptions);
+    return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + theme.id, body, httpOptions);
   }
 
   deleteTheme(id: number, userId: number): Observable<any> {
-    return this.http.delete('https://kandoe-backend.herokuapp.com/users/' + userId + "/themes/" + id, httpOptions);
+    return this.http.delete('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + id, httpOptions);
   }
 
   deleteThemeInOverview(id: number, userId: number): Observable<any> {
-    return this.http.delete('https://kandoe-backend.herokuapp.com/users/' + userId + "/themes/" + id + "/overview", httpOptions);
+    return this.http.delete('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + id + '/overview', httpOptions);
   }
 
   getThemesOfUser(userId: number): Observable<any> {

@@ -22,7 +22,7 @@ import {RegisterComponent} from './components/authentication/register/register.c
 import {ThemeService} from './services/theme.service';
 import {NewSessionComponent} from './components/kandoe/session/new-session/new-session.component';
 import {RouterLinkDirectiveStub} from './testing/router-link-directive-stub';
-import {HTTP_INTERCEPTORS } from '@angular/common/http';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {Interceptor} from './interceptor';
 import {TokenStorage} from './sessionStorage/token-storage';
 
@@ -31,7 +31,7 @@ import {CardService} from './services/card.service';
 import {CategoryService} from './services/category.service';
 import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
 import {UseridStorage} from './sessionStorage/userid-storage';
-import { CardNewComponent } from './components/kandoe/themedetail/components/themedetail-cards/card-new/card-new.component';
+import {CardNewComponent} from './components/kandoe/themedetail/components/themedetail-cards/card-new/card-new.component';
 import {SessionService} from './services/session.service';
 import {MatButtonModule, MatCheckboxModule, MatTabsModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';

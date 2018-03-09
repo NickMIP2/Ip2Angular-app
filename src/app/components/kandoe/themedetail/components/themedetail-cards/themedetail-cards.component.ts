@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Card} from '../../../../../model/card';
 import {Category} from '../../../../../model/category';
 import {Theme} from '../../../../../model/theme';

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ThemedetailOverviewComponent } from './themedetail-overview.component';
+import {ThemedetailOverviewComponent} from './themedetail-overview.component';
 
 describe('ThemedetailOverviewComponent', () => {
   let component: ThemedetailOverviewComponent;
@@ -8,9 +8,9 @@ describe('ThemedetailOverviewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ThemedetailOverviewComponent ]
+      declarations: [ThemedetailOverviewComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

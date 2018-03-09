@@ -3,14 +3,14 @@
   margin: auto;
 }
 
-textarea{
+textarea {
 
-width: 500px;
-overflow: hidden;
-padding: 0px;
+  width: 500px;
+  overflow: hidden;
+  padding: 0px;
 }
 
-.formcontainer{
+.formcontainer {
   width: 50%;
   text-align: left;
   margin: auto;

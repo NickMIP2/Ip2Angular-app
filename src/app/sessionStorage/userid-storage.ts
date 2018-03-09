@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 const USER_ID = 'UserId';
 
@@ -7,7 +7,7 @@ export class UseridStorage {
 
   public saveUserId(userId: number) {
     window.sessionStorage.removeItem(USER_ID);
-    window.sessionStorage.setItem(USER_ID,  userId.toString());
+    window.sessionStorage.setItem(USER_ID, userId.toString());
   }
 
   public getUserId(): number {

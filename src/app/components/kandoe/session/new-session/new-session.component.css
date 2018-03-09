@@ -34,32 +34,34 @@
   margin-left: 25%;
 }
 
-.participants_float{
+.participants_float {
   float: left;
   width: 48%;
   margin: 1%;
 }
 
-.participants_textarea{
+.participants_textarea {
   width: 100%;
   min-height: 100px;
 }
 
-.numbers_center{
+.numbers_center {
   margin: auto;
 }
-.numbers_float{
+
+.numbers_float {
   float: left;
   width: 20%;
   margin: 1%;
 }
-.numbers_text_float{
+
+.numbers_text_float {
   float: left;
   width: 40%;
   margin: 1% 1% 1% 10%;
 }
 
-.btn_margin-top{
+.btn_margin-top {
   margin-top: 5%;
 }
 

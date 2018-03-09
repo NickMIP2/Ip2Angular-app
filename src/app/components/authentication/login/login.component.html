@@ -7,7 +7,8 @@
         <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
       </div>
       <div class="form-group containerinput margin" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-        <input type="password" class="form-control margin" name="password" [(ngModel)]="passwordtext" #password="ngModel"
+        <input type="password" class="form-control margin" name="password" [(ngModel)]="passwordtext"
+               #password="ngModel"
                required placeholder="Password"/>
         <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
       </div>

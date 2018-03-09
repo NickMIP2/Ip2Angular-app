@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   currentSessions = [];
   plannedSessions = [];
   private userId;
+
   constructor(private titleService: Title, private sessionService: SessionService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
   }

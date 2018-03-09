@@ -5,7 +5,7 @@
       <th class="nameColumn text-left">Name</th>
       <th class="descColumn text-left">Description</th>
       <th class="tagColumn text-left">Tags</th>
-      <th class="buttonColumn"> </th>
+      <th class="buttonColumn"></th>
     </tr>
     <tr class="tablerow" *ngFor="let currentTheme of themes" [hidden]="false">
       <td class="nameColumn text-left">{{currentTheme.name}}</td>
@@ -14,7 +14,8 @@
       <td class="tagColumn text-left">{{currentTheme.themetag}}</td>
       -->
       <td class="buttonColumn">
-        <button class="btn btn-info font-small btnCss" [routerLink]="['/themes',currentTheme.id,'overview']">Details</button>
+        <button class="btn btn-info font-small btnCss" [routerLink]="['/themes',currentTheme.id,'overview']">Details
+        </button>
         <button class="btn btn-danger font-small btnCss" (click)="deleteTheme(currentTheme.id)">Verwijder</button>
       </td>
     </tr>

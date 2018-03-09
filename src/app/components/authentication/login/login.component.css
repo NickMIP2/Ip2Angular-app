@@ -1,20 +1,23 @@
-.containerCenter{
-  margin:auto;
+.containerCenter {
+  margin: auto;
   width: 50%;
 }
-.margin{
+
+.margin {
   margin-top: 2%;
   margin-bottom: 2%;
 }
-.containerinput{
+
+.containerinput {
   width: 70%;
   margin: auto;
 }
-.borderRed{
+
+.borderRed {
   border-top: white solid 2px;
 }
 
-.backgroundRound{
+.backgroundRound {
   background-color: lightgray;
   border-radius: 25px;
 }

@@ -1,34 +1,32 @@
-
 /*textarea{*/
 
-  /*display: inline-block;*/
-  /*float: left;*/
-  /*width: 200px;*/
-  /*overflow: hidden;*/
-  /*padding: 0px;*/
+/*display: inline-block;*/
+/*float: left;*/
+/*width: 200px;*/
+/*overflow: hidden;*/
+/*padding: 0px;*/
 /*}*/
 /*input{*/
-  /*width: 200px;*/
+/*width: 200px;*/
 /*}*/
 
-
 /*.submitbutton{*/
-  /*float: right;*/
+/*float: right;*/
 /*}*/
 
 /*label{*/
-  /*display: inline-block;*/
-  /*float: left;*/
-  /*clear: left;*/
-  /*width: 100px;*/
-  /*text-align: right;*/
+/*display: inline-block;*/
+/*float: left;*/
+/*clear: left;*/
+/*width: 100px;*/
+/*text-align: right;*/
 /*}*/
 /*input {*/
-  /*display: inline-block;*/
-  /*float: left;*/
+/*display: inline-block;*/
+/*float: left;*/
 /*}*/
-.formcontainer{
- width: 50%;
+.formcontainer {
+  width: 50%;
   text-align: left;
   margin: auto;
 }

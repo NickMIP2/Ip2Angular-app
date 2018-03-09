@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {TestBed, inject} from '@angular/core/testing';
 
-import { ThemeService } from './theme.service';
+import {ThemeService} from './theme.service';
 
 describe('ThemeService', () => {
   beforeEach(() => {
