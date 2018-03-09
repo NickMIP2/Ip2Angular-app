@@ -43,7 +43,7 @@ export class ChatComponent implements OnInit {
     let usernameMessage = this.userIdStorage.getUsername() +': ' +  message ;
     let dbMessage = new Message(2, usernameMessage, new Date());
     this.messageService.sendMessage(dbMessage).subscribe(data => {
-        console.log("message succesfully send to database");
+        console.log("message successfully send to database");
       },
       error => {
         console.error("Error sending message!");
