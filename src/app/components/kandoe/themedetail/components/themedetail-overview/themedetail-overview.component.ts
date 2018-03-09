@@ -16,7 +16,8 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
     id: 0,
     name: '',
     description: '',
-    tags: ['']
+    tags: [''],
+    image: ''
   };
   public themeId;
   i = 0;

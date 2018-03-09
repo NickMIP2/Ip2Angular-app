@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Card} from '../../../../../model/card';
 import {Category} from '../../../../../model/category';
 import {Theme} from '../../../../../model/theme';
@@ -34,6 +34,9 @@ export class ThemedetailCardsComponent implements OnInit {
         console.log(error);
         alert('Error loading cards!');
       });
+    for (const card of this.cards) {
+      console.log(card.image.substring(0, 30));
+    }
   }
 
   deleteCard(id: number) {
@@ -48,6 +51,6 @@ export class ThemedetailCardsComponent implements OnInit {
   }
 
   navigateNewCard() {
-    this.router.navigate(["kandoe/themes/" + this.themeId + "/cards/card-new"]);
+    this.router.navigate(['kandoe/themes/' + this.themeId + '/cards/card-new']);
   }
 }

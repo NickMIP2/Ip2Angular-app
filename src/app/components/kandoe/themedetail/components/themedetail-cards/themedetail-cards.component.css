@@ -1,28 +1,31 @@
-.borderRed {
-  border: 1px solid red;
+.borderBlue {
+  border: solid blue 1px;
 }
 
-.pagecontainer {
-  padding: 5%;
-  padding-top: 1%;
-}
-.titleCol {
-  width: 15%;
-}
-.descCol {
-  width: 35%
-}
-.imgCol {
-  width: 20%;
-}
-.catCol {
-  width: 20%;
-}
-.btnCol {
-  width: 10%;
-}
-.cardbtn{
+.cardBox {
+  width: 25%;
   display: inline-block;
-  margin: 2%;
-  width: 100%;
+  margin: 1%;
+  padding: 1%;
+  border-radius: 10px;
+  border: 1px solid;
+}
+
+.subtitle {
+  text-align: left;
+}
+
+.descriptionContainer {
+  text-align: left;
+  width: 95%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.buttonCss {
+  width: 47%;
+  display: inline-block;
+  margin: 1%;
+  border: 1px solid black;
 }
