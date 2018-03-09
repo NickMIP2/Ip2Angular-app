@@ -13,9 +13,9 @@ export class MessageService {
 
   constructor(private http: HttpClient) { }
 
-  sendMessage(message: Message): Observable<any>{
+  sendMessage(message: Message, id: number): Observable<any>{
     const body = JSON.stringify(message);
-    return this.http.post('https://kandoe-backend.herokuapp.com/messages/' + message.sessionId , body , httpOptions);
+    return this.http.post('https://kandoe-backend.herokuapp.com/sessions/' + id + "messages" , body , httpOptions);
   }
 
 }
