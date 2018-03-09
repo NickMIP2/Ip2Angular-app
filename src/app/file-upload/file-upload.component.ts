@@ -1,14 +1,11 @@
-import { NgModule, Component, Input, Output, ElementRef, forwardRef } from '@angular/core';
+import { Component, Input, Output, ElementRef, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-file-upload',
-  template:  `<input *ngIf="showFileNameInput" id="uploadFile" class="upload-file form-control" placeholder="Choose File" [(ngModel)]="selectedFileName" disabled="disabled" />
-                <div class="fileUpload btn btn-primary">
-                    <span>{{uploadButtonText}}</span>
-                    <input type="file" class="upload" accept="*" (change)="changeListener($event)">
-                </div>`,
+  template:  `<label for="file-upload" class="custom-file-upload">
+  </label>
+  <input id="file-upload" type="file" (change)="changeListener($event)"/>`,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -19,11 +16,11 @@ import { FormsModule } from '@angular/forms';
 })
 export class FileUploadComponent implements ControlValueAccessor {
   selectedFileName: string = null;
-  @Input() showFileNameInput: boolean;
-  @Input() uploadButtonText: string;
+  showFileNameInput=false;
+  uploadButtonText="Upload File";
 
   writeValue(value: any) {
-    // Handle write value
+// Handle write value
   }
   propagateChange = (_: any) => { };
   registerOnChange(fn) {
@@ -48,13 +45,4 @@ export class FileUploadComponent implements ControlValueAccessor {
   }
 }
 
-@NgModule({
-  declarations: [
-    FileUploadComponent
-  ],
-  imports: [FormsModule],
-  exports: [
-    FileUploadComponent
-  ]
-})
-export class FileUploadModule { }
+
