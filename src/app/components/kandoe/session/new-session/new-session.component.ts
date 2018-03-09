@@ -14,7 +14,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./new-session.component.css']
 })
 export class NewSessionComponent implements OnInit {
-  newSession = new Session(0, '', null, 0, 0, 1, 1, [], [], 0, [], 0);
+  newSession = new Session(0, '', null, 0, 0, 1, 1, [], [], null, [], 0);
   participantEmail = '';
   public themesArray = [];
   public categoryArray = [];
@@ -72,6 +72,7 @@ export class NewSessionComponent implements OnInit {
     if (this.newSession.type === 0 || this.newSession.type === 1) {
       this.newSession.themeId = this.themeIndexId;
       this.newSession.categoryId = this.categoryIndexId;
+      this.newSession.id = 0;
       this.sessionService.createSession(this.newSession, this.userId).subscribe(
         data => {
           this.router.navigate(['dashboard']);
