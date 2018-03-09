@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Category} from '../../../../../model/category';
-import {Theme} from '../../../../../model/theme';
 import {ThemeService} from '../../../../../services/theme.service';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryService} from '../../../../../services/category.service';
 import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
 
@@ -68,7 +67,7 @@ export class ThemedetailCategoriesComponent implements OnInit {
   updateCategory() {
     this.currentCategory.name = this.editfield;
     this.categoryService.updateCategory(this.currentCategory, this.themeId, this.userId).subscribe(data => {
-          this.currentCategory = data;
+        this.currentCategory = data;
       },
       error => {
         console.error('Error saving Category!');

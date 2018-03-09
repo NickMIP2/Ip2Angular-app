@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import * as $ from 'jquery';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
@@ -39,7 +39,6 @@ export class ChatComponent implements OnInit {
       });
     });
   }
-
   sendMessage(message){
     let usernameMessage = this.userIdStorage.getUsername() +': ' +  message ;
     let dbMessage = new Message(2, usernameMessage, new Date());

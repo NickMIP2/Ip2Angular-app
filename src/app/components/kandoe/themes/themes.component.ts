@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Theme} from '../../../model/theme';
-import {User} from '../../../model/user';
 import {ThemeService} from '../../../services/theme.service';
-import {ActivatedRoute} from '@angular/router';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
+import {Theme} from '../../../model/theme';
 
 @Component({
   selector: 'app-theme',
@@ -14,7 +12,8 @@ import {UseridStorage} from '../../../sessionStorage/userid-storage';
 })
 export class ThemesComponent implements OnInit {
 
-  public themes = [];
+  public themes: Set<Theme> = new Set<Theme>();
+
   constructor(private themeService: ThemeService, private useridStorage: UseridStorage) {
 
   }
@@ -25,15 +24,15 @@ export class ThemesComponent implements OnInit {
         this.themes = data;
       },
       error => {
-        console.error("Error loading themes!");
+        console.error('Error loading themes!');
         console.log(error);
-        alert("Error loading themes");
+        alert('Error loading themes');
       });
   }
 
-  deleteTheme(id:number) {
+  deleteTheme(id: number) {
     this.themeService.deleteTheme(id, this.useridStorage.getUserId()).subscribe(data => {
-      this.themes = data;
+        this.themes = data;
       },
       error => {
         console.error('Error deleting theme!');
