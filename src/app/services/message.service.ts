@@ -15,11 +15,11 @@ export class MessageService {
 
   sendMessage(message: Message, sessionId: number, userId: number): Observable<any>{
     const body = JSON.stringify(message);
-    return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + "/messages" , body , httpOptions);
+    return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/messages' , body , httpOptions);
   }
 
   getMessages(sessionId: number, userId: number): Observable<any>{
-    return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + "/messages");
+    return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/messages');
   }
 
 }

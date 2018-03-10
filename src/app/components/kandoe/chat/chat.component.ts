@@ -24,6 +24,7 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initializeWebSocketConnection();
     this.messageService.getMessages(2, this.userIdStorage.getUserId()).subscribe(data => { // sessionId ipv 2
         this.messages = data;
       },
@@ -32,7 +33,6 @@ export class ChatComponent implements OnInit {
         console.log(error);
         alert('Error loading messages');
       });
-    this.initializeWebSocketConnection();
   }
 
   initializeWebSocketConnection() {
