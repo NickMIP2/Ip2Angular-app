@@ -17,7 +17,7 @@ export class ChatComponent implements OnInit {
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
   private stompClient;
   public username;
-  public messages = [];
+  public messages = [new Message('')];
 
   constructor(private userIdStorage: UseridStorage, private messageService: MessageService) {
     this.username = userIdStorage.getUsername();
