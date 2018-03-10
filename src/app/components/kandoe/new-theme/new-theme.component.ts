@@ -12,7 +12,7 @@ import {UseridStorage} from '../../../sessionStorage/userid-storage';
 })
 export class NewThemeComponent implements OnInit {
 
-  public theme = new Theme(0, '', '',  ['tag1', 'tag2'], '');
+  public theme = new Theme(0, '', '', ['tag1', 'tag2465'], '');
   private userId;
 
   submitted = false;
