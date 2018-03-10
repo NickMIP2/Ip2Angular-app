@@ -13,10 +13,11 @@ import {Session} from '../../../model/session';
 })
 export class DashboardComponent implements OnInit {
   title = 'Dashboard';
-  public oldSessions: Set<Session> = new Set<Session>();
-  public pastSessions: Set<Session> = new Set<Session>();
-  public currentSessions: Set<Session> = new Set<Session>();
-  public plannedSessions: Set<Session> = new Set<Session>();
+  // public oldSessions: Set<Session> = new Set<Session>();
+  public oldSessions = [];
+  public pastSessions = [];
+  public currentSessions = [];
+  public plannedSessions = [];
   private userId;
 
   constructor(private titleService: Title, private sessionService: SessionService, private useridStorage: UseridStorage) {
@@ -40,14 +41,14 @@ export class DashboardComponent implements OnInit {
   }
 
   divideSessions() {
-    this.oldSessions.forEach(function (session) {
+    for (const session of this.oldSessions) {
       if (session.state === 0) {
-        this.plannedSessions.add(session);
+        this.plannedSessions.push(session);
       } else if (session.state === 1 || session.state === 2) {
-        this.currentSessions.add(session);
+        this.currentSessions.push(session);
       } else if (session.state === 3) {
-        this.pastSessions.add(session);
+        this.pastSessions.push(session);
       }
-    }, this);
+    }
   }
 }
