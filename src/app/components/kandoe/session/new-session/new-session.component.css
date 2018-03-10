@@ -68,4 +68,10 @@
 .cloneSession {
   width: 30%;
   margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.cloneSession button {
+  margin-top: 10px;
 }

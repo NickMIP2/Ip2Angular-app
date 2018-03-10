@@ -43,8 +43,7 @@ export class NewSessionComponent implements OnInit {
         console.log(error);
         alert('Error loading themes');
       }, () => {
-        this.themeIndexId = this.themes.length;
-        this.setCategory();
+        //this.setCategory();
       });
     this.sessionService.getSessionsOfUser(this.userId).subscribe(data => {
         this.oldSessions = data;
@@ -62,9 +61,9 @@ export class NewSessionComponent implements OnInit {
         this.categoryArray = data;
       },
       error => {
-        console.error('Error loading themes!');
+        console.error('Error loading categories!');
         console.log(error);
-        alert('Error loading themes');
+        alert('Error loading categories');
       });
   }
 

@@ -5,7 +5,7 @@
       <option *ngFor="let session of oldSessions;let i = index" [ngValue]="oldSessions[i]">{{session.name}}</option>
     </select>
 
-    <button class="btn btn-primary" (click)="cloneSession()">Kopieër van oude sessie</button>
+    <button mat-raised-button color="primary" (click)="cloneSession()">Kopieër van oude sessie</button>
   </div>
   <form #sessionform="ngForm" class="formcontainer" name="sessionForm">
     <div id="nameThemeContainer" class="form-group ">
@@ -36,7 +36,7 @@
           <td class="" style="width: 85%;">
             <select [(ngModel)]="categoryIndexId" id="categories" name="categories" style="width: 100%"
                     class="custom-select form-control">
-              <option>Geen categorie</option>
+              <option [selected]="true">Geen categorie</option>
               <option *ngFor="let category of categoryArray" [ngValue]="category.id">{{category.name}}</option>
             </select>
           </td>
