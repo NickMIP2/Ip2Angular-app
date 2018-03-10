@@ -4,6 +4,7 @@ import {SessionService} from '../../../services/session.service';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
+import {Session} from '../../../model/session';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,11 +12,11 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  title = 'mytitle';
-  oldSessions = [];
-  pastSessions = [];
-  currentSessions = [];
-  plannedSessions = [];
+  title = 'Dashboard';
+  public oldSessions: Set<Session> = new Set<Session>();
+  public pastSessions: Set<Session> = new Set<Session>();
+  public currentSessions: Set<Session> = new Set<Session>();
+  public plannedSessions: Set<Session> = new Set<Session>();
   private userId;
 
   constructor(private titleService: Title, private sessionService: SessionService, private useridStorage: UseridStorage) {
@@ -27,24 +28,26 @@ export class DashboardComponent implements OnInit {
 
     this.sessionService.getSessionsOfUser(this.userId).subscribe(data => {
         this.oldSessions = data;
-        console.log(this.oldSessions);
-        this.divideSessions();
       },
       error => {
         console.error('Error loading sessions!');
         console.log(error);
+      },
+      () => {
+        console.log(this.oldSessions);
+        this.divideSessions();
       });
   }
 
   divideSessions() {
-    for (const session of this.oldSessions) {
+    this.oldSessions.forEach(function (session) {
       if (session.state === 0) {
-        this.plannedSessions.push(session);
+        this.plannedSessions.add(session);
       } else if (session.state === 1 || session.state === 2) {
-        this.currentSessions.push(session);
+        this.currentSessions.add(session);
       } else if (session.state === 3) {
-        this.pastSessions.push(session);
+        this.pastSessions.add(session);
       }
-    }
+    }, this);
   }
 }
