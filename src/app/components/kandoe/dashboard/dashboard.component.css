@@ -9,3 +9,20 @@ h1 {
 li {
   list-style-type: none;
 }
+
+.sessionBox {
+  width: 25%;
+  display: inline-block;
+  margin: 1%;
+  padding: 1%;
+  border-radius: 10px;
+  border: 1px solid;
+}
+
+.descriptionContainer {
+  text-align: center;
+  width: 95%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

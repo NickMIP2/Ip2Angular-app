@@ -16,7 +16,7 @@ import {Router} from '@angular/router';
 export class NewSessionComponent implements OnInit {
   newSession = new Session(0, '', null, 0, 0, 1, 1, [], [], null, [], 0);
   participantEmail = '';
-  public themes: Set<Theme> = new Set<Theme>();
+  public themes = [];
   public categoryArray = [];
   public userId;
   public themeIndexId;
@@ -43,7 +43,7 @@ export class NewSessionComponent implements OnInit {
         console.log(error);
         alert('Error loading themes');
       }, () => {
-        this.themeIndexId = this.themes.size;
+        this.themeIndexId = this.themes.length;
         this.setCategory();
       });
     this.sessionService.getSessionsOfUser(this.userId).subscribe(data => {
@@ -75,7 +75,7 @@ export class NewSessionComponent implements OnInit {
       this.newSession.id = 0;
       this.sessionService.createSession(this.newSession, this.userId).subscribe(
         data => {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['kandoe/dashboard']);
         },
         error => {
           console.error('Error creating session!');
