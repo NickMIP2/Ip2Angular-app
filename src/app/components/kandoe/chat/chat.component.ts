@@ -17,12 +17,21 @@ export class ChatComponent implements OnInit {
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
   private stompClient;
   public username;
+  public messages = [];
 
   constructor(private userIdStorage: UseridStorage, private messageService: MessageService) {
     this.username = userIdStorage.getUsername();
   }
 
   ngOnInit() {
+    this.messageService.getMessages(2, this.userIdStorage.getUserId()).subscribe(data => { // sessionId ipv 2
+        this.messages = data;
+      },
+      error => {
+        console.error('Error loading messages!');
+        console.log(error);
+        alert('Error loading messages');
+      });
     this.initializeWebSocketConnection();
   }
 
@@ -42,7 +51,7 @@ export class ChatComponent implements OnInit {
   sendMessage(message){
     let usernameMessage = this.userIdStorage.getUsername() +': ' +  message ;
     let dbMessage = new Message( usernameMessage);
-    this.messageService.sendMessage(dbMessage, 2).subscribe(data => { // ipv 2 naar sessionId
+    this.messageService.sendMessage(dbMessage, 2, this.userIdStorage.getUserId()).subscribe(data => { // ipv 2 naar sessionId
         console.log("message successfully send to database");
       },
       error => {
