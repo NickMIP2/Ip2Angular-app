@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Theme} from '../../../model/theme';
 import {ThemeService} from '../../../services/theme.service';
-import {Router} from '@angular/router';
+import { Router} from '@angular/router';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
 
 @Component({

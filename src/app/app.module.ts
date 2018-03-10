@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AlertModule} from 'ngx-bootstrap';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -22,6 +22,7 @@ import {RegisterComponent} from './components/authentication/register/register.c
 import {ThemeService} from './services/theme.service';
 import {NewSessionComponent} from './components/kandoe/session/new-session/new-session.component';
 import {RouterLinkDirectiveStub} from './testing/router-link-directive-stub';
+import {HTTP_INTERCEPTORS } from '@angular/common/http';
 import {Interceptor} from './interceptor';
 import {TokenStorage} from './sessionStorage/token-storage';
 
@@ -30,8 +31,8 @@ import {CardService} from './services/card.service';
 import {CategoryService} from './services/category.service';
 import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
 import {UseridStorage} from './sessionStorage/userid-storage';
-import {CardNewComponent} from './components/kandoe/themedetail/components/themedetail-cards/card-new/card-new.component';
-import {ChatComponent} from './components/kandoe/chat/chat.component';
+import { CardNewComponent } from './components/kandoe/themedetail/components/themedetail-cards/card-new/card-new.component';
+import { ChatComponent } from './components/kandoe/chat/chat.component';
 import {FileUploadComponent} from './file-upload/file-upload.component';
 import {MessageService} from './services/message.service';
 

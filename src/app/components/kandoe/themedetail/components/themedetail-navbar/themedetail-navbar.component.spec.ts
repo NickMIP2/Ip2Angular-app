@@ -1,6 +1,6 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {ThemedetailNavbarComponent} from './themedetail-navbar.component';
+import { ThemedetailNavbarComponent } from './themedetail-navbar.component';
 
 describe('ThemedetailNavbarComponent', () => {
   let component: ThemedetailNavbarComponent;
@@ -8,9 +8,9 @@ describe('ThemedetailNavbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ThemedetailNavbarComponent]
+      declarations: [ ThemedetailNavbarComponent ]
     })
-      .compileComponents();
+    .compileComponents();
   }));
 
   beforeEach(() => {
