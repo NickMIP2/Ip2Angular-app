@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ThemeService} from '../../../../../../services/theme.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryService} from '../../../../../../services/category.service';
@@ -12,8 +12,7 @@ import {CardService} from '../../../../../../services/card.service';
   styleUrls: ['./card-new.component.css']
 })
 export class CardNewComponent implements OnInit {
-
-  @Input() cardId: number;
+  public myfile: any;
   public card = new Card(0, 0, '', '', '');
   public themeId;
   public userId;
@@ -35,7 +34,7 @@ export class CardNewComponent implements OnInit {
   createCard() {
     this.cardService.createCard(this.card, this.themeId, this.userId).subscribe(data => {
         this.card = data;
-        this.router.navigate(['themes/' + this.themeId + '/cards']);
+        this.router.navigate(['kandoe/themes/' + this.themeId + '/cards']);
       },
       error => {
         console.error('Error creating card!');
@@ -44,4 +43,20 @@ export class CardNewComponent implements OnInit {
       });
   }
 
+  changeListener($event) {
+    this.readThis($event.target);
+  }
+
+  readThis(inputValue: any): void {
+    const file: File = inputValue.files[0];
+    const myReader: FileReader = new FileReader();
+    myReader.onloadend = (e) => {
+      this.card.image = myReader.result.toString();
+    };
+    myReader.readAsDataURL(file);
+  }
+
+  navigateAbort() {
+    this.router.navigate(['kandoe/themes/' + this.themeId + '/cards']);
+  }
 }

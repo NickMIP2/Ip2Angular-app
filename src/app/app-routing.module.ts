@@ -13,27 +13,36 @@ import {CardNewComponent} from './components/kandoe/themedetail/components/theme
 import {LoginComponent} from './components/authentication/login/login.component';
 import {NewSessionComponent} from './components/kandoe/session/new-session/new-session.component';
 import {RegisterComponent} from './components/authentication/register/register.component';
+import {KandoeComponent} from './components/kandoe/kandoe.component';
+import {ChatComponent} from './components/kandoe/chat/chat.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'themes', component: ThemesComponent},
-  {path: 'thema-toevoegen', component: NewThemeComponent},
-  {
-    path: 'themes/:themeId', component: ThemedetailComponent,
-    children: [
-      {path: '', redirectTo: 'overview', pathMatch: 'full'},
-      {path: 'overview', component: ThemedetailOverviewComponent},
-      {path: 'cards', component: ThemedetailCardsComponent},
-      {path: 'card-new', component: CardNewComponent},
-      {path: 'cards/:cardId', component: CardEditComponent},
-      {path: 'organisers', component: ThemedetailOrganiserComponent},
-      {path: 'categories', component: ThemedetailCategoriesComponent}
-    ]
-  },
+  {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'new-session', component: NewSessionComponent},
-  {path: 'register', component: RegisterComponent}
+  {path: 'chat', component: ChatComponent},
+  {
+    path: 'kandoe', component: KandoeComponent,
+    children: [
+      {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+      {path: 'dashboard', component: DashboardComponent},
+      {path: 'themes', component: ThemesComponent},
+      {path: 'themes/thema-toevoegen', component: NewThemeComponent},
+      {path: 'new-session', component: NewSessionComponent},
+      {
+        path: 'themes/:themeId', component: ThemedetailComponent,
+        children: [
+          {path: '', redirectTo: 'overview', pathMatch: 'full'},
+          {path: 'overview', component: ThemedetailOverviewComponent},
+          {path: 'cards', component: ThemedetailCardsComponent},
+          {path: 'cards/card-new', component: CardNewComponent},
+          {path: 'cards/:cardId', component: CardEditComponent},
+          {path: 'organisers', component: ThemedetailOrganiserComponent},
+          {path: 'categories', component: ThemedetailCategoriesComponent}
+        ]
+      }
+    ]
+  }
 ];
 
 @NgModule({

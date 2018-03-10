@@ -34,6 +34,9 @@ export class ThemedetailCardsComponent implements OnInit {
         console.log(error);
         alert('Error loading cards!');
       });
+    for (const card of this.cards) {
+      console.log(card.image.substring(0, 30));
+    }
   }
 
   deleteCard(id: number) {
@@ -45,5 +48,9 @@ export class ThemedetailCardsComponent implements OnInit {
         console.log(error);
         alert('Error deleting card!');
       });
+  }
+
+  navigateNewCard() {
+    this.router.navigate(['kandoe/themes/' + this.themeId + '/cards/card-new']);
   }
 }

@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Category} from '../../../../../model/category';
-import {Theme} from '../../../../../model/theme';
 import {ThemeService} from '../../../../../services/theme.service';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryService} from '../../../../../services/category.service';
 import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
 

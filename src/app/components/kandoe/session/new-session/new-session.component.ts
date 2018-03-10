@@ -16,7 +16,7 @@ import {Router} from '@angular/router';
 export class NewSessionComponent implements OnInit {
   newSession = new Session(0, '', null, 0, 0, 1, 1, [], [], null, [], 0);
   participantEmail = '';
-  public themesArray = [];
+  public themes: Set<Theme> = new Set<Theme>();
   public categoryArray = [];
   public userId;
   public themeIndexId;
@@ -36,14 +36,14 @@ export class NewSessionComponent implements OnInit {
     window.document.title = 'Nieuwe sessie';
     console.log(this.participantEmail);
     this.themeService.getThemesOfUser(this.userId).subscribe(data => {
-        this.themesArray = data;
+        this.themes = data;
       },
       error => {
         console.error('Error loading themes!');
         console.log(error);
         alert('Error loading themes');
       }, () => {
-        this.themeIndexId = this.themesArray.length;
+        this.themeIndexId = this.themes.size;
         this.setCategory();
       });
     this.sessionService.getSessionsOfUser(this.userId).subscribe(data => {

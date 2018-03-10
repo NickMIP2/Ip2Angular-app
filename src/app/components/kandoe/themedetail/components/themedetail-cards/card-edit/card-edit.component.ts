@@ -38,14 +38,29 @@ export class CardEditComponent implements OnInit {
   }
 
   updateCard() {
+    console.log('cardName: ' + this.card.name + '; image: ' + this.card.image.substring(0, 30) + '...');
+
     this.cardService.updateCard(this.card, this.themeId, this.userId).subscribe(data => {
         this.card = data;
-        this.router.navigate(['themes/' + this.themeId + '/cards']); // id van teruggekregen thema
+        this.router.navigate(['kandoe/themes/' + this.themeId + '/cards']); // id van teruggekregen thema
       },
       error => {
         console.error('Error saving card!');
         console.log(error);
         alert('Error saving card');
       });
+  }
+
+  changeListener($event) {
+    this.readThis($event.target);
+  }
+
+  readThis(inputValue: any): void {
+    const file: File = inputValue.files[0];
+    const myReader: FileReader = new FileReader();
+    myReader.onloadend = (e) => {
+      this.card.image = myReader.result;
+    };
+    myReader.readAsDataURL(file);
   }
 }

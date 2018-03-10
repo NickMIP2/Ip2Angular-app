@@ -9,14 +9,14 @@
     <tr>
       <td class="descCol">Description</td>
       <td class="editCol">
-        <input type="text" class="editInput" name="editcarddescription" [(ngModel)]="card.description"
+        <input type="text" class="editInput" id="imgInput" name="editcarddescription" [(ngModel)]="card.description"
                placeholder="Description">
       </td>
     </tr>
     <tr>
       <td class="descCol">Image</td>
       <td class="editCol">
-        <input type="image" class="editInput" name="editcardimage" [(ngModel)]="card.image" placeholder="Image">
+        <app-file-upload name="upload" [(ngModel)]="card.image"></app-file-upload>
       </td>
     </tr>
     <tr>
@@ -24,7 +24,7 @@
         <button class="btn btn-primary" style="width: 50%; margin: auto;" (click)="createCard()">Create card</button>
       </td>
       <td style="width: 50%">
-        <button class="btn btn-danger" style="width: 50%; margin: auto;" [routerLink]="['/cards']">Discard changes
+        <button class="btn btn-danger" style="width: 50%; margin: auto;" (click)="navigateAbort()">Discard changes
         </button>
       </td>
     </tr>

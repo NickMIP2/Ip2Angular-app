@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {Theme} from '../../../model/theme';
-import {User} from '../../../model/user';
 import {ThemeService} from '../../../services/theme.service';
-import {ActivatedRoute} from '@angular/router';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
+import {Theme} from '../../../model/theme';
 
 @Component({
   selector: 'app-theme',
@@ -13,8 +11,7 @@ import {UseridStorage} from '../../../sessionStorage/userid-storage';
 
 })
 export class ThemesComponent implements OnInit {
-
-  public themes = [];
+  public themes: Set<Theme> = new Set<Theme>();
 
   constructor(private themeService: ThemeService, private useridStorage: UseridStorage) {
 
@@ -30,6 +27,7 @@ export class ThemesComponent implements OnInit {
         console.log(error);
         alert('Error loading themes');
       });
+
   }
 
   deleteTheme(id: number) {

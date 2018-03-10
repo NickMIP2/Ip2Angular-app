@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {AlertModule} from 'ngx-bootstrap';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
@@ -7,7 +8,6 @@ import {AppComponent} from './app.component';
 import {DashboardComponent} from './components/kandoe/dashboard/dashboard.component';
 import {ThemesComponent} from './components/kandoe/themes/themes.component';
 import {NewThemeComponent} from './components/kandoe/new-theme/new-theme.component';
-import {AlertModule} from 'ngx-bootstrap';
 import {ThemedetailOverviewComponent} from './components/kandoe/themedetail/components/themedetail-overview/themedetail-overview.component';
 import {ThemedetailCardsComponent} from './components/kandoe/themedetail/components/themedetail-cards/themedetail-cards.component';
 import {ThemedetailOrganiserComponent} from './components/kandoe/themedetail/components/themedetail-organiser/themedetail-organiser.component';
@@ -31,10 +31,13 @@ import {CardService} from './services/card.service';
 import {CategoryService} from './services/category.service';
 import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
 import {UseridStorage} from './sessionStorage/userid-storage';
-import {CardNewComponent} from './components/kandoe/themedetail/components/themedetail-cards/card-new/card-new.component';
-import {SessionService} from './services/session.service';
+import { CardNewComponent } from './components/kandoe/themedetail/components/themedetail-cards/card-new/card-new.component';
+import { ChatComponent } from './components/kandoe/chat/chat.component';
+import {FileUploadComponent} from './file-upload/file-upload.component';
+import {MessageService} from './services/message.service';
 import {MatButtonModule, MatCheckboxModule, MatTabsModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {SessionService} from './services/session.service';
 
 
 @NgModule({
@@ -57,7 +60,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     RouterLinkDirectiveStub,
     CardEditComponent,
     ThemedetailComponent,
-    CardNewComponent
+    CardNewComponent,
+    ChatComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +87,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     CategoryService,
     SessionService,
     Interceptor,
-    UseridStorage
+    UseridStorage,
+    MessageService
   ],
 
   bootstrap: [AppComponent]
