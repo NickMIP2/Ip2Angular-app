@@ -4,8 +4,6 @@ import {SessionService} from '../../../services/session.service';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
-import {Theme} from '../../../model/theme';
-import {Session} from '../../../model/session';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,10 +12,10 @@ import {Session} from '../../../model/session';
 })
 export class DashboardComponent implements OnInit {
   title = 'mytitle';
-  public oldSessions: Set<Session> = new Set<Session>();
-  public pastSessions: Set<Session> = new Set<Session>();
-  public currentSessions: Set<Session> = new Set<Session>();
-  public plannedSessions: Set<Session> = new Set<Session>();
+  oldSessions = [];
+  pastSessions = [];
+  currentSessions = [];
+  plannedSessions = [];
   private userId;
 
   constructor(private titleService: Title, private sessionService: SessionService, private useridStorage: UseridStorage) {
@@ -41,11 +39,11 @@ export class DashboardComponent implements OnInit {
   divideSessions() {
     for (const session of this.oldSessions) {
       if (session.state === 0) {
-        this.plannedSessions.add(session);
+        this.plannedSessions.push(session);
       } else if (session.state === 1 || session.state === 2) {
-        this.currentSessions.add(session);
+        this.currentSessions.push(session);
       } else if (session.state === 3) {
-        this.pastSessions.add(session);
+        this.pastSessions.push(session);
       }
     }
   }
