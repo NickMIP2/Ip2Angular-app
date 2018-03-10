@@ -8,20 +8,21 @@ import {TokenStorage} from '../../../sessionStorage/token-storage';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [AuthenticationService,UseridStorage,TokenStorage]
+  providers: [AuthenticationService, UseridStorage, TokenStorage]
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private authService: AuthenticationService, private userIdStorage: UseridStorage, private tokenStorage: TokenStorage){
+  constructor(private router: Router, private authService: AuthenticationService, private userIdStorage: UseridStorage, private tokenStorage: TokenStorage) {
   }
 
-  error:'';
-  loading: false;
+  error: '';
+  loading = false;
   usernametext: string;
   passwordtext: string;
 
 
   login(): void {
+    this.loading = true;
     this.authService.login(this.usernametext, this.passwordtext).subscribe(
       data => {
         this.tokenStorage.saveToken(data.authToken);

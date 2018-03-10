@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   model = new User(0, '', '', '', '', '', '');
   passwordCheck = '';
   error = '';
+  pwMatch: boolean = this.model.password === this.passwordCheck;
   loading = false;
 
   constructor(private router: Router,
@@ -27,6 +28,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    this.loading = true;
     this.authService.register(this.model).subscribe(
       data => {
         console.log('User succesfully registered');
