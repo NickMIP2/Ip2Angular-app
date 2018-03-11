@@ -39,7 +39,7 @@ import {MatButtonModule, MatCheckboxModule, MatTabsModule} from '@angular/materi
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SessionService} from './services/session.service';
 import { Phase1Component } from './components/kandoe/phase1/phase1.component';
-import { Phase2Component } from './phase2/phase2.component';
+import { Phase2Component } from './components/kandoe/phase2/phase2.component';
 
 
 @NgModule({
