@@ -12,7 +12,7 @@ export class CircleComponent implements OnInit, OnChanges {
   constructor() {
   }
 
-  public selectedCard: SessionCard;
+  public selectedCard = new SessionCard(null, '', 8, 0, 0);
   public sessionCard1 = new SessionCard(1, 'card1', 8, 0, 0);
   public sessionCard2 = new SessionCard(2, 'card2', 8, 0, 0);
 
