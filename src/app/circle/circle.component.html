@@ -8,7 +8,7 @@
 </div>
 
 
-<div  class="sessioncard" *ngFor="let card of amountOfCards; let i = index" (click)="moveCard(card,i)" [style.left]="card.x + 'px'" [style.top]="card.y + 'px'">{{card.name}}
+<div class="sessioncard" *ngFor="let card of sessionCards; let i = index" (click)="moveCard(card,i)" [style.left]="card.x + 'px'" [style.top]="card.y + 'px'">{{card.name}}
 
 </div>
 </div>

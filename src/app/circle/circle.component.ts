@@ -22,9 +22,12 @@ export class CircleComponent implements OnInit, OnChanges {
   public sessionCard5 = new SessionCard(5, 'card5', 8, 0, 0);
   public sessionCard6 = new SessionCard(6, 'card6', 8, 0, 0);
 
-  amountOfCards = [this.sessionCard1, this.sessionCard2, this.sessionCard3, this.sessionCard4, this.sessionCard5, this.sessionCard6];
+  sessionCards = [this.sessionCard1, this.sessionCard2, this.sessionCard3, this.sessionCard4, this.sessionCard5, /*this.sessionCard6*/];
   circleThickness;
+
+  // helft van div width/height
   cardThickness = 25;
+  // helft van div width/height
   circleRadius = 500;
   amountOfCircles = 8;
   public rings = [];
@@ -48,8 +51,8 @@ export class CircleComponent implements OnInit, OnChanges {
   public setCards() {
     this.circleThickness = this.circleRadius / (this.amountOfCircles);
     let index = 0;
-    for (index; index < this.amountOfCards.length; index++) {
-      let angleDegrees = ((360 / this.amountOfCards.length) * index) + 270;
+    for (index; index < this.sessionCards.length; index++) {
+      let angleDegrees = ((360 / this.sessionCards.length) * index) ;
 
       if (angleDegrees > 360) {
         angleDegrees = angleDegrees - 360;
@@ -58,13 +61,13 @@ export class CircleComponent implements OnInit, OnChanges {
       const angleRadians = angleDegrees * (Math.PI / 180);
       this.angles.push(angleRadians);
       console.log(this.circleThickness);
-      const ringRadius = (this.circleRadius - ((this.circleRadius) - ((this.amountOfCards[index].distanceToCenter + 1) * this.circleThickness))) - this.cardThickness;
+      const ringRadius = (this.circleRadius - ((this.circleRadius) - ((this.sessionCards[index].distanceToCenter + 1) * this.circleThickness))) - this.cardThickness;
       console.log(ringRadius);
 
       const circleStart = this.circleRadius - this.cardThickness;
 
-      this.amountOfCards[index].x = circleStart + (ringRadius * Math.cos(angleRadians));
-      this.amountOfCards[index].y = circleStart + (ringRadius * Math.sin(angleRadians));
+      this.sessionCards[index].x = circleStart + (ringRadius * Math.cos(angleRadians));
+      this.sessionCards[index].y = circleStart + (ringRadius * Math.sin(angleRadians));
     }
   }
 
