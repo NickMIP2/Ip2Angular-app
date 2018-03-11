@@ -1,0 +1,9 @@
+<h1>Selecteer kaarten</h1>
+<h2>{{selectedCardIds.length}} van de {{session.maxCards}} kaarten geselecteerd!</h2>
+<div *ngFor="let card of cards;let i = index" class="cardBox"
+     style="background-size: 100% 100%">
+  <h1>{{card.name}}</h1>
+  <div class="descriptionContainer">{{card.description}}</div>
+  <button mat-raised-button color="primary" *ngIf="!buttonStates[i]" (click)="selectCard(card, i)" [disabled]="selectedCardIds.length === session.maxCards">Selecteer</button>
+  <button mat-raised-button color="warn" *ngIf="buttonStates[i]" (click)="deselectCard(card, i)">Verwijder</button>
+</div>

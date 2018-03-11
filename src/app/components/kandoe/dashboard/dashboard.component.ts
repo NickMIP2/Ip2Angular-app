@@ -55,9 +55,9 @@ export class DashboardComponent implements OnInit {
 
   continueSession(session) {
     if (session.state === 1) {
-      this.router.navigate(['kandoe/phase1']);
+      this.router.navigate(['kandoe/sessions/' + session.id + '/phase1']);
     } else {
-      this.router.navigate(['kandoe/phase2']);
+      this.router.navigate(['kandoe/sessions/' + session.id + '/phase2']);
     }
   }
 }

@@ -15,6 +15,9 @@ import {NewSessionComponent} from './components/kandoe/session/new-session/new-s
 import {RegisterComponent} from './components/authentication/register/register.component';
 import {KandoeComponent} from './components/kandoe/kandoe.component';
 import {ChatComponent} from './components/kandoe/chat/chat.component';
+import {SessionOverviewComponent} from './components/kandoe/session/session-overview/session-overview.component';
+import {Phase1Component} from './components/kandoe/session/phase1/phase1.component';
+import {Phase2Component} from './components/kandoe/session/phase2/phase2.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -39,6 +42,13 @@ const routes: Routes = [
           {path: 'cards/:cardId', component: CardEditComponent},
           {path: 'organisers', component: ThemedetailOrganiserComponent},
           {path: 'categories', component: ThemedetailCategoriesComponent}
+        ]
+      },
+      {
+        path: 'sessions/:sessionId', component: SessionOverviewComponent,
+        children: [
+          {path: 'phase1', component: Phase1Component},
+          {path: 'phase2', component: Phase2Component}
         ]
       }
     ]
