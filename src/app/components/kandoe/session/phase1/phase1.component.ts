@@ -66,4 +66,8 @@ export class Phase1Component implements OnInit {
     }
     this.buttonStates[index] = false;
   }
+
+  saveCardIds() {
+
+  }
 }

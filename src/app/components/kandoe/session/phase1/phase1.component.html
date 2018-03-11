@@ -7,3 +7,5 @@
   <button mat-raised-button color="primary" *ngIf="!buttonStates[i]" (click)="selectCard(card, i)" [disabled]="selectedCardIds.length === session.maxCards">Selecteer</button>
   <button mat-raised-button color="warn" *ngIf="buttonStates[i]" (click)="deselectCard(card, i)">Verwijder</button>
 </div>
+<button mat-raised-button color="primary" (click)="saveCardIds()">Klaar</button>
+
