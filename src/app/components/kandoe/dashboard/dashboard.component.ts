@@ -5,6 +5,7 @@ import {UseridStorage} from '../../../sessionStorage/userid-storage';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
 import {Session} from '../../../model/session';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +21,7 @@ export class DashboardComponent implements OnInit {
   public plannedSessions = [];
   private userId;
 
-  constructor(private titleService: Title, private sessionService: SessionService, private useridStorage: UseridStorage) {
+  constructor(private router: Router, private titleService: Title, private sessionService: SessionService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
   }
 
@@ -49,6 +50,14 @@ export class DashboardComponent implements OnInit {
       } else if (session.state === 3) {
         this.pastSessions.push(session);
       }
+    }
+  }
+
+  continueSession(session) {
+    if (session.state === 1) {
+      this.router.navigate(['kandoe/phase1']);
+    } else {
+      this.router.navigate(['kandoe/phase2']);
     }
   }
 }

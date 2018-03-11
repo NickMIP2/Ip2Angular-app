@@ -38,6 +38,8 @@ import {MessageService} from './services/message.service';
 import {MatButtonModule, MatCheckboxModule, MatTabsModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SessionService} from './services/session.service';
+import { Phase1Component } from './components/kandoe/phase1/phase1.component';
+import { Phase2Component } from './phase2/phase2.component';
 
 
 @NgModule({
@@ -62,7 +64,9 @@ import {SessionService} from './services/session.service';
     ThemedetailComponent,
     CardNewComponent,
     ChatComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    Phase1Component,
+    Phase2Component
   ],
   imports: [
     BrowserModule,

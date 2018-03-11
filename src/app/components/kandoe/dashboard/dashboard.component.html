@@ -12,7 +12,9 @@
     <div *ngFor="let session of currentSessions" class="sessionBox"
          style="background-size: 100% 100%">
       <h2>{{session.name}}</h2>
-      <button mat-raised-button color="primary">Hervat</button>
+      <div class="descriptionContainer" *ngIf="session.state === 1">Selecteren</div>
+      <div class="descriptionContainer" *ngIf="session.state === 2">Cirkelen</div>
+      <button mat-raised-button color="primary" (click)="continueSession(session)">Hervat</button>
     </div>
   </mat-tab>
   <mat-tab label="Geplande sessies">
