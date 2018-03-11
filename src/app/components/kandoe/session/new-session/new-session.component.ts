@@ -30,6 +30,7 @@ export class NewSessionComponent implements OnInit {
 
   cloneSession() {
     this.newSession = this.oldSession;
+    this.newSession.id = 0;
   }
 
   ngOnInit() {
@@ -70,10 +71,16 @@ export class NewSessionComponent implements OnInit {
   onClickSubmit() {
     if (this.newSession.type === 0 || this.newSession.type === 1) {
       this.newSession.themeId = this.themeIndexId;
-      this.newSession.categoryId = this.categoryIndexId;
+      console.log(this.categoryIndexId);
+      if (!(typeof this.categoryIndexId == 'string') && this.categoryIndexId != null && this.categoryIndexId != undefined) {
+        this.newSession.categoryId = this.categoryIndexId;
+      } else{
+        this.newSession.categoryId = 0;
+      }
       this.newSession.id = 0;
       this.sessionService.createSession(this.newSession, this.userId).subscribe(
         data => {
+          console.log(data);
           this.router.navigate(['kandoe/dashboard']);
         },
         error => {
