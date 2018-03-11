@@ -3,8 +3,8 @@
     Welcome to Chat!
   </h1>
   <div class="chat-container">
-    <div class="chat" *ngFor="let currentmessage of messages">
-      <div class="message">
+    <div class="chat" >
+      <div class="message" *ngFor="let currentmessage of messages">
         {{currentmessage.message}}
       </div>
     </div>
