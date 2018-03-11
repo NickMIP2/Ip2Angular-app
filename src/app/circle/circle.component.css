@@ -25,7 +25,7 @@
 }
 
 .subcircle:nth-child(2n) {
-  background: palegreen none repeat scroll 0 0;
+  background: palegreen;
 }
 
 
