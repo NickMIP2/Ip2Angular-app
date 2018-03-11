@@ -16,7 +16,7 @@
 
     <div class="send" (click)="sendMessage(input.value)">
     </div>
-    <input  id="input" type="text" #input>
+    <input  id="input" type="text" (keyup.enter)="sendMessage(input.value)" #input>
   </div>
 
 </div>
