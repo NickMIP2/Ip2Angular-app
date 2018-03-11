@@ -1,0 +1,17 @@
+<div class="circle">
+
+
+
+<div *ngFor="let ring of rings" class="subcircle"
+     [style.width]="ring.width + '%'" [style.height]="ring.height + '%'"
+     [style.z-index]="ring.z" >
+</div>
+
+
+<div  class="sessioncard" *ngFor="let card of amountOfCards; let i = index" (click)="moveCard(card,i)" [style.left]="card.x + 'px'" [style.top]="card.y + 'px'">{{card.name}}
+
+</div>
+</div>
+
+geselecteerd: {{selectedCard.name}}
+

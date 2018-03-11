@@ -34,6 +34,7 @@ import {CardNewComponent} from './components/kandoe/themedetail/components/theme
 import {ChatComponent} from './components/kandoe/chat/chat.component';
 import {FileUploadComponent} from './file-upload/file-upload.component';
 import {MessageService} from './services/message.service';
+import { CircleComponent } from './circle/circle.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import {MessageService} from './services/message.service';
     ThemedetailComponent,
     CardNewComponent,
     ChatComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    CircleComponent
   ],
   imports: [
     BrowserModule,

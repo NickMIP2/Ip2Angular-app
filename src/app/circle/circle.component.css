@@ -1,0 +1,31 @@
+.circle {
+  width: 1000px;
+  height: 1000px;
+  margin: 50px;
+  position: relative;
+}
+
+.sessioncard {
+  width: 50px;
+  border: 1px solid blue;
+  height: 50px;
+  position: absolute;
+  z-index: 999;
+  background-color: white;
+}
+
+.subcircle {
+  background: white;
+  border-radius: 50%;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.subcircle:nth-child(2n) {
+  background: palegreen none repeat scroll 0 0;
+}
+
+
