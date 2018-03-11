@@ -12,6 +12,7 @@ export class Session {
               public participantIds: number[],
               public type: number,
               public sessionCardIds: number[],
-              public state: number) {
+              public state: number,
+              public userSubmitted: boolean) {
   }
 }
