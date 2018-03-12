@@ -52,8 +52,10 @@ export class NewThemeComponent implements OnInit {
   }
 
   addTag() {
-    this.theme.tags.push(this.tagValue);
-    this.tagValue = '';
+    if (!(this.tagValue === '')){
+      this.theme.tags.push(this.tagValue);
+      this.tagValue = '';
+    }
   }
 
   deleteTag(i) {

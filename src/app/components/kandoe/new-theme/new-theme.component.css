@@ -29,12 +29,22 @@
   width: 50%;
   text-align: left;
   margin: auto;
+  margin-top: 2%;
 }
 
+.themeTagAdd {
+  margin-top: 10px;
+}
+
+.themeTag {
+  margin-top: 3px;
+}
+
+/*
 .ng-valid[required], .ng-valid.required {
   border-right: 2px solid green;
 }
 
 .ng-invalid:not(form) {
   border-right: 2px solid red;
-}
+}*/
