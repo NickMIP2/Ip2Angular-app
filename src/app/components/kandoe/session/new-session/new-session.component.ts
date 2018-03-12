@@ -14,7 +14,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./new-session.component.css']
 })
 export class NewSessionComponent implements OnInit {
-  newSession = new Session(0, '', null, 0, 0, 1, 1, [], [], null, [], 0);
+  newSession = new Session(0, '', null, 0, 0, 1, 1, [], [], [], null, [], 0);
   participantEmail = '';
   public themes = [];
   public categoryArray = [];
@@ -77,7 +77,7 @@ export class NewSessionComponent implements OnInit {
       console.log(this.categoryIndexId);
       if (!(typeof this.categoryIndexId == 'string') && this.categoryIndexId != null && this.categoryIndexId != undefined) {
         this.newSession.categoryId = this.categoryIndexId;
-      } else{
+      } else {
         this.newSession.categoryId = 0;
       }
       this.newSession.id = 0;
@@ -105,6 +105,7 @@ export class NewSessionComponent implements OnInit {
   addParticipant() {
     if (this.newSession.participants.indexOf(this.participantEmail) === -1) {
       this.newSession.participants.push(this.participantEmail);
+      this.newSession.particpantsOrganiser.push(false);
       this.participantEmail = '';
     } else {
       alert('E-mail al geselecteerd!');
@@ -113,5 +114,6 @@ export class NewSessionComponent implements OnInit {
 
   removeFromList(id) {
     this.newSession.participants.splice(id, 1);
+    this.newSession.particpantsOrganiser.splice(id, 1);
   }
 }
