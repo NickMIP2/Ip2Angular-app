@@ -18,7 +18,7 @@ export class Phase1Component implements OnInit {
   public sessionId;
   public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [0], 0, [0], 0, false);
   public cards = [];
-  public selectedCardIds = [];
+  public selectedCards = [];
   public buttonStates = [];
   constructor(private router: Router, private cardService: CardService, private route: ActivatedRoute, private sessionService: SessionService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
@@ -55,20 +55,20 @@ export class Phase1Component implements OnInit {
   }
 
   selectCard(card, index) {
-    this.selectedCardIds.push(card.id);
+    this.selectedCards.push(card);
     this.buttonStates[index] = true;
   }
 
   deselectCard(card, index) {
-    let cardIndex = this.selectedCardIds.indexOf(card.id);
+    let cardIndex = this.selectedCards.indexOf(card);
     if (cardIndex > -1) {
-      this.selectedCardIds.splice(cardIndex, 1);
+      this.selectedCards.splice(cardIndex, 1);
     }
     this.buttonStates[index] = false;
   }
 
   saveCardIds() {
-    this.sessionService.saveSessionCards(this.selectedCardIds, this.session.id, this.userId).subscribe(data => {
+    this.sessionService.saveSessionCards(this.selectedCards, this.session.id, this.userId).subscribe(data => {
         this.router.navigate(['kandoe/dashboard']);
       },
       error => {
