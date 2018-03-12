@@ -11,6 +11,7 @@ describe('CardNewComponent', () => {
       declarations: [CardNewComponent]
     })
       .compileComponents();
+
   }));
 
   beforeEach(() => {
@@ -22,4 +23,5 @@ describe('CardNewComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

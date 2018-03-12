@@ -47,7 +47,7 @@
       <label>Afbeelding: </label>
       <app-file-upload name="upload"  [(ngModel)]="theme.image"></app-file-upload>
     </div>
-    <button type="button" [disabled]="!themeform.form.valid" class="btn btn-primary"
+    <button type="button" id="createtheme" [disabled]="!themeform.form.valid" class="btn btn-primary"
             (click)="createTheme()">toevoegen
     </button>
     <button class="btn btn-secondary" (click)="navigateAbort()">ga terug</button>

@@ -35,7 +35,7 @@ export class CardNewComponent implements OnInit {
   }
 
   createCard() {
-    this.cardService.createCard(this.categoryId,this.card, this.themeId, this.userId).subscribe(data => {
+    this.cardService.createCard(this.categoryId, this.card, this.themeId, this.userId).subscribe(data => {
         this.card = data;
         this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview']);
       },

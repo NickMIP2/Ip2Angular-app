@@ -7,6 +7,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {ThemeService} from '../../../services/theme.service';
 import {DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
+import {FileUploadComponent} from '../../../file-upload/file-upload.component';
+import {Theme} from '../../../model/theme';
+import {Observable} from 'rxjs/Observable';
 
 describe('NewThemeComponent', () => {
   let component: NewThemeComponent;
@@ -15,11 +18,13 @@ describe('NewThemeComponent', () => {
   let element: HTMLElement;
   let spy: jasmine.Spy;
   let themeService: ThemeService;
+  let navigateSpy;
+  let mockCreatedTheme: Theme;
 
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NewThemeComponent],
+      declarations: [NewThemeComponent, FileUploadComponent],
       imports: [RouterTestingModule, HttpClientModule, FormsModule],
       providers: [ThemeService]
     })
@@ -29,10 +34,12 @@ describe('NewThemeComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NewThemeComponent);
     component = fixture.componentInstance;
+    themeService = fixture.debugElement.injector.get(ThemeService); /*TestBed.get(ThemeService);*/
+    mockCreatedTheme = {id: 1, name: 'name', description: 'description', tags: ['tags'], image: 'imageurl'};
     de = fixture.debugElement.query(By.css('.container'));
     element = de.nativeElement;
-    spy = spyOn(themeService, 'createTheme').and.callThrough();
-
+    spy = spyOn(themeService, 'createTheme').and.returnValue(Observable.of(mockCreatedTheme));
+    navigateSpy = spyOn((<any>component).router, 'navigate');
     fixture.detectChanges();
   });
 
@@ -44,5 +51,17 @@ describe('NewThemeComponent', () => {
     expect(element.innerHTML).toContain('toevoegen');
   });
 
+  it('should navigate to themedetail on creation', () => {
+    component.theme = mockCreatedTheme;
 
-});
+    component.createTheme();
+    expect(navigateSpy).toHaveBeenCalledWith(['kandoe/themes/' + mockCreatedTheme.id + '/overview']);
+  });
+
+  it('should navigate to themes', () => {
+    component.navigateAbort();
+    expect(navigateSpy).toHaveBeenCalledWith(['kandoe/themes/']);
+  });
+
+})
+;

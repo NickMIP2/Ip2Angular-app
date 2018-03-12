@@ -17,10 +17,11 @@ describe('ThemeComponent', () => {
   let fixture: ComponentFixture<ThemesComponent>;
   let de: DebugElement;
   let element: HTMLElement;
-  let mockThemes: Theme[];
+  let mockTheme: Theme;
+  let mockThemes: Set<Theme>;
   let themeService: ThemeService;
   let spy: jasmine.Spy;
-
+  let navigateSpy;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ThemesComponent],
@@ -30,20 +31,21 @@ describe('ThemeComponent', () => {
       .compileComponents();
   }));
 
-  /*
+
   beforeEach(() => {
     fixture = TestBed.createComponent(ThemesComponent);
     component = fixture.componentInstance;
 
-    de = fixture.debugElement.query(By.css('.wrapper'));
+    de = fixture.debugElement.query(By.css('.borderBlue'));
     element = de.nativeElement;
-
     themeService = fixture.debugElement.injector.get(ThemeService);
-    mockThemes = [
-      {id: 1, themename: 'theme name', themedescription: 'theme description', themetag: 'tag', themeUsers: ['user1', 'user2']}];
+    mockTheme = {id: 1, name: 'theme name', description: 'theme description', tags: ['tag'], image: 'imageurl'};
+    mockThemes = new Set<Theme>();
+    mockThemes.add(mockTheme);
+    navigateSpy = spyOn((<any>component).router, 'navigate');
 
 
-    spy = spyOn(themeService, 'getThemes').and.returnValue(Observable.of(mockThemes));
+    spy = spyOn(themeService, 'getThemesOfUser').and.returnValue(Observable.of(mockThemes));
     fixture.detectChanges();
   });
 
@@ -51,24 +53,27 @@ describe('ThemeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have a list to display the themes', () => {
-    expect(element.innerHTML).toContain('ul');
-    expect(element.innerHTML).toContain('li');
-  });
-
   it('should have values', () => {
       const theme = new Theme(
         1, 'themanaam',
         'themabeschrijving',
-        'tag',
-        ['user1', 'user2']);
+        ['tag'],
+        'imageurl');
       expect(theme.id).toEqual(1);
-      expect(theme.tags).toEqual('tag');
+      expect(theme.tags[0]).toEqual('tag');
       expect(theme.name).toEqual('themanaam');
       expect(theme.description).toEqual('themabeschrijving');
-      expect(theme.themeUsers[0]).toEqual('user1');
+      expect(theme.image).toEqual('imageurl');
     }
   );
+
+  // it('should return themes of user', () => {
+  //   // spy = spyOn(themeService, 'getThemesOfUser').and.returnValue(Observable.of(mockThemes));
+  //   expect(themeService).toHaveBeenCalled();
+  //   // expect(component.needsLogin()).toBeTruthy();
+  //   // expect(service.isAuthenticated).toHaveBeenCalled();
+  //
+  // });
 
   it('should show the themes after getThemes promise resolves', async () => {
     fixture.detectChanges();
@@ -79,5 +84,13 @@ describe('ThemeComponent', () => {
     });
   });
 
-  */
+  it('should navigate to detail', () => {
+    component.goToDetail(mockTheme.id);
+    expect(navigateSpy).toHaveBeenCalledWith(['kandoe/themes/1']);
+  });
+
+  it('should navigate to new theme', () => {
+    component.goToNewTheme();
+    expect(navigateSpy).toHaveBeenCalledWith(['kandoe/themes/thema-toevoegen']);
+  });
 });
