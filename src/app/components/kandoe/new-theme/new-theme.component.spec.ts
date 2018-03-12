@@ -43,7 +43,8 @@ describe('NewThemeComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NewThemeComponent);
     component = fixture.componentInstance;
-    themeService = fixture.debugElement.injector.get(ThemeService); /*TestBed.get(ThemeService);*/
+    themeService = fixture.debugElement.injector.get(ThemeService);
+    /*TestBed.get(ThemeService);*/
     mockCreatedTheme = {id: 1, name: 'name', description: 'description', tags: ['tags'], image: 'imageurl'};
     de = fixture.debugElement.query(By.css('.container'));
     element = de.nativeElement;
@@ -60,9 +61,13 @@ describe('NewThemeComponent', () => {
     expect(element.innerHTML).toContain('toevoegen');
   });
 
-  it('should navigate to themedetail on creation', () => {
+  it('should call service to create theme equal to mock', () => {
     component.theme = mockCreatedTheme;
+    component.createTheme();
+    expect(spy).toHaveBeenCalled();
+  });
 
+  it('should navigate to themedetail on creation', () => {
     component.createTheme();
     expect(navigateSpy).toHaveBeenCalledWith(['kandoe/themes/' + mockCreatedTheme.id + '/overview']);
   });
