@@ -16,6 +16,32 @@
       <div [hidden]="themedescription.valid || themedescription.pristine" class="alert alert-danger">
         Beschrijving is verplicht.
       </div>
+      <div>
+        <tr>
+          <td class="text-left">
+            <span>{{theme.tags}}</span>
+            <div style="width: 100%;">
+              <table style="width: 80%;">
+                <tr>
+                  <th>Tags</th>
+                </tr>
+                <tr *ngFor="let tag of theme.tags; let i = index">
+                  <td>
+                    <label class="text-left" style="width: 75%;">{{tag}}</label>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger" name="deleteTag" (click)="deleteTag(i)">Verwijder</button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div>
+              <input type="text" name="tag" id="tagInput" [(ngModel)]="tagValue"/>
+              <button class="btn btn-primary" name="addTag" (click)="addTag()">Tag toevoegen</button>
+            </div>
+          </td>
+        </tr>
+      </div>
     </div>
     <div class="form-group">
       <label>Afbeelding: </label>
