@@ -14,6 +14,7 @@ export class CardEditComponent implements OnInit {
   public card = new Card(0, 0, '', '', '');
   public themeId;
   public userId;
+  public categoryId;
 
   constructor(private cardService: CardService,
               private route: ActivatedRoute,
@@ -26,8 +27,10 @@ export class CardEditComponent implements OnInit {
     window.document.title = 'Cardeditor';
     this.themeId = this.route.parent.snapshot.params['themeId'];
     this.cardId = this.route.snapshot.params['cardId'];
+    this.categoryId = this.route.snapshot.params['categoryId'];
+
     // get card
-    this.cardService.getCard(this.cardId, this.themeId, this.userId).subscribe(data => {
+    this.cardService.getCard(this.categoryId, this.cardId, this.themeId, this.userId).subscribe(data => {
         this.card = data;
       },
       error => {
@@ -38,11 +41,11 @@ export class CardEditComponent implements OnInit {
   }
 
   updateCard() {
-    console.log('cardName: ' + this.card.name + '; image: ' + this.card.image.substring(0, 30) + '...');
+    console.log('cardName: ' + this.card.name + '; image: ');
 
-    this.cardService.updateCard(this.card, this.themeId, this.userId).subscribe(data => {
+    this.cardService.updateCard(this.categoryId, this.card, this.themeId, this.userId).subscribe(data => {
         this.card = data;
-        this.router.navigate(['kandoe/themes/' + this.themeId + '/cards']); // id van teruggekregen thema
+        this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview']);
       },
       error => {
         console.error('Error saving card!');
@@ -62,5 +65,9 @@ export class CardEditComponent implements OnInit {
       this.card.image = myReader.result;
     };
     myReader.readAsDataURL(file);
+  }
+
+  discardChanges() {
+    this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview']);
   }
 }
