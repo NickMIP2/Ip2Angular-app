@@ -1,6 +1,15 @@
 <mat-tab-group [selectedIndex]="1">
   <mat-tab label="Afgelopen sessies">
     <h1>Afgelopen sessies</h1>
+    <!--<mat-card class="example-card" *ngFor="let session of pastSessions">
+      <mat-card-header>
+        <mat-card-title>{{session.name}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-actions>
+        <button mat-raised-button color="primary">Analyse</button>
+      </mat-card-actions>
+    </mat-card>-->
+
     <div *ngFor="let session of pastSessions" class="sessionBox"
          style="background-size: 100% 100%">
       <h2>{{session.name}}</h2>
