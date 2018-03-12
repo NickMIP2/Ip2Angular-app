@@ -82,7 +82,7 @@
         <label>Deelnemers: </label>  <label> organisator? </label><br/>
         <div contenteditable="false">
           <p *ngFor="let participant of newSession.participants; let i = index">
-            <button class="btn btn-danger" (click)="removeFromList(i)">-</button>&emsp;{{participant}}      <input class="isOrganiserCheckbox" name="isOrganiserCheckbox" type="checkbox" [checked]="newSession.particpantsOrganiser[i]" (change)="newSession.particpantsOrganiser[i] = !newSession.particpantsOrganiser[i]">
+            <button class="btn btn-danger" (click)="removeFromList(i,participant)">-</button>&emsp;{{participant}}      <input #isOrganiserCheckBox class="isOrganiserCheckbox" name="isOrganiserCheckbox" type="checkbox" [checked]="isOrganiser" (change)="checkIfOrganiser(isOrganiserCheckBox.checked,participant,i)" >
           </p>
         </div>
       </div>

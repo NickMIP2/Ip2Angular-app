@@ -9,8 +9,9 @@ export class Session {
               public categoryId: number,
               public timeForMove: number,
               public participants: string[],
-              public particpantsOrganiser: boolean[],
+              public particpantsOrganiser: string[],
               public participantIds: number[],
+              public organiserIds: number[],
               public type: number,
               public sessionCardIds: number[],
               public state: number) {
