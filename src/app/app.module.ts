@@ -34,13 +34,15 @@ import { CardNewComponent } from './components/kandoe/themedetail/components/car
 import { ChatComponent } from './components/kandoe/chat/chat.component';
 import {FileUploadComponent} from './file-upload/file-upload.component';
 import {MessageService} from './services/message.service';
-import {MatButtonModule, MatCheckboxModule, MatTabsModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatInputModule, MatNativeDateModule, MatTabsModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SessionService} from './services/session.service';
 import { Phase1Component } from './components/kandoe/session/phase1/phase1.component';
 import { Phase2Component } from './components/kandoe/session/phase2/phase2.component';
 import { SessionOverviewComponent } from './components/kandoe/session/session-overview/session-overview.component';
 import { CardOverviewComponent } from './components/kandoe/themedetail/components/cards/card-overview/card-overview.component';
+import {MatFormFieldModule} from '@angular/material';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -75,8 +77,13 @@ import { CardOverviewComponent } from './components/kandoe/themedetail/component
     FormsModule,
     AlertModule.forRoot(),
     MatTabsModule,
-    MatButtonModule, MatCheckboxModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
     BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatInputModule,
     HttpClientModule
   ],
   providers: [
