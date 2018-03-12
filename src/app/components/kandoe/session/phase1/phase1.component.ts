@@ -35,7 +35,7 @@ export class Phase1Component implements OnInit {
         console.log(error);
         alert('Error loading session');
       }, () => {
-        this.cardService.getCardsByTheme(this.session.themeId, this.userId).subscribe(data => {
+        this.cardService.getCardsByCategory(this.session.categoryId, this.session.themeId, this.userId).subscribe(data => {
             this.cards = data;
           },
           error => {
