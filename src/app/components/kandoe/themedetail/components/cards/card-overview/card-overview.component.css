@@ -29,3 +29,16 @@
   margin: 1%;
   border: 1px solid black;
 }
+
+.cardContainer {
+  width: 75%;
+  margin: auto;
+  margin-top: 2%;
+  background: #E2E0FB;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.cardBoxContainer {
+  margin-top: 5%;
+}

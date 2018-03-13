@@ -1,10 +1,9 @@
-<form class="form-group" style="margin: auto; width: 60%">
-  <table class="table" style="width: 80%; margin: auto;">
-    <tr>
-      <td class="descCol">Title</td>
-      <td class="editCol">
-        <input type="text" class="editInput" name="editcardtitle" [(ngModel)]="card.name" placeholder="Title">
-      </td>
+<form class="form-group cardNewContainer">
+  <table class="table" style="width: 100%">
+    <tr style="width: 100%">
+      <mat-form-field class="form-group" style="width: 100%">
+        <input style="width: 100%" matInput placeholder="Kaart naam" type="text" required class="editInput" name="editcardtitle" [(ngModel)]="card.name">
+      </mat-form-field>
     </tr>
     <tr>
       <td class="descCol">Description</td>
@@ -21,11 +20,10 @@
     </tr>
     <tr>
       <td style="width: 50%">
-        <button class="btn btn-primary" style="width: 50%; margin: auto;" (click)="createCard()">Create card</button>
+        <button style="width: 100%;" mat-raised-button color="primary" (click)="createCard()">Maak kaart</button>
       </td>
       <td style="width: 50%">
-        <button class="btn btn-danger" style="width: 50%; margin: auto;" (click)="navigateAbort()">Discard changes
-        </button>
+        <button mat-raised-button color="warn" style="width: 100%;" (click)="navigateAbort()">Verwijder</button>
       </td>
     </tr>
   </table>

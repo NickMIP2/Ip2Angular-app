@@ -1,28 +1,31 @@
-<br/>
+<div class="categoryContainer">
 <div id="form-add-category" *ngIf="editing ==1">
-  <label class="font-weight-bold">Categorienaam: </label>
-  <input type="text" [(ngModel)]="editfield">
-  <button class="btn btn-primary" (click)="editing === 1 ? createCategory() : editing=0">Toevoegen</button>
+  <mat-form-field class="form-group" style="width: 100%">
+    <input style="width: 100%" matInput placeholder="Categorie naam" type="text" required [(ngModel)]="editfield">
+  </mat-form-field>
+  <button style="width: 50%;" mat-raised-button color="primary" (click)="editing === 1 ? createCategory() : editing=0">Toevoegen</button>
 </div>
 <div id="form-edit-category" *ngIf="editing == 2">
-  <label class="font-weight-bold">Categorienaam: </label>
-  <input type="text" [(ngModel)]="editfield">
-  <button class="btn btn-primary" (click)="editing === 2 ? updateCategory() : editing=0">Opslaan</button>
+  <mat-form-field class="form-group" style="width: 100%">
+    <input style="width: 100%" matInput placeholder="Categorie naam" type="text" required [(ngModel)]="editfield">
+  </mat-form-field>
+  <button style="width: 50%;" mat-raised-button color="primary" (click)="editing === 2 ? updateCategory() : editing=0">Opslaan</button>
 </div>
 <div id="display-all-categories" *ngIf="editing !== 1 && editing !== 2">
-  <button class="btn btn-primary" (click)="editing=1">Nieuwe categorie toevoegen</button>
+  <button style="width: 50%" mat-raised-button color="primary" (click)="editing=1">Nieuwe categorie</button>
   <table class="table paddingtop">
     <tr *ngFor="let category of categories">
       <td>{{category.name}}</td>
       <td>
-        <button class="btn btn-primary" (click)="editing=2" (click)="currentCategory=category"
-                (click)="editfield=category.name">Edit
+        <button mat-raised-button color="primary" (click)="editing=2" (click)="currentCategory=category"
+                (click)="editfield=category.name">Wijzig
         </button>
-        <button class="btn btn-danger" (click)="deleteCategory(category.id)">Delete</button>
+        <button mat-raised-button color="warn" (click)="deleteCategory(category.id)">Verwijder</button>
       </td>
       <td>
-        <button class="btn btn-primary" (click)="goToCards(category.id)"> View Cards</button>
+        <button mat-raised-button color="primary" (click)="goToCards(category.id)">Bekijk kaarten</button>
       </td>
     </tr>
   </table>
+</div>
 </div>
