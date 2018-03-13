@@ -1,9 +1,10 @@
-<form class="form-group cardEditContainer">
+<form #cardForm="ngForm" class="form-group cardEditContainer">
       <mat-form-field class="form-group" style="width: 100%">
-        <input style="width: 100%" matInput placeholder="Kaart naam" type="text" required class="editInput" name="editcardtitle" [(ngModel)]="card.name">
+        <input (input)="checkName()" style="width: 100%" matInput placeholder="Kaart naam" type="text" required class="editInput" name="editcardtitle" [(ngModel)]="card.name">
+        <span *ngIf="!correctName" style="color: red; padding-top: 5px; font-size: small">Kaartnaam is reeds gebruikt in deze categorie!</span>
       </mat-form-field>
       <mat-form-field class="form-group" style="width: 100%">
-        <input style="width: 100%" matInput placeholder="Kaart beschrijving" type="text" required name="editcarddescription" [(ngModel)]="card.description">
+        <input style="width: 100%" matInput placeholder="Kaart beschrijving" type="text" name="editcarddescription" [(ngModel)]="card.description">
       </mat-form-field>
   <table class="table" style="width: 100%">
   <tr>
@@ -13,7 +14,7 @@
       </td>
     </tr>
   </table>
-        <button mat-raised-button color="primary" style="width: 49%" (click)="updateCard()">Opslaan</button>
+        <button [disabled]="!cardForm.form.valid" mat-raised-button color="primary" style="width: 49%" (click)="updateCard()">Opslaan</button>
         <button mat-raised-button color="warn" style="width: 49%" (click)="discardChanges()">
           Verwijder
         </button>

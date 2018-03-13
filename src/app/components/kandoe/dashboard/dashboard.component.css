@@ -10,6 +10,15 @@ li {
   list-style-type: none;
 }
 
+.sessionBox {
+  width: 25%;
+  display: inline-block;
+  margin: 1%;
+  padding: 1%;
+  border-radius: 10px;
+  border: 1px solid;
+}
+
 .sessionBoxSelecteren {
   width: 25%;
   display: inline-block;

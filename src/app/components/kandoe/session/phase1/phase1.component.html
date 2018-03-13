@@ -1,6 +1,9 @@
+<div *ngIf="editing===0">
 <h1>Selecteer kaarten</h1>
 <h2>{{selectedCards.length}} van de {{session.maxCards}} kaarten geselecteerd!</h2>
-<div *ngFor="let card of cards;let i = index" class="cardBox"
+  <button mat-raised-button color="primary" *ngIf="session.allowCardCreation" (click)="editing=1">Nieuwe kaart</button>
+  <br>
+  <div *ngFor="let card of cards;let i = index" class="cardBox"
      style="background-size: 100% 100%">
   <h1>{{card.name}}</h1>
   <div class="descriptionContainer">{{card.description}}</div>
@@ -9,4 +12,25 @@
 </div>
 <br>
 <button mat-raised-button color="primary" (click)="saveCardIds()">Klaar</button>
-
+</div>
+<div *ngIf="editing===1">
+  <form #cardForm="ngForm" class="form-group cardNewContainer">
+    <mat-form-field class="form-group" style="width: 100%">
+      <input (input)="checkName()" style="width: 100%" matInput placeholder="Kaart naam" type="text" required class="editInput" name="editcardtitle" [(ngModel)]="card.name">
+      <span *ngIf="!correctName" style="color: red; padding-top: 5px; font-size: small">Kaartnaam is reeds gebruikt in deze categorie!</span>
+    </mat-form-field>
+    <mat-form-field class="form-group" style="width: 100%">
+      <input style="width: 100%" matInput placeholder="Kaart beschrijving" type="text" name="editcarddescription" [(ngModel)]="card.description">
+    </mat-form-field>
+    <table class="table" style="width: 100%">
+      <tr>
+        <td class="descCol">Image</td>
+        <td class="editCol">
+          <app-file-upload name="upload" [(ngModel)]="card.image"></app-file-upload>
+        </td>
+      </tr>
+    </table>
+    <button [disabled]="!cardForm.form.valid" style="width: 49%;" mat-raised-button color="primary" (click)="createCard()">Maak kaart</button>
+    <button mat-raised-button color="warn" style="width: 49%" (click)="navigateAbort()">Verwijder</button>
+  </form>
+</div>

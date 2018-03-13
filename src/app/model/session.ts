@@ -14,6 +14,7 @@ export class Session {
               public sessionCardIds: number[],
               public state: number,
               public userSubmitted: boolean,
-              public startDate: Date) {
+              public startDate: Date,
+              public allowCardCreation: boolean) {
   }
 }

@@ -1,16 +1,16 @@
 <div class="categoryContainer">
-<div id="form-add-category" *ngIf="editing ==1">
+  <form #newCategoryForm="ngForm" class="form-group" *ngIf="editing ==1">
   <mat-form-field class="form-group" style="width: 100%">
-    <input style="width: 100%" matInput placeholder="Categorie naam" type="text" required [(ngModel)]="editfield">
+    <input name="newcategoryname" style="width: 100%" matInput placeholder="Categorie naam" type="text" required [(ngModel)]="editfield">
   </mat-form-field>
-  <button style="width: 50%;" mat-raised-button color="primary" (click)="editing === 1 ? createCategory() : editing=0">Toevoegen</button>
-</div>
-<div id="form-edit-category" *ngIf="editing == 2">
+  <button [disabled]="!newCategoryForm.form.valid" style="width: 50%;" mat-raised-button color="primary" (click)="editing === 1 ? createCategory() : editing=0">Toevoegen</button>
+  </form>
+  <form #editCategoryForm="ngForm" class="form-group" *ngIf="editing == 2">
   <mat-form-field class="form-group" style="width: 100%">
-    <input style="width: 100%" matInput placeholder="Categorie naam" type="text" required [(ngModel)]="editfield">
+    <input name="editcategoryname" style="width: 100%" matInput placeholder="Categorie naam" type="text" required [(ngModel)]="editfield">
   </mat-form-field>
-  <button style="width: 50%;" mat-raised-button color="primary" (click)="editing === 2 ? updateCategory() : editing=0">Opslaan</button>
-</div>
+  <button [disabled]="!editCategoryForm.form.valid" style="width: 50%;" mat-raised-button color="primary" (click)="editing === 2 ? updateCategory() : editing=0">Opslaan</button>
+  </form>
 <div id="display-all-categories" *ngIf="editing !== 1 && editing !== 2">
   <button style="width: 50%" mat-raised-button color="primary" (click)="editing=1">Nieuwe categorie</button>
   <table class="table paddingtop">

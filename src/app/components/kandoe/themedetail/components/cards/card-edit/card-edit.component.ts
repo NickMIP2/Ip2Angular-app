@@ -15,6 +15,9 @@ export class CardEditComponent implements OnInit {
   public themeId;
   public userId;
   public categoryId;
+  public correctName = true;
+  public check = false;
+  public oldCards = [];
 
   constructor(private cardService: CardService,
               private route: ActivatedRoute,
@@ -37,21 +40,39 @@ export class CardEditComponent implements OnInit {
         console.error('Error loading card!');
         console.log(error);
         alert('Error loading card!');
+      }, () => {
+        this.cardService.getCardsByCategory(this.categoryId ,this.themeId, this.userId).subscribe(data => {
+            this.oldCards = data;
+          },
+          error => {
+            console.error('Error loading cards!');
+            console.log(error);
+            alert('Error loading cards!');
+          }, () => {
+            let index = 0;
+            for (let i = 0; i < this.oldCards.length; i++) {
+              if (this.oldCards[i].name === this.card.name) {
+
+              }
+            }
+            this.oldCards.splice(index, 1);
+          });
       });
   }
 
   updateCard() {
     console.log('cardName: ' + this.card.name + '; image: ');
-
-    this.cardService.updateCard(this.categoryId, this.card, this.themeId, this.userId).subscribe(data => {
-        this.card = data;
-        this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview']);
-      },
-      error => {
-        console.error('Error saving card!');
-        console.log(error);
-        alert('Error saving card');
-      });
+    if (this.correctName) {
+      this.cardService.updateCard(this.categoryId, this.card, this.themeId, this.userId).subscribe(data => {
+          this.card = data;
+          this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview']);
+        },
+        error => {
+          console.error('Error saving card!');
+          console.log(error);
+          alert('Error saving card');
+        });
+    }
   }
 
   changeListener($event) {
@@ -69,5 +90,18 @@ export class CardEditComponent implements OnInit {
 
   discardChanges() {
     this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview']);
+  }
+
+  checkName() {
+    for (const card of this.oldCards) {
+      if (card.name === this.card.name) {
+        this.correctName = false;
+        this.check = true;
+      }
+    }
+    if (!this.check) {
+      this.correctName = true;
+    }
+    this.check = false;
   }
 }
