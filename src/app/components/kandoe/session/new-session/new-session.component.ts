@@ -15,6 +15,7 @@ import {Router} from '@angular/router';
 })
 export class NewSessionComponent implements OnInit {
   newSession = new Session(0, '', null, 0, 0, 1, 1, [], [], [], [], null, [], 0);
+
   participantEmail = '';
   public themes = [];
   public categoryArray = [];

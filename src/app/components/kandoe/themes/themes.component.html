@@ -1,4 +1,4 @@
-<button name="newthemebutton" class="btn btn-primary" style="margin: 1%;" routerLink="thema-toevoegen">Nieuw thema
+<button name="newthemebutton" class="btn btn-primary" style="margin: 1%;" (click)="goToNewTheme()">Nieuw thema
 </button>
 <div class="borderBlue">
   <div *ngFor="let currentTheme of themes" class="themeBox"
@@ -12,7 +12,7 @@
       <span *ngFor="let tag of currentTheme.tags">{{tag.toString()}}; </span>
     </div>
     <div>
-      <button class="btn btn-info font-small buttonCss" [routerLink]="[currentTheme.id]">Details</button>
+      <button class="btn btn-info font-small buttonCss" (click)="goToDetail(currentTheme.id)">Details</button>
       <button class="btn btn-danger font-small buttonCss" (click)="deleteTheme(currentTheme.id)">Verwijder</button>
     </div>
   </div>

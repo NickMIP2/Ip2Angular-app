@@ -11,8 +11,9 @@ import {UseridStorage} from '../../../sessionStorage/userid-storage';
   providers: [ThemeService, UseridStorage]
 })
 export class NewThemeComponent implements OnInit {
-  public theme = new Theme(0, '', '', ['tag1', 'tag2465'], '');
+  public theme = new Theme(0, '', '', [], '');
   private userId;
+  public tagValue = '';
 
   submitted = false;
 
@@ -48,6 +49,17 @@ export class NewThemeComponent implements OnInit {
       this.theme.image = myReader.result.toString();
     };
     myReader.readAsDataURL(file);
+  }
+
+  addTag() {
+    if (!(this.tagValue === '')){
+      this.theme.tags.push(this.tagValue);
+      this.tagValue = '';
+    }
+  }
+
+  deleteTag(i) {
+    this.theme.tags.splice(i, 1);
   }
 
   navigateAbort() {

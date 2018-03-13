@@ -1,20 +1,21 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ThemedetailCardsComponent} from './themedetail-cards.component';
+import {CardNewComponent} from './card-new.component';
 
-describe('ThemedetailCardsComponent', () => {
-  let component: ThemedetailCardsComponent;
-  let fixture: ComponentFixture<ThemedetailCardsComponent>;
+describe('CardNewComponent', () => {
+  let component: CardNewComponent;
+  let fixture: ComponentFixture<CardNewComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ThemedetailCardsComponent]
+      declarations: [CardNewComponent]
     })
       .compileComponents();
+
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ThemedetailCardsComponent);
+    fixture = TestBed.createComponent(CardNewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -22,4 +23,5 @@ describe('ThemedetailCardsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });

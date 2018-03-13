@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ThemeService} from '../../../services/theme.service';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
 import {Theme} from '../../../model/theme';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-theme',
@@ -13,7 +14,7 @@ import {Theme} from '../../../model/theme';
 export class ThemesComponent implements OnInit {
   public themes: Set<Theme> = new Set<Theme>();
 
-  constructor(private themeService: ThemeService, private useridStorage: UseridStorage) {
+  constructor(private themeService: ThemeService, private useridStorage: UseridStorage, private router: Router) {
 
   }
 
@@ -30,6 +31,13 @@ export class ThemesComponent implements OnInit {
 
   }
 
+  goToNewTheme() {
+    this.router.navigate(['kandoe/themes/thema-toevoegen']);
+
+  }
+  goToDetail(id: number) {
+    this.router.navigate(['kandoe/themes/' + id]);
+  }
   deleteTheme(id: number) {
     this.themeService.deleteTheme(id, this.useridStorage.getUserId()).subscribe(data => {
         this.themes = data;

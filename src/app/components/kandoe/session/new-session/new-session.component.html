@@ -98,6 +98,11 @@
         </button>
       </div>
     </div>
+    <mat-form-field>
+      <input matInput  name="startDate" [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="newSession.startDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
     <button class="btn btn-primary submit_width form-control"
             (click)="onClickSubmit()"
             [disabled]="this.newSession.type === null || this.newSession.name=== ''">

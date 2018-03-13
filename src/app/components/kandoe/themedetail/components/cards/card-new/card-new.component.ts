@@ -16,6 +16,7 @@ export class CardNewComponent implements OnInit {
   public card = new Card(0, 0, '', '', '');
   public themeId;
   public userId;
+  public categoryId;
 
   constructor(private themeService: ThemeService,
               private cardService: CardService,
@@ -29,12 +30,14 @@ export class CardNewComponent implements OnInit {
   ngOnInit() {
     window.document.title = 'Cardcreator';
     this.themeId = this.route.parent.snapshot.params['themeId'];
+    this.categoryId = this.route.snapshot.params['categoryId'];
+
   }
 
   createCard() {
-    this.cardService.createCard(this.card, this.themeId, this.userId).subscribe(data => {
+    this.cardService.createCard(this.categoryId, this.card, this.themeId, this.userId).subscribe(data => {
         this.card = data;
-        this.router.navigate(['kandoe/themes/' + this.themeId + '/cards']);
+        this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview']);
       },
       error => {
         console.error('Error creating card!');

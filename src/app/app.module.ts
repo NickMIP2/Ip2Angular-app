@@ -9,7 +9,6 @@ import {DashboardComponent} from './components/kandoe/dashboard/dashboard.compon
 import {ThemesComponent} from './components/kandoe/themes/themes.component';
 import {NewThemeComponent} from './components/kandoe/new-theme/new-theme.component';
 import {ThemedetailOverviewComponent} from './components/kandoe/themedetail/components/themedetail-overview/themedetail-overview.component';
-import {ThemedetailCardsComponent} from './components/kandoe/themedetail/components/themedetail-cards/themedetail-cards.component';
 import {ThemedetailOrganiserComponent} from './components/kandoe/themedetail/components/themedetail-organiser/themedetail-organiser.component';
 import {ThemedetailCategoriesComponent} from './components/kandoe/themedetail/components/themedetail-categories/themedetail-categories.component';
 import {ThemedetailNavbarComponent} from './components/kandoe/themedetail/components/themedetail-navbar/themedetail-navbar.component';
@@ -26,21 +25,24 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {Interceptor} from './interceptor';
 import {TokenStorage} from './sessionStorage/token-storage';
 
-import {CardEditComponent} from './components/kandoe/themedetail/components/themedetail-cards/card-edit/card-edit.component';
+import {CardEditComponent} from './components/kandoe/themedetail/components/cards/card-edit/card-edit.component';
 import {CardService} from './services/card.service';
 import {CategoryService} from './services/category.service';
 import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
 import {UseridStorage} from './sessionStorage/userid-storage';
-import { CardNewComponent } from './components/kandoe/themedetail/components/themedetail-cards/card-new/card-new.component';
+import { CardNewComponent } from './components/kandoe/themedetail/components/cards/card-new/card-new.component';
 import { ChatComponent } from './components/kandoe/chat/chat.component';
 import {FileUploadComponent} from './file-upload/file-upload.component';
 import {MessageService} from './services/message.service';
-import {MatButtonModule, MatCheckboxModule, MatTabsModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatNativeDateModule, MatTabsModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SessionService} from './services/session.service';
-import { Phase1Component } from './components/kandoe/phase1/phase1.component';
-import { Phase2Component } from './phase2/phase2.component';
-
+import { Phase1Component } from './components/kandoe/session/phase1/phase1.component';
+import { Phase2Component } from './components/kandoe/session/phase2/phase2.component';
+import { SessionOverviewComponent } from './components/kandoe/session/session-overview/session-overview.component';
+import { CardOverviewComponent } from './components/kandoe/themedetail/components/cards/card-overview/card-overview.component';
+import {MatFormFieldModule} from '@angular/material';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,6 @@ import { Phase2Component } from './phase2/phase2.component';
     NewThemeComponent,
     ThemedetailNavbarComponent,
     ThemedetailOverviewComponent,
-    ThemedetailCardsComponent,
     ThemedetailOrganiserComponent,
     ThemedetailCategoriesComponent,
     LoginComponent,
@@ -66,7 +67,9 @@ import { Phase2Component } from './phase2/phase2.component';
     ChatComponent,
     FileUploadComponent,
     Phase1Component,
-    Phase2Component
+    Phase2Component,
+    SessionOverviewComponent,
+    CardOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -74,8 +77,14 @@ import { Phase2Component } from './phase2/phase2.component';
     FormsModule,
     AlertModule.forRoot(),
     MatTabsModule,
-    MatButtonModule, MatCheckboxModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
     BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatCardModule,
+    MatInputModule,
     HttpClientModule
   ],
   providers: [

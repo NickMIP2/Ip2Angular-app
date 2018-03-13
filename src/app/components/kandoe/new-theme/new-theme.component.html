@@ -1,30 +1,69 @@
 <div class="container">
   <form #themeform="ngForm" class="formcontainer">
-    <div class="form-group"><label>Naam: </label>
+    <!--<div class="form-group"><label>Naam: </label>
       <input class="form-control" id="themename" type="text" required [(ngModel)]="theme.name"
              name="themename"
              #themename="ngModel">
       <div [hidden]="themename.valid || themename.pristine" class="alert alert-danger">
         Naam is verplicht.
       </div>
-    </div>
-    <div class="form-group"><label>Beschrijving: </label>
+    </div>-->
+    <mat-form-field class="form-group" style="width: 100%">
+      <input style="width: 100%" matInput placeholder="Thema naam" id="themename" type="text" required
+             [(ngModel)]="theme.name" name="themename" #themename="ngModel">
+    </mat-form-field>
+    <!--<label>Beschrijving: </label>
       <textarea class="form-control" id="themedescription" cols="40" rows="5" required
                 [(ngModel)]="theme.description"
                 name="description"
                 #themedescription="ngModel"></textarea>
       <div [hidden]="themedescription.valid || themedescription.pristine" class="alert alert-danger">
         Beschrijving is verplicht.
-      </div>
+      </div>-->
+    <mat-form-field class="form-group" style="width: 100%">
+      <textarea style="width: 100%" matInput placeholder="Beschrijving van het thema" id="themedescription" required
+                [(ngModel)]="theme.description" name="description" #themedescription="ngModel"></textarea>
+    </mat-form-field>
+
+    <div class="form-group" style="width: 100%">
+      <table style="width: 100%;">
+        <tr>
+          <th>Tags</th>
+        </tr>
+        <tr *ngFor="let tag of theme.tags; let i = index">
+          <td style="width: 70%;">
+            <label class="themeTag" style="width: 100%;">{{tag}}</label>
+          </td>
+          <td style="width: 30%;">
+            <button class="themeTag" style="width: 100%;" mat-raised-button color="warn" name="deleteTag" (click)="deleteTag(i)">
+              Verwijder
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 70%;">
+            <input class="themeTagAdd" style="width: 100%;" matInput placeholder="Tag" name="tag" id="tagInput"
+                   [(ngModel)]="tagValue">
+          </td>
+          <td style="width: 30%;">
+            <button class="themeTagAdd" style="width: 100%;" mat-raised-button color="primary" name="addTag"
+                    (click)="addTag()">Tag toevoegen
+            </button>
+          </td>
+        </tr>
+      </table>
     </div>
     <div class="form-group">
+      <br>
       <label>Afbeelding: </label>
-      <app-file-upload name="upload"  [(ngModel)]="theme.image"></app-file-upload>
+      <app-file-upload name="upload" [(ngModel)]="theme.image"></app-file-upload>
     </div>
-    <button type="button" [disabled]="!themeform.form.valid" class="btn btn-primary"
-            (click)="createTheme()">toevoegen
-    </button>
-    <button class="btn btn-secondary" (click)="navigateAbort()">ga terug</button>
+    <div style="width: 100%">
+      <button style="width: 49%; margin-top: 30px" mat-raised-button color="primary" [disabled]="!themeform.form.valid" (click)="createTheme()">Toevoegen</button>
+      <button style="width: 49%; margin-top: 30px" mat-raised-button (click)="navigateAbort()">Ga terug</button>
+    </div>
+
+
   </form>
 </div>
 
