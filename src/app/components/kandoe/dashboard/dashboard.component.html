@@ -1,15 +1,6 @@
 <mat-tab-group [selectedIndex]="1">
   <mat-tab label="Afgelopen sessies">
     <h1>Afgelopen sessies</h1>
-    <!--<mat-card class="example-card" *ngFor="let session of pastSessions">
-      <mat-card-header>
-        <mat-card-title>{{session.name}}</mat-card-title>
-      </mat-card-header>
-      <mat-card-actions>
-        <button mat-raised-button color="primary">Analyse</button>
-      </mat-card-actions>
-    </mat-card>-->
-
     <div *ngFor="let session of pastSessions" class="sessionBox"
          style="background-size: 100% 100%">
       <h2>{{session.name}}</h2>
@@ -18,12 +9,21 @@
   </mat-tab>
   <mat-tab label="Huidige sessies">
     <h1>Huidige sessies</h1>
-    <div *ngFor="let session of currentSessions" class="sessionBox"
+    <div *ngFor="let session of currentSessions">
+    <div *ngIf="session.state === 1" class="sessionBoxSelecteren"
          style="background-size: 100% 100%">
       <h2>{{session.name}}</h2>
       <div class="descriptionContainer" *ngIf="session.state === 1">Selecteren</div>
       <div class="descriptionContainer" *ngIf="session.state === 2">Cirkelen</div>
       <button mat-raised-button color="primary" (click)="continueSession(session)" [disabled]="session.userSubmitted">Hervat</button>
+    </div>
+      <div *ngIf="session.state === 2" class="sessionBoxCirkelen"
+           style="background-size: 100% 100%">
+        <h2>{{session.name}}</h2>
+        <div class="descriptionContainer" *ngIf="session.state === 1">Selecteren</div>
+        <div class="descriptionContainer" *ngIf="session.state === 2">Cirkelen</div>
+        <button mat-raised-button color="primary" (click)="continueSession(session)" [disabled]="session.userSubmitted">Hervat</button>
+      </div>
     </div>
   </mat-tab>
   <mat-tab label="Geplande sessies">

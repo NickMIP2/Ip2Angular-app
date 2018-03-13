@@ -8,12 +8,22 @@
 }
 
 .themeBox{
-  width: 35%;
+  width: 30%;
   display: inline-block;
   margin: 1%;
   padding: 1%;
-  border-radius: 10px;
-  border: 1px solid;
+}
+
+mat-card-content {
+  text-align: left;
+}
+
+mat-card-header {
+
+}
+
+li {
+  list-style-type: none;
 }
 
 .subtitle{
@@ -33,4 +43,13 @@
   display: inline-block;
   margin: 1%;
   border: 1px solid black;
+}
+
+.themesContainer {
+  width: 80%;
+  margin: auto;
+  margin-top: 2%;
+  background: #E2E0FB;
+  padding: 15px;
+  border-radius: 10px;
 }

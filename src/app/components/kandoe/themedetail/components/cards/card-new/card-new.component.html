@@ -1,30 +1,18 @@
 <form class="form-group cardNewContainer">
-  <table class="table" style="width: 100%">
-    <tr style="width: 100%">
       <mat-form-field class="form-group" style="width: 100%">
         <input style="width: 100%" matInput placeholder="Kaart naam" type="text" required class="editInput" name="editcardtitle" [(ngModel)]="card.name">
       </mat-form-field>
-    </tr>
-    <tr>
-      <td class="descCol">Description</td>
-      <td class="editCol">
-        <input type="text" class="editInput" id="imgInput" name="editcarddescription" [(ngModel)]="card.description"
-               placeholder="Description">
-      </td>
-    </tr>
-    <tr>
+      <mat-form-field class="form-group" style="width: 100%">
+        <input style="width: 100%" matInput placeholder="Kaart beschrijving" type="text" required name="editcarddescription" [(ngModel)]="card.description">
+      </mat-form-field>
+  <table class="table" style="width: 100%">
+  <tr>
       <td class="descCol">Image</td>
       <td class="editCol">
         <app-file-upload name="upload" [(ngModel)]="card.image"></app-file-upload>
       </td>
     </tr>
-    <tr>
-      <td style="width: 50%">
-        <button style="width: 100%;" mat-raised-button color="primary" (click)="createCard()">Maak kaart</button>
-      </td>
-      <td style="width: 50%">
-        <button mat-raised-button color="warn" style="width: 100%;" (click)="navigateAbort()">Verwijder</button>
-      </td>
-    </tr>
   </table>
+        <button style="width: 49%;" mat-raised-button color="primary" (click)="createCard()">Maak kaart</button>
+        <button mat-raised-button color="warn" style="width: 49%" (click)="navigateAbort()">Verwijder</button>
 </form>

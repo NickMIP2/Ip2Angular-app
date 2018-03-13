@@ -5,7 +5,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   selector: 'app-file-upload',
   template:  `<label for="file-upload" class="custom-file-upload">
   </label>
-  <input id="file-upload" type="file" (change)="changeListener($event)"/>`,
+  <input class="hiddenBtn" type="file" (change)="changeListener($event)"/>`,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
