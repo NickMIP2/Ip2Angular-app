@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-phase2',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./phase2.component.css']
 })
 export class Phase2Component implements OnInit {
+  private sessionId;
 
-  constructor() { }
+
+  constructor(private route: ActivatedRoute) {
+    this.sessionId = this.route.snapshot.params['sessionId'];
+
+  }
 
   ngOnInit() {
   }
+
+
+
+  
 
 }

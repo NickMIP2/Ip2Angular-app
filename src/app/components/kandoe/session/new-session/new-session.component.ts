@@ -7,6 +7,7 @@ import {UseridStorage} from '../../../../sessionStorage/userid-storage';
 import {Theme} from '../../../../model/theme';
 import {SessionService} from '../../../../services/session.service';
 import {Router} from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-new-session',
@@ -14,7 +15,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./new-session.component.css']
 })
 export class NewSessionComponent implements OnInit {
-  newSession = new Session(0, '', null, 0, 0, 1, 1, [], [], [], [], null, [], 0);
+  newSession = new Session(0, '', null, 0, 0, 1, 1, [], [], [], [], null, [], 0, false, new Date());
 
   participantEmail = '';
   public themes = [];
@@ -74,6 +75,7 @@ export class NewSessionComponent implements OnInit {
   }
 
   onClickSubmit() {
+    this.newSession.startDate.toUTCString();
     if (this.newSession.type === 0 || this.newSession.type === 1) {
       this.newSession.themeId = this.themeIndexId;
       console.log(this.categoryIndexId);
@@ -100,7 +102,7 @@ export class NewSessionComponent implements OnInit {
     if (this.newSession.participants.indexOf(this.participantEmail) === -1) {
       this.newSession.participants.push(this.participantEmail);
       if (this.isOrganiser) {
-        this.newSession.particpantsOrganiser.push(this.participantEmail);
+        this.newSession.organisers.push(this.participantEmail);
       }
       this.participantEmail = '';
     } else {
@@ -111,16 +113,16 @@ export class NewSessionComponent implements OnInit {
   checkIfOrganiser(value: boolean, participant: string, id: number) {
     if (value) {
       if (this.newSession.participants.indexOf(this.participantEmail) === -1) {
-        this.newSession.particpantsOrganiser.push(participant);
+        this.newSession.organisers.push(participant);
       }
     } else {
-      this.newSession.particpantsOrganiser = this.newSession.particpantsOrganiser.filter(e => e !== participant);
+      this.newSession.organisers = this.newSession.organisers.filter(e => e !== participant);
     }
   }
 
   removeFromList(id: number, participant: string) {
     this.newSession.participants.splice(id, 1);
-    this.newSession.particpantsOrganiser = this.newSession.particpantsOrganiser.filter(e => e !== participant);
+    this.newSession.organisers = this.newSession.organisers.filter(e => e !== participant);
   }
 }
 

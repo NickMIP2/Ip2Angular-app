@@ -9,7 +9,7 @@ export class Session {
               public categoryId: number,
               public timeForMove: number,
               public participants: string[],
-              public particpantsOrganiser: string[],
+              public organisers: string[],
               public participantIds: number[],
               public organiserIds: number[],
               public type: number,
