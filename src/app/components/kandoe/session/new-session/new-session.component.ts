@@ -1,10 +1,8 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Session} from '../../../../model/session';
 import {ThemeService} from '../../../../services/theme.service';
-import {log} from 'util';
 import {CategoryService} from '../../../../services/category.service';
 import {UseridStorage} from '../../../../sessionStorage/userid-storage';
-import {Theme} from '../../../../model/theme';
 import {SessionService} from '../../../../services/session.service';
 import {Router} from '@angular/router';
 
@@ -77,7 +75,7 @@ export class NewSessionComponent implements OnInit {
       console.log(this.categoryIndexId);
       if (!(typeof this.categoryIndexId == 'string') && this.categoryIndexId != null && this.categoryIndexId != undefined) {
         this.newSession.categoryId = this.categoryIndexId;
-      } else{
+      } else {
         this.newSession.categoryId = 0;
       }
       this.newSession.id = 0;

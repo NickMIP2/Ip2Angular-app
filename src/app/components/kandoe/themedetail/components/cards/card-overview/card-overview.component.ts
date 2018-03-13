@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UseridStorage} from '../../../../../../sessionStorage/userid-storage';
 import {CardService} from '../../../../../../services/card.service';
@@ -27,7 +27,7 @@ export class CardOverviewComponent implements OnInit {
     this.categoryId = this.route.snapshot.params['categoryId'];
 
     // get cards of theme
-    this.cardService.getCardsByCategory(this.categoryId ,this.themeId, this.userId).subscribe(data => {
+    this.cardService.getCardsByCategory(this.categoryId, this.themeId, this.userId).subscribe(data => {
         this.cards = data;
       },
       error => {
