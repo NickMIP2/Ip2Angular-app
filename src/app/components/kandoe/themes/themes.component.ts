@@ -35,9 +35,11 @@ export class ThemesComponent implements OnInit {
     this.router.navigate(['kandoe/themes/thema-toevoegen']);
 
   }
+
   goToDetail(id: number) {
     this.router.navigate(['kandoe/themes/' + id]);
   }
+
   deleteTheme(id: number) {
     this.themeService.deleteTheme(id, this.useridStorage.getUserId()).subscribe(data => {
         this.themes = data;

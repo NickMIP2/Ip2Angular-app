@@ -2,9 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {SessionService} from '../../../services/session.service';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatButtonModule} from '@angular/material/button';
-import {Session} from '../../../model/session';
 import {Router} from '@angular/router';
 
 @Component({

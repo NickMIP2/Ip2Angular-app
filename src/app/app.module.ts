@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AlertModule} from 'ngx-bootstrap';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -21,7 +21,6 @@ import {RegisterComponent} from './components/authentication/register/register.c
 import {ThemeService} from './services/theme.service';
 import {NewSessionComponent} from './components/kandoe/session/new-session/new-session.component';
 import {RouterLinkDirectiveStub} from './testing/router-link-directive-stub';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {Interceptor} from './interceptor';
 import {TokenStorage} from './sessionStorage/token-storage';
 
@@ -30,18 +29,25 @@ import {CardService} from './services/card.service';
 import {CategoryService} from './services/category.service';
 import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
 import {UseridStorage} from './sessionStorage/userid-storage';
-import { CardNewComponent } from './components/kandoe/themedetail/components/cards/card-new/card-new.component';
-import { ChatComponent } from './components/kandoe/chat/chat.component';
+import {CardNewComponent} from './components/kandoe/themedetail/components/cards/card-new/card-new.component';
+import {ChatComponent} from './components/kandoe/chat/chat.component';
 import {FileUploadComponent} from './file-upload/file-upload.component';
 import {MessageService} from './services/message.service';
-import {MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatNativeDateModule, MatTabsModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatNativeDateModule,
+  MatTabsModule
+} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SessionService} from './services/session.service';
-import { Phase1Component } from './components/kandoe/session/phase1/phase1.component';
-import { Phase2Component } from './components/kandoe/session/phase2/phase2.component';
-import { SessionOverviewComponent } from './components/kandoe/session/session-overview/session-overview.component';
-import { CardOverviewComponent } from './components/kandoe/themedetail/components/cards/card-overview/card-overview.component';
-import {MatFormFieldModule} from '@angular/material';
+import {Phase1Component} from './components/kandoe/session/phase1/phase1.component';
+import {Phase2Component} from './components/kandoe/session/phase2/phase2.component';
+import {SessionOverviewComponent} from './components/kandoe/session/session-overview/session-overview.component';
+import {CardOverviewComponent} from './components/kandoe/themedetail/components/cards/card-overview/card-overview.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({

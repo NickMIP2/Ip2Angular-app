@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UseridStorage} from '../../../../sessionStorage/userid-storage';
 import {SessionService} from '../../../../services/session.service';
-import {ThemeService} from '../../../../services/theme.service';
-import {CategoryService} from '../../../../services/category.service';
 import {CardService} from '../../../../services/card.service';
 import {Session} from '../../../../model/session';
 
@@ -20,6 +18,7 @@ export class Phase1Component implements OnInit {
   public cards = [];
   public selectedCards = [];
   public buttonStates = [];
+
   constructor(private router: Router, private cardService: CardService, private route: ActivatedRoute, private sessionService: SessionService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
     this.sessionId = this.route.parent.snapshot.params['sessionId'];

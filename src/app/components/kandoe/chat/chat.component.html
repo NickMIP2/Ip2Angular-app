@@ -3,7 +3,7 @@
     Welcome to Chat!
   </h1>
   <div class="chat-container">
-    <div class="chat" >
+    <div class="chat">
       <div class="message" *ngFor="let currentmessage of messages">
         {{currentmessage.message}}
       </div>
@@ -16,7 +16,7 @@
 
     <div class="send" (click)="sendMessage(input.value)">
     </div>
-    <input  id="input" type="text" (keyup.enter)="sendMessage(input.value)" #input>
+    <input id="input" type="text" (keyup.enter)="sendMessage(input.value)" #input>
   </div>
 
 </div>

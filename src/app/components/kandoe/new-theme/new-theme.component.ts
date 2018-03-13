@@ -52,7 +52,7 @@ export class NewThemeComponent implements OnInit {
   }
 
   addTag() {
-    if (!(this.tagValue === '')){
+    if (!(this.tagValue === '')) {
       this.theme.tags.push(this.tagValue);
       this.tagValue = '';
     }
