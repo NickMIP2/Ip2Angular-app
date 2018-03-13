@@ -1,15 +1,15 @@
 .circle {
-  width: 1000px;
-  height: 1000px;
+  width: 700px;
+  height: 700px;
   margin: 50px;
   margin-left: 100px;
   position: relative;
 }
 
 .sessioncard {
-  width: 50px;
+  width: 35px;
   border: 1px solid blue;
-  height: 50px;
+  height: 35px;
   position: absolute;
   z-index: 999;
   background-color: white;
@@ -27,6 +27,11 @@
 
 .subcircle:nth-child(2n) {
   background: palegreen;
+}
+
+#endSessionButton{
+  float: left;
+  margin-left: 150px;
 }
 
 

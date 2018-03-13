@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {SessionCard} from '../model/sessioncard';
 import {Ring} from '../model/ring';
 
@@ -12,6 +12,9 @@ export class CircleComponent implements OnInit, OnChanges {
   constructor() {
   }
 
+  @Input() public isOrganiser = true;
+  @Input() public isMyTurn = true;
+
   public selectedCard = new SessionCard(null, '', 8, 0, 0);
   public sessionCard1 = new SessionCard(1, 'card1', 8, 0, 0);
   public sessionCard2 = new SessionCard(2, 'card2', 8, 0, 0);
@@ -22,22 +25,24 @@ export class CircleComponent implements OnInit, OnChanges {
   public sessionCard5 = new SessionCard(5, 'card5', 8, 0, 0);
   public sessionCard6 = new SessionCard(6, 'card6', 8, 0, 0);
 
-  sessionCards = [this.sessionCard1, this.sessionCard2, this.sessionCard3, this.sessionCard4, this.sessionCard5, /*this.sessionCard6*/];
-  circleThickness;
+  @Input() sessionCards = [this.sessionCard1, this.sessionCard2, this.sessionCard3, this.sessionCard4, this.sessionCard5, this.sessionCard6];
+  circleRingSize;
 
   // helft van div width/height
-  cardThickness = 25;
+  cardThickness = 17.5;
+
   // helft van div width/height
-  circleRadius = 500;
-  amountOfCircles = 8;
+  circleRadius = 350;
+
+  amountOfRings = 8;
   public rings = [];
   public angles = [];
 
   ngOnInit() {
 
-    const step = 100 / (this.amountOfCircles);
+    const step = 100 / (this.amountOfRings);
     let z = 10;
-    for (let i = 0; i < this.amountOfCircles; i++) {
+    for (let i = 0; i < this.amountOfRings; i++) {
       this.rings.push(new Ring(step + (i * step), step + (i * step), z));
       z = z - 1;
     }
@@ -49,19 +54,19 @@ export class CircleComponent implements OnInit, OnChanges {
   }
 
   public setCards() {
-    this.circleThickness = this.circleRadius / (this.amountOfCircles);
+    this.circleRingSize = this.circleRadius / (this.amountOfRings);
     let index = 0;
     for (index; index < this.sessionCards.length; index++) {
-      let angleDegrees = ((360 / this.sessionCards.length) * index) ;
 
-      if (angleDegrees > 360) {
-        angleDegrees = angleDegrees - 360;
-      }
+      const angleDegrees = ((360 / this.sessionCards.length) * index);
 
       const angleRadians = angleDegrees * (Math.PI / 180);
       this.angles.push(angleRadians);
-      console.log(this.circleThickness);
-      const ringRadius = (this.circleRadius - ((this.circleRadius) - ((this.sessionCards[index].distanceToCenter + 1) * this.circleThickness))) - this.cardThickness;
+
+      console.log(this.circleRingSize);
+
+      const ringRadius = (this.circleRadius - ((this.circleRadius) - ((this.sessionCards[index].distanceToCenter + 1) * this.circleRingSize))) - this.cardThickness;
+
       console.log(ringRadius);
 
       const circleStart = this.circleRadius - this.cardThickness;
@@ -73,40 +78,47 @@ export class CircleComponent implements OnInit, OnChanges {
 
 
   moveCard(sessionCard, i) {
+    if (this.isMyTurn) {
 
-    this.selectedCard = sessionCard;
-    const topX = sessionCard.x;
-    const topY = sessionCard.y;
+      this.isMyTurn = false;
+      this.selectedCard = sessionCard;
+      const topX = sessionCard.x;
+      const topY = sessionCard.y;
 
-    let sessionCardRadius;
-    let angle;
+      let sessionCardRadius;
+      let angle;
 
-    let midpointX = topX - (this.circleRadius);
-    let midpointY = topY - (this.circleRadius);
+      let midpointX = topX - (this.circleRadius);
+      let midpointY = topY - (this.circleRadius);
+      console.log('cardx: ' + topX + 'cardy: ' + topY);
+      console.log('x: ' + midpointX + 'y: ' + midpointY);
+      sessionCardRadius = Math.sqrt(Math.pow(midpointX, 2) + Math.pow(midpointY, 2));
 
-    console.log('cardx: ' + topX + 'cardy: ' + topY);
-    console.log('x: ' + midpointX + 'y: ' + midpointY);
-    sessionCardRadius = Math.sqrt(Math.pow(midpointX, 2) + Math.pow(midpointY, 2));
+      console.log(sessionCardRadius + ' straal');
+      angle = this.angles[i];
+      console.log('angle ' + angle);
 
-    console.log(sessionCardRadius + ' straal');
-    angle = Math.atan2(midpointY, midpointX);
-    // angle = this.angles[i];
-    console.log('angle ' + angle);
+      sessionCardRadius = sessionCardRadius - this.circleRingSize;
 
-    sessionCardRadius = sessionCardRadius - this.circleThickness;
+      midpointX = sessionCardRadius * Math.cos(angle);
+      midpointY = sessionCardRadius * Math.sin(angle);
 
-    midpointX = sessionCardRadius * Math.cos(angle);
-    midpointY = sessionCardRadius * Math.sin(angle);
+      sessionCard.x = midpointX + (this.circleRadius);
+      sessionCard.y = midpointY + (this.circleRadius);
 
-    sessionCard.x = midpointX + (this.circleRadius);
-    sessionCard.y = midpointY + (this.circleRadius);
+      sessionCard.distanceToCenter = sessionCard.distanceToCenter - 1;
 
-    sessionCard.distanceToCenter = sessionCard.distanceToCenter - 1;
+      // spreek service aan
 
-    // spreek service aan
-
+    } else {
+      return;
+    }
     if (sessionCard.distanceToCenter === 0) {
       alert(sessionCard.name + ' WINT');
     }
+  }
+
+  public endSession() {
+
   }
 }
