@@ -11,7 +11,7 @@ import {UseridStorage} from '../../../sessionStorage/userid-storage';
   providers: [ThemeService, UseridStorage]
 })
 export class NewThemeComponent implements OnInit {
-  public theme = new Theme(0, '', '', [], '');
+  public theme = new Theme(null, '', '',  ['tag1', 'tag2'], '');
   private userId;
   public tagValue = '';
 
@@ -26,7 +26,7 @@ export class NewThemeComponent implements OnInit {
   }
 
   createTheme() {
-    console.log('themeName: ' + this.theme.name + '; image: ' + this.theme.image.substring(0, 30) + '...');
+    console.log('themeName: ' + this.theme.name + '; image: ' + this.theme.image.substring(0, 100) + '...');
     this.themeService.createTheme(this.theme, this.userId).subscribe(
       data => {
         this.router.navigate(['kandoe/themes/' + data.id + '/overview']); // id van teruggekregen thema
@@ -52,7 +52,7 @@ export class NewThemeComponent implements OnInit {
   }
 
   addTag() {
-    if (!(this.tagValue === '')){
+    if (!(this.tagValue === '')) {
       this.theme.tags.push(this.tagValue);
       this.tagValue = '';
     }

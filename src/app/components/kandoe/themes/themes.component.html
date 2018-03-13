@@ -1,9 +1,12 @@
-<button name="newthemebutton" class="btn btn-primary" style="margin: 1%;" (click)="goToNewTheme()">Nieuw thema
-</button>
+<div>
+  <button name="newthemebutton" class="btn btn-primary" style="margin: 1%;" routerLink="thema-toevoegen">
+    <i class="material-icons">add</i>
+  </button>
+</div>
 <div class="borderBlue">
   <div *ngFor="let currentTheme of themes" class="themeBox"
-       style="background-size: 100% 100%">
-      <!-- [ngStyle]="{'background-image': 'url(' + currentTheme.image + ')'}">-->
+       style="background-size: 100% 100%"
+       [ngStyle]="{'background-image': 'url(' + currentTheme.image + ')'}">
     <h1>{{currentTheme.name}}</h1>
     <h5 class="subtitle">Description</h5>
     <div class="descriptionContainer">{{currentTheme.description}}</div>

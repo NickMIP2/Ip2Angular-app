@@ -3,9 +3,9 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-file-upload',
-  template:  `<label for="file-upload" class="custom-file-upload">
-  </label>
-  <input id="file-upload" type="file" (change)="changeListener($event)"/>`,
+  template:  `<input id="file-upload" type="file" (change)="changeListener($event)"/>
+  <!--<button type="button" md-button (click)="imgFileInput.click()">Add a photo</button>
+  <input hidden type="file" #imgFileInput (change)="changeListener($event)"/>-->`,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -16,8 +16,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class FileUploadComponent implements ControlValueAccessor {
   selectedFileName: string = null;
-  showFileNameInput=false;
-  uploadButtonText="Upload File";
 
   writeValue(value: any) {
 // Handle write value
@@ -29,11 +27,9 @@ export class FileUploadComponent implements ControlValueAccessor {
   registerOnTouched() { }
 
   changeListener($event): void {
-    // debugger; // uncomment this for debugging purposes
     this.readThis($event.target);
   }
   readThis(inputValue: any): void {
-    // debugger; // uncomment this for debugging purposes
     const file: File = inputValue.files[0];
     const myReader: FileReader = new FileReader();
 

@@ -47,7 +47,7 @@ export class NewSessionComponent implements OnInit {
         console.log(error);
         alert('Error loading themes');
       }, () => {
-        //this.setCategory();
+        // this.setCategory();
       });
     this.sessionService.getSessionsOfUser(this.userId).subscribe(data => {
         this.oldSessions = data;
@@ -77,7 +77,7 @@ export class NewSessionComponent implements OnInit {
       console.log(this.categoryIndexId);
       if (!(typeof this.categoryIndexId == 'string') && this.categoryIndexId != null && this.categoryIndexId != undefined) {
         this.newSession.categoryId = this.categoryIndexId;
-      } else{
+      } else {
         this.newSession.categoryId = 0;
       }
       this.newSession.id = 0;
