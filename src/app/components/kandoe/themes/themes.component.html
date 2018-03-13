@@ -1,4 +1,4 @@
-<button name="newthemebutton" class="btn btn-primary" style="margin: 1%;" (click)="goToNewTheme()">Nieuw thema
+<button name="newthemebutton" mat-raised-button color="primary" style="margin: 1%;" (click)="goToNewTheme()">Nieuw thema
 </button>
 <div class="borderBlue">
   <div *ngFor="let currentTheme of themes" class="themeBox"
@@ -11,9 +11,9 @@
     <div class="descriptionContainer">
       <span *ngFor="let tag of currentTheme.tags">{{tag.toString()}}; </span>
     </div>
-    <div>
-      <button class="btn btn-info font-small buttonCss" (click)="goToDetail(currentTheme.id)">Details</button>
-      <button class="btn btn-danger font-small buttonCss" (click)="deleteTheme(currentTheme.id)">Verwijder</button>
+    <div style="width: 100%;">
+      <button style="width: 49%;" mat-raised-button color="primary" (click)="goToDetail(currentTheme.id)">Details</button>
+      <button style="width: 49%;" mat-raised-button color="warn" (click)="deleteTheme(currentTheme.id)">Verwijder</button>
     </div>
   </div>
 </div>
