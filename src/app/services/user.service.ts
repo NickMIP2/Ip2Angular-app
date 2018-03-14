@@ -10,11 +10,24 @@ const httpOptions = {
 @Injectable()
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
-  getUser(userId: number): User {
-    const user: User = {'id': 0, 'email': 'email', 'lastname': 'lastname', 'firstname': 'firstname', 'username': 'username', 'password': 'password', 'organiser': 'organiser'};
-    return user;
-    /*return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId);*/
+  getUser(userId: number): /*User*/Observable<any> {
+    /*return {
+      'id': 0,
+      'email': 'email',
+      'lastname': 'lastname',
+      'firstname': 'firstname',
+      'username': 'username',
+      'password': 'password',
+    };*/
+    return this.http.get('https://kandoe-backend.herokuapp.com/user/' + userId);
+  }
+
+  updateUser(user: User): Observable<any> {
+    const body = JSON.stringify(user);
+    console.log('body: ' + body);
+    return this.http.put('https://kandoe-backend.herokuapp.com/user/' + user.id, body, httpOptions);
   }
 }

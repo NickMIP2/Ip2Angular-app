@@ -44,6 +44,7 @@ import { CardOverviewComponent } from './components/kandoe/themedetail/component
 import {MatFormFieldModule} from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { UsersComponent } from './components/kandoe/users/users.component';
+import {UserService} from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { UsersComponent } from './components/kandoe/users/users.component';
     SessionService,
     Interceptor,
     UseridStorage,
-    MessageService
+    MessageService,
+    UserService
   ],
 
   bootstrap: [AppComponent]

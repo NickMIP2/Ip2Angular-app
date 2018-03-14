@@ -1,24 +1,7 @@
-<div class="container" *ngIf="editing === false">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>{{user.username}}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      {{user.firstname}} {{user.lastname}}
-    </mat-card-content>
-    <mat-card-content>
-      {{user.email}}
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="goToEdit()">Edit</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
-
-<div class="container" *ngIf="editing === true">
+<div class="container">
   <form #userform="ngForm" class="formcontainer">
     <mat-form-field class="form-group" style="width: 100%;">
-      <input style="width: 100%;" matInput placeholder="Username" id="username" type="text" required
+      <input style="width: 100%;" matInput placeholder="Username" id="username" type="text" required disabled
              [(ngModel)]="user.username" name="username" #username="ngModel">
     </mat-form-field>
     <mat-form-field class="form-group" style="width: 100%;">
@@ -38,12 +21,9 @@
              [(ngModel)]="user.password" name="pwOne" #pwOne="ngModel">
     </mat-form-field>
     <div style="width: 100%;">
-      <button style="width: 49%; margin-top: 30px;" mat-raised-button color="primary"
+      <button mat-raised-button color="primary"
               [disabled]="!userform.form.valid" (click)="saveChanges()">
         Save changes
-      </button>
-      <button style="width: 49%; margin-top: 30px;" mat-raised-button color="secondary" (click)="cancelChanges()">
-        Cancel
       </button>
     </div>
   </form>

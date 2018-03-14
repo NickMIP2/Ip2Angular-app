@@ -11,7 +11,7 @@ import {AuthenticationService} from '../../../services/authentication.service';
 
 })
 export class RegisterComponent implements OnInit {
-  model = new User(0, '', '', '', '', '', '');
+  model = new User(0, '', '', '', '', '');
   passwordCheck = '';
   error = '';
   pwMatch: boolean = this.model.password === this.passwordCheck;
