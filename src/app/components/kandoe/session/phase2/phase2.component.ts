@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {UseridStorage} from '../../../../sessionStorage/userid-storage';
 import {SessionService} from '../../../../services/session.service';
 import {Session} from '../../../../model/session';
+import {UseridStorage} from '../../../../sessionStorage/userid-storage';
 
 @Component({
   selector: 'app-phase2',
@@ -37,4 +37,4 @@ export class Phase2Component implements OnInit {
 
   }
 
-}
+
