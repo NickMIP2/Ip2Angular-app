@@ -25,7 +25,7 @@ export class Phase2Component implements OnInit {
   ngOnInit() {
     this.sessionService.getSession(this.sessionId, this.userId).subscribe(data => {
         this.session = data;
-        if(data.currentUser == this.userId){
+        if (data.currentUser == this.userId) {
           this.userTurn = true;
         }
       },
@@ -36,5 +36,8 @@ export class Phase2Component implements OnInit {
       });
 
   }
+
+
+}
 
 
