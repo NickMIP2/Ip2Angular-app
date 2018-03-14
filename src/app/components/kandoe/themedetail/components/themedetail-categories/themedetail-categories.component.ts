@@ -76,4 +76,8 @@ export class ThemedetailCategoriesComponent implements OnInit {
       });
     this.editing = 0;
   }
+
+  goToCards(id: number) {
+    this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + id + '/overview']);
+  }
 }

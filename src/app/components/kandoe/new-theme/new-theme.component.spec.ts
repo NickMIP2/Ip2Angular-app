@@ -5,8 +5,20 @@ import {FormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientModule} from '@angular/common/http';
 import {ThemeService} from '../../../services/theme.service';
-import {DebugElement} from '@angular/core';
+import {DebugElement, NgModule} from '@angular/core';
 import {By} from '@angular/platform-browser';
+import {FileUploadComponent} from '../../../file-upload/file-upload.component';
+import {Theme} from '../../../model/theme';
+import {Observable} from 'rxjs/Observable';
+import {MatFormField, MatFormFieldModule, MatInputModule, MatSelectModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+// @NgModule({
+//   imports: [
+//     MatFormFieldModule,
+//     MatInputModule
+//   ]
+// })
 
 describe('NewThemeComponent', () => {
   let component: NewThemeComponent;
@@ -15,12 +27,14 @@ describe('NewThemeComponent', () => {
   let element: HTMLElement;
   let spy: jasmine.Spy;
   let themeService: ThemeService;
+  let navigateSpy;
+  let mockCreatedTheme: Theme;
 
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [NewThemeComponent],
-      imports: [RouterTestingModule, HttpClientModule, FormsModule],
+      declarations: [NewThemeComponent, FileUploadComponent],
+      imports: [RouterTestingModule, HttpClientModule, FormsModule, MatFormFieldModule, MatSelectModule, MatInputModule, BrowserAnimationsModule],
       providers: [ThemeService]
     })
       .compileComponents();
@@ -29,10 +43,13 @@ describe('NewThemeComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NewThemeComponent);
     component = fixture.componentInstance;
+    themeService = fixture.debugElement.injector.get(ThemeService);
+    /*TestBed.get(ThemeService);*/
+    mockCreatedTheme = {id: 1, name: 'name', description: 'description', tags: ['tags'], image: 'imageurl'};
     de = fixture.debugElement.query(By.css('.container'));
     element = de.nativeElement;
-    spy = spyOn(themeService, 'createTheme').and.callThrough();
-
+    spy = spyOn(themeService, 'createTheme').and.returnValue(Observable.of(mockCreatedTheme));
+    navigateSpy = spyOn((<any>component).router, 'navigate');
     fixture.detectChanges();
   });
 
@@ -44,5 +61,21 @@ describe('NewThemeComponent', () => {
     expect(element.innerHTML).toContain('toevoegen');
   });
 
+  it('should call service to create theme equal to mock', () => {
+    component.theme = mockCreatedTheme;
+    component.createTheme();
+    expect(spy).toHaveBeenCalled();
+  });
 
-});
+  it('should navigate to themedetail on creation', () => {
+    component.createTheme();
+    expect(navigateSpy).toHaveBeenCalledWith(['kandoe/themes/' + mockCreatedTheme.id + '/overview']);
+  });
+
+  it('should navigate to themes', () => {
+    component.navigateAbort();
+    expect(navigateSpy).toHaveBeenCalledWith(['kandoe/themes/']);
+  });
+
+})
+;

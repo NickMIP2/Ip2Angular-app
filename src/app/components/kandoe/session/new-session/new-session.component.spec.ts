@@ -11,6 +11,7 @@ describe('NewSessionComponent', () => {
       declarations: [NewSessionComponent]
     })
       .compileComponents();
+
   }));
 
   beforeEach(() => {

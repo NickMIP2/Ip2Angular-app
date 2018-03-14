@@ -1,9 +1,9 @@
-.chat-container {
-  height: 100%;
-  width: 100%;
-}
 
-.chat {
+.chat-container{
+  height: 80vh;
+  width: 100vw;
+}
+.chat{
   text-align: left;
   margin: 0 auto;
   width: 100%;
@@ -11,7 +11,7 @@
   border: 1px solid grey;
 }
 
-.footer {
+.footer{
   background: #cccccc;
   margin: 0 auto;
   position: absolute;
@@ -19,21 +19,18 @@
   height: 10vh;
   width: 20vw;
 }
-
-.send-button {
+.send-button{
   margin: 0 auto;
   height: 70%;
   width: 50%;
 }
-
-input {
+input{
   float: right;
   height: 30px;
   border-radius: 15px;
   font-size: 1.5em;
 }
-
-.send {
+.send{
   float: right;
   background: url("../../../../assets/images/send.png");
   background-size: contain;
@@ -43,3 +40,4 @@ input {
   margin-left: 5px;
 
 }
+

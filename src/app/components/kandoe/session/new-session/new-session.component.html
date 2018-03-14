@@ -1,4 +1,12 @@
 <div class="container">
+  <div class="cloneSession">
+    <select [(ngModel)]="oldSession" id="sessions" name="sessions" style="width: 100%"
+            class="custom-select form-control" required>
+      <option *ngFor="let session of oldSessions;let i = index" [ngValue]="oldSessions[i]">{{session.name}}</option>
+    </select>
+
+    <button mat-raised-button color="primary" (click)="cloneSession()">Kopieër van oude sessie</button>
+  </div>
   <form #sessionform="ngForm" class="formcontainer" name="sessionForm">
     <div id="nameThemeContainer" class="form-group ">
       <table class="table" style="width: 100%; margin: auto;">
@@ -6,7 +14,7 @@
           <td style="width: 15%;"><label style="display: inline-block;">Naam:</label></td>
           <td class="" style="width: 85%;">
             <input class="form-control" id="sessionname" type="text" required
-                   [(ngModel)]="model.name"
+                   [(ngModel)]="newSession.name"
                    name="sessionname" style="width: 100%;"
                    #sessionname="ngModel"
                    placeholder="Sessienaam is een verplicht veld.">
@@ -15,8 +23,21 @@
         <tr>
           <td style="width: 15%;"><label style="display: inline-block;">Thema:</label></td>
           <td class="" style="width: 85%;">
-            <select id="themes" name="themes" style="width: 100%" class="custom-select form-control" required>
-              <option *ngFor="let theme of themes">{{theme.name}}</option>
+            <select [(ngModel)]="themeIndexId" (change)="setCategory()" id="themes" name="themes" style="width: 100%"
+                    class="custom-select form-control" required>
+              <option [ngValue]="undefined" disabled>Selecteer thema</option>
+              <option *ngFor="let theme of themes;let i = index" [value]="theme.id">{{theme.name}}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td style=" width: 15%;
+              "><label style="display: inline-block;">Categorieën:</label></td>
+          <td class="" style="width: 85%;">
+            <select [(ngModel)]="categoryIndexId" id="categories" name="categories" style="width: 100%"
+                    class="custom-select form-control">
+              <option [selected]="true">Geen categorie</option>
+              <option *ngFor="let category of categoryArray" [ngValue]="category.id">{{category.name}}</option>
             </select>
           </td>
         </tr>
@@ -25,9 +46,11 @@
     <div id="chanceCheck" class="form-group ">
       <table style="width: 50%; margin: auto;" class="table">
         <tr>
-          <td style="width: 50%"><label class="radio"><input type="radio" name="optKans" (click)="chanceClicked()"> Kans</label>
+          <td style="width: 50%"><label class="radio">
+            <input type="radio" name="optKans" [value]="0" [(ngModel)]="newSession.type"> Kans</label>
           </td>
-          <td style="width: 50%"><label class="radio"><input type="radio" name="optKans" (click)="problemClicked()">
+          <td style="width: 50%"><label class="radio">
+            <input type="radio" name="optKans" [value]="1" [(ngModel)]="newSession.type">
             Probleem</label></td>
         </tr>
       </table>
@@ -37,19 +60,19 @@
         <tr>
           <td style="width: 70%;"><label>Maximum kaarten: </label></td>
           <td style="width: 30%;">
-            <input type="number" class="form-control" [(ngModel)]="model.maxCards"
+            <input type="number" class="form-control" [(ngModel)]="newSession.maxCards"
                    min="1" placeholder="1" name="inputMaxCards"></td>
         </tr>
         <tr>
           <td style="width: 70%;"><label>Aantal rondes: </label></td>
           <td style="width: 30%;">
-            <input type="number" class="form-control" [(ngModel)]="model.noOfRounds"
+            <input type="number" class="form-control" [(ngModel)]="newSession.totalRounds"
                    min="1" placeholder="1" name="inputNoOfRounds"></td>
         </tr>
         <tr>
           <td style="width: 70%;"><label>Tijd per zet (uur): </label></td>
           <td style="width: 30%;">
-            <input type="number" class="form-control" [(ngModel)]="model.timePerMoveHour"
+            <input type="number" class="form-control" [(ngModel)]="newSession.timeForMove"
                    min="0" placeholder="1" name="inputTimePerMoveHour"></td>
         </tr>
       </table>
@@ -57,10 +80,11 @@
     <div id="participantsContainer" class="form-group">
       <div class="participants_float ">
         <label>Deelnemers: </label><br/>
-        <textarea readonly [(ngModel)]="model.participants"
-                  class="text-left participants_textarea" name="inputParticipants">
-          {{model.participants}}
-        </textarea>
+        <div contenteditable="false">
+          <p *ngFor="let participant of newSession.participants; let i = index">
+            <button class="btn btn-danger" (click)="removeFromList(i)">-</button>&emsp;{{participant}}
+          </p>
+        </div>
       </div>
       <div class="participants_float ">
         <label>Nieuwe deelnemer: </label>
@@ -74,9 +98,14 @@
         </button>
       </div>
     </div>
+    <mat-form-field>
+      <input matInput  name="startDate" [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="newSession.startDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
     <button class="btn btn-primary submit_width form-control"
             (click)="onClickSubmit()"
-            [disabled]="this.model.chance === null">
+            [disabled]="this.newSession.type === null || this.newSession.name=== ''">
       Sessie maken
     </button>
   </form>

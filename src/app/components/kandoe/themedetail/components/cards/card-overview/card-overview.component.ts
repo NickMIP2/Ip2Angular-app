@@ -1,18 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {ThemeService} from '../../../../../services/theme.service';
+import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
-import {CardService} from '../../../../../services/card.service';
+import {UseridStorage} from '../../../../../../sessionStorage/userid-storage';
+import {CardService} from '../../../../../../services/card.service';
+import {ThemeService} from '../../../../../../services/theme.service';
 
 @Component({
-  selector: 'app-themedetail-cards',
-  templateUrl: './themedetail-cards.component.html',
-  styleUrls: ['./themedetail-cards.component.css']
+  selector: 'app-card-overview',
+  templateUrl: './card-overview.component.html',
+  styleUrls: ['./card-overview.component.css']
 })
-export class ThemedetailCardsComponent implements OnInit {
+export class CardOverviewComponent implements OnInit {
+
 
   public cards = [];
   public themeId;
+  public categoryId;
   public userId;
 
   constructor(private cardService: CardService, private themeService: ThemeService, private route: ActivatedRoute, private userIdStorage: UseridStorage, private router: Router) {
@@ -22,8 +24,10 @@ export class ThemedetailCardsComponent implements OnInit {
   ngOnInit() {
     window.document.title = 'Kaarten';
     this.themeId = this.route.parent.snapshot.params['themeId'];
+    this.categoryId = this.route.snapshot.params['categoryId'];
+
     // get cards of theme
-    this.cardService.getCardsByTheme(this.themeId, this.userId).subscribe(data => {
+    this.cardService.getCardsByCategory(this.categoryId ,this.themeId, this.userId).subscribe(data => {
         this.cards = data;
       },
       error => {
@@ -37,7 +41,7 @@ export class ThemedetailCardsComponent implements OnInit {
   }
 
   deleteCard(id: number) {
-    this.cardService.deleteCard(id, this.userId, this.themeId).subscribe(data => {
+    this.cardService.deleteCard(this.categoryId, id, this.userId, this.themeId).subscribe(data => {
         this.cards = data;
       },
       error => {
@@ -48,6 +52,11 @@ export class ThemedetailCardsComponent implements OnInit {
   }
 
   navigateNewCard() {
-    this.router.navigate(['kandoe/themes/' + this.themeId + '/cards/card-new']);
+    this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/cards/new-card']);
+  }
+
+  editCard(id: number) {
+    this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/cards/' + id + '/edit-card']);
+
   }
 }
