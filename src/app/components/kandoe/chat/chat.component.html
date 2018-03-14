@@ -1,33 +1,29 @@
-
 <div class="container">
-  <div class="row">
-    <div class="col-md-5">
-      <div class="panel panel-primary">
-          <div class="panel-body">
-            <ul class="chat">
-              <li class="left clearfix">
-                <div class="chat-body clearfix">
-                  <div class="message" *ngFor="let currentmessage of messages">
-                     <div class="header">
-                        <strong class="primary-font">Nick</strong>
-                     </div>
-                    <p>
-                      {{currentmessage.message}}
-                    </p>
-                  </div>
-                </div>
-              </li>
-            </ul>
+    <div class="panel panel-primary">
+    <div class="panel-body">
+      <ul class="chat">
+        <li class="left clearfix">
+          <div class="chat-body clearfix">
+            <div class="message" *ngFor="let currentmessage of messages">
+              <div class="header">
+                <strong class="primary-font">Nick</strong>
+              </div>
+              <p>
+                {{currentmessage.message}}
+              </p>
+            </div>
           </div>
-          <div class="panel-footer">
-            <div class="input-group">
-              <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..."  (keyup.enter)="sendMessage(input.value)" #input />
-              <span class="input-group-btn">
+        </li>
+      </ul>
+    </div>
+    <div class="panel-footer">
+      <div class="input-group">
+        <input id="input" type="text" class="form-control input-sm" placeholder="Type your message here..."
+               (keyup.enter)="sendMessage(input.value)" #input/>
+        <span class="input-group-btn">
                             <button class="btn btn-warning btn-sm" id="btn-chat" (click)="sendMessage(input.value)">
                                 Send</button>
                         </span>
-            </div>
-          </div>
       </div>
     </div>
   </div>

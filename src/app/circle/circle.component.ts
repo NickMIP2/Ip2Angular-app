@@ -116,7 +116,7 @@ export class CircleComponent implements OnInit, OnChanges {
     }
   }
 
-  moveCard(sessionCard, i) {
+  selectCard(sessionCard, i) {
 
     this.selectedCard = sessionCard;
     this.index = i;

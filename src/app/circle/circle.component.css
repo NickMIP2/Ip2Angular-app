@@ -1,8 +1,8 @@
 .circle {
   width: 700px;
   height: 700px;
-  margin: 50px;
-  margin-left: 100px;
+  margin-top: 20px;
+  margin-left: 20px;
   position: relative;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .subcircle:nth-child(2n) {
-  background: palegreen;
+  background: #3e52b5;
 }
 
 #endSessionButton{

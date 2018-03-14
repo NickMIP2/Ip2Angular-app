@@ -10,14 +10,17 @@ import {UseridStorage} from '../../../../sessionStorage/userid-storage';
   styleUrls: ['./phase2.component.css']
 })
 export class Phase2Component implements OnInit {
-  private sessionId;
+  public sessionId = 0;
   private userId;
   public userTurn: boolean;
+  public userOrganiser: boolean;
   public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), 0);
 
 
   constructor(private route: ActivatedRoute, private useridStorage: UseridStorage, private sessionService: SessionService) {
-    this.sessionId = this.route.snapshot.params['sessionId'];
+
+    this.sessionId = this.route.parent.snapshot.params['sessionId'];
+    console.log('SESSION ID PHASE2:' + this.sessionId);
     this.userId = this.useridStorage.getUserId();
 
   }
@@ -25,7 +28,7 @@ export class Phase2Component implements OnInit {
   ngOnInit() {
     this.sessionService.getSession(this.sessionId, this.userId).subscribe(data => {
         this.session = data;
-        if (data.currentUser == this.userId) {
+        if (data.currentUser === this.userId) {
           this.userTurn = true;
         }
       },

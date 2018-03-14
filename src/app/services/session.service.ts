@@ -40,7 +40,7 @@ export class SessionService {
     return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions');
   }
 
-  saveSessionCards(cardIds: number[], sessionId: number ,userId: number): Observable<any> {
+  saveSessionCards(cardIds: number[], sessionId: number , userId: number): Observable<any> {
     const body = JSON.stringify(cardIds);
     return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/saveCards', body, httpOptions);
   }
