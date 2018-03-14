@@ -16,19 +16,19 @@ import {ActivatedRoute, Route} from '@angular/router';
 })
 export class ChatComponent implements OnInit {
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
-  private sessionId;
+  @Input() private sessionId;
   private stompClient;
   public username;
   public messages = [new Message('')];
 
 
   constructor(private userIdStorage: UseridStorage, private messageService: MessageService, private route: ActivatedRoute) {
-    this.sessionId = this.route.parent.snapshot.params['sessionId'];
+    // this.sessionId = this.route.parent.snapshot.params['sessionId'];
     this.username = userIdStorage.getUsername();
   }
 
   ngOnInit() {
-    this.initializeWebSocketConnection();
+
     this.messageService.getMessages(this.sessionId, this.userIdStorage.getUserId()).subscribe(data => {
         this.messages = data;
       },
@@ -36,15 +36,17 @@ export class ChatComponent implements OnInit {
         console.error('Error loading messages!');
         console.log(error);
         alert('Error loading messages');
-      });
+      },
+      () => this.initializeWebSocketConnection(this.sessionId));
   }
 
-  initializeWebSocketConnection() {
+  initializeWebSocketConnection(id: number) {
+    console.log('completed + sessionId:' + this.sessionId);
     const ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
     const that = this;
     this.stompClient.connect({}, function (frame) {
-      that.stompClient.subscribe('/chat/' + /*this.sessionId*/2, (message) => { // ipv 2 -> sessionId
+      that.stompClient.subscribe('/chat/' + id, (message) => { // ipv 2 -> sessionId
         if (message.body) {
           $('.chat-body').append(
             '<div class=\'message\'>' +
