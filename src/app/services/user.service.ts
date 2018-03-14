@@ -22,12 +22,12 @@ export class UserService {
       'username': 'username',
       'password': 'password',
     };*/
-    return this.http.get('https://kandoe-backend.herokuapp.com/user/' + userId);
+    return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId);
   }
 
-  updateUser(user: User): Observable<any> {
+  updateUser(user: User, userId: number): Observable<any> {
     const body = JSON.stringify(user);
     console.log('body: ' + body);
-    return this.http.put('https://kandoe-backend.herokuapp.com/user/' + user.id, body, httpOptions);
+    return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId, body, httpOptions);
   }
 }

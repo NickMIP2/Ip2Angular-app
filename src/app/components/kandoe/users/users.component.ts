@@ -2,6 +2,7 @@ import {AfterViewChecked, Component, OnInit} from '@angular/core';
 import {User} from '../../../model/user';
 import {UserService} from '../../../services/user.service';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -18,8 +19,10 @@ export class UsersComponent implements OnInit, AfterViewChecked {
     'password': '',
   };
   pwHash: any;
+  public userId: number;
 
-  constructor(private userService: UserService, private  useridStorage: UseridStorage) {
+  constructor(private userService: UserService, private  useridStorage: UseridStorage, private router: Router) {
+    this.userId = this.useridStorage.getUserId();
   }
 
   ngOnInit() {
@@ -43,10 +46,11 @@ export class UsersComponent implements OnInit, AfterViewChecked {
       this.user.password = this.pwHash;
     }
     // POST naar backend
-    this.userService.updateUser(this.user).subscribe(data => {
+    this.userService.updateUser(this.user, this.userId).subscribe(data => {
       if (data !== null) {
         this.user = data;
-        this.user.password = '';
+        this.router.navigate(['kandoe/dashboard']);
+        alert('Userdetails opgeslagen');
       } else {
         alert('Error updating user');
         this.ngOnInit();
