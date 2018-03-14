@@ -3,8 +3,6 @@
   display: inline-block;
   margin: 1%;
   padding: 1%;
-  border-radius: 10px;
-  border: 1px solid;
 }
 
 .descriptionContainer {
@@ -13,4 +11,13 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.cardNewContainer {
+  width: 50%;
+  margin: auto;
+  margin-top: 2%;
+  background: #E2E0FB;
+  padding: 15px;
+  border-radius: 10px;
 }

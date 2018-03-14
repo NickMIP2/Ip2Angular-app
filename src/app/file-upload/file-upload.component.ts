@@ -3,9 +3,10 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-file-upload',
-  template:  `<input id="file-upload" type="file" (change)="changeListener($event)"/>
-  <!--<button type="button" md-button (click)="imgFileInput.click()">Add a photo</button>
-  <input hidden type="file" #imgFileInput (change)="changeListener($event)"/>-->`,
+  template:  `<label for="file-upload" class="custom-file-upload">
+  </label>
+  <input class="hiddenBtn" type="file" (change)="changeListener($event)"/>`,
+
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

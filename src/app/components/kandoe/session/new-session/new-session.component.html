@@ -54,6 +54,19 @@
             Probleem</label></td>
         </tr>
       </table>
+      <table style="width: 80%; margin: auto;" class="table">
+        <tr style="text-align: center">
+          Sta toe dat gebruikers kaarten toevoegen
+        </tr>
+        <tr>
+          <td style="width: 50%"><label class="radio">
+            <input type="radio" name="optCardCreation" [value]="true" [(ngModel)]="newSession.allowCardCreation">Ja</label>
+          </td>
+          <td style="width: 50%"><label class="radio">
+            <input type="radio" name="optCardCreation" [value]="false" [(ngModel)]="newSession.allowCardCreation">
+            Nee</label></td>
+        </tr>
+      </table>
     </div>
     <div id="numbersContainer" class="form-group  number_margin-top numbers_center">
       <table style="width: 50%; margin: auto" class="table">
@@ -79,10 +92,10 @@
     </div>
     <div id="participantsContainer" class="form-group">
       <div class="participants_float ">
-        <label>Deelnemers: </label><br/>
+        <label>Deelnemers: </label>  <label> organisator? </label><br/>
         <div contenteditable="false">
           <p *ngFor="let participant of newSession.participants; let i = index">
-            <button class="btn btn-danger" (click)="removeFromList(i)">-</button>&emsp;{{participant}}
+            <button class="btn btn-danger" (click)="removeFromList(i,participant)">-</button>&emsp;{{participant}}      <input #isOrganiserCheckBox class="isOrganiserCheckbox" name="isOrganiserCheckbox" type="checkbox" [checked]="isOrganiser" (change)="checkIfOrganiser(isOrganiserCheckBox.checked,participant,i)" >
           </p>
         </div>
       </div>

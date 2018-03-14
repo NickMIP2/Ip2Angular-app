@@ -27,9 +27,6 @@
 
     <div class="form-group" style="width: 100%">
       <table style="width: 100%;">
-        <tr>
-          <th>Tags</th>
-        </tr>
         <tr *ngFor="let tag of theme.tags; let i = index">
           <td style="width: 70%;">
             <label class="themeTag" style="width: 100%;">{{tag}}</label>
@@ -42,8 +39,10 @@
         </tr>
         <tr>
           <td style="width: 70%;">
+            <mat-form-field class="form-group" style="width: 100%">
             <input class="themeTagAdd" style="width: 100%;" matInput placeholder="Tag" name="tag" id="tagInput"
                    [(ngModel)]="tagValue">
+            </mat-form-field>
           </td>
           <td style="width: 30%;">
             <button class="themeTagAdd" style="width: 100%;" mat-raised-button color="primary" name="addTag"

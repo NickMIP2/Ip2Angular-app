@@ -9,11 +9,15 @@ export class Session {
               public categoryId: number,
               public timeForMove: number,
               public participants: string[],
+              public organisers: string[],
               public participantIds: number[],
+              public organiserIds: number[],
               public type: number,
               public sessionCardIds: number[],
               public state: number,
               public userSubmitted: boolean,
-              public startDate: Date) {
+              public startDate: Date,
+              public allowCardCreation: boolean,
+              public currentUser: number) {
   }
 }

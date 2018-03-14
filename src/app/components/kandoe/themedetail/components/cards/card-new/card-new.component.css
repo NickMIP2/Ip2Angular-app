@@ -1,4 +1,4 @@
-.descCol{
+/*.descCol{
   width: 20%;
 }
 .editCol{
@@ -10,4 +10,13 @@
 
 tr{
   margin: 1%;
+}*/
+
+.cardNewContainer {
+  width: 50%;
+  margin: auto;
+  margin-top: 2%;
+  background: #E2E0FB;
+  padding: 15px;
+  border-radius: 10px;
 }

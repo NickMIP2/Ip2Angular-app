@@ -1,11 +1,13 @@
 /********************************/
 /* File Upload */
-#fileUpload {
+
+
+.fileUpload {
   position: relative;
   overflow: hidden;
 }
 
-#fileUpload input.upload {
+.fileUpload input.upload {
   position: absolute;
   top: 0;
   right: 0;
