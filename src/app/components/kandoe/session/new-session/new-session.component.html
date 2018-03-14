@@ -92,10 +92,10 @@
     </div>
     <div id="participantsContainer" class="form-group">
       <div class="participants_float ">
-        <label>Deelnemers: </label><br/>
+        <label>Deelnemers: </label>  <label> organisator? </label><br/>
         <div contenteditable="false">
           <p *ngFor="let participant of newSession.participants; let i = index">
-            <button class="btn btn-danger" (click)="removeFromList(i)">-</button>&emsp;{{participant}}
+            <button class="btn btn-danger" (click)="removeFromList(i,participant)">-</button>&emsp;{{participant}}      <input #isOrganiserCheckBox class="isOrganiserCheckbox" name="isOrganiserCheckbox" type="checkbox" [checked]="isOrganiser" (change)="checkIfOrganiser(isOrganiserCheckBox.checked,participant,i)" >
           </p>
         </div>
       </div>
@@ -112,7 +112,7 @@
       </div>
     </div>
     <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="newSession.startDate">
+      <input matInput  name="startDate" [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="newSession.startDate">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>

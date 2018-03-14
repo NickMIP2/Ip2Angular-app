@@ -17,7 +17,7 @@ export class Phase1Component implements OnInit {
 
   public userId;
   public sessionId;
-  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [0], 0, [0], 0, false, null, false);
+  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0);
   public cards = [];
   public selectedCards = [];
   public buttonStates = [];
