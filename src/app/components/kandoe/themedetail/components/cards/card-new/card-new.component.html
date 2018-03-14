@@ -14,6 +14,6 @@
       </td>
     </tr>
   </table>
-        <button [disabled]="!cardForm.form.valid" style="width: 49%;" mat-raised-button color="primary" (click)="createCard()">Maak kaart</button>
+        <button [disabled]="!cardForm.form.valid || !correctName" style="width: 49%;" mat-raised-button color="primary" (click)="createCard()">Maak kaart</button>
         <button mat-raised-button color="warn" style="width: 49%" (click)="navigateAbort()">Verwijder</button>
 </form>

@@ -3,13 +3,28 @@
 <h2>{{selectedCards.length}} van de {{session.maxCards}} kaarten geselecteerd!</h2>
   <button mat-raised-button color="primary" *ngIf="session.allowCardCreation" (click)="editing=1">Nieuwe kaart</button>
   <br>
-  <div *ngFor="let card of cards;let i = index" class="cardBox"
+  <mat-card *ngFor="let card of cards;let i = index" class="cardBox"
+            style="background-size: 100% 100%">
+    <mat-card-content>
+      <p style="text-align: center">
+        <span style="font-weight: bold; font-size: large">{{card.name}}</span>
+      </p>
+      <p style="text-align: center">
+        <span>{{card.description}}</span>
+      </p>
+    </mat-card-content>
+    <mat-card-actions style="padding-bottom: 4%">
+      <button style="width: 80%;" mat-raised-button color="primary" *ngIf="!buttonStates[i]" (click)="selectCard(card, i)" [disabled]="selectedCards.length === session.maxCards">Selecteer</button>
+      <button style="width: 80%;" mat-raised-button color="warn" *ngIf="buttonStates[i]" (click)="deselectCard(card, i)">Verwijder</button>
+    </mat-card-actions>
+  </mat-card>
+  <!--<div *ngFor="let card of cards;let i = index" class="cardBox"
      style="background-size: 100% 100%">
   <h1>{{card.name}}</h1>
   <div class="descriptionContainer">{{card.description}}</div>
   <button mat-raised-button color="primary" *ngIf="!buttonStates[i]" (click)="selectCard(card, i)" [disabled]="selectedCards.length === session.maxCards">Selecteer</button>
   <button mat-raised-button color="warn" *ngIf="buttonStates[i]" (click)="deselectCard(card, i)">Verwijder</button>
-</div>
+</div>-->
 <br>
 <button mat-raised-button color="primary" (click)="saveCardIds()">Klaar</button>
 </div>
@@ -30,7 +45,7 @@
         </td>
       </tr>
     </table>
-    <button [disabled]="!cardForm.form.valid" style="width: 49%;" mat-raised-button color="primary" (click)="createCard()">Maak kaart</button>
+    <button [disabled]="!cardForm.form.valid || !correctName" style="width: 49%;" mat-raised-button color="primary" (click)="createCard()">Maak kaart</button>
     <button mat-raised-button color="warn" style="width: 49%" (click)="navigateAbort()">Verwijder</button>
   </form>
 </div>
