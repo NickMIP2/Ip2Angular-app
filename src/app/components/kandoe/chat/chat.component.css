@@ -1,42 +1,63 @@
-.chat-container{
-  height: 80vh;
-  width: 100vw;
+.chat
+{
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
-.chat{
+
+.chat li
+{
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat li.left .chat-body
+{
+  margin-left: 60px;
+}
+
+.chat li.right .chat-body
+{
+  margin-right: 60px;
+}
+
+
+.chat li .chat-body p
+{
+  margin: 0;
+  color: #777777;
+}
+
+.panel .slidedown .glyphicon, .chat .glyphicon
+{
+  margin-right: 5px;
+}
+
+.panel-body
+{
+  overflow-y: scroll;
+  height: 250px;
+}
+
+::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #555;
+}
+
+p{
   text-align: left;
-  margin: 0 auto;
-  width: 50%;
-  height: 100%;
-  border: 1px solid grey;
 }
-
-.footer{
-  background: #cccccc;
-  margin: 0 auto;
-  position: absolute;
-  bottom: 0;
-  height: 10vh;
-  width: 100vw;
-}
-.send-button{
-  margin: 0 auto;
-  height: 70%;
-  width: 50%;
-}
-input{
-  float: right;
-  height: 30px;
-  border-radius: 15px;
-  font-size: 1.5em;
-}
-.send{
-  float: right;
-  background: url("../../../../assets/images/send.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 30px;
-  width: 30px;
-  margin-left: 5px;
-
-}
-
