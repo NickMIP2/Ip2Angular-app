@@ -1,10 +1,8 @@
 <div class="overview-container container">
+  <form #themeform="ngForm">
   <table class="table" style="width: 100%">
     <tr *ngIf="editing !==1">
       <td>
-        <!--<div style="text-align: left">
-          <label class="col-form-label font-weight-bold text-left">Themanaam</label>
-        </div>-->
         <h1 id="nameField">{{ theme.name }}</h1>
       </td>
     </tr>
@@ -12,17 +10,12 @@
         <mat-form-field class="form-group" style="width: 100%">
           <input id="nameInput" *ngIf="editing ==1" [(ngModel)]="theme.name" style="width: 100%" matInput placeholder="Thema naam" type="text" required name="themename" #themename="ngModel">
         </mat-form-field>
-        <!--<input type="text" id="nameInput" *ngIf="editing ==1" [(ngModel)]="theme.name"/>-->
     </tr>
     <tr *ngIf="editing !==1">
       <td>
-        <!--<div>
-          <label class="col-form-label font-weight-bold text-left">Beschrijving</label>
-        </div>-->
         <p style="text-align: center" id="descField" *ngIf="editing !==1">
           <span>{{theme.description }}</span>
         </p>
-        <!--<textarea class="" type="text" id="descInput" *ngIf="editing ==1" [(ngModel)]="theme.description"></textarea>-->
       </td>
     </tr>
     <tr *ngIf="editing == 1">
@@ -30,11 +23,6 @@
         <textarea type="text" id="descInput" [(ngModel)]="theme.description" style="width: 100%" matInput placeholder="Beschrijving van het thema" required name="description" #themedescription="ngModel"></textarea>
       </mat-form-field>
     </tr>
-    <!--<tr>
-      <td class="text-left">
-        <label class="col-form-label font-weight-bold">Tags</label>
-      </td>
-    </tr>-->
     <tr style="width: 100%">
       <table *ngIf="editing === 0">
         <tr *ngFor="let tag of theme.tags">
@@ -58,7 +46,6 @@
             <input matInput style="width: 100%" id="tagInput" name="tagInput" [(ngModel)]="tagValue" placeholder="Tag">
             </mat-form-field>
           </td>
-          <!--<input type="text" id="tagInput" [(ngModel)]="tagValue"/>-->
           <td style="width: 30%">
             <button style="width: 100%" mat-raised-button color="primary" name="addTag" (click)="addTag()">Toevoegen</button>
           </td>
@@ -67,9 +54,10 @@
     </tr>
   </table>
     <div style="width: 100%">
-      <button style="width: 49%" mat-raised-button color="primary" (click)="editing === 1 ? save() : editing=1">
+      <button [disabled]="!themeform.form.valid" style="width: 49%" mat-raised-button color="primary" (click)="editing === 1 ? save() : editing=1">
         {{editing===1 ? "Opslaan" : "Wijzigen"}}
       </button>
       <button style="width: 49%" mat-raised-button color="warn" (click)="deleteTheme(theme.id)" routerLink="/themes">Verwijderen</button>
     </div>
+  </form>
 </div>
