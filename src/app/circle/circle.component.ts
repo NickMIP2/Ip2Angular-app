@@ -37,7 +37,7 @@ export class CircleComponent implements OnInit, OnChanges {
   amountOfRings = 8;
   public rings = [];
   public angles = [];
-
+  public index;
   ngOnInit() {
 
     const step = 100 / (this.amountOfRings);
@@ -76,14 +76,12 @@ export class CircleComponent implements OnInit, OnChanges {
     }
   }
 
-
-  moveCard(sessionCard, i) {
+  confirmMoveCard() {
     if (this.isMyTurn) {
 
-      this.isMyTurn = false;
-      this.selectedCard = sessionCard;
-      const topX = sessionCard.x;
-      const topY = sessionCard.y;
+      // this.isMyTurn = false;
+      const topX = this.selectedCard.x;
+      const topY = this.selectedCard.y;
 
       let sessionCardRadius;
       let angle;
@@ -95,7 +93,7 @@ export class CircleComponent implements OnInit, OnChanges {
       sessionCardRadius = Math.sqrt(Math.pow(midpointX, 2) + Math.pow(midpointY, 2));
 
       console.log(sessionCardRadius + ' straal');
-      angle = this.angles[i];
+      angle = this.angles[this.index];
       console.log('angle ' + angle);
 
       sessionCardRadius = sessionCardRadius - this.circleRingSize;
@@ -103,19 +101,25 @@ export class CircleComponent implements OnInit, OnChanges {
       midpointX = sessionCardRadius * Math.cos(angle);
       midpointY = sessionCardRadius * Math.sin(angle);
 
-      sessionCard.x = midpointX + (this.circleRadius);
-      sessionCard.y = midpointY + (this.circleRadius);
+      this.selectedCard.x = midpointX + (this.circleRadius);
+      this.selectedCard.y = midpointY + (this.circleRadius);
 
-      sessionCard.distanceToCenter = sessionCard.distanceToCenter - 1;
+      this.selectedCard.distanceToCenter = this.selectedCard.distanceToCenter - 1;
 
       // spreek service aan
 
     } else {
       return;
     }
-    if (sessionCard.distanceToCenter === 0) {
-      alert(sessionCard.name + ' WINT');
+    if (this.selectedCard.distanceToCenter === 0) {
+      alert(this.selectedCard.name + ' WINT');
     }
+  }
+
+  moveCard(sessionCard, i) {
+
+    this.selectedCard = sessionCard;
+    this.index = i;
   }
 
   public endSession() {
