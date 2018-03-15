@@ -11,7 +11,7 @@ import {UseridStorage} from '../../../sessionStorage/userid-storage';
   providers: [ThemeService, UseridStorage]
 })
 export class NewThemeComponent implements OnInit {
-  public theme = new Theme(null, '', '',  ['tag1', 'tag2'], '');
+  public theme = new Theme(null, '', '',  [''], '');
   private userId;
   public tagValue = '';
 
