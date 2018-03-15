@@ -1,4 +1,5 @@
 import {Theme} from './theme';
+import {SessionCard} from './sessioncard';
 
 export class Session {
   constructor(public id: number,
@@ -13,7 +14,7 @@ export class Session {
               public participantIds: number[],
               public organiserIds: number[],
               public type: number,
-              public sessionCardIds: number[],
+              public sessionCards: SessionCard[],
               public state: number,
               public userSubmitted: boolean,
               public startDate: Date,

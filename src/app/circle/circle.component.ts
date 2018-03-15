@@ -2,6 +2,11 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {SessionCard} from '../model/sessioncard';
 import {Ring} from '../model/ring';
 
+import * as SockJS from 'sockjs-client';
+import * as Stomp from 'stompjs';
+import {SessionService} from '../services/session.service';
+import {UseridStorage} from '../sessionStorage/userid-storage';
+
 @Component({
   selector: 'app-circle',
   templateUrl: './circle.component.html',
@@ -9,7 +14,7 @@ import {Ring} from '../model/ring';
 })
 export class CircleComponent implements OnInit, OnChanges {
 
-  constructor() {
+  constructor(private sessionService: SessionService, private userIdStorage: UseridStorage) {
   }
 
   @Input() public isOrganiser = true;
@@ -38,6 +43,11 @@ export class CircleComponent implements OnInit, OnChanges {
   public rings = [];
   public angles = [];
   public index;
+
+  private stompClient;
+  private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
+  @Input() private sessionId;
+
   ngOnInit() {
 
     const step = 100 / (this.amountOfRings);
@@ -47,6 +57,9 @@ export class CircleComponent implements OnInit, OnChanges {
       z = z - 1;
     }
     this.setCards();
+    const ws = new SockJS(this.serverUrl);
+    this.stompClient = Stomp.over(ws);
+    const that = this;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -107,6 +120,8 @@ export class CircleComponent implements OnInit, OnChanges {
       this.selectedCard.distanceToCenter = this.selectedCard.distanceToCenter - 1;
 
       // spreek service aan
+      this.sessionService.saveSessionCards(this.sessionCards, this.sessionId, this.userIdStorage.getUserId()).subscribe();
+      this.stompClient.send('/app/send/message/' + this.sessionId, {}, this.selectedCard); // ipv 2 -> sessionId
 
     } else {
       return;
