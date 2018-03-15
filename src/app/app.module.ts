@@ -34,7 +34,10 @@ import { CardNewComponent } from './components/kandoe/themedetail/components/car
 import { ChatComponent } from './components/kandoe/chat/chat.component';
 import {FileUploadComponent} from './file-upload/file-upload.component';
 import {MessageService} from './services/message.service';
-import {MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatNativeDateModule, MatTabsModule} from '@angular/material';
+import {
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatNativeDateModule, MatRadioModule, MatSelectModule, MatSliderModule,
+  MatTabsModule
+} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SessionService} from './services/session.service';
 import { Phase1Component } from './components/kandoe/session/phase1/phase1.component';
@@ -85,6 +88,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatNativeDateModule,
     MatCardModule,
     MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatSliderModule,
     HttpClientModule
   ],
   providers: [

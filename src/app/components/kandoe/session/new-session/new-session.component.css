@@ -1,28 +1,44 @@
-.formcontainer {
-  width: 50%;
+.sliderCss {
+  width: 60%;
+}
+
+.bottomSide {
+  clear: both;
+  width: 100%;
+  padding-top: 3%;
+  margin-bottom: 1%;
+}
+
+.sessionBox{
+  width: 100%;
+  min-height: 350px;
+  display: block;
+  margin: 1%;
+  padding: 1%;
+}
+
+mat-card-content {
   text-align: left;
+}
+
+.leftSide {
+  width: 50%;
+  float: left;
+}
+
+.rightSide {
+  width: 50%;
+  float: right;
   margin: auto;
 }
 
-.ng-valid[required], .ng-valid.required {
-  border-right: 2px solid green;
-}
-
-.ng-invalid:not(form) {
-  border-right: 2px solid red;
-}
-
-.checkbox_width-control {
-  width: 40%;
+.container {
+  width: 80%;
   margin: auto;
-}
-
-.checkbox_margin-left {
-  margin-left: 20%;
-}
-
-.borderRed {
-  border: 1px solid red;
+  margin-top: 2%;
+  background: #E2E0FB;
+  padding: 15px;
+  border-radius: 10px;
 }
 
 .number_margin-top {
@@ -76,5 +92,5 @@
   margin-top: 10px;
 }
 .isOrganiserCheckbox{
-  margin-left: 20px;
+  margin-top: 10px;
 }

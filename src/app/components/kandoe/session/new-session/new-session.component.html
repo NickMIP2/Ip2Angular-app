@@ -1,125 +1,156 @@
-<div class="container">
-  <div class="cloneSession">
-    <select [(ngModel)]="oldSession" id="sessions" name="sessions" style="width: 100%"
-            class="custom-select form-control" required>
-      <option *ngFor="let session of oldSessions;let i = index" [ngValue]="oldSessions[i]">{{session.name}}</option>
-    </select>
-
-    <button mat-raised-button color="primary" (click)="cloneSession()">Kopieër van oude sessie</button>
-  </div>
-  <form #sessionform="ngForm" class="formcontainer" name="sessionForm">
-    <div id="nameThemeContainer" class="form-group ">
-      <table class="table" style="width: 100%; margin: auto;">
-        <tr>
-          <td style="width: 15%;"><label style="display: inline-block;">Naam:</label></td>
-          <td class="" style="width: 85%;">
-            <input class="form-control" id="sessionname" type="text" required
-                   [(ngModel)]="newSession.name"
-                   name="sessionname" style="width: 100%;"
-                   #sessionname="ngModel"
-                   placeholder="Sessienaam is een verplicht veld.">
-          </td>
-        </tr>
-        <tr>
-          <td style="width: 15%;"><label style="display: inline-block;">Thema:</label></td>
-          <td class="" style="width: 85%;">
-            <select [(ngModel)]="themeIndexId" (change)="setCategory()" id="themes" name="themes" style="width: 100%"
-                    class="custom-select form-control" required>
-              <option [ngValue]="undefined" disabled>Selecteer thema</option>
-              <option *ngFor="let theme of themes;let i = index" [value]="theme.id">{{theme.name}}</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td style=" width: 15%;
-              "><label style="display: inline-block;">Categorieën:</label></td>
-          <td class="" style="width: 85%;">
-            <select [(ngModel)]="categoryIndexId" id="categories" name="categories" style="width: 100%"
-                    class="custom-select form-control">
-              <option [selected]="true">Geen categorie</option>
-              <option *ngFor="let category of categoryArray" [ngValue]="category.id">{{category.name}}</option>
-            </select>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div id="chanceCheck" class="form-group ">
-      <table style="width: 50%; margin: auto;" class="table">
-        <tr>
-          <td style="width: 50%"><label class="radio">
-            <input type="radio" name="optKans" [value]="0" [(ngModel)]="newSession.type"> Kans</label>
-          </td>
-          <td style="width: 50%"><label class="radio">
-            <input type="radio" name="optKans" [value]="1" [(ngModel)]="newSession.type">
-            Probleem</label></td>
-        </tr>
-      </table>
-      <table style="width: 80%; margin: auto;" class="table">
-        <tr style="text-align: center">
-          Sta toe dat gebruikers kaarten toevoegen
-        </tr>
-        <tr>
-          <td style="width: 50%"><label class="radio">
-            <input type="radio" name="optCardCreation" [value]="true" [(ngModel)]="newSession.allowCardCreation">Ja</label>
-          </td>
-          <td style="width: 50%"><label class="radio">
-            <input type="radio" name="optCardCreation" [value]="false" [(ngModel)]="newSession.allowCardCreation">
-            Nee</label></td>
-        </tr>
-      </table>
-    </div>
-    <div id="numbersContainer" class="form-group  number_margin-top numbers_center">
-      <table style="width: 50%; margin: auto" class="table">
-        <tr>
-          <td style="width: 70%;"><label>Maximum kaarten: </label></td>
-          <td style="width: 30%;">
-            <input type="number" class="form-control" [(ngModel)]="newSession.maxCards"
-                   min="1" placeholder="1" name="inputMaxCards"></td>
-        </tr>
-        <tr>
-          <td style="width: 70%;"><label>Aantal rondes: </label></td>
-          <td style="width: 30%;">
-            <input type="number" class="form-control" [(ngModel)]="newSession.totalRounds"
-                   min="1" placeholder="1" name="inputNoOfRounds"></td>
-        </tr>
-        <tr>
-          <td style="width: 70%;"><label>Tijd per zet (uur): </label></td>
-          <td style="width: 30%;">
-            <input type="number" class="form-control" [(ngModel)]="newSession.timeForMove"
-                   min="0" placeholder="1" name="inputTimePerMoveHour"></td>
-        </tr>
-      </table>
-    </div>
-    <div id="participantsContainer" class="form-group">
-      <div class="participants_float ">
-        <label>Deelnemers: </label>  <label> organisator? </label><br/>
-        <div contenteditable="false">
-          <p *ngFor="let participant of newSession.participants; let i = index">
-            <button class="btn btn-danger" (click)="removeFromList(i,participant)">-</button>&emsp;{{participant}}      <input #isOrganiserCheckBox class="isOrganiserCheckbox" name="isOrganiserCheckbox" type="checkbox" [checked]="isOrganiser" (change)="checkIfOrganiser(isOrganiserCheckBox.checked,participant,i)" >
-          </p>
-        </div>
-      </div>
-      <div class="participants_float ">
-        <label>Nieuwe deelnemer: </label>
-        <input type="text" class="form-control" placeholder="Emailadres van een deelnemer"
-               [(ngModel)]="participantEmail"
-               name="inputParticipantEmail">
-        <button class="btn btn-info btn_margin-top"
-                (click)="addParticipant()"
-                [disabled]="participantEmail === ''">
-          Toevoegen
-        </button>
-      </div>
-    </div>
-    <mat-form-field>
+<form #sessionform="ngForm" class="container" name="sessionForm">
+  <div class="leftAndRightSide">
+  <div class="leftSide">
+    <mat-form-field style="width: 80%">
+      <input matInput id="sessionname" type="text" required
+             [(ngModel)]="newSession.name"
+             name="sessionname"
+             #sessionname="ngModel"
+             placeholder="Sessienaam">
+    </mat-form-field>
+    <mat-form-field style="width: 80%">
       <input matInput  name="startDate" [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="newSession.startDate">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <button class="btn btn-primary submit_width form-control"
-            (click)="onClickSubmit()"
-            [disabled]="this.newSession.type === null || this.newSession.name=== ''">
-      Sessie maken
-    </button>
-  </form>
-</div>
+    <br>
+    <mat-checkbox
+      [(ngModel)]="showClone" name="showCloneCheckbox">
+      Cloon een oude sessie
+    </mat-checkbox>
+    <div [hidden]="!showClone">
+    <mat-form-field  style="width: 80%">
+      <mat-select placeholder="Sessienaam" [(ngModel)]="oldSession" name="sessions">
+        <mat-option required *ngFor="let session of oldSessions;let i = index" [value]="oldSessions[i]">
+          {{session.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <button style="width: 60%;" mat-raised-button color="primary" (click)="cloneSession()">Kopieër van oude sessie</button>
+    <br>
+    <br>
+    </div>
+    <mat-card class="sessionBox">
+      <mat-card-content>
+        <p>
+          <mat-form-field class="form-group" style="width: 65%; float: left">
+          <input style="width: 100%" matInput placeholder="Emailadres van een deelnemer"
+                 [(ngModel)]="participantEmail"
+                 name="inputParticipantEmail">
+          </mat-form-field>
+          <button style="width: 30%; float: right; margin-top: 5px" mat-raised-button color="primary"
+                  (click)="addParticipant()"
+                  [disabled]="participantEmail === ''">
+            Toevoegen
+          </button>
+        </p>
+        <br>
+        <span style="float: right; font-weight: bold; margin-right: 40px; margin-top: 10px">Sessie admin</span>
+        <br>
+        <div style="margin-top: 50px">
+        <p *ngFor="let participant of newSession.participants; let i = index" style="width: 100%">
+          <button style="width: 10%;" mat-raised-button color="warn" (click)="removeFromList(i,participant)">-</button><span style="width: 69%">&emsp;{{participant}}&emsp;</span><mat-checkbox style="width: 19%; float: right" #isOrganiserCheckBox class="isOrganiserCheckbox" name="isOrganiserCheckbox" [checked]="isOrganiser" (change)="checkIfOrganiser(isOrganiserCheckBox.checked,participant,i)"></mat-checkbox>
+        </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="rightSide">
+    <mat-form-field style="width: 80%">
+      <mat-select required placeholder="Thema" [(ngModel)]="themeIndexId" name="themes" (change)="setCategory()">
+        <mat-option *ngFor="let theme of themes;let i = index" [value]="theme.id">
+          {{theme.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field style="width: 80%">
+      <mat-select required placeholder="Categorie" [(ngModel)]="categoryIndexId" name="categories">
+        <mat-option *ngFor="let category of categoryArray" [value]="category.id">
+          {{category.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <br>
+    <span style="font-weight: bold">Type cirkel</span>
+    <br>
+    <br>
+    <mat-radio-group style="width: 80%; text-align: left" name="optKans" [(ngModel)]="newSession.type">
+      <mat-radio-button style="float: left; width: 50%; padding-left: 20%" [value]="0">Kans</mat-radio-button>
+      <mat-radio-button style="float: left; width: 50%; padding-left: 20%" [value]="1">Probleem</mat-radio-button>
+    </mat-radio-group>
+    <br>
+    <br>
+    <span style="font-weight: bold">Sta toe dat gebruikers kaarten toevoegen</span>
+    <br>
+    <br>
+    <mat-radio-group style="width: 80%; text-align: left" name="optCardCreation" [(ngModel)]="newSession.allowCardCreation">
+      <mat-radio-button style="float: left; width: 50%; padding-left: 20%" [value]="true">Ja</mat-radio-button>
+      <mat-radio-button style="float: left; width: 50%; padding-left: 20%" [value]="false">Nee</mat-radio-button>
+    </mat-radio-group>
+    <br>
+    <br>
+    <span style="font-weight: bold">Maximum kaarten</span>
+    <br>
+  <mat-slider
+    class="sliderCss"
+    [disabled]="disabled"
+    [invert]="invert"
+    [max]="max"
+    [min]="min"
+    [step]="step"
+    [thumb-label]="thumbLabel"
+    [tick-interval]="tickInterval"
+    [(ngModel)]="newSession.maxCards"
+    name="inputMaxCards"
+    [vertical]="vertical">
+  </mat-slider>
+    {{newSession.maxCards}}
+    <br>
+    <br>
+    <span style="font-weight: bold">Aantal rondes</span>
+    <br>
+  <mat-slider
+    class="sliderCss"
+    [disabled]="disabled"
+    [invert]="invert"
+    [max]="max"
+    [min]="min"
+    [step]="step"
+    [thumb-label]="thumbLabel"
+    [tick-interval]="tickInterval"
+    [(ngModel)]="newSession.totalRounds"
+    name="inputNoOfRounds"
+    [vertical]="vertical">
+  </mat-slider>
+    {{newSession.totalRounds}}
+    <br>
+    <br>
+    <span style="font-weight: bold">Tijd per zet (uur)</span>
+    <br>
+  <mat-slider
+    class="sliderCss"
+    [disabled]="disabled"
+    [invert]="invert"
+    [max]="maxTime"
+    [min]="min"
+    [step]="step"
+    [thumb-label]="thumbLabel"
+    [tick-interval]="tickInterval"
+    [(ngModel)]="newSession.timeForMove"
+    name="inputTimePerMoveHour"
+    [vertical]="vertical">
+  </mat-slider>
+    {{newSession.timeForMove}}
+  </div>
+  </div>
+  <div class="bottomSide">
+  <button mat-raised-button color="primary" style="width: 30%; margin: auto"
+          (click)="onClickSubmit()"
+          [disabled]="!sessionform.form.valid">
+    Sessie maken
+  </button>
+  </div>
+</form>
