@@ -1,0 +1,47 @@
+{
+  "Authentication": {
+    "Login": {
+      "page_title": "Sign in | Kandoe",
+      "error_login": "An error occurred while processing your login. Please try again later.",
+      "page_h1": "Sign in at Kandoe",
+      "page_intro": "Brainstorming is a creativity technique met the purpose of quickly generating new ideas regarding a certain topic or question. The main feature of a brainstorming session is that the value judgement of the proposed ideas is delayed until they are all summed up. Kandoe is the ideal way to accomplish this.",
+      "username_upper": "Username",
+      "password_upper": "Password",
+      "button_signin": "Sign in",
+      "button_register": "Register"
+    },
+    "Register": {
+
+    }
+  },
+  "Kandoe": {
+    "Chat": {
+
+    },
+    "Dashboard": {
+      "page_title": "Dashboard"
+    },
+    "Home": {
+
+    },
+    "Navbar": {
+
+    },
+    "New-theme": {
+
+    },
+    "Session": {
+
+    },
+    "Themedetail": {
+
+    },
+    "Themes": {
+
+    },
+    "Users": {
+
+    }
+  }
+}
+

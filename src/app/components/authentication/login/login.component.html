@@ -3,11 +3,8 @@
     <div class="card" style="background-image: url(https://mdbootstrap.com/img/Photos/Others/gradient1.jpg);">
       <div class="text-white text-center d-flex align-items-center py-5 px-4 my-5">
         <div>
-          <h1 class="card-title pt-3 mb-5 font-bold"><strong>Kandoe Login</strong></h1>
-          <p class="mx-5 mb-5">Brainstormen is een creativiteitstechniek met als doel snel veel nieuwe
-            ideeën over een bepaald onderwerp of vraagstuk te genereren.
-            Het kenmerk van een brainstormsessie is dat het waardeoordeel over de geopperde ideeën wordt uitgesteld
-            totdat ze allemaal zijn opgesomd. Kandoe is de ideale manier om dit te doen </p>
+          <h1 class="card-title pt-3 mb-5 font-bold"><strong>{{ 'Authentication.Login.page_h1' | translate }}</strong></h1>
+          <p class="mx-5 mb-5">{{ 'Authentication.Login.page_intro' | translate }}</p>
           <div class="container">
             <div class="card card-container">
               <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
@@ -23,14 +20,14 @@
                 </div>
                 <input name="username" type="text" id="inputEmail" [(ngModel)]="usernametext"
                        class="form-control"
-                       placeholder="Username" required autofocus>
+                       placeholder="{{ 'Authentication.Login.username_upper' | translate }}" required autofocus>
                 <input name="password" type="password" id="inputPassword" [(ngModel)]="passwordtext"
-                       class="form-control" placeholder="Password" required>
+                       class="form-control" placeholder="{{ 'Authentication.Login.password_upper' | translate }}" required>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">
-                  Sign in
+                  {{ 'Authentication.Login.button_signin' | translate}}
                 </button>
                 <button class="btn btn-secondary btn-block btn-signin" [routerLink]="['/register']">
-                  Register
+                  {{ 'Authentication.Login.button_register' | translate}}
                 </button>
               </form><!-- /form -->
             </div><!-- /card-container -->

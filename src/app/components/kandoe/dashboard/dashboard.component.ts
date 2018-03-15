@@ -6,6 +6,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
 import {Session} from '../../../model/session';
 import {Router} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +14,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  title = 'Dashboard';
+  title =  '';
   // public oldSessions: Set<Session> = new Set<Session>();
   public oldSessions = [];
   public pastSessions = [];
@@ -21,13 +22,16 @@ export class DashboardComponent implements OnInit {
   public plannedSessions = [];
   private userId;
 
-  constructor(private router: Router, private titleService: Title, private sessionService: SessionService, private useridStorage: UseridStorage) {
+  constructor(private router: Router, private titleService: Title, private sessionService: SessionService
+              , private useridStorage: UseridStorage, private translate: TranslateService) {
     this.userId = useridStorage.getUserId();
   }
 
   ngOnInit() {
+    this.translate.get('Kandoe.Dashboard.page_title', {value: 'world'}).subscribe(e => {
+      this.title = e;
+    });
     this.titleService.setTitle(this.title);
-
     this.sessionService.getSessionsOfUser(this.userId).subscribe(data => {
         this.oldSessions = data;
       },

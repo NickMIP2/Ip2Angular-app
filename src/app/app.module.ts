@@ -48,6 +48,12 @@ import {MatFormFieldModule} from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { UsersComponent } from './components/kandoe/users/users.component';
 import {UserService} from './services/user.service';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -94,7 +100,14 @@ import {UserService} from './services/user.service';
     MatSelectModule,
     MatRadioModule,
     MatSliderModule,
-    HttpClientModule
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     TokenStorage,
@@ -113,7 +126,6 @@ import {UserService} from './services/user.service';
     MessageService,
     UserService
   ],
-
   bootstrap: [AppComponent]
 })
 export class AppModule {

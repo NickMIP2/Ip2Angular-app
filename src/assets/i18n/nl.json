@@ -1,7 +1,47 @@
 {
-  "Title": "hello test",
-  "Dashboard": "dashboard werkt",
-  "Test": "dit is een test",
-  "dashboard_page_title": "dit is paginatitel"
+  "Authentication": {
+    "Login": {
+      "page_title": "Aanmelden | Kandoe",
+      "error_login": "Er is een probleem opgetreden tijdens het aanmelden. Probeer dit later opnieuw.",
+      "page_h1": "Aanmelden bij Kandoe",
+      "page_intro": "Brainstormen is een creativiteitstechniek met als doel snel veel nieuwe ideeën over een bepaald onderwerp of vraagstuk te genereren. Het kenmerk van een brainstormsessie is dat het waardeoordeel over de geopperde ideeën wordt uitgesteld totdat ze allemaal zijn opgesomd. Kandoe is de ideale manier om dit te doen.",
+      "username_upper": "Gebruikersnaam",
+      "password_upper": "Wachtwoord",
+      "button_signin": "Aanmelden",
+      "button_register": "Registreren"
+    },
+    "Register": {
+
+    }
+  },
+  "Kandoe": {
+    "Chat": {
+
+    },
+    "Dashboard": {
+      "page_title": "Dashboard"
+    },
+    "Home": {
+
+    },
+    "Navbar": {
+
+    },
+    "New-theme": {
+
+    },
+    "Session": {
+
+    },
+    "Themedetail": {
+
+    },
+    "Themes": {
+
+    },
+    "Users": {
+
+    }
+  }
 }
 
