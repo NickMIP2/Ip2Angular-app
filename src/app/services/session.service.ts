@@ -38,10 +38,10 @@ export class SessionService {
   }
 
   getSessionsOfUser(userId: number): Observable<any> {
-    return this.http.get('http://localhost:8080/users/' + userId + '/sessions');
+    return this.http.get('\'https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions');
   }
 
-  saveSessionCards(sessionCardIds: number[], sessionId: number , userId: number): Observable<any> {
+  saveSessionCards(sessionCardIds: number[], sessionId: number, userId: number): Observable<any> {
     const body = JSON.stringify(sessionCardIds);
     return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/saveCards', body, httpOptions);
   }
@@ -53,9 +53,8 @@ export class SessionService {
 
   startSession(sessionId: number, userId: number): Observable<any> {
     const body = JSON.stringify(sessionId);
-    console.log("erin")
-    return this.http.put('http://localhost:8080/users/' + userId + '/sessions/' + sessionId + '/startPhase1', httpOptions);
-      //http://localhost:8080/users/
+    return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/startPhase1', httpOptions);
+
   }
 }
 
