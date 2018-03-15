@@ -6,6 +6,7 @@ import {ThemeService} from '../../../../services/theme.service';
 import {CategoryService} from '../../../../services/category.service';
 import {CardService} from '../../../../services/card.service';
 import {Session} from '../../../../model/session';
+import {Card} from '../../../../model/card';
 
 @Component({
   selector: 'app-phase1',
@@ -16,10 +17,15 @@ export class Phase1Component implements OnInit {
 
   public userId;
   public sessionId;
-  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), 0);
+  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0);
   public cards = [];
   public selectedCards = [];
   public buttonStates = [];
+  public editing = 0;
+  public card = new Card(0, 0, '', '', '');
+  public correctName = true;
+  public check = false;
+
   constructor(private router: Router, private cardService: CardService, private route: ActivatedRoute, private sessionService: SessionService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
     this.sessionId = this.route.parent.snapshot.params['sessionId'];
@@ -76,5 +82,29 @@ export class Phase1Component implements OnInit {
         console.log(error);
         alert('Error saving selected cards');
       });
+  }
+
+  createCard() {
+    this.editing = 0;
+    this.cards.push(this.card);
+    this.card = new Card(0, 0, '', '', '');
+  }
+
+  navigateAbort() {
+    this.editing = 0;
+    this.card = new Card(0, 0, '', '', '');
+  }
+
+  checkName() {
+    for (const card of this.cards) {
+      if (card.name === this.card.name) {
+        this.correctName = false;
+        this.check = true;
+      }
+    }
+    if (!this.check) {
+      this.correctName = true;
+    }
+    this.check = false;
   }
 }

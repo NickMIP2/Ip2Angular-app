@@ -15,8 +15,8 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./new-session.component.css']
 })
 export class NewSessionComponent implements OnInit {
-  newSession = new Session(0, '', null, 0, 0, 1, 1, [], [], [], [], null, [], 0, false, new Date(), 0);
 
+  newSession = new Session(0, '', null, 0, 0, null, 1, [], [], [], [], 0, [], 0, false, new Date(), false, 0);
   participantEmail = '';
   public themes = [];
   public categoryArray = [];
@@ -26,6 +26,25 @@ export class NewSessionComponent implements OnInit {
   public oldSessions = [];
   public oldSession;
   public isOrganiser: boolean;
+  autoTicks = false;
+  disabled = false;
+  invert = false;
+  max = 20;
+  maxTime = 100;
+  min = 0;
+  showTicks = false;
+  step = 1;
+  thumbLabel = true;
+  vertical = false;
+  showClone = false;
+
+  get tickInterval(): number | 'auto' {
+    return this.showTicks ? (this.autoTicks ? 'auto' : this._tickInterval) : 0;
+  }
+  set tickInterval(v) {
+    this._tickInterval = Number(v);
+  }
+  private _tickInterval = 1;
 
   constructor(private router: Router, private sessionService: SessionService, private themeService: ThemeService, private categoryService: CategoryService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();

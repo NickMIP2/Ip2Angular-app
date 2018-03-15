@@ -18,6 +18,7 @@ export class Session {
               public state: number,
               public userSubmitted: boolean,
               public startDate: Date,
+              public allowCardCreation: boolean,
               public currentUser: number) {
   }
 }

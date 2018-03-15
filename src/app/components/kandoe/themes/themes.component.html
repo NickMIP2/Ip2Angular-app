@@ -1,19 +1,24 @@
-<button name="newthemebutton" class="btn btn-primary" style="margin: 1%;" (click)="goToNewTheme()">Nieuw thema
+
+<div class="themesContainer">
+<button name="newthemebutton" mat-raised-button color="primary" style="margin: 1%;" (click)="goToNewTheme()">Nieuw thema
 </button>
-<div class="borderBlue">
-  <div *ngFor="let currentTheme of themes" class="themeBox"
-       style="background-size: 100% 100%">
-      <!-- [ngStyle]="{'background-image': 'url(' + currentTheme.image + ')'}">-->
-    <h1>{{currentTheme.name}}</h1>
-    <h5 class="subtitle">Description</h5>
-    <div class="descriptionContainer">{{currentTheme.description}}</div>
-    <h5 class="subtitle">Tags</h5>
-    <div class="descriptionContainer">
-      <span *ngFor="let tag of currentTheme.tags">{{tag.toString()}}; </span>
-    </div>
-    <div>
-      <button class="btn btn-info font-small buttonCss" (click)="goToDetail(currentTheme.id)">Details</button>
-      <button class="btn btn-danger font-small buttonCss" (click)="deleteTheme(currentTheme.id)">Verwijder</button>
-    </div>
+  <div>
+  <mat-card *ngFor="let currentTheme of themes" class="themeBox">
+    <mat-card-content>
+      <p style="text-align: center">
+        <span style="font-weight: bold; font-size: large">{{currentTheme.name}}</span>
+      </p>
+      <p style="text-align: center">
+        <span>{{currentTheme.description}}</span>
+      </p>
+      <ul>
+        <li *ngFor="let tag of currentTheme.tags">{{tag}}</li>
+      </ul>
+    </mat-card-content>
+    <mat-card-actions style="padding-bottom: 4%">
+      <button style="width: 40%;" mat-raised-button color="primary" (click)="goToDetail(currentTheme.id)">Details</button>
+      <button style="width: 40%;" mat-raised-button color="warn" (click)="deleteTheme(currentTheme.id)">Verwijder</button>
+    </mat-card-actions>
+  </mat-card>
   </div>
 </div>

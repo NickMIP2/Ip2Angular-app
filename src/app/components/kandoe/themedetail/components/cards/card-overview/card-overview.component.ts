@@ -26,7 +26,7 @@ export class CardOverviewComponent implements OnInit {
     this.themeId = this.route.parent.snapshot.params['themeId'];
     this.categoryId = this.route.snapshot.params['categoryId'];
 
-    // get cards of theme
+    // get cards of category
     this.cardService.getCardsByCategory(this.categoryId ,this.themeId, this.userId).subscribe(data => {
         this.cards = data;
       },

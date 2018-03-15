@@ -13,3 +13,12 @@
 tr {
   margin: 1%;
 }
+
+.cardEditContainer {
+  width: 50%;
+  margin: auto;
+  margin-top: 2%;
+  background: #E2E0FB;
+  padding: 15px;
+  border-radius: 10px;
+}

@@ -35,7 +35,10 @@ import {ChatComponent} from './components/kandoe/chat/chat.component';
 import {FileUploadComponent} from './file-upload/file-upload.component';
 import {MessageService} from './services/message.service';
 import {CircleComponent} from './circle/circle.component';
-import {MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatNativeDateModule, MatTabsModule} from '@angular/material';
+import {
+  MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatNativeDateModule, MatRadioModule, MatSelectModule, MatSliderModule,
+  MatTabsModule
+} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SessionService} from './services/session.service';
 import {Phase1Component} from './components/kandoe/session/phase1/phase1.component';
@@ -44,6 +47,8 @@ import {SessionOverviewComponent} from './components/kandoe/session/session-over
 import {CardOverviewComponent} from './components/kandoe/themedetail/components/cards/card-overview/card-overview.component';
 import {MatFormFieldModule} from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { UsersComponent } from './components/kandoe/users/users.component';
+import {UserService} from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -72,7 +77,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     Phase1Component,
     Phase2Component,
     SessionOverviewComponent,
-    CardOverviewComponent
+    CardOverviewComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +94,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     MatNativeDateModule,
     MatCardModule,
     MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatSliderModule,
     HttpClientModule
   ],
   providers: [
@@ -104,7 +113,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     SessionService,
     Interceptor,
     UseridStorage,
-    MessageService
+    MessageService,
+    UserService
   ],
 
   bootstrap: [AppComponent]

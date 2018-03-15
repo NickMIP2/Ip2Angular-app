@@ -19,9 +19,11 @@ export class Phase2Component implements OnInit {
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
 
   public userTurn: boolean;
+
   public userOrganiser: boolean;
-  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), 0);
-  public currentCardId;
+ public currentCardId;
+  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0);
+
 
   constructor(private route: ActivatedRoute, private useridStorage: UseridStorage, private sessionService: SessionService) {
 

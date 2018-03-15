@@ -2,13 +2,15 @@
   border: solid blue 1px;
 }
 
-.cardBox {
-  width: 25%;
+.cardBox{
+  width: 30%;
   display: inline-block;
   margin: 1%;
   padding: 1%;
-  border-radius: 10px;
-  border: 1px solid;
+}
+
+mat-card-content {
+  text-align: left;
 }
 
 .subtitle {
@@ -28,4 +30,17 @@
   display: inline-block;
   margin: 1%;
   border: 1px solid black;
+}
+
+.cardContainer {
+  width: 80%;
+  margin: auto;
+  margin-top: 2%;
+  background: #E2E0FB;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.cardBoxContainer {
+  margin-top: 5%;
 }

@@ -11,13 +11,40 @@ li {
   list-style-type: none;
 }
 
-.sessionBox {
-  width: 25%;
+.tabContainer {
+  width: 80%;
+  margin: auto;
+  margin-top: 2%;
+  background: #E2E0FB;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.sessionBox{
+  width: 30%;
   display: inline-block;
   margin: 1%;
   padding: 1%;
-  border-radius: 10px;
-  border: 1px solid;
+}
+
+mat-card-content {
+  text-align: left;
+}
+
+.sessionBoxSelecteren {
+  width: 30%;
+  display: inline-block;
+  margin: 1%;
+  padding: 1%;
+  box-shadow: 0px 0px 5px 1px #FFA240;
+}
+
+.sessionBoxCirkelen {
+  width: 30%;
+  display: inline-block;
+  margin: 1%;
+  padding: 1%;
+  box-shadow: 0px 0px 5px 1px #43EF1F;
 }
 
 .descriptionContainer {
