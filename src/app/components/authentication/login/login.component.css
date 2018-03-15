@@ -6,8 +6,7 @@
  */
 body, html {
   height: 100%;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
+  background: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33)) no-repeat;
 }
 
 .card-container.card {
@@ -31,15 +30,14 @@ body, html {
   background-color: #F7F7F7;
   /* just in case there no content*/
   padding: 20px 25px 30px;
-  margin: 0 auto 25px;
-  margin-top: 50px;
+  margin: /*50px*/ auto /*25px*/;
   /* shadows and rounded borders */
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 .profile-img-card {
@@ -79,6 +77,7 @@ body, html {
 }
 
 .form-signin #inputEmail,
+.form-signin #inputText,
 .form-signin #inputPassword {
   direction: ltr;
   height: 44px;
@@ -110,7 +109,7 @@ body, html {
   /*background-color: #4d90fe; */
   background-color: rgb(104, 145, 162);
   /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
-  padding: 0px;
+  padding: 0;
   font-weight: 700;
   font-size: 14px;
   height: 36px;

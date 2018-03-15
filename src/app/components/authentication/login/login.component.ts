@@ -16,12 +16,14 @@ export class LoginComponent implements OnInit {
   }
 
   error: '';
-  loading: false;
+
+  loading = false;
   usernametext: string;
   passwordtext: string;
 
 
   login(): void {
+    this.loading = true;
     this.authService.login(this.usernametext, this.passwordtext).subscribe(
       data => {
         this.tokenStorage.saveToken(data.authToken);

@@ -1,28 +1,34 @@
-<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #3E52B5;">
-  <a class="navbar-brand font-weight-bold" routerLink="dashboard">Kandoe!</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse"
-          data-target="#navbarsDefault" aria-controls="navbarsDefault"
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3E52B5;">
+  <a class="navbar-brand" routerLink="dashboard">Kandoe!</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
           aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarsDefault">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a name="dashboard" class="nav-link" routerLink="dashboard"><p>Dashboard</p></a>
+        <a class="nav-link" name="dashboard" routerLink="dashboard">Dashboard</a>
       </li>
       <li class="nav-item active">
-        <a name="themes" class="nav-link" routerLink="themes"><p>Thema's</p></a>
+        <a class="nav-link" name="themes" routerLink="themes">Thema's</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" name="session" routerLink="new-session">Nieuwe sessie</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" name="analytics">Analyses</a>
+        <a class="nav-link disabled" name="analytics">Analyses</a>
       </li>
     </ul>
+    <form class="form-inline my-3 my-lg-0">
+      <button class="btn btn-outline-info my-2 mr-2 my-sm-0 text-bold" [routerLink]='["users/",userId]'>
+        <i class="material-icons">settings</i> Account
+      </button>
+      <button class="btn btn-outline-danger my-2 my-sm-0 text-bold" routerLink="/login">
+        <i class="material-icons">exit_to_app</i> Log out
+      </button>
+    </form>
   </div>
 </nav>
+
 <router-outlet></router-outlet>
-<footer class="blockquote-footer">
-    <p>Kandoe! - Integratieproject 2 - Team 8 - 2017-2018 - Karel de Grote-Hogeschool</p>
-</footer>
