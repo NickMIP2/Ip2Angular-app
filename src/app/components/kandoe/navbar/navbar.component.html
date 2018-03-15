@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #3E52B5;">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3E52B5;">
   <a class="navbar-brand" routerLink="dashboard">Kandoe!</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
@@ -31,16 +31,4 @@
   </div>
 </nav>
 
-<div class="bg">
-  <div class="container">
-    <div class="card card-container margin-top">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
-  <footer style="margin-top: 5%" class="blockquote-footer text-white">
-    <div>
-      <label style="margin: auto">Kandoe! - Integratieproject 2 - Team 8 - 2017-2018 - Karel de Grote-Hogeschool</label>
-    </div>
-  </footer>
-</div>
-
+<router-outlet></router-outlet>
