@@ -21,7 +21,7 @@ export class Phase2Component implements OnInit {
   public userTurn: boolean;
   public userOrganiser: boolean;
   public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), 0);
-
+  public currentCardId;
 
   constructor(private route: ActivatedRoute, private useridStorage: UseridStorage, private sessionService: SessionService) {
 
@@ -52,10 +52,10 @@ export class Phase2Component implements OnInit {
     this.stompClient = Stomp.over(ws);
     const that = this;
     this.stompClient.connect({}, function (frame) {
-      that.stompClient.subscribe('/game/' + id, (session) => { // ipv 2 -> sessionId
-        if (session.body) {
-          this.session = session;
-          console.log(session.body);
+      that.stompClient.subscribe('/cards/' + id, (cardid) => { // ipv 2 -> sessionId
+        if (cardid.body) {
+          this.currentCardId = cardid;
+          console.log(cardid.body);
           console.log(this.session.sessionCards);
         }});
     });

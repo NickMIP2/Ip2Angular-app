@@ -41,9 +41,14 @@ export class SessionService {
     return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions');
   }
 
-  saveSessionCards(sessionCards: SessionCard[], sessionId: number , userId: number): Observable<any> {
-    const body = JSON.stringify(sessionCards);
+  saveSessionCards(sessionCardIds: number[], sessionId: number , userId: number): Observable<any> {
+    const body = JSON.stringify(sessionCardIds);
     return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/saveCards', body, httpOptions);
+  }
+
+  saveSelectedCard(selectedCard: SessionCard, sessionId: number, userId: number): Observable<any> {
+    const body = JSON.stringify(selectedCard);
+    return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/sessionCards/' + selectedCard.id, body, httpOptions);
   }
 }
 

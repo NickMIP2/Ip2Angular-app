@@ -51,7 +51,7 @@ export class ChatComponent implements OnInit {
           $('.chat-body').append(
             '<div class=\'message\'>' +
             '<div class="header">' +
-            '<strong class="primary-font">' + 'Nick' + '</strong>' +
+            /*'<strong class="primary-font">' + 'Nick' + '</strong>' +*/
             '</div>'
             +
             '<p>' +

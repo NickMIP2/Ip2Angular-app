@@ -29,7 +29,7 @@ export class CardService {
     return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/categories/' + categoryId +  '/cards/' + card.id, body, httpOptions);
   }
 
-  deleteCard(categoryId: number,id: number, userId: number, themeId: number): Observable<any> {
+  deleteCard(categoryId: number, id: number, userId: number, themeId: number): Observable<any> {
     return this.http.delete('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/categories/' + categoryId + '/cards/' + id, httpOptions);
   }
 
@@ -37,7 +37,7 @@ export class CardService {
     return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/categories/' + categoryId + '/cards');
   }
 
-  getCard(categoryId: number,cardId: number, themeId: number, userId: number): Observable<any> {
+  getCard(categoryId: number, cardId: number, themeId: number, userId: number): Observable<any> {
     return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/categories/' + categoryId + '/cards/' + cardId);
   }
 }

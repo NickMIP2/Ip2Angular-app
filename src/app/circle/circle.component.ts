@@ -18,7 +18,7 @@ export class CircleComponent implements OnInit, OnChanges {
   }
 
   @Input() public isOrganiser = true;
-  @Input() public isMyTurn = true;
+  public isMyTurn = true;
 
   public selectedCard = new SessionCard(null, '', 8, 0, 0);
   public sessionCard1 = new SessionCard(1, 'card1', 8, 0, 0);
@@ -78,7 +78,7 @@ export class CircleComponent implements OnInit, OnChanges {
 
       console.log(this.circleRingSize);
 
-      const ringRadius = (this.circleRadius - ((this.circleRadius) - ((this.sessionCards[index].distanceToCenter + 1) * this.circleRingSize))) - this.cardThickness;
+      const ringRadius = (this.circleRadius - ((this.circleRadius) - ((this.sessionCards[index].priority + 1) * this.circleRingSize))) - this.cardThickness;
 
       console.log(ringRadius);
 
@@ -90,6 +90,7 @@ export class CircleComponent implements OnInit, OnChanges {
   }
 
   confirmMoveCard() {
+    this.isMyTurn === true;
     if (this.isMyTurn) {
 
       // this.isMyTurn = false;
@@ -117,16 +118,16 @@ export class CircleComponent implements OnInit, OnChanges {
       this.selectedCard.x = midpointX + (this.circleRadius);
       this.selectedCard.y = midpointY + (this.circleRadius);
 
-      this.selectedCard.distanceToCenter = this.selectedCard.distanceToCenter - 1;
+      this.selectedCard.priority = this.selectedCard.priority - 1;
 
       // spreek service aan
-      this.sessionService.saveSessionCards(this.sessionCards, this.sessionId, this.userIdStorage.getUserId()).subscribe();
-      this.stompClient.send('/app/send/message/' + this.sessionId, {}, this.selectedCard); // ipv 2 -> sessionId
+      this.sessionService.saveSelectedCard(this.selectedCard, this.sessionId, this.userIdStorage.getUserId()).subscribe();
+      this.stompClient.send('/app/send/sessionCard/' + this.sessionId, {}, this.selectedCard.id); // ipv 2 -> sessionId
 
     } else {
       return;
     }
-    if (this.selectedCard.distanceToCenter === 0) {
+    if (this.selectedCard.priority === 0) {
       alert(this.selectedCard.name + ' WINT');
     }
   }
