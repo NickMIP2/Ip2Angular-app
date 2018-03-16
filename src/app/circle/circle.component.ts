@@ -55,7 +55,7 @@ export class CircleComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     for (let card of this.sessionCards) {
-      card.distance = this.amountOfRings - card.priority;
+      card.distance = this.amountOfRings;
     }
 
     if(this.currentUserTurnId === this.userId){
@@ -77,7 +77,7 @@ export class CircleComponent implements OnInit, OnChanges {
 
       console.log(this.circleRingSize);
 
-      const ringRadius = (this.circleRadius - ((this.circleRadius) - ((this.sessionCards[index].distance + 1 - this.sessionCards[index].priority) * this.circleRingSize))) - this.cardThickness;
+      const ringRadius = (this.circleRadius - ((this.circleRadius) - (this.sessionCards[index].distance + 1 - this.sessionCards[index].priority) * this.circleRingSize)) - this.cardThickness;
 
       console.log(ringRadius);
 
@@ -146,7 +146,7 @@ export class CircleComponent implements OnInit, OnChanges {
     this.stompClient = Stomp.over(ws);
     const that = this;
     this.stompClient.connect({}, function (frame) {
-      that.stompClient.subscribe('/cards/' + id, (cardid) => { // ipv 2 -> sessionId
+      that.stompClient.subscribe('/cards/' + id, (cardid) => {
         if (cardid.body) {
           let selectedCardId = Number(cardid.body.toString().split(";")[0]);
           let currentUserId = Number(cardid.body.toString().split(';')[1]);
@@ -163,7 +163,7 @@ export class CircleComponent implements OnInit, OnChanges {
   public increaseCardPriority(id: number){
 
     for(let card of this.sessionCards){
-      if(card.id === id){
+      if (card.id === id){
         card.priority += 1;
       }
     }
