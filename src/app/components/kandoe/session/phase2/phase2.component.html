@@ -1,5 +1,5 @@
 
   <div class="row">
-    <app-circle [sessionId]="sessionId" [isOrganiser]="userOrganiser" [sessionCards]="session.sessionCardDtos" class="col-md-7 circlerow"></app-circle>
+    <app-circle [sessionId]="sessionId" [currentUserTurnId]="session.currentUser" [isOrganiser]="userOrganiser" [sessionCards]="session.sessionCardDtos" class="col-md-7 circlerow"></app-circle>
     <app-chat class="col-md-4 chatrow" [sessionId]="sessionId"></app-chat><!--[sessionId]="sessionId"-->
   </div>

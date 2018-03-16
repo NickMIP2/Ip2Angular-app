@@ -14,6 +14,6 @@
 </div>
 
 geselecteerd: {{selectedCard.name}}
-<button class="btn btn-primary" id="confirmCardButton" (click)="confirmMoveCard()"> Geselecteerde kaart verplaatsen</button>
+<button class="btn btn-primary" id="confirmCardButton" *ngIf="isMyTurn" (click)="confirmMoveCard()"> Geselecteerde kaart verplaatsen</button>
 
 <button class="btn btn-danger" id="endSessionButton" *ngIf="isOrganiser" (click)="endSession()"> Sessie beëindigen</button>

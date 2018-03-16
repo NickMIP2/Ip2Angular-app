@@ -18,7 +18,7 @@ export class CircleComponent implements OnInit, OnChanges {
   }
 
   @Input() public isOrganiser = true;
-  public isMyTurn = true;
+  public isMyTurn = false;
 
   public selectedCard = new SessionCard(null, '', '', '', 0, 0, 0, 0);
   /*;
@@ -46,28 +46,35 @@ export class CircleComponent implements OnInit, OnChanges {
   public rings = [];
   public angles = [];
   public index;
-  currentCardId;
+  selectedCardId;
   currentUserId;
+  userId;
   private stompClient;
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
   @Input() private sessionId;
+  @Input() currentUserTurnId;
 
 
   ngOnInit() {
     console.log('length' + this.sessionCards.length);
+    this.userId = this.userIdStorage.getUserId();
+
     const step = 100 / (this.amountOfRings);
     let z = 10;
     for (let i = 0; i < this.amountOfRings; i++) {
       this.rings.push(new Ring(step + (i * step), step + (i * step), z));
       z = z - 1;
     }
-    this.initializeWebSocketConnection(this.sessionId);
+    this.initializeWebSocketConnection(this.sessionId, this.userId);
 
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     for (let card of this.sessionCards) {
       card.distance = this.amountOfRings - card.priority;
+    }
+    if(this.currentUserTurnId === this.userId){
+      this.isMyTurn = true;
     }
     this.setCards();
   }
@@ -150,7 +157,7 @@ export class CircleComponent implements OnInit, OnChanges {
 
   }
 
-  initializeWebSocketConnection(id: number) {
+  initializeWebSocketConnection(id: number, userId: number) {
     console.log('completed + sessionId:' + this.sessionId);
     const ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
@@ -158,13 +165,12 @@ export class CircleComponent implements OnInit, OnChanges {
     this.stompClient.connect({}, function (frame) {
       that.stompClient.subscribe('/cards/' + id, (cardid) => { // ipv 2 -> sessionId
         if (cardid.body) {
-          console.log(cardid);
-          this.currentCardId = cardid.split(';');
-          this.currentUserId = cardid.splice(';')[1];
-          if (this.currentUserId === this.userIdStorage.getUserId()) {
+          this.selectedCardId = cardid.body.toString().split(";")[0];
+          this.currentUserId = cardid.body.toString().split(';')[1];
+          if (this.currentUserId === userId) {
             this.isMyTurn = true;
           }
-          console.log('currentCard' + this.currentCardId);
+          console.log('currentCard' + this.selectedCardId);
           console.log('currentUser' + this.currentUserId);
         }
       });
