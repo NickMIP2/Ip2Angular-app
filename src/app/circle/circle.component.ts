@@ -100,7 +100,7 @@ export class CircleComponent implements OnInit, OnChanges {
 
     if (this.isMyTurn) {
 
-      // this.isMyTurn = false;
+      this.isMyTurn = false;
       const topX = this.selectedCard.x;
       const topY = this.selectedCard.y;
 
@@ -159,8 +159,11 @@ export class CircleComponent implements OnInit, OnChanges {
       that.stompClient.subscribe('/cards/' + id, (cardid) => { // ipv 2 -> sessionId
         if (cardid.body) {
           console.log(cardid);
-          this.currentCardId = cardid.splice(';')[0];
+          this.currentCardId = cardid.split(';');
           this.currentUserId = cardid.splice(';')[1];
+          if (this.currentUserId === this.userIdStorage.getUserId()) {
+            this.isMyTurn = true;
+          }
           console.log('currentCard' + this.currentCardId);
           console.log('currentUser' + this.currentUserId);
         }

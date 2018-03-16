@@ -38,9 +38,7 @@ export class Phase2Component implements OnInit {
         console.log(data);
         this.session = data;
         console.log(this.session);
-        if (data.currentUser === this.userId) {
-          this.userTurn = true;
-        }
+
       },
       error => {
         console.error('Error loading Session!');
