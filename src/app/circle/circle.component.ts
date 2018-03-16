@@ -32,7 +32,6 @@ export class CircleComponent implements OnInit, OnChanges {
   public rings = [];
   public angles = [];
   public index;
-  selectedCardId;
   userId;
   private stompClient;
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
@@ -78,7 +77,7 @@ export class CircleComponent implements OnInit, OnChanges {
 
       console.log(this.circleRingSize);
 
-      const ringRadius = (this.circleRadius - ((this.circleRadius) - ((this.sessionCards[index].distance + 1) * this.circleRingSize))) - this.cardThickness;
+      const ringRadius = (this.circleRadius - ((this.circleRadius) - ((this.sessionCards[index].distance + 1 - this.sessionCards[index].priority) * this.circleRingSize))) - this.cardThickness;
 
       console.log(ringRadius);
 
@@ -91,6 +90,7 @@ export class CircleComponent implements OnInit, OnChanges {
 
   confirmMoveCard() {
 
+    /*
       const topX = this.selectedCard.x;
       const topY = this.selectedCard.y;
 
@@ -116,6 +116,7 @@ export class CircleComponent implements OnInit, OnChanges {
       this.selectedCard.y = midpointY + (this.circleRadius);
 
       this.selectedCard.distance = this.selectedCard.distance - 1;
+      */
 
       // spreek service aan
       this.sessionService.saveSelectedCard(this.selectedCard, this.sessionId, this.userIdStorage.getUserId()).subscribe(data => {
@@ -147,14 +148,23 @@ export class CircleComponent implements OnInit, OnChanges {
     this.stompClient.connect({}, function (frame) {
       that.stompClient.subscribe('/cards/' + id, (cardid) => { // ipv 2 -> sessionId
         if (cardid.body) {
-          comp.selectedCardId = Number(cardid.body.toString().split(";")[0]);
+          let selectedCardId = Number(cardid.body.toString().split(";")[0]);
           let currentUserId = Number(cardid.body.toString().split(';')[1]);
+          comp.increaseCardPriority(selectedCardId);
+          comp.setCards();
           if(currentUserId === userId){
             comp.isMyTurn = false;
           }
         }
       });
     });
+  }
+
+  public increaseCardPriority(id: number){
+    console.log('priority voor: ' + this.sessionCards.findById(id).priority );
+    this.sessionCards.findById(id).priority += 1 ;
+    console.log('priority erna: ' + this.sessionCards.findById(id).priority );
+
   }
 
 }
