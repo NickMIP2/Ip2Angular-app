@@ -11,37 +11,200 @@
       "button_register": "Register"
     },
     "Register": {
-
+      "page_title": "Register | Kandoe",
+      "error_register": "An error occurred while processing your registration. Please try again later.",
+      "page_h1": "Register at Kandoe",
+      "page_intro": "Brainstorming is a creativity technique met the purpose of quickly generating new ideas regarding a certain topic or question. The main feature of a brainstorming session is that the value judgement of the proposed ideas is delayed until they are all summed up. Kandoe is the ideal way to accomplish this.",
+      "username_upper": "Username",
+      "password_upper": "Password",
+      "email_upper": "Email address",
+      "first_name_upper": "First Name",
+      "last_name_upper": "Last Name",
+      "button_register": "Register",
+      "button_acc_exists": "Already registered? Log in here"
     }
   },
   "Kandoe": {
     "Chat": {
-
+      "page_title": "Chat | Kandoe",
+      "error_message": "An error occurred while processing your message. Please try again later.",
+      "type_msg_here": "Type message here...",
+      "button_send": "Send"
     },
     "Dashboard": {
-      "page_title": "Dashboard"
+      "page_title": "Dashboard",
+      "error_message": "An error occurred while processing your data. Please try again later.",
+      "button_analyse": "Analyse",
+      "span_select": "Select",
+      "button_resume": "Resume",
+      "span_circle": "Circle"
     },
     "Home": {
-
     },
     "Navbar": {
-
+      "link_dashboard": "Dashboard",
+      "link_themes": "Themes",
+      "link_new_session": "New Session",
+      "link_analyse": "Analytics",
+      "link_acc_settings": "Account",
+      "link_logout": "Sign out"
     },
     "New-theme": {
-
+      "page_title": "New theme | Kandoe",
+      "error_message": "An error occurred while processing your data. Please try again later.",
+      "ph_name": "Theme name",
+      "ph_desc": "Theme description",
+      "button_delete": "Delete",
+      "button_add_tag": "Add tag",
+      "lbl_image": "Image: ",
+      "button_add": "Add",
+      "button_cancel": "Cancel"
     },
     "Session": {
-
+      "New": {
+        "page_title": "New session | Kandoe",
+        "error_themes": "An error occurred while retrieving your themes. Please try again later.",
+        "error_sessions": "An error occurred while retrieving your sessions. Please try again later.",
+        "error_categories": "An error occurred while retrieving your categories. Please try again later.",
+        "error_create_session": "An error occurred while creating your session. Please try again later.",
+        "error_email_selected": "Email address is already selected",
+        "ph_name": "Session name",
+        "ph_choose_date": "Pick a date",
+        "copy_existing_session": "Copy an existing session",
+        "ph_participant_email": "Participants email address",
+        "button_add": "Add",
+        "session_admin": "Session admin",
+        "button_list_remove": "-",
+        "ph_theme": "Theme",
+        "ph_category": "Category",
+        "span_circle_type": "Type circle",
+        "radio_chance": "Chance",
+        "radio_problem": "Problem",
+        "span_allow_users_add_cards": "Allow users to add cards",
+        "radio_yes": "Yes",
+        "radio_no": "No",
+        "span_max_cards": "Maximum no. of cards",
+        "span_no_rounds": "No. of rounds",
+        "span_time_move_hour": "Time per move (hour)",
+        "button_create_session": "Create session"
+      },
+      "p1": {
+        "page_title": "Phase 1 | Kandoe",
+        "error_session": "An error occurred while retrieving your session. Please try again later.",
+        "error_cards": "An error occurred while retrieving your cards. Please try again later.",
+        "error_save_cards": "An error occurred while saving your cards. Please try again later.",
+        "h1_of": " of ",
+        "h1_cards_selected": " cards selected!",
+        "button_new_card": "New card",
+        "button_select": "Select",
+        "button_delete": "Delete",
+        "button_ready": "Ready",
+        "ph_card_name": "Card name",
+        "span_cardname_inuse": "Card name is already in use for this category.",
+        "ph_card_desc": "Card description",
+        "lbl_image": "Image",
+        "button_create_card": "Create card"
+      },
+      "p2": {
+        "page_title": "Phase 2 | Kandoe",
+        "error_session": "An error occurred while retrieving your sessions. Please try again later."
+      },
+      "overview": {
+        "page_title": "Session Overview | Kandoe"
+      }
     },
     "Themedetail": {
-
+      "cards": {
+        "edit": {
+          "page_title": "Card Editor | Kandoe",
+          "error_cards": "An error occurred while retrieving your cards. Please try again later.",
+          "error_save_cards": "An error occurred while saving your cards. Please try again later.",
+          "ph_name": "Card name",
+          "ph_desc": "Card description",
+          "lbl_image": "Image",
+          "button_save": "Save",
+          "button_delete": "Delete"
+        },
+        "new": {
+          "page_title": "New card | Kandoe",
+          "error_cards": "An error occurred while retrieving your cards. Please try again later.",
+          "error_cards_save": "An error occurred while saving your cards. Please try again later.",
+          "ph_name": "Card name",
+          "ph_desc": "Card description",
+          "lbl_image": "Image",
+          "button_create": "Create card",
+          "button_delete": "Delete"
+        },
+        "overview": {
+          "page_title": "Cards | Kandoe",
+          "error_load_cards": "An error occurred while retrieving your cards. Please try again later.",
+          "error_delete_cards": "An error occurred while deleting your card. Please try again later.",
+          "button_add_card": "Add new card",
+          "button_edit": "Edit",
+          "button_delete": "Delete"
+        }
+      },
+      "categories": {
+        "page_title": "Categories | Kandoe",
+        "error_read": "An error occurred while retrieving your categories. Please try again later.",
+        "error_update": "An error occurred while updating your category. Please try again later.",
+        "error_create": "An error occurred while creating your category. Please try again later.",
+        "error_delete": "An error occurred while deleting your category. Please try again later.",
+        "ph_name": "Category name",
+        "button_add": "Add",
+        "button_save": "Save",
+        "button_new": "New category",
+        "button_edit": "Edit",
+        "button_delete": "Delete",
+        "button_view_cards": "View cards"
+      },
+      "navbar": {
+        "link_overview": "Overview",
+        "link_categories": "Categories",
+        "link_organisers": "Organisers"
+      },
+      "organiser": {
+        "page_title": "Organisers | Kandoe",
+        "notification_changes": "All changes were saved.",
+        "tb_email": "Email address",
+        "tb_name": "Last Name",
+        "tb_first_name": "First Name",
+        "tb_organiser": "Organiser",
+        "button_save": "Save"
+      },
+      "overview": {
+        "page_title": "Overview | Kandoe",
+        "error_read": "An error occurred while retrieving your theme. Please try again later.",
+        "error_update": "An error occurred while updating your theme. Please try again later.",
+        "error_create": "An error occurred while creating your theme. Please try again later.",
+        "error_delete": "An error occurred while deleting your theme. Please try again later.",
+        "ph_name": "Theme name",
+        "ph_description": "Theme description",
+        "button_delete": "Delete",
+        "ph_tag": "Tag",
+        "button_add": "Add",
+        "button_save": "Save",
+        "button_edit": "Edit"
+      }
     },
     "Themes": {
-
+      "page_title": "Themes | Kandoe",
+      "error_read": "An error occurred while retrieving your themes. Please try again later.",
+      "error_delete": "An error occurred while deleting your theme. Please try again later.",
+      "button_new_theme": "New theme",
+      "button_details": "Details",
+      "button_delete": "Delete"
     },
     "Users": {
-
+      "page_title": "Account info | Kandoe",
+      "error_read": "An error occurred while retrieving your data. Please try again later.",
+      "error_update": "An error occurred while saving your data. Please try again later.",
+      "ph_username": "Username",
+      "ph_first_name": "First name",
+      "ph_name": "Name",
+      "ph_email": "Email address",
+      "ph_pw": "Password",
+      "button_save": "Save changes"
     }
   }
 }
-
