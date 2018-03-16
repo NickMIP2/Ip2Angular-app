@@ -18,6 +18,7 @@ export class ThemedetailOrganiserComponent implements OnInit {
   public newOrganiser = '';
   public uniqueMail = true;
   public alreadyExistsCheck = false;
+  public lastOrganiser = false;
 
   constructor(private themeService: ThemeService, private route: ActivatedRoute, private userIdStorage: UseridStorage) {
     this.userId = userIdStorage.getUserId();
@@ -35,6 +36,8 @@ export class ThemedetailOrganiserComponent implements OnInit {
         console.error('Error loading users!');
         console.log(error);
         alert('Error loading users');
+      }, () => {
+        this.checkIfLastOrganiser();
       });
   }
 
@@ -49,6 +52,8 @@ export class ThemedetailOrganiserComponent implements OnInit {
         console.error('Error adding user!');
         console.log(error);
         alert('Error adding user');
+      }, () => {
+        this.checkIfLastOrganiser();
       });
   }
 
@@ -66,7 +71,7 @@ export class ThemedetailOrganiserComponent implements OnInit {
   }
 
   removeOrganiser(user) {
-    if (this.users.length > 1) {
+    if (!this.lastOrganiser) {
       this.themeService.removeUserFromTheme(user.id, this.themeId, this.userId).subscribe(
         data => {
           this.users = data;
@@ -75,8 +80,13 @@ export class ThemedetailOrganiserComponent implements OnInit {
           console.error('Error removing user!');
           console.log(error);
           alert('Error removing user');
+        }, () => {
+          this.checkIfLastOrganiser();
         });
     }
   }
 
+  checkIfLastOrganiser() {
+    this.lastOrganiser = this.users.length <= 1;
+  }
 }

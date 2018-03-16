@@ -18,7 +18,7 @@
       <td  style="padding-top: 10px">{{user.firstname}}</td>
       <td  style="padding-top: 10px">{{user.lastname}}</td>
       <td  style="padding-top: 10px; text-align: right">
-      <button mat-raised-button color="warn" (click)="removeOrganiser(user)">Verwijder</button>
+      <button [disabled]="lastOrganiser" mat-raised-button color="warn" (click)="removeOrganiser(user)">Verwijder</button>
       </td>
     </tr>
   </table>
