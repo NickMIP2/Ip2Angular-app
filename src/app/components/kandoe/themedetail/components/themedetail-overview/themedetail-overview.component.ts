@@ -3,6 +3,7 @@ import {Theme} from '../../../../../model/theme';
 import {ThemeService} from '../../../../../services/theme.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-themedetail-overview',
@@ -12,6 +13,8 @@ import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
 
 })
 export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
+  page_title = '';
+  error_message = '';
   public theme: Theme = {
     id: 0,
     name: '',
@@ -24,26 +27,32 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
   editing = 0;
   tagValue = '';
 
-  constructor(private themeService: ThemeService, private route: ActivatedRoute, private useridStorage: UseridStorage, private router: Router) {
+  constructor(private themeService: ThemeService, private route: ActivatedRoute, private useridStorage: UseridStorage, private router: Router, private translate: TranslateService) {
     this.themeId = this.route.parent.snapshot.params['themeId'];
     console.log('themeId = ' + this.themeId);
 
   }
 
   ngOnInit() {
+    this.translate.get('Kandoe.Themedetail.overview.page_title', {value: 'world'}).subscribe(e => {
+      this.page_title = e;
+    });
+    window.document.title = this.page_title;
     this.themeService.getTheme(this.themeId, this.useridStorage.getUserId()).subscribe(data => {
         this.theme = data;
       },
       error => {
-        console.error('Error loading theme details!');
+        this.translate.get('Kandoe.Themedetail.overview.error_read', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Error loading theme details');
+        alert(this.error_message);
       });
 
   }
 
   ngAfterViewChecked() {
-    window.document.title = 'Thema ' + this.theme.name;
   }
 
   save() {
@@ -52,9 +61,12 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
         // routing naar andere component
       },
       error => {
-        console.error('Error saving Theme!');
+        this.translate.get('Kandoe.Themedetail.overview.error_save', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Error saving Theme');
+        alert(this.error_message);
       });
     this.editing = 0;
   }
@@ -64,9 +76,12 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
         this.router.navigate(['themes']);
       },
       error => {
-        console.error('Error deleting theme!' + this.themeId);
+        this.translate.get('Kandoe.Themedetail.overview.error_delete', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Error deleting theme');
+        alert(this.error_message);
       });
   }
 

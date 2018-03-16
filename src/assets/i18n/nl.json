@@ -11,36 +11,200 @@
       "button_register": "Registreren"
     },
     "Register": {
-
+      "page_title": "Registreren | Kandoe",
+      "error_register": "Er is een probleem opgetreden tijdens het registreren. Probeer dit later opnieuw.",
+      "page_h1": "Registreren bij Kandoe",
+      "page_intro": "Brainstormen is een creativiteitstechniek met als doel snel veel nieuwe ideeën over een bepaald onderwerp of vraagstuk te genereren. Het kenmerk van een brainstormsessie is dat het waardeoordeel over de geopperde ideeën wordt uitgesteld totdat ze allemaal zijn opgesomd. Kandoe is de ideale manier om dit te doen.",
+      "username_upper": "Gebruikersnaam",
+      "password_upper": "Wachtwoord",
+      "email_upper": "Emailadres",
+      "first_name_upper": "Voornaam",
+      "last_name_upper": "Naam",
+      "button_register": "Registreren",
+      "button_acc_exists": "Al geregistreerd? Log in hier"
     }
   },
   "Kandoe": {
     "Chat": {
-
+      "page_title": "Chat | Kandoe",
+      "error_message": "Er is een probleem opgetreden bij het verwerken van het bericht. Probeer het later opnieuw.",
+      "type_msg_here": "Typ hier uw bericht...",
+      "button_send": "Verstuur"
     },
     "Dashboard": {
-      "page_title": "Dashboard"
+      "page_title": "Dashboard",
+      "error_message": "Er is een probleem opgetreden bij het verwerken van de gegevens. Probeer het later opnieuw.",
+      "button_analyse": "Analyse",
+      "span_select": "Selecteren",
+      "button_resume": "Hervat",
+      "span_circle": "Cirkelen"
     },
     "Home": {
-
     },
     "Navbar": {
-
+      "link_dashboard": "Dashboard",
+      "link_themes": "Thema's",
+      "link_new_session": "Nieuwe sessie",
+      "link_analyse": "Analyses",
+      "link_acc_settings": "Profiel",
+      "link_logout": "Afmelden"
     },
     "New-theme": {
-
+      "page_title": "Nieuw thema | Kandoe",
+      "error_message": "Er is een probleem opgetreden bij het verwerken van de gegevens. Probeer het later opnieuw.",
+      "ph_name": "Themanaam",
+      "ph_desc": "Beschrijving van het thema",
+      "button_delete": "Verwijder",
+      "button_add_tag": "Tag toevoegen",
+      "lbl_image": "Afbeelding: ",
+      "button_add": "Toevoegen",
+      "button_cancel": "Ga terug"
     },
     "Session": {
-
+      "New": {
+        "page_title": "Nieuwe sessie | Kandoe",
+        "error_themes": "Er is een probleem opgetreden bij het ophalen van de thema's. Probeer het later opnieuw.",
+        "error_sessions": "Er is een probleem opgetreden bij het ophalen van de sessies. Probeer het later opnieuw.",
+        "error_categories": "Er is een probleem opgetreden bij het ophalen van de categoriën. Probeer het later opnieuw.",
+        "error_create_session": "Er is een probleem opgetreden bij het aanmaken van de sessie. Probeer het later opnieuw.",
+        "error_email_selected": "Emailadres is al geselecteerd.",
+        "ph_name": "Sessienaam",
+        "ph_choose_date": "Kies een datum",
+        "copy_existing_session": "Kopieer van een oude sessie",
+        "ph_participant_email": "Emailadres van een deelnemer",
+        "button_add": "Toevoegen",
+        "session_admin": "Sessiebeheerder",
+        "button_list_remove": "-",
+        "ph_theme": "Thema",
+        "ph_category": "Categorie",
+        "span_circle_type": "Type cirkel",
+        "radio_chance": "Kans",
+        "radio_problem": "Probleem",
+        "span_allow_users_add_cards": "Sta toe dat gebruikers kaarten toevoegen",
+        "radio_yes": "Ja",
+        "radio_no": "Nee",
+        "span_max_cards": "Maximum kaarten",
+        "span_no_rounds": "Aantal rondes",
+        "span_time_move_hour": "Tijd per zet (uur)",
+        "button_create_session": "Sessie maken"
+      },
+      "p1": {
+        "page_title": "Fase 1 | Kandoe",
+        "error_session": "Er is een probleem opgetreden bij het ophalen van de sessies. Probeer het later opnieuw.",
+        "error_cards": "Er is een probleem opgetreden bij het ophalen van de kaarten. Probeer het later opnieuw.",
+        "error_save_cards": "Er is een probleem opgetreden bij het bewaren van de kaarten. Probeer het later opnieuw.",
+        "h1_of": " van de ",
+        "h1_cards_selected": " van kaarten geselecteerd!",
+        "button_new_card": "Nieuwe kaart",
+        "button_select": "Selecteer",
+        "button_delete": "Verwijder",
+        "button_ready": "Klaar",
+        "ph_card_name": "Kaartnaam",
+        "span_cardname_inuse": "Kaartnaam is reeds gebruikt in deze categorie!",
+        "ph_card_desc": "Kaartbeschrijving",
+        "lbl_image": "Afbeelding",
+        "button_create_card": "Maak kaart"
+      },
+      "p2": {
+        "page_title": "Fase 2 | Kandoe",
+        "error_session": "Er is een probleem opgetreden bij het ophalen van de sessies. Probeer het later opnieuw."
+      },
+      "overview": {
+        "page_title": "Sessie-overzicht | Kandoe"
+      }
     },
     "Themedetail": {
-
+      "cards": {
+        "edit": {
+          "page_title": "Kaarteditor | Kandoe",
+          "error_cards": "Er is een probleem bij het ophalen van de kaarten. Probeer het later opnieuw.",
+          "error_save_cards": "Er is een probleem opgetreden bij het bewaren van de kaart. Probeer het later opnieuw.",
+          "ph_name": "Kaartnaam",
+          "ph_desc": "Kaartbeschrijving",
+          "lbl_image": "Afbeelding",
+          "button_save": "Opslaan",
+          "button_delete": "Verwijder"
+        },
+        "new": {
+          "page_title": "Nieuwe kaart | Kandoe",
+          "error_cards": "Er is een probleem bij het ophalen van de kaarten. Probeer het later opnieuw.",
+          "error_cards_save": "Er is een probleem opgetreden bij het bewaren van de kaarten. Probeer het later opnieuw",
+          "ph_name": "Kaartnaam",
+          "ph_desc": "Kaartbeschrijving",
+          "lbl_image": "Afbeelding",
+          "button_create": "Kaart maken",
+          "button_delete": "Verwijder"
+        },
+        "overview": {
+          "page_title": "Kaarten | Kandoe",
+          "error_load_cards": "Er is een probleem opgetreden bij het ophalen van de kaarten. Probeer het later opnieuw.",
+          "error_delete_cards": "Er is een probleem opgetreden bij het verwijderen van de kaart. Probeer het later opnieuw.",
+          "button_add_card": "Nieuwe kaart toevoegen",
+          "button_edit": "Wijzig",
+          "button_delete": "Verwijder"
+        }
+      },
+      "categories": {
+        "page_title": "Categoriën | Kandoe",
+        "error_read": "Er is een probleem opgetreden bij het ophalen van de categoriën. Probeer het later opnieuw.",
+        "error_update": "Er is een probleem opgetreden bij het aanpassen van de categorie. Probeer het later opnieuw.",
+        "error_create": "Er is een probleem opgetreden bij het aanmaken van de categorie. Probeer het later opnieuw.",
+        "error_delete": "Er is een probleem opgetreden bij het verwijderen van de categorie. Probeer het later opnieuw.",
+        "ph_name": "Categorienaam",
+        "button_add": "Toevoegen",
+        "button_save": "Opslaan",
+        "button_new": "Nieuwe categorie",
+        "button_edit": "Wijzig",
+        "button_delete": "Verwijder",
+        "button_view_cards": "Bekijk kaarten"
+      },
+      "navbar": {
+        "link_overview": "Overzicht",
+        "link_categories": "Categoriën",
+        "link_organisers": "Organisators"
+      },
+      "organiser": {
+        "page_title": "Organisators | Kandoe",
+        "notification_changes": "Alle wijzigingen zijn bewaard.",
+        "tb_email": "Emailadres",
+        "tb_name": "Naam",
+        "tb_first_name": "Voornaam",
+        "tb_organiser": "Organisator",
+        "button_save": "Opslaan"
+      },
+      "overview": {
+        "page_title": "Overzicht | Kandoe",
+        "error_read": "Er is een probleem opgetreden bij het ophalen van het thema. Probeer het later opnieuw.",
+        "error_update": "Er is een probleem opgetreden bij het aanpassen van het thema. Probeer het later opnieuw.",
+        "error_create": "Er is een probleem opgetreden bij het aanmaken van het thema. Probeer het later opnieuw.",
+        "error_delete": "Er is een probleem opgetreden bij het verwijderen van het thema. Probeer het later opnieuw.",
+        "ph_name": "Themanaam",
+        "ph_description": "Beschrijving van het thema",
+        "button_delete": "Verwijder",
+        "ph_tag": "Tag",
+        "button_add": "Toevoegen",
+        "button_save": "Opslaan",
+        "button_edit": "Wijzig"
+      }
     },
     "Themes": {
-
+      "page_title": "Thema's | Kandoe",
+      "error_read": "Er is een probleem opgetreden bij het ophalen van de thema's. Probeer het later opnieuw.",
+      "error_delete": "Er is een probleem opgetreden bij het verwijderen van de thema's. Probeer het later opnieuw.",
+      "button_new_theme": "Nieuw thema",
+      "button_details": "Details",
+      "button_delete": "Verwijder"
     },
     "Users": {
-
+      "page_title": "Uw profiel | Kandoe",
+      "error_read": "Er is een probleem opgetreden bij het ophalen van uw gegevens. Probeer het later opnieuw.",
+      "error_update": "Er is een probleem opgetreden bij het bewaren van uw nieuwe gegevens. Probeer het later opnieuw.",
+      "ph_username": "Gebruikersnaam",
+      "ph_first_name": "Voornaam",
+      "ph_name": "Naam",
+      "ph_email": "Emailadres",
+      "ph_pw": "Wachtwoord",
+      "button_save": "Wijzigingen opslaan"
     }
   }
 }

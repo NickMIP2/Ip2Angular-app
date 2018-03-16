@@ -1,19 +1,23 @@
 <form #cardForm="ngForm" class="form-group cardNewContainer">
       <mat-form-field class="form-group" style="width: 100%">
-        <input (input)="checkName()" style="width: 100%" matInput placeholder="Kaart naam" type="text" required class="editInput" name="editcardtitle" [(ngModel)]="card.name">
+        <input (input)="checkName()" style="width: 100%" matInput placeholder="{{ 'Kandoe.Themedetail.cards.new.ph_name' | translate }}" type="text" required class="editInput" name="editcardtitle" [(ngModel)]="card.name">
         <span *ngIf="!correctName" style="color: red; padding-top: 5px; font-size: small">Kaartnaam is reeds gebruikt in deze categorie!</span>
       </mat-form-field>
       <mat-form-field class="form-group" style="width: 100%">
-        <input style="width: 100%" matInput placeholder="Kaart beschrijving" type="text" name="editcarddescription" [(ngModel)]="card.description">
+        <input style="width: 100%" matInput placeholder="{{ 'Kandoe.Themedetail.cards.new.ph_desc' | translate }}" type="text" name="editcarddescription" [(ngModel)]="card.description">
       </mat-form-field>
   <table class="table" style="width: 100%">
   <tr>
-      <td class="descCol">Image</td>
+      <td class="descCol">{{ 'Kandoe.Themedetail.cards.new.lbl_image' | translate }}</td>
       <td class="editCol">
         <app-file-upload name="upload" [(ngModel)]="card.image"></app-file-upload>
       </td>
     </tr>
   </table>
-        <button [disabled]="!cardForm.form.valid || !correctName" style="width: 49%;" mat-raised-button color="primary" (click)="createCard()">Maak kaart</button>
-        <button mat-raised-button color="warn" style="width: 49%" (click)="navigateAbort()">Verwijder</button>
+        <button [disabled]="!cardForm.form.valid || !correctName" style="width: 49%;" mat-raised-button color="primary" (click)="createCard()">
+          {{ 'Kandoe.Themedetail.cards.new.button_create' | translate }}
+        </button>
+        <button mat-raised-button color="warn" style="width: 49%" (click)="navigateAbort()">
+          {{ 'Kandoe.Themedetail.cards.new.button_delete' | translate }}
+        </button>
 </form>

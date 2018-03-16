@@ -14,7 +14,8 @@ import {TranslateService} from '@ngx-translate/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  title =  '';
+  page_title =  '';
+  error_message = '';
   // public oldSessions: Set<Session> = new Set<Session>();
   public oldSessions = [];
   public pastSessions = [];
@@ -29,15 +30,21 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.translate.get('Kandoe.Dashboard.page_title', {value: 'world'}).subscribe(e => {
-      this.title = e;
+      this.page_title = e;
     });
-    this.titleService.setTitle(this.title);
+    window.document.title = this.page_title;
+
+    this.titleService.setTitle(this.page_title);
     this.sessionService.getSessionsOfUser(this.userId).subscribe(data => {
         this.oldSessions = data;
       },
       error => {
-        console.error('Error loading sessions!');
+        this.translate.get('Kandoe.Dashboard.error_message', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
+        alert(this.error_message);
       },
       () => {
         console.log(this.oldSessions);

@@ -9,7 +9,7 @@
         </p>
       </mat-card-content>
       <mat-card-actions style="padding-bottom: 4%">
-        <button style="width: 80%;" mat-raised-button color="primary">Analyse</button>
+        <button style="width: 80%;" mat-raised-button color="primary">{{ 'Kandoe.Dashboard.button_analyse' | translate }}</button>
       </mat-card-actions>
     </mat-card>
     </div>
@@ -24,11 +24,11 @@
             <span style="font-weight: bold; font-size: large">{{session.name}}</span>
           </p>
             <p style="text-align: center">
-              <span class="descriptionContainer">Selecteren</span>
+              <span class="descriptionContainer">{{ 'Kandoe.Dashboard.span_select' | translate }}</span>
             </p>
         </mat-card-content>
         <mat-card-actions style="padding-bottom: 4%">
-          <button style="width: 80%" mat-raised-button color="primary" (click)="continueSession(session)" [disabled]="session.userSubmitted">Hervat</button>
+          <button style="width: 80%" mat-raised-button color="primary" (click)="continueSession(session)" [disabled]="session.userSubmitted">{{ 'Kandoe.Dashboard.button_resume' | translate }}</button>
         </mat-card-actions>
       </mat-card>
         <mat-card *ngIf="session.state === 2" class="sessionBoxCirkelen"
@@ -38,11 +38,11 @@
               <span style="font-weight: bold; font-size: large">{{session.name}}</span>
             </p>
             <p style="text-align: center">
-              <span class="descriptionContainer">Cirkelen</span>
+              <span class="descriptionContainer">{{ 'Kandoe.Dashboard.span_circle' | translate }}</span>
             </p>
         </mat-card-content>
         <mat-card-actions style="padding-bottom: 4%">
-          <button style="width: 80%" mat-raised-button color="primary" (click)="continueSession(session)" [disabled]="session.userSubmitted">Hervat</button>
+          <button style="width: 80%" mat-raised-button color="primary" (click)="continueSession(session)" [disabled]="session.userSubmitted">{{ 'Kandoe.Dashboard.button_resume' | translate }}</button>
         </mat-card-actions>
       </mat-card>
       </div>

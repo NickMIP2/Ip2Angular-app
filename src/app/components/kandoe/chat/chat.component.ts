@@ -5,6 +5,7 @@ import * as Stomp from 'stompjs';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
 import {Message} from '../../../model/message';
 import {MessageService} from '../../../services/message.service';
+import {TranslateService} from '@ngx-translate/core';
 
 
 @Component({
@@ -19,20 +20,30 @@ export class ChatComponent implements OnInit {
   private stompClient;
   public username;
   public messages = [new Message('')];
+  page_title = '';
+  error_message = '';
 
-  constructor(private userIdStorage: UseridStorage, private messageService: MessageService) {
+  constructor(private userIdStorage: UseridStorage, private messageService: MessageService, private translate: TranslateService) {
     this.username = userIdStorage.getUsername();
   }
 
   ngOnInit() {
+    this.translate.get('Kandoe.Chat.page_title', {value: 'world'}).subscribe(e => {
+      this.page_title = e;
+    });
+    window.document.title = this.page_title;
+
     this.initializeWebSocketConnection();
     this.messageService.getMessages(this.sessionId, this.userIdStorage.getUserId()).subscribe(data => { // sessionId ipv 2
         this.messages = data;
       },
       error => {
-        console.error('Error loading messages!');
+        this.translate.get('Kandoe.Chat.error_chat', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Error loading messages');
+        alert(this.error_message);
       });
   }
 
@@ -46,7 +57,7 @@ export class ChatComponent implements OnInit {
           $('.chat-body').append(
             '<div class=\'message\'>' +
               '<div class="header">' +
-                '<strong class="primary-font">' + "Nick"  + '</strong>'  +
+                '<strong class="primary-font">' + 'Nick'  + '</strong>'  +
               '</div>'
             +
             '<p>' +
@@ -61,16 +72,19 @@ export class ChatComponent implements OnInit {
       });
     });
   }
-  sendMessage(message){
-    let usernameMessage = this.userIdStorage.getUsername() +': ' +  message ;
-    let dbMessage = new Message( usernameMessage);
+  sendMessage(message) {
+    const usernameMessage = this.userIdStorage.getUsername() + ': ' +  message ;
+    const dbMessage = new Message( usernameMessage);
     this.messageService.sendMessage(dbMessage, this.sessionId, this.userIdStorage.getUserId()).subscribe(data => { // ipv 2 naar sessionId
-        console.log("message successfully send to database");
+        console.log('message successfully send to database');
       },
       error => {
-        console.error("Error sending message!");
+        this.translate.get('Kandoe.Chat.error_chat', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert("Error sending message");
+        alert(this.error_message);
       });
     this.stompClient.send('/app/send/message/' + this.sessionId , {}, usernameMessage); // ipv 2 -> sessionId
     $('#input').val('');

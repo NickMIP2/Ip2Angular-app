@@ -3,6 +3,7 @@ import {CardService} from '../../../../../../services/card.service';
 import {Card} from '../../../../../../model/card';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UseridStorage} from '../../../../../../sessionStorage/userid-storage';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-card-edit',
@@ -10,6 +11,8 @@ import {UseridStorage} from '../../../../../../sessionStorage/userid-storage';
   styleUrls: ['./card-edit.component.css']
 })
 export class CardEditComponent implements OnInit {
+  page_title = '';
+  error_message = '';
   public cardId;
   public card = new Card(0, 0, '', '', '');
   public themeId;
@@ -22,12 +25,16 @@ export class CardEditComponent implements OnInit {
   constructor(private cardService: CardService,
               private route: ActivatedRoute,
               private userIdStorage: UseridStorage,
-              private router: Router) {
+              private router: Router,
+              private translate: TranslateService) {
     this.userId = userIdStorage.getUserId();
   }
 
   ngOnInit() {
-    window.document.title = 'Cardeditor';
+    this.translate.get('Kandoe.Themedetail.cards.edit.page_title', {value: 'world'}).subscribe(e => {
+      this.page_title = e;
+    });
+    window.document.title = this.page_title;
     this.themeId = this.route.parent.snapshot.params['themeId'];
     this.cardId = this.route.snapshot.params['cardId'];
     this.categoryId = this.route.snapshot.params['categoryId'];
@@ -37,19 +44,25 @@ export class CardEditComponent implements OnInit {
         this.card = data;
       },
       error => {
-        console.error('Error loading card!');
+        this.translate.get('Kandoe.Themedetail.cards.edit.error_cards', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Error loading card!');
+        alert(this.error_message);
       }, () => {
-        this.cardService.getCardsByCategory(this.categoryId ,this.themeId, this.userId).subscribe(data => {
+        this.cardService.getCardsByCategory(this.categoryId , this.themeId, this.userId).subscribe(data => {
             this.oldCards = data;
           },
           error => {
-            console.error('Error loading cards!');
+            this.translate.get('Kandoe.Themedetail.cards.edit.error_cards', {value: 'world'}).subscribe(e => {
+              this.error_message = e;
+            });
+            console.error(this.error_message);
             console.log(error);
-            alert('Error loading cards!');
+            alert(this.error_message);
           }, () => {
-            let index = 0;
+            const index = 0;
             for (let i = 0; i < this.oldCards.length; i++) {
               if (this.oldCards[i].name === this.card.name) {
 
@@ -68,9 +81,12 @@ export class CardEditComponent implements OnInit {
           this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview']);
         },
         error => {
-          console.error('Error saving card!');
+          this.translate.get('Kandoe.Themedetail.cards.edit.error_save_cards', {value: 'world'}).subscribe(e => {
+            this.error_message = e;
+          });
+          console.error(this.error_message);
           console.log(error);
-          alert('Error saving card');
+          alert(this.error_message);
         });
     }
   }

@@ -8,7 +8,7 @@
     </tr>
     <tr *ngIf="editing ==1" style="text-align: left; width: 100%">
         <mat-form-field class="form-group" style="width: 100%">
-          <input id="nameInput" *ngIf="editing ==1" [(ngModel)]="theme.name" style="width: 100%" matInput placeholder="Thema naam" type="text" required name="themename" #themename="ngModel">
+          <input id="nameInput" *ngIf="editing ==1" [(ngModel)]="theme.name" style="width: 100%" matInput placeholder="{{ 'Kandoe.Themedetail.overview.ph_name' | translate }}" type="text" required name="themename" #themename="ngModel">
         </mat-form-field>
     </tr>
     <tr *ngIf="editing !==1">
@@ -20,7 +20,7 @@
     </tr>
     <tr *ngIf="editing == 1">
       <mat-form-field class="form-group" style="width: 100%">
-        <textarea type="text" id="descInput" [(ngModel)]="theme.description" style="width: 100%" matInput placeholder="Beschrijving van het thema" required name="description" #themedescription="ngModel"></textarea>
+        <textarea type="text" id="descInput" [(ngModel)]="theme.description" style="width: 100%" matInput placeholder="{{ 'Kandoe.Themedetail.overview.ph_desc' | translate }}" required name="description" #themedescription="ngModel"></textarea>
       </mat-form-field>
     </tr>
     <tr style="width: 100%">
@@ -37,17 +37,17 @@
             <label class="text-left">{{tag}}</label>
           </td>
           <td>
-            <button mat-raised-button color="warn" name="deleteTag" (click)="deleteTag(i)">Verwijder</button>
+            <button mat-raised-button color="warn" name="deleteTag" (click)="deleteTag(i)">{{ 'Kandoe.Themedetail.overview.button_delete' | translate }}</button>
           </td>
         </tr>
         <tr style="width: 100%">
           <td style="width: 70%">
             <mat-form-field class="form-group" style="width: 100%">
-            <input matInput style="width: 100%" id="tagInput" name="tagInput" [(ngModel)]="tagValue" placeholder="Tag">
+            <input matInput style="width: 100%" id="tagInput" name="tagInput" [(ngModel)]="tagValue" placeholder="{{ 'Kandoe.Themedetail.overview.ph_tag' | translate }}">
             </mat-form-field>
           </td>
           <td style="width: 30%">
-            <button style="width: 100%" mat-raised-button color="primary" name="addTag" (click)="addTag()">Toevoegen</button>
+            <button style="width: 100%" mat-raised-button color="primary" name="addTag" (click)="addTag()">{{ 'Kandoe.Themedetail.overview.button_add' | translate }}</button>
           </td>
         </tr>
       </table>
@@ -55,9 +55,9 @@
   </table>
     <div style="width: 100%">
       <button [disabled]="!themeform.form.valid" style="width: 49%" mat-raised-button color="primary" (click)="editing === 1 ? save() : editing=1">
-        {{editing===1 ? "Opslaan" : "Wijzigen"}}
+        {{editing===1 ? "{{ 'Kandoe.Themedetail.overview.button_save' | translate }}" : "{{ 'Kandoe.Themedetail.overview.button_edit' | translate }}"}}
       </button>
-      <button style="width: 49%" mat-raised-button color="warn" (click)="deleteTheme(theme.id)" routerLink="/themes">Verwijderen</button>
+      <button style="width: 49%" mat-raised-button color="warn" (click)="deleteTheme(theme.id)" routerLink="/themes">{{ 'Kandoe.Themedetail.overview.button_delete' | translate }}</button>
     </div>
   </form>
 </div>

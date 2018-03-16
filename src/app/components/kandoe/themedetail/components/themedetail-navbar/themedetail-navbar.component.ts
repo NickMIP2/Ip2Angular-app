@@ -1,4 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-themedetail-navbar',
@@ -7,7 +8,7 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class ThemedetailNavbarComponent implements OnInit {
 
-  constructor() {
+  constructor(private translate: TranslateService) {
   }
 
   ngOnInit() {

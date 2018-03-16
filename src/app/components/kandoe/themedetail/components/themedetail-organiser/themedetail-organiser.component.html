@@ -2,10 +2,10 @@
 <div class="container">
   <table class="table text-left">
     <tr>
-      <th>Email</th>
-      <th>Naam</th>
-      <th>Voornaam</th>
-      <th>Organisator</th>
+      <th>{{ 'Kandoe.Themedetail.organiser.tb_email' | translate }}</th>
+      <th>{{ 'Kandoe.Themedetail.organiser.tb_name' | translate }}</th>
+      <th>{{ 'Kandoe.Themedetail.organiser.tb_first_name' | translate }}</th>
+      <th>{{ 'Kandoe.Themedetail.organiser.tb_organiser' | translate }}</th>
     </tr>
     <!--
     <tr *ngFor="let user of users" >
@@ -17,5 +17,5 @@
     </tr>
     -->
   </table>
-  <button class="btn btn-primary" (click)="saveChanges()" name="saveOrganisors">Opslaan</button>
+  <button class="btn btn-primary" (click)="saveChanges()" name="saveOrganisors">{{ 'Kandoe.Themedetail.organiser.button_save' | translate }}</button>
 </div>

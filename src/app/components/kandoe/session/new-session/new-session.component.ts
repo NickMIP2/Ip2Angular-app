@@ -8,6 +8,7 @@ import {Theme} from '../../../../model/theme';
 import {SessionService} from '../../../../services/session.service';
 import {Router} from '@angular/router';
 import { DatePipe } from '@angular/common';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-new-session',
@@ -15,7 +16,8 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./new-session.component.css']
 })
 export class NewSessionComponent implements OnInit {
-
+  page_title = '';
+  error_message = '';
   newSession = new Session(0, '', null, 0, 0, null, 1, [], [], [], [], 0, [], 0, false, new Date(), false, 0);
   participantEmail = '';
   public themes = [];
@@ -46,7 +48,8 @@ export class NewSessionComponent implements OnInit {
   }
   private _tickInterval = 1;
 
-  constructor(private router: Router, private sessionService: SessionService, private themeService: ThemeService, private categoryService: CategoryService, private useridStorage: UseridStorage) {
+  constructor(private router: Router, private sessionService: SessionService, private themeService: ThemeService, private categoryService: CategoryService, private useridStorage: UseridStorage,
+              private translate : TranslateService) {
     this.userId = useridStorage.getUserId();
   }
 
@@ -59,15 +62,22 @@ export class NewSessionComponent implements OnInit {
   }
 
   ngOnInit() {
-    window.document.title = 'Nieuwe sessie';
+    this.translate.get('Kandoe.Session.New.page_title', {value: 'world'}).subscribe(e => {
+      this.page_title = e;
+    });
+    window.document.title = this.page_title;
+
     console.log(this.participantEmail);
     this.themeService.getThemesOfUser(this.userId).subscribe(data => {
         this.themes = data;
       },
       error => {
-        console.error('Error loading themes!');
+        this.translate.get('Kandoe.Session.New.error_themes', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Error loading themes');
+        alert(this.error_message);
       }, () => {
         // this.setCategory();
       });
@@ -76,8 +86,12 @@ export class NewSessionComponent implements OnInit {
         console.log(this.oldSessions);
       },
       error => {
-        console.error('Error loading sessions!');
+        this.translate.get('Kandoe.Session.New.error_sessions', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
+        alert(this.error_message);
       });
   }
 
@@ -87,9 +101,12 @@ export class NewSessionComponent implements OnInit {
         this.categoryArray = data;
       },
       error => {
-        console.error('Error loading categories!');
+        this.translate.get('Kandoe.Session.New.error_categories', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Error loading categories');
+        alert(this.error_message);
       });
   }
 
@@ -110,9 +127,12 @@ export class NewSessionComponent implements OnInit {
           this.router.navigate(['kandoe/dashboard']);
         },
         error => {
-          console.error('Error creating session!');
+          this.translate.get('Kandoe.Session.New.error_create_session', {value: 'world'}).subscribe(e => {
+            this.error_message = e;
+          });
+          console.error(this.error_message);
           console.log(error);
-          alert('Error creating session');
+          alert(this.error_message);
         });
     }
   }
@@ -125,7 +145,10 @@ export class NewSessionComponent implements OnInit {
       }
       this.participantEmail = '';
     } else {
-      alert('E-mail al geselecteerd!');
+      this.translate.get('Kandoe.Session.New.error_email_selected', {value: 'world'}).subscribe(e => {
+        this.error_message = e;
+      });
+      alert(this.error_message);
     }
   }
 

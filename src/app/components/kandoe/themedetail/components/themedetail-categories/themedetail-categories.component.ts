@@ -4,6 +4,7 @@ import {ThemeService} from '../../../../../services/theme.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryService} from '../../../../../services/category.service';
 import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-themedetail-categories',
@@ -11,6 +12,8 @@ import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
   styleUrls: ['./themedetail-categories.component.css']
 })
 export class ThemedetailCategoriesComponent implements OnInit {
+  page_title = '';
+  error_message = '';
   editing = 0;
   categories = [];
   editfield = '';
@@ -19,21 +22,27 @@ export class ThemedetailCategoriesComponent implements OnInit {
   public themeId = 0;
   public userId;
 
-  constructor(private themeService: ThemeService, private router: Router, private categoryService: CategoryService, private route: ActivatedRoute, private userIdStorage: UseridStorage) {
+  constructor(private themeService: ThemeService, private router: Router, private categoryService: CategoryService, private route: ActivatedRoute, private userIdStorage: UseridStorage, private translate: TranslateService) {
     this.userId = userIdStorage.getUserId();
   }
 
   ngOnInit() {
-    window.document.title = 'Categoriën';
+    this.translate.get('Kandoe.Themedetail.categories.page_title', {value: 'world'}).subscribe(e => {
+      this.page_title = e;
+    });
+    window.document.title = this.page_title;
     this.themeId = this.route.parent.snapshot.params['themeId'];
     // get categories of theme
     this.categoryService.getCategoriesByTheme(this.themeId, this.userId).subscribe(data => {
         this.categories = data;
       },
       error => {
-        console.error('Error loading categories!');
+        this.translate.get('Kandoe.Themedetail.categories.error_read', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Error loading categories!');
+        alert(this.error_message);
       });
   }
 
@@ -47,9 +56,12 @@ export class ThemedetailCategoriesComponent implements OnInit {
         this.editfield = '';
       },
       error => {
-        console.error('Error creating category!');
+        this.translate.get('Kandoe.Themedetail.categories.error_create', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Error creating category');
+        alert(this.error_message);
       });
   }
 
@@ -58,9 +70,12 @@ export class ThemedetailCategoriesComponent implements OnInit {
         this.categories = data;
       },
       error => {
-        console.error('Error deleting category!' + id);
+        this.translate.get('Kandoe.Themedetail.categories.error_delete', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Error deleting category!');
+        alert(this.error_message);
       });
   }
 
@@ -70,9 +85,12 @@ export class ThemedetailCategoriesComponent implements OnInit {
         this.currentCategory = data;
       },
       error => {
-        console.error('Error saving Category!');
+        this.translate.get('Kandoe.Themedetail.categories.error_update', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Error saving Category');
+        alert(this.error_message);
       });
     this.editing = 0;
   }

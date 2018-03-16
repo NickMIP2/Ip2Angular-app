@@ -1,6 +1,7 @@
 
 <div class="themesContainer">
-<button name="newthemebutton" mat-raised-button color="primary" style="margin: 1%;" (click)="goToNewTheme()">Nieuw thema
+<button name="newthemebutton" mat-raised-button color="primary" style="margin: 1%;" (click)="goToNewTheme()">
+  {{ 'Kandoe.Themes.button_new_theme' | translate }}
 </button>
   <div>
   <mat-card *ngFor="let currentTheme of themes" class="themeBox">
@@ -16,8 +17,8 @@
       </ul>
     </mat-card-content>
     <mat-card-actions style="padding-bottom: 4%">
-      <button style="width: 40%;" mat-raised-button color="primary" (click)="goToDetail(currentTheme.id)">Details</button>
-      <button style="width: 40%;" mat-raised-button color="warn" (click)="deleteTheme(currentTheme.id)">Verwijder</button>
+      <button style="width: 40%;" mat-raised-button color="primary" (click)="goToDetail(currentTheme.id)">{{ 'Kandoe.Themes.button_details' | translate }}</button>
+      <button style="width: 40%;" mat-raised-button color="warn" (click)="deleteTheme(currentTheme.id)">{{ 'Kandoe.Themes.button_delete' | translate }}</button>
     </mat-card-actions>
   </mat-card>
   </div>

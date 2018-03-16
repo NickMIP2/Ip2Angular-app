@@ -8,24 +8,24 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" name="dashboard" routerLink="dashboard">Dashboard</a>
+        <a class="nav-link" name="dashboard" routerLink="dashboard">{{ 'Kandoe.Navbar.link_dashboard' | translate }}</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" name="themes" routerLink="themes">Thema's</a>
+        <a class="nav-link" name="themes" routerLink="themes">{{ 'Kandoe.Navbar.link_themes' | translate }}</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" name="session" routerLink="new-session">Nieuwe sessie</a>
+        <a class="nav-link" name="session" routerLink="new-session">{{ 'Kandoe.Navbar.link_new_session' | translate }}</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link disabled" name="analytics">Analyses</a>
+        <a class="nav-link disabled" name="analytics">{{ 'Kandoe.Navbar.link_analyse' | translate }}</a>
       </li>
     </ul>
     <form class="form-inline my-3 my-lg-0">
       <button class="btn btn-outline-info my-2 mr-2 my-sm-0 text-bold" [routerLink]='["users/",userId]'>
-        <i class="material-icons">settings</i> Account
+        <i class="material-icons">settings</i> {{ 'Kandoe.Navbar.link_acc_settings' | translate }}
       </button>
       <button class="btn btn-outline-danger my-2 my-sm-0 text-bold" routerLink="/login">
-        <i class="material-icons">exit_to_app</i> Log out
+        <i class="material-icons">exit_to_app</i> {{ 'Kandoe.Navbar.link_logout' | translate }}
       </button>
     </form>
   </div>

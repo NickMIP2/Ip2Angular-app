@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../../../model/user';
 import {Router, ActivatedRoute} from '@angular/router';
 import {AuthenticationService} from '../../../services/authentication.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -16,27 +17,35 @@ export class RegisterComponent implements OnInit {
   error = '';
   pwMatch: boolean = this.model.password === this.passwordCheck;
   loading = false;
+  page_title = '';
+  error_register = '';
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private authService: AuthenticationService) {
+              private authService: AuthenticationService,
+              private translate: TranslateService) {
   }
 
   ngOnInit() {
-    window.document.title = 'Register | Kandoe';
+    this.translate.get('Authentication.Register.page_title', {value: 'world'}).subscribe(e => {
+      this.page_title = e;
+    })
+    window.document.title = this.page_title;
   }
 
   register() {
     this.loading = true;
     this.authService.register(this.model).subscribe(
       data => {
-        console.log('User succesfully registered');
         this.router.navigate(['/login']);
       },
       error => {
-        console.error('Error registering User!');
+        this.translate.get('Authentication.Register.error_register', {value: 'world'}).subscribe(e => {
+          this.error_register = e;
+        })
+        console.error(this.error_register);
         console.log(error);
-        alert('Unable to register User');
+        alert(this.error_register);
       });
   }
 

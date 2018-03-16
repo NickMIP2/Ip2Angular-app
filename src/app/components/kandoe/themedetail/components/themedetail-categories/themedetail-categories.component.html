@@ -1,31 +1,48 @@
 <div class="categoryContainer">
   <form #newCategoryForm="ngForm" class="form-group" *ngIf="editing ==1">
-  <mat-form-field class="form-group" style="width: 100%">
-    <input name="newcategoryname" style="width: 100%" matInput placeholder="Categorie naam" type="text" required [(ngModel)]="editfield">
-  </mat-form-field>
-  <button [disabled]="!newCategoryForm.form.valid" style="width: 50%;" mat-raised-button color="primary" (click)="editing === 1 ? createCategory() : editing=0">Toevoegen</button>
+    <mat-form-field class="form-group" style="width: 100%">
+      <input name="newcategoryname" style="width: 100%" matInput
+             placeholder="{{ 'Kandoe.Themedetail.categories.ph_name' | translate }}" type="text" required
+             [(ngModel)]="editfield">
+    </mat-form-field>
+    <button [disabled]="!newCategoryForm.form.valid" style="width: 50%;" mat-raised-button color="primary"
+            (click)="editing === 1 ? createCategory() : editing=0">
+      {{ 'Kandoe.Themedetail.categories.button_add' | translate }}
+    </button>
   </form>
   <form #editCategoryForm="ngForm" class="form-group" *ngIf="editing == 2">
-  <mat-form-field class="form-group" style="width: 100%">
-    <input name="editcategoryname" style="width: 100%" matInput placeholder="Categorie naam" type="text" required [(ngModel)]="editfield">
-  </mat-form-field>
-  <button [disabled]="!editCategoryForm.form.valid" style="width: 50%;" mat-raised-button color="primary" (click)="editing === 2 ? updateCategory() : editing=0">Opslaan</button>
+    <mat-form-field class="form-group" style="width: 100%">
+      <input name="editcategoryname" style="width: 100%" matInput
+             placeholder="{{ 'Kandoe.Themedetail.categories.ph_name' | translate }}" type="text" required
+             [(ngModel)]="editfield">
+    </mat-form-field>
+    <button [disabled]="!editCategoryForm.form.valid" style="width: 50%;" mat-raised-button color="primary"
+            (click)="editing === 2 ? updateCategory() : editing=0">
+      {{ 'Kandoe.Themedetail.categories.button_save' | translate }}
+    </button>
   </form>
-<div id="display-all-categories" *ngIf="editing !== 1 && editing !== 2">
-  <button style="width: 50%" mat-raised-button color="primary" (click)="editing=1">Nieuwe categorie</button>
-  <table class="table paddingtop">
-    <tr *ngFor="let category of categories">
-      <td>{{category.name}}</td>
-      <td>
-        <button mat-raised-button color="primary" (click)="editing=2" (click)="currentCategory=category"
-                (click)="editfield=category.name">Wijzig
-        </button>
-        <button mat-raised-button color="warn" (click)="deleteCategory(category.id)">Verwijder</button>
-      </td>
-      <td>
-        <button mat-raised-button color="primary" (click)="goToCards(category.id)">Bekijk kaarten</button>
-      </td>
-    </tr>
-  </table>
-</div>
+  <div id="display-all-categories" *ngIf="editing !== 1 && editing !== 2">
+    <button style="width: 50%" mat-raised-button color="primary" (click)="editing=1">
+      {{ 'Kandoe.Themedetail.categories.button_new' | translate }}
+    </button>
+    <table class="table paddingtop">
+      <tr *ngFor="let category of categories">
+        <td>{{category.name}}</td>
+        <td>
+          <button mat-raised-button color="primary" (click)="editing=2" (click)="currentCategory=category"
+                  (click)="editfield=category.name">
+            {{ 'Kandoe.Themedetail.categories.button_edit' | translate }}
+          </button>
+          <button mat-raised-button color="warn" (click)="deleteCategory(category.id)">
+            {{ 'Kandoe.Themedetail.categories.button_delete' | translate }}
+          </button>
+        </td>
+        <td>
+          <button mat-raised-button color="primary" (click)="goToCards(category.id)">
+            {{ 'Kandoe.Themedetail.categories.button_view_cards' | translate }}
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>

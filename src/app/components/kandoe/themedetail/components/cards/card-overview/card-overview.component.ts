@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UseridStorage} from '../../../../../../sessionStorage/userid-storage';
 import {CardService} from '../../../../../../services/card.service';
 import {ThemeService} from '../../../../../../services/theme.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-card-overview',
@@ -10,19 +11,24 @@ import {ThemeService} from '../../../../../../services/theme.service';
   styleUrls: ['./card-overview.component.css']
 })
 export class CardOverviewComponent implements OnInit {
-
+  page_title = '';
+  error_message = '';
 
   public cards = [];
   public themeId;
   public categoryId;
   public userId;
 
-  constructor(private cardService: CardService, private themeService: ThemeService, private route: ActivatedRoute, private userIdStorage: UseridStorage, private router: Router) {
+  constructor(private cardService: CardService, private themeService: ThemeService, private route: ActivatedRoute, private userIdStorage: UseridStorage, private router: Router,
+              private translate: TranslateService) {
     this.userId = userIdStorage.getUserId();
   }
 
   ngOnInit() {
-    window.document.title = 'Kaarten';
+    this.translate.get('Kandoe.Themedetail.cards.overview.page_title', {value: 'world'}).subscribe(e => {
+      this.page_title = e;
+    });
+    window.document.title = this.page_title;
     this.themeId = this.route.parent.snapshot.params['themeId'];
     this.categoryId = this.route.snapshot.params['categoryId'];
 
@@ -31,9 +37,12 @@ export class CardOverviewComponent implements OnInit {
         this.cards = data;
       },
       error => {
-        console.error('Error loading cards!');
+        this.translate.get('Kandoe.Themedetail.cards.overview.error_load_cards', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Error loading cards!');
+        alert(this.error_message);
       });
     for (const card of this.cards) {
       console.log(card.image.substring(0, 30));
@@ -45,9 +54,12 @@ export class CardOverviewComponent implements OnInit {
         this.cards = data;
       },
       error => {
-        console.error('Error deleting card!' + id);
+        this.translate.get('Kandoe.Themedetail.cards.new.error_delete_cards', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Error deleting card!');
+        alert(this.error_message);
       });
   }
 

@@ -3,6 +3,7 @@ import {ThemeService} from '../../../services/theme.service';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
 import {Theme} from '../../../model/theme';
 import {Router} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-theme',
@@ -12,21 +13,29 @@ import {Router} from '@angular/router';
 
 })
 export class ThemesComponent implements OnInit {
+  page_title = '';
+  error_message = '';
   public themes: Set<Theme> = new Set<Theme>();
 
-  constructor(private themeService: ThemeService, private useridStorage: UseridStorage, private router: Router) {
+  constructor(private themeService: ThemeService, private useridStorage: UseridStorage, private router: Router, private translate: TranslateService) {
 
   }
 
   ngOnInit() {
-    window.document.title = 'Uw thema\'s';
+    this.translate.get('Kandoe.Themes.page_title', {value: 'world'}).subscribe(e => {
+      this.page_title = e;
+    });
+    window.document.title = this.page_title;
     this.themeService.getThemesOfUser(this.useridStorage.getUserId()).subscribe(data => {
         this.themes = data;
       },
       error => {
-        console.error('Error loading themes!');
+        this.translate.get('Kandoe.Themes.error_read', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Error loading themes');
+        alert(this.error_message);
       });
 
   }
@@ -43,9 +52,12 @@ export class ThemesComponent implements OnInit {
         this.themes = data;
       },
       error => {
-        console.error('Error deleting theme!');
+        this.translate.get('Kandoe.Themes.error_read', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Error deleting theme');
+        alert(this.error_message);
       });
   }
 

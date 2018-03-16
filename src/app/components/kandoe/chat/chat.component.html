@@ -21,10 +21,11 @@
           </div>
           <div class="panel-footer">
             <div class="input-group">
-              <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..."  (keyup.enter)="sendMessage(input.value)" #input />
+              <input id="btn-input" type="text" class="form-control input-sm" placeholder="{{ 'Kandoe.Chat.type_msg_here' | translate }}"  (keyup.enter)="sendMessage(input.value)" #input />
               <span class="input-group-btn">
                             <button class="btn btn-warning btn-sm" id="btn-chat" (click)="sendMessage(input.value)">
-                                Send</button>
+                              {{ 'Kandoe.Chat.button_send' | translate }}
+                            </button>
                         </span>
             </div>
           </div>
