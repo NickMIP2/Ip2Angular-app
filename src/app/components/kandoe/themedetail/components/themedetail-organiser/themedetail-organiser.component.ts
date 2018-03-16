@@ -66,7 +66,7 @@ export class ThemedetailOrganiserComponent implements OnInit {
   }
 
   removeOrganiser(user) {
-    this.themeService.removeUserFromTheme(user.email, this.themeId, this.userId).subscribe(
+    this.themeService.removeUserFromTheme(user.id, this.themeId, this.userId).subscribe(
       data => {
         this.users = data;
       },

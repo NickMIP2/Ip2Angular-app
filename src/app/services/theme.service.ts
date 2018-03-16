@@ -51,14 +51,12 @@ export class ThemeService {
   }
 
   addUserToTheme(email: string, themeId: number, userId: number): Observable<any> {
-    const body = JSON.stringify(email);
     console.log('user id: ' + userId);
-    console.log('json body:' + body);
-    return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/users', body, httpOptions);
+    console.log('json body:' + email);
+    return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/users', email, httpOptions);
   }
 
-  removeUserFromTheme(email: string, themeId: number, userId: number): Observable<any> {
-    const body = JSON.stringify(email);
-    return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/users/remove', body, httpOptions);
+  removeUserFromTheme(organiserId: number, themeId: number, userId: number): Observable<any> {
+    return this.http.delete('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/users/' + organiserId + '/remove', httpOptions);
   }
 }
