@@ -14,7 +14,7 @@ export class Session {
               public participantIds: number[],
               public organiserIds: number[],
               public type: number,
-              public sessionCardsIds: number[],
+              public sessionCardDtos: SessionCard[],
               public state: number,
               public userSubmitted: boolean,
               public startDate: Date,

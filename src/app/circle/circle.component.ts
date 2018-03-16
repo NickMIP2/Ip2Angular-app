@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {SessionCard} from '../model/sessioncard';
 import {Ring} from '../model/ring';
 
@@ -20,7 +20,8 @@ export class CircleComponent implements OnInit, OnChanges {
   @Input() public isOrganiser = true;
   public isMyTurn = true;
 
-  public selectedCard = new SessionCard(null, '', 8, 0, 0);
+  public selectedCard = new SessionCard(null, '', '', '', 0, 0, 0, 0);
+  /*;
   public sessionCard1 = new SessionCard(1, 'card1', 8, 0, 0);
   public sessionCard2 = new SessionCard(2, 'card2', 8, 0, 0);
 
@@ -28,9 +29,11 @@ export class CircleComponent implements OnInit, OnChanges {
   public sessionCard4 = new SessionCard(4, 'card4', 8, 0, 0);
 
   public sessionCard5 = new SessionCard(5, 'card5', 8, 0, 0);
-  public sessionCard6 = new SessionCard(6, 'card6', 8, 0, 0);
+  public sessionCard6 = new SessionCard(6, 'card6', 8, 0, 0);*/
 
-  @Input() sessionCards = [this.sessionCard1, this.sessionCard2, this.sessionCard3, this.sessionCard4, this.sessionCard5, this.sessionCard6];
+  @Input() sessionCards;
+  /*[this.sessionCard1, this.sessionCard2, this.sessionCard3, this.sessionCard4, this.sessionCard5, this.sessionCard6]*/
+
   circleRingSize;
 
   // helft van div width/height
@@ -43,32 +46,36 @@ export class CircleComponent implements OnInit, OnChanges {
   public rings = [];
   public angles = [];
   public index;
-
+  currentCardId;
+  currentUserId;
   private stompClient;
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
   @Input() private sessionId;
 
-  ngOnInit() {
 
+  ngOnInit() {
+    console.log('length' + this.sessionCards.length);
     const step = 100 / (this.amountOfRings);
     let z = 10;
     for (let i = 0; i < this.amountOfRings; i++) {
       this.rings.push(new Ring(step + (i * step), step + (i * step), z));
       z = z - 1;
     }
-    this.setCards();
-    const ws = new SockJS(this.serverUrl);
-    this.stompClient = Stomp.over(ws);
-    const that = this;
+    this.initializeWebSocketConnection(this.sessionId);
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-
+    for (let card of this.sessionCards) {
+      card.distance = this.amountOfRings - card.priority;
+    }
+    this.setCards();
   }
 
   public setCards() {
     this.circleRingSize = this.circleRadius / (this.amountOfRings);
     let index = 0;
+    console.log('setcard' + this.sessionCards.length);
     for (index; index < this.sessionCards.length; index++) {
 
       const angleDegrees = ((360 / this.sessionCards.length) * index);
@@ -78,7 +85,7 @@ export class CircleComponent implements OnInit, OnChanges {
 
       console.log(this.circleRingSize);
 
-      const ringRadius = (this.circleRadius - ((this.circleRadius) - ((this.sessionCards[index].priority + 1) * this.circleRingSize))) - this.cardThickness;
+      const ringRadius = (this.circleRadius - ((this.circleRadius) - ((this.sessionCards[index].distance + 1) * this.circleRingSize))) - this.cardThickness;
 
       console.log(ringRadius);
 
@@ -90,7 +97,7 @@ export class CircleComponent implements OnInit, OnChanges {
   }
 
   confirmMoveCard() {
-    this.isMyTurn === true;
+
     if (this.isMyTurn) {
 
       // this.isMyTurn = false;
@@ -118,16 +125,17 @@ export class CircleComponent implements OnInit, OnChanges {
       this.selectedCard.x = midpointX + (this.circleRadius);
       this.selectedCard.y = midpointY + (this.circleRadius);
 
-      this.selectedCard.priority = this.selectedCard.priority - 1;
+      this.selectedCard.distance = this.selectedCard.distance - 1;
 
       // spreek service aan
-      this.sessionService.saveSelectedCard(this.selectedCard, this.sessionId, this.userIdStorage.getUserId()).subscribe();
-      this.stompClient.send('/app/send/sessionCard/' + this.sessionId, {}, this.selectedCard.id); // ipv 2 -> sessionId
+      this.sessionService.saveSelectedCard(this.selectedCard, this.sessionId, this.userIdStorage.getUserId()).subscribe(data => {
+        this.stompClient.send('/app/send/sessionCard/' + this.sessionId, {}, this.selectedCard.id + ';' + data);
+      });
 
     } else {
       return;
     }
-    if (this.selectedCard.priority === 0) {
+    if (this.selectedCard.priority === 8) {
       alert(this.selectedCard.name + ' WINT');
     }
   }
@@ -140,5 +148,23 @@ export class CircleComponent implements OnInit, OnChanges {
 
   public endSession() {
 
+  }
+
+  initializeWebSocketConnection(id: number) {
+    console.log('completed + sessionId:' + this.sessionId);
+    const ws = new SockJS(this.serverUrl);
+    this.stompClient = Stomp.over(ws);
+    const that = this;
+    this.stompClient.connect({}, function (frame) {
+      that.stompClient.subscribe('/cards/' + id, (cardid) => { // ipv 2 -> sessionId
+        if (cardid.body) {
+          console.log(cardid);
+          this.currentCardId = cardid.splice(';')[0];
+          this.currentUserId = cardid.splice(';')[1];
+          console.log('currentCard' + this.currentCardId);
+          console.log('currentUser' + this.currentUserId);
+        }
+      });
+    });
   }
 }

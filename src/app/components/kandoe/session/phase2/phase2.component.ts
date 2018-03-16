@@ -21,21 +21,23 @@ export class Phase2Component implements OnInit {
   public userTurn: boolean;
 
   public userOrganiser: boolean;
- public currentCardId;
+  public currentCardId;
   public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0);
 
 
   constructor(private route: ActivatedRoute, private useridStorage: UseridStorage, private sessionService: SessionService) {
 
     this.sessionId = this.route.parent.snapshot.params['sessionId'];
-    console.log('SESSION ID PHASE2:' + this.sessionId);
     this.userId = this.useridStorage.getUserId();
 
   }
 
   ngOnInit() {
+
     this.sessionService.getSession(this.sessionId, this.userId).subscribe(data => {
+        console.log(data);
         this.session = data;
+        console.log(this.session);
         if (data.currentUser === this.userId) {
           this.userTurn = true;
         }
@@ -44,23 +46,9 @@ export class Phase2Component implements OnInit {
         console.error('Error loading Session!');
         console.log(error);
         alert('Error loading Session');
-      }, () => this.initializeWebSocketConnection(this.sessionId));
+      });
 
-  }
-
-  initializeWebSocketConnection(id: number) {
-    console.log('completed + sessionId:' + this.sessionId);
-    const ws = new SockJS(this.serverUrl);
-    this.stompClient = Stomp.over(ws);
-    const that = this;
-    this.stompClient.connect({}, function (frame) {
-      that.stompClient.subscribe('/cards/' + id, (cardid) => { // ipv 2 -> sessionId
-        if (cardid.body) {
-          this.currentCardId = cardid;
-          console.log(cardid.body);
-          console.log(this.session.sessionCards);
-        }});
-    });
   }
 }
+
 

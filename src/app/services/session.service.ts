@@ -23,7 +23,7 @@ export class SessionService {
   }
 
   getSession(id: number, userId: number): Observable<any> {
-    return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + id);
+    return this.http.get('https://kandoe-backend.herokuapp.com//users/' + userId + '/sessions/' + id);
   }
 
   updateSession(session: Session, userId: number): Observable<any> {
@@ -38,11 +38,11 @@ export class SessionService {
   }
 
   getSessionsOfUser(userId: number): Observable<any> {
-    return this.http.get('\'https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions');
+    return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions');
   }
 
-  saveSessionCards(sessionCardIds: number[], sessionId: number, userId: number): Observable<any> {
-    const body = JSON.stringify(sessionCardIds);
+  saveSessionCards(sessionCards: SessionCard[], sessionId: number, userId: number): Observable<any> {
+    const body = JSON.stringify(sessionCards);
     return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/saveCards', body, httpOptions);
   }
 
@@ -55,6 +55,10 @@ export class SessionService {
     const body = JSON.stringify(sessionId);
     return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/startPhase1', httpOptions);
 
+  }
+
+  getSessionCards(sessionId: number, userId: number): Observable <any> {
+    return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId);
   }
 }
 

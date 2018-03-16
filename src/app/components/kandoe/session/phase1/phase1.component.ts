@@ -73,8 +73,11 @@ export class Phase1Component implements OnInit {
     this.buttonStates[index] = false;
   }
 
-  saveCardIds() {
+  saveCards() {
+    console.log(this.selectedCards);
     this.sessionService.saveSessionCards(this.selectedCards, this.session.id, this.userId).subscribe(data => {
+      console.log('selectedcard' + this.selectedCards.toString());
+      console.log('sessioncards' + data.sessionCardDtos[0]);
         this.router.navigate(['kandoe/sessions/' + this.session.id + '/phase2']);
       },
       error => {

@@ -26,7 +26,7 @@
   <button mat-raised-button color="warn" *ngIf="buttonStates[i]" (click)="deselectCard(card, i)">Verwijder</button>
 </div>-->
 <br>
-<button mat-raised-button color="primary" (click)="saveCardIds()">Klaar</button>
+<button mat-raised-button color="primary" (click)="saveCards()">Klaar</button>
 </div>
 <div *ngIf="editing===1">
   <form #cardForm="ngForm" class="form-group cardNewContainer">
