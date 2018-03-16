@@ -12,8 +12,10 @@
 
 </div>
 </div>
-
+<p>
+  {{isMyTurn}}
+</p>
 geselecteerd: {{selectedCard.name}}
-<button class="btn btn-primary" id="confirmCardButton" *ngIf="isMyTurn" (click)="confirmMoveCard()"> Geselecteerde kaart verplaatsen</button>
+<button class="btn btn-primary" id="confirmCardButton" [hidden]="isMyTurn" (click)="confirmMoveCard()"> Geselecteerde kaart verplaatsen </button>
 
 <button class="btn btn-danger" id="endSessionButton" *ngIf="isOrganiser" (click)="endSession()"> Sessie beëindigen</button>
