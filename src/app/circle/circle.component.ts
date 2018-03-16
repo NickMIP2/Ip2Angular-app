@@ -162,7 +162,12 @@ export class CircleComponent implements OnInit, OnChanges {
 
   public increaseCardPriority(id: number){
     console.log('priority voor: ' + this.sessionCards.findById(id).priority );
-    this.sessionCards.findById(id).priority += 1 ;
+
+    for(let card of this.sessionCards){
+      if(card.id === id){
+        card.priority += 1;
+      }
+    }
     console.log('priority erna: ' + this.sessionCards.findById(id).priority );
 
   }
