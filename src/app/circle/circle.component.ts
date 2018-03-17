@@ -25,14 +25,15 @@ export class CircleComponent implements OnInit, OnChanges {
   @Input() sessionCards;
   circleRingSize;
   // helft van div width/height
-  cardThickness = 17.5;
+  cardThickness = 15;
   // helft van div width/height
-  circleRadius = 350;
+  circleRadius = 300;
   amountOfRings = 8;
   public rings = [];
   public angles = [];
   public index;
   userId;
+  public username;
   private stompClient;
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
   @Input() private sessionId;
@@ -42,6 +43,7 @@ export class CircleComponent implements OnInit, OnChanges {
   ngOnInit() {
     console.log('length' + this.sessionCards.length);
     this.userId = this.userIdStorage.getUserId();
+    this.username = this.userIdStorage.getUsername();
 
     const step = 100 / (this.amountOfRings);
     let z = 10;

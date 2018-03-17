@@ -1,20 +1,49 @@
 .circle {
-  width: 700px;
-  height: 700px;
+  width: 600px;
+  height: 600px;
   margin-top: 20px;
-  margin-left: 20px;
+  margin-left: 60px;
   position: relative;
 }
 
-.sessioncard {
-  width: 35px;
-  border: 1px solid blue;
-  height: 35px;
-  position: absolute;
-  z-index: 999;
-  background-color: white;
+.game {
+  display: flex;
 }
 
+.cards{
+}
+
+.currentTurn{
+  display: flex;
+  height: 100px;
+  width: 100%;
+}
+.sessioncard {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  z-index: 20;
+  background-color: white;
+  box-shadow: 0 1px 2px black;
+  -webkit-box-shadow: 0 1px 2px black;
+  -moz-box-shadow: 0 1px 2px black;
+  transition: width 0.5s ,height 0.5s;
+  -webkit-transition: width 0.5s ,height 0.5s;
+  ;
+}
+
+.sessioncard:active{
+  transform: translateY(4px);
+  background-color: gainsboro;
+}
+.sessioncard:hover{
+  width: 90px;
+  height: 90px;
+}
+
+.sessioncard:hover > #hovercarddetails {
+  opacity: 1.0;
+}
 .subcircle {
   background: white;
   border-radius: 50%;
@@ -29,9 +58,40 @@
   background: #3e52b5;
 }
 
-#endSessionButton{
-  float: left;
-  margin-left: 150px;
+#endSessionButton {
+
+}
+
+#hovercarddetails {
+  opacity: 0.0;
+  padding-top: 200px;
+  -webkit-transition: all 1000ms ease-in, all 50ms ease-out;
+  -moz-transition: all 1000ms ease-in, all 50ms ease-out;;
+  -o-transition: all 1000ms ease-in, all 50ms ease-out;;
+  transition: all 1000ms ease-in, all 50ms ease-out;;
+
 }
 
 
+#selectedCardDetails {
+  display: flex;
+  width: 100%;
+  float: right;
+}
+
+.carddetails{
+  display: flex;
+  margin-left: 5em;
+  width: 100%;
+  overflow-y: scroll;
+  max-height: 500px;
+}
+
+.cardBox{
+  width: 800%;
+  margin-top: 5px;
+}
+
+#confirmCardButton{
+  margin: 5px;
+}

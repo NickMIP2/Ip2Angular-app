@@ -41,7 +41,7 @@
 .panel-body
 {
   overflow-y: scroll;
-  height: 20em;
+  height: 40em;
 }
 
 ::-webkit-scrollbar-track
@@ -68,4 +68,9 @@ p{
 
 #btn-chat{
   height: 100%;
+}
+
+.cardBox{
+  width: 5%;
+
 }
