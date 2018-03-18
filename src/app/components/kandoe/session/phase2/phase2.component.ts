@@ -20,7 +20,7 @@ export class Phase2Component implements OnInit {
 
   public userTurn: boolean;
 
-  public userOrganiser: boolean;
+  public userOrganiser = true;
   public currentCardId;
   public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0);
 
@@ -45,7 +45,11 @@ export class Phase2Component implements OnInit {
         console.log(error);
         alert('Error loading Session');
       });
-
+    for (const id in this.session.organiserIds) {
+      if (id === this.userId) {
+        this.userOrganiser = true;
+      }
+    }
   }
 }
 

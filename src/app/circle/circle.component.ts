@@ -172,4 +172,7 @@ export class CircleComponent implements OnInit, OnChanges {
 
   }
 
+  takeSnapshot() {
+
+  }
 }

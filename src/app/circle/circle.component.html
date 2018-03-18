@@ -1,7 +1,6 @@
 <div class="container game">
+
   <div class="circle">
-
-
     <div *ngFor="let ring of rings" class="subcircle"
          [style.width]="ring.width + '%'" [style.height]="ring.height + '%'"
          [style.z-index]="ring.z">
@@ -20,31 +19,35 @@
     <p class="row currentTurn" [hidden]="isMyTurn">
       Het is jouw beurt {{username}}!
     </p>
-  <div class="row" id="selectedCardDetails" [style.visibility]="selectedCard.name !== '' ? 'visible': 'hidden'">
-    <b>Geselecteerde kaart</b>:
-       {{selectedCard.name}}
+    <div class="row" id="selectedCardDetails" [style.visibility]="selectedCard.name !== '' ? 'visible': 'hidden'">
+      <b>Geselecteerde kaart</b>:
+      {{selectedCard.name}}
 
-    <button mat-raised-button color="primary" id="confirmCardButton" *ngIf="!isMyTurn" (click)="confirmMoveCard()">
-      Geselecteerde kaart verplaatsen
-    </button>
-  </div>
-  <div class="row carddetails">
-    <mat-card *ngFor="let card of sessionCards;let i = index" class="cardBox"
-              style="background-size: 100% 100%">
-      <mat-card-content>
-        <p style="text-align: center">
-          <span style="font-weight: bold; font-size: large">{{card.name}}</span>
-        </p>
-        <p style="text-align: center">
-          <span>{{card.description}}</span>
-        </p>
-      </mat-card-content>
-      <mat-card-actions style="padding-bottom: 4%">
-        <button style="width: 80%;" mat-raised-button color="primary" (click)="selectCard(card, i)">Selecteer</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  <button class="btn btn-danger" id="endSessionButton" *ngIf="isOrganiser" (click)="endSession()"> Sessie beëindigen
-  </button>
+      <button mat-raised-button color="primary" id="confirmCardButton" *ngIf="!isMyTurn" (click)="confirmMoveCard()">
+        Geselecteerde kaart verplaatsen
+      </button>
+    </div>
+    <div class="row carddetails">
+      <mat-card *ngFor="let card of sessionCards;let i = index" class="cardBox"
+                style="background-size: 100% 100%">
+        <mat-card-content>
+          <p style="text-align: center">
+            <span style="font-weight: bold; font-size: large">{{card.name}}</span>
+          </p>
+          <p style="text-align: center">
+            <span>{{card.description}}</span>
+          </p>
+        </mat-card-content>
+        <mat-card-actions style="padding-bottom: 4%">
+          <button style="width: 80%;" mat-raised-button color="primary" (click)="selectCard(card, i)">Selecteer</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <div class="organiserButtons">
+      <button mat-raised-button color="primary" id="snapshotButton" *ngIf="isOrganiser" (click)="takeSnapshot()"> Snapshot nemen
+      </button> <br>
+      <button class="btn btn-danger" id="endSessionButton" *ngIf="isOrganiser" (click)="endSession()"> Sessie beëindigen
+      </button>
+    </div>
   </div>
 </div>
