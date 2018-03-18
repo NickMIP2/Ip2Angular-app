@@ -5,6 +5,7 @@ import {SessionService} from '../../../../services/session.service';
 import {Session} from '../../../../model/session';
 import {Snapshot} from '../../../../model/snapshot';
 import {Ring} from '../../../../model/ring';
+import {SessionCard} from '../../../../model/sessioncard';
 
 @Component({
   selector: 'app-snapshots',
@@ -29,6 +30,7 @@ export class SnapshotsComponent implements OnInit, OnChanges {
   public angles = [];
   public index;
   public sessionCards = [];
+  public selectedCard = new SessionCard(null, '', '', '', 0, 0, 0, 0);
 
   constructor(private router: Router, private route: ActivatedRoute, private sessionService: SessionService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
@@ -146,5 +148,11 @@ export class SnapshotsComponent implements OnInit, OnChanges {
       this.sessionCards[index].x = circleStart + (ringRadius * Math.cos(angleRadians));
       this.sessionCards[index].y = circleStart + (ringRadius * Math.sin(angleRadians));
     }
+  }
+
+  selectCard(sessionCard, i) {
+
+    this.selectedCard = sessionCard;
+    this.index = i;
   }
 }
