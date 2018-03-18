@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UseridStorage} from '../../../../sessionStorage/userid-storage';
 import {SessionService} from '../../../../services/session.service';
 import {Session} from '../../../../model/session';
 import {Snapshot} from '../../../../model/snapshot';
+import {Ring} from '../../../../model/ring';
 
 @Component({
   selector: 'app-snapshots',
   templateUrl: './snapshots.component.html',
   styleUrls: ['./snapshots.component.css']
 })
-export class SnapshotsComponent implements OnInit {
+export class SnapshotsComponent implements OnInit, OnChanges {
 
   public userId;
   public sessionId;
@@ -18,6 +19,16 @@ export class SnapshotsComponent implements OnInit {
   public currentSnapshot = new Snapshot(0, [], [], 0, new Date());
   public messages = [];
   public snapShotIndex = 0;
+  circleRingSize;
+  // helft van div width/height
+  cardThickness = 15;
+  // helft van div width/height
+  circleRadius = 300;
+  amountOfRings = 8;
+  public rings = [];
+  public angles = [];
+  public index;
+  //public sessionCards = [];
 
   constructor(private router: Router, private route: ActivatedRoute, private sessionService: SessionService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
@@ -45,6 +56,13 @@ export class SnapshotsComponent implements OnInit {
             console.error('Error loading messages!');
             console.log(error);
             alert('Error loading messages');
+          }, () => {
+            const step = 100 / (this.amountOfRings);
+            let z = 10;
+            for (let i = 0; i < this.amountOfRings; i++) {
+              this.rings.push(new Ring(step + (i * step), step + (i * step), z));
+              z = z - 1;
+            }
           });
       }
       });
@@ -83,6 +101,40 @@ export class SnapshotsComponent implements OnInit {
           console.log(error);
           alert('Error loading messages');
         });
+    }
+  }
+
+  // circle methods
+
+  ngOnChanges(changes: SimpleChanges): void {
+    for (let card of this.sessionCards) {
+      card.distance = this.amountOfRings;
+    }
+
+    this.setCards();
+  }
+
+  public setCards() {
+    this.circleRingSize = this.circleRadius / (this.amountOfRings);
+    let index = 0;
+    console.log('setcard' + this.currentSnapshot.sessionCardIds.length);
+    for (index; index < this.currentSnapshot.sessionCardIds.length; index++) {
+
+      const angleDegrees = ((360 / this.currentSnapshot.sessionCardIds.length) * index);
+
+      const angleRadians = angleDegrees * (Math.PI / 180);
+      this.angles.push(angleRadians);
+
+      console.log(this.circleRingSize);
+
+      const ringRadius = (this.circleRadius - ((this.circleRadius) - (this.sessionCards[index].distance + 1 - this.sessionCards[index].priority) * this.circleRingSize)) - this.cardThickness;
+
+      console.log(ringRadius);
+
+      const circleStart = this.circleRadius - this.cardThickness;
+
+      this.sessionCards[index].x = circleStart + (ringRadius * Math.cos(angleRadians));
+      this.sessionCards[index].y = circleStart + (ringRadius * Math.sin(angleRadians));
     }
   }
 }
