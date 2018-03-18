@@ -49,6 +49,7 @@ import {MatFormFieldModule} from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { UsersComponent } from './components/kandoe/users/users.component';
 import {UserService} from './services/user.service';
+import { WinningCardComponent } from './components/kandoe/winning-card/winning-card.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import {UserService} from './services/user.service';
     SessionOverviewComponent,
     CardOverviewComponent,
     UsersComponent,
+    WinningCardComponent,
   ],
   imports: [
     BrowserModule,
