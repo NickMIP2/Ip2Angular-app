@@ -28,7 +28,7 @@ export class SnapshotsComponent implements OnInit, OnChanges {
   public rings = [];
   public angles = [];
   public index;
-  //public sessionCards = [];
+  public sessionCards = [];
 
   constructor(private router: Router, private route: ActivatedRoute, private sessionService: SessionService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
@@ -57,6 +57,11 @@ export class SnapshotsComponent implements OnInit, OnChanges {
             console.log(error);
             alert('Error loading messages');
           }, () => {
+
+          for (let sessionCardId of this.currentSnapshot.sessionCardIds){
+            //for (let sessionCard of this.session.)
+          }
+
             const step = 100 / (this.amountOfRings);
             let z = 10;
             for (let i = 0; i < this.amountOfRings; i++) {
