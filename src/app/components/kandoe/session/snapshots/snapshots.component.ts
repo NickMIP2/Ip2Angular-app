@@ -58,8 +58,13 @@ export class SnapshotsComponent implements OnInit, OnChanges {
             alert('Error loading messages');
           }, () => {
 
-          for (let sessionCardId of this.currentSnapshot.sessionCardIds){
-            //for (let sessionCard of this.session.)
+          for (let i = 0; i < this.currentSnapshot.sessionCardIds.length; i++){
+            for (let sessionCard of this.session.sessionCardDtos) {
+              if (this.currentSnapshot.sessionCardIds[i] === sessionCard.id) {
+                sessionCard.priority = this.currentSnapshot.priorities[i];
+                this.sessionCards.push(sessionCard);
+              }
+            }
           }
 
             const step = 100 / (this.amountOfRings);

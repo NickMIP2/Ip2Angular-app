@@ -3,4 +3,15 @@
   <button mat-raised-button color="primary" [disabled]="(snapShotIndex+1)===session.snapshotDtos.length" (click)="nextSnapshot()">Volgende</button>
   <p>{{session.name}}</p>
   <p *ngFor="let sessionCardId of currentSnapshot.sessionCardIds; let i = index">SessionCardId: {{sessionCardId}}, Priority: {{currentSnapshot.priorities[i]}}</p>
+  <div class="circle">
+    <div *ngFor="let ring of rings" class="subcircle"
+         [style.width]="ring.width + '%'" [style.height]="ring.height + '%'"
+         [style.z-index]="ring.z">
+    </div>
+    <div class="sessioncard" *ngFor="let card of sessionCards; let i = index"
+         [style.left]="card.x + 'px'" [style.top]="card.y + 'px'">
+      <span>{{card.id}}</span>
+      <span id="hovercarddetails"><br>{{card.name}}</span>
+    </div>
+  </div>
 </div>
