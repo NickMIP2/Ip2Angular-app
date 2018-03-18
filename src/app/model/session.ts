@@ -20,7 +20,7 @@ export class Session {
               public startDate: Date,
               public allowCardCreation: boolean,
               public currentUser: number,
-              public snapshots: Snapshot[]
+              public snapshotDtos: Snapshot[]
   ) {
   }
 }

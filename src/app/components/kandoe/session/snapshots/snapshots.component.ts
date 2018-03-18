@@ -14,8 +14,10 @@ export class SnapshotsComponent implements OnInit {
 
   public userId;
   public sessionId;
-  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, null);
+  public session = new Session(0, 'Geen snapshots', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, []);
   public currentSnapshot = new Snapshot(0, [], [], 0, new Date());
+  public messages = [];
+  public snapShotIndex = 0;
 
   constructor(private router: Router, private route: ActivatedRoute, private sessionService: SessionService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
@@ -33,8 +35,54 @@ export class SnapshotsComponent implements OnInit {
         console.log(error);
         alert('Error loading session');
       }, () => {
-        this.currentSnapshot = this.session.snapshots[0];
+      if (this.session.snapshotDtos.length > this.snapShotIndex) {
+        this.currentSnapshot = this.session.snapshotDtos[this.snapShotIndex];
+
+        this.sessionService.getMessagesOfBeforeSnapshot(this.currentSnapshot.id, this.sessionId, this.userId).subscribe(data => {
+            this.messages = data;
+          },
+          error => {
+            console.error('Error loading messages!');
+            console.log(error);
+            alert('Error loading messages');
+          });
+      }
       });
   }
 
+  nextSnapshot() {
+    this.snapShotIndex++;
+
+    if (this.session.snapshotDtos.length > this.snapShotIndex) {
+      this.currentSnapshot = this.session.snapshotDtos[this.snapShotIndex];
+
+      this.sessionService.getMessagesOfBeforeSnapshot(this.currentSnapshot.id, this.sessionId, this.userId).subscribe(data => {
+          this.messages = data;
+        },
+        error => {
+          console.error('Error loading messages!');
+          console.log(error);
+          alert('Error loading messages');
+        });
+    } else {
+      this.snapShotIndex--;
+    }
+  }
+
+  perviousSnapshot() {
+    if (this.snapShotIndex != 0) {
+      this.snapShotIndex--;
+
+      this.currentSnapshot = this.session.snapshotDtos[this.snapShotIndex];
+
+      this.sessionService.getMessagesOfBeforeSnapshot(this.currentSnapshot.id, this.sessionId, this.userId).subscribe(data => {
+          this.messages = data;
+        },
+        error => {
+          console.error('Error loading messages!');
+          console.log(error);
+          alert('Error loading messages');
+        });
+    }
+  }
 }

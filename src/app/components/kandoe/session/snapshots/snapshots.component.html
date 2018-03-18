@@ -1,3 +1,6 @@
 <div class="snapShotContainer">
-  {{currentSnapshot.date}}
+  <button mat-raised-button color="primary" [disabled]="snapShotIndex===0" (click)="perviousSnapshot()">Vorige</button>
+  <button mat-raised-button color="primary" [disabled]="(snapShotIndex+1)===session.snapshotDtos.length" (click)="nextSnapshot()">Volgende</button>
+  <p>{{session.name}}</p>
+  <p *ngFor="let sessionCardId of currentSnapshot.sessionCardIds; let i = index">SessionCardId: {{sessionCardId}}, Priority: {{currentSnapshot.priorities[i]}}</p>
 </div>
