@@ -13,7 +13,7 @@ export class Phase2Component implements OnInit {
   private sessionId;
   private userId;
   public userTurn: boolean;
-  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0);
+  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, null);
 
 
   constructor(private route: ActivatedRoute, private useridStorage: UseridStorage, private sessionService: SessionService) {

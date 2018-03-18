@@ -1,4 +1,5 @@
 import {Theme} from './theme';
+import {Snapshot} from './snapshot';
 
 export class Session {
   constructor(public id: number,
@@ -18,7 +19,8 @@ export class Session {
               public userSubmitted: boolean,
               public startDate: Date,
               public allowCardCreation: boolean,
-              public currentUser: number
+              public currentUser: number,
+              public snapshots: Snapshot[]
   ) {
   }
 }
