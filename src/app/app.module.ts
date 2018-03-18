@@ -46,6 +46,7 @@ import { SessionOverviewComponent } from './components/kandoe/session/session-ov
 import { CardOverviewComponent } from './components/kandoe/themedetail/components/cards/card-overview/card-overview.component';
 import {MatFormFieldModule} from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { SnapshotsComponent } from './components/kandoe/session/snapshots/snapshots.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     Phase1Component,
     Phase2Component,
     SessionOverviewComponent,
-    CardOverviewComponent
+    CardOverviewComponent,
+    SnapshotsComponent
   ],
   imports: [
     BrowserModule,

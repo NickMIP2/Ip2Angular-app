@@ -18,6 +18,7 @@ import {SessionOverviewComponent} from './components/kandoe/session/session-over
 import {Phase1Component} from './components/kandoe/session/phase1/phase1.component';
 import {Phase2Component} from './components/kandoe/session/phase2/phase2.component';
 import {CardOverviewComponent} from './components/kandoe/themedetail/components/cards/card-overview/card-overview.component';
+import {SnapshotsComponent} from './components/kandoe/session/snapshots/snapshots.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -48,7 +49,8 @@ const routes: Routes = [
         path: 'sessions/:sessionId', component: SessionOverviewComponent,
         children: [
           {path: 'phase1', component: Phase1Component},
-          {path: 'phase2', component: Phase2Component}
+          {path: 'phase2', component: Phase2Component},
+          {path: 'snapshots', component: SnapshotsComponent}
         ]
       }
     ]
