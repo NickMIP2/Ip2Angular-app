@@ -2,13 +2,13 @@
   <div class=" highlight" style="margin-left:0;">
     <h2>WINNAAR</h2>
     <div class="row">
-
-
       <img src="../../../../../assets/images/giphy.gif" />
-      <h1>{{winningCardName}}</h1>
+      <ul *ngFor="let currentCard of winningCards">
+        <li ><h1 >{{currentCard.name}}</h1></li>
+      </ul>
     </div>
     <div class="row">
-      <p>Het ziet er naar uit dat {{winningCardName}} de winnaar is geworden van de Kandoe brainstorm sessie. </p>
+      <p>Het ziet er naar uit dat bovenstaande kaart(en) de meeste stemmen had(den) van deze Kandoe brainstorm sessie. </p>
       <button class = "btn btn-primary">Let's get out of here</button>
     </div>
   </div>
