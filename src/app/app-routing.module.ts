@@ -13,14 +13,14 @@ import {LoginComponent} from './components/authentication/login/login.component'
 import {NewSessionComponent} from './components/kandoe/session/new-session/new-session.component';
 import {RegisterComponent} from './components/authentication/register/register.component';
 import {KandoeComponent} from './components/kandoe/kandoe.component';
-import {ChatComponent} from './components/kandoe/chat/chat.component';
+import {ChatComponent} from './components/kandoe/session/chat/chat.component';
 import {SessionOverviewComponent} from './components/kandoe/session/session-overview/session-overview.component';
 import {Phase1Component} from './components/kandoe/session/phase1/phase1.component';
 import {Phase2Component} from './components/kandoe/session/phase2/phase2.component';
 import {CardOverviewComponent} from './components/kandoe/themedetail/components/cards/card-overview/card-overview.component';
 import {SnapshotsComponent} from './components/kandoe/session/snapshots/snapshots.component';
 import {UsersComponent} from './components/kandoe/users/users.component';
-import {WinningCardComponent} from './components/kandoe/winning-card/winning-card.component';
+import {WinningCardComponent} from './components/kandoe/session/winning-card/winning-card.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},

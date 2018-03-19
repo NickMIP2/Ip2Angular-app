@@ -1,11 +1,11 @@
 import {AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {SessionCard} from '../model/sessioncard';
-import {Ring} from '../model/ring';
+import {SessionCard} from '../../../../model/sessioncard';
+import {Ring} from '../../../../model/ring';
 
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
-import {SessionService} from '../services/session.service';
-import {UseridStorage} from '../sessionStorage/userid-storage';
+import {SessionService} from '../../../../services/session.service';
+import {UseridStorage} from '../../../../sessionStorage/userid-storage';
 
 @Component({
   selector: 'app-circle',
@@ -36,6 +36,8 @@ export class CircleComponent implements OnInit, OnChanges {
   public username;
   private stompClient;
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
+  public gameIsFinished = false;
+  public winningCardName;
   @Input() private sessionId;
   @Input() currentUserTurnId;
 
@@ -91,43 +93,10 @@ export class CircleComponent implements OnInit, OnChanges {
   }
 
   confirmMoveCard() {
-
-    /*
-      const topX = this.selectedCard.x;
-      const topY = this.selectedCard.y;
-
-      let sessionCardRadius;
-      let angle;
-
-      let midpointX = topX - (this.circleRadius);
-      let midpointY = topY - (this.circleRadius);
-      console.log('cardx: ' + topX + 'cardy: ' + topY);
-      console.log('x: ' + midpointX + 'y: ' + midpointY);
-      sessionCardRadius = Math.sqrt(Math.pow(midpointX, 2) + Math.pow(midpointY, 2));
-
-      console.log(sessionCardRadius + ' straal');
-      angle = this.angles[this.index];
-      console.log('angle ' + angle);
-
-      sessionCardRadius = sessionCardRadius - this.circleRingSize;
-
-      midpointX = sessionCardRadius * Math.cos(angle);
-      midpointY = sessionCardRadius * Math.sin(angle);
-
-      this.selectedCard.x = midpointX + (this.circleRadius);
-      this.selectedCard.y = midpointY + (this.circleRadius);
-
-      this.selectedCard.distance = this.selectedCard.distance - 1;
-      */
-
       // spreek service aan
       this.sessionService.saveSelectedCard(this.selectedCard, this.sessionId, this.userIdStorage.getUserId()).subscribe(data => {
         this.stompClient.send('/app/send/sessionCard/' + this.sessionId, {}, this.selectedCard.id + ';' + data);
       });
-
-    if (this.selectedCard.priority === 8) {
-      alert(this.selectedCard.name + ' WINT');
-    }
 
     this.isMyTurn = true;
   }
@@ -150,13 +119,18 @@ export class CircleComponent implements OnInit, OnChanges {
     this.stompClient.connect({}, function (frame) {
       that.stompClient.subscribe('/cards/' + id, (cardid) => {
         if (cardid.body) {
-          let selectedCardId = Number(cardid.body.toString().split(";")[0]);
-          let currentUserId = Number(cardid.body.toString().split(';')[1]);
-          comp.increaseCardPriority(selectedCardId);
-          comp.setCards();
-          if(currentUserId === userId){
-            comp.isMyTurn = false;
+          if(!cardid.body.toString().equals("finished")){
+            let selectedCardId = Number(cardid.body.toString().split(";")[0]);
+            let currentUserId = Number(cardid.body.toString().split(';')[1]);
+            comp.increaseCardPriority(selectedCardId);
+            comp.setCards();
+            if(currentUserId === userId){
+              comp.isMyTurn = false;
+            }
+          } else{
+            comp.gameOver();
           }
+
         }
       });
     });
@@ -169,10 +143,13 @@ export class CircleComponent implements OnInit, OnChanges {
         card.priority += 1;
       }
     }
-
   }
 
   takeSnapshot() {
 
+  }
+
+  gameOver(){
+    this.gameIsFinished = true;
   }
 }
