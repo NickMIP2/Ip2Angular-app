@@ -1,8 +1,12 @@
 <div class="snapShotContainer">
+  <div class="snapShotHeader">
+  <h2 style="text-align: center">{{session.name}}</h2>
   <button mat-raised-button color="primary" [disabled]="snapShotIndex===0" (click)="perviousSnapshot()">Vorige</button>
   <button mat-raised-button color="primary" [disabled]="(snapShotIndex+1)===session.snapshotDtos.length" (click)="nextSnapshot()">Volgende</button>
-  <p>{{session.name}}</p>
-  <p>{{currentSnapshot.date | date: 'dd/MM/yyyy/hh:mm'}}</p>
+  <p style="text-align: center">{{currentSnapshot.date | date: 'dd/MM/yyyy/hh:mm'}}</p>
+  </div>
+  <div style="display: inline-block">
+  <div class="circleContainer">
   <div class="circle">
     <div *ngFor="let ring of rings" class="subcircle"
          [style.width]="ring.width + '%'" [style.height]="ring.height + '%'"
@@ -14,24 +18,7 @@
       <span id="hovercarddetails"><br>{{card.name}}</span>
     </div>
   </div>
-  <div class="selectedBox">
-    <div class="row" id="selectedCardDetails" [style.visibility]="selectedCard.name !== '' ? 'visible': 'hidden'">
-      <b>Geselecteerde kaart</b>:
-      {{selectedCard.name}}
-    </div>
-    <div class="row carddetails">
-      <mat-card *ngFor="let card of sessionCards;let i = index" class="cardBox"
-                style="background-size: 100% 100%">
-        <mat-card-content>
-          <p style="text-align: center">
-            <span style="font-weight: bold; font-size: large">{{card.name}}</span>
-          </p>
-          <p style="text-align: center">
-            <span>{{card.description}}</span>
-          </p>
-        </mat-card-content>
-      </mat-card>
-    </div>
+  </div>
   </div>
   <div class="container">
     <div class="panel panel-primary">
@@ -52,6 +39,19 @@
         </ul>
       </div>
     </div>
+  </div>
+  <div class="selectedBox">
+      <mat-card *ngFor="let card of sessionCards;let i = index" class="cardBox"
+                style="width: 15%">
+        <mat-card-content>
+          <p style="text-align: center">
+            <span style="font-weight: bold; font-size: large">{{card.name}}</span>
+          </p>
+          <p style="text-align: center">
+            <span>{{card.description}}</span>
+          </p>
+        </mat-card-content>
+      </mat-card>
   </div>
 </div>
 

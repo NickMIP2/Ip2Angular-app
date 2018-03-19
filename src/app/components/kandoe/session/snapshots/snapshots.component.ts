@@ -181,8 +181,6 @@ export class SnapshotsComponent implements OnInit, OnChanges {
 
       this.sessionCards[index].x = circleStart + (ringRadius * Math.cos(angleRadians));
       this.sessionCards[index].y = circleStart + (ringRadius * Math.sin(angleRadians));
-      console.log(this.sessionCards[index].x);
-      console.log(this.sessionCards[index].y);
     }
   }
 
