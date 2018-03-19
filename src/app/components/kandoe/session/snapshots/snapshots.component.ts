@@ -75,6 +75,7 @@ export class SnapshotsComponent implements OnInit, OnChanges {
               this.rings.push(new Ring(step + (i * step), step + (i * step), z));
               z = z - 1;
             }
+            //this.setCards();
           });
       }
       });
@@ -129,19 +130,19 @@ export class SnapshotsComponent implements OnInit, OnChanges {
   public setCards() {
     this.circleRingSize = this.circleRadius / (this.amountOfRings);
     let index = 0;
-    console.log('setcard' + this.currentSnapshot.sessionCardIds.length);
-    for (index; index < this.currentSnapshot.sessionCardIds.length; index++) {
+    //console.log('setcard' + this.currentSnapshot.sessionCardIds.length);
+    for (index; index < this.sessionCards.length; index++) {
 
-      const angleDegrees = ((360 / this.currentSnapshot.sessionCardIds.length) * index);
+      const angleDegrees = ((360 / this.sessionCards.length) * index);
 
       const angleRadians = angleDegrees * (Math.PI / 180);
       this.angles.push(angleRadians);
 
-      console.log(this.circleRingSize);
+      //console.log(this.circleRingSize);
 
       const ringRadius = (this.circleRadius - ((this.circleRadius) - (this.sessionCards[index].distance + 1 - this.sessionCards[index].priority) * this.circleRingSize)) - this.cardThickness;
 
-      console.log(ringRadius);
+      //console.log(ringRadius);
 
       const circleStart = this.circleRadius - this.cardThickness;
 

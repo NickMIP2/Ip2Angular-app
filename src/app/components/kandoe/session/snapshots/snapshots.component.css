@@ -10,14 +10,6 @@
   display: flex;
 }
 
-.cards{
-}
-
-.currentTurn{
-  display: flex;
-  height: 100px;
-  width: 100%;
-}
 .sessioncard {
   width: 30px;
   height: 30px;
@@ -44,6 +36,7 @@
 .sessioncard:hover > #hovercarddetails {
   opacity: 1.0;
 }
+
 .subcircle {
   background: white;
   border-radius: 50%;
@@ -56,10 +49,6 @@
 
 .subcircle:nth-child(2n) {
   background: #3e52b5;
-}
-
-#endSessionButton {
-
 }
 
 #hovercarddetails {
@@ -92,6 +81,6 @@
   margin-top: 5px;
 }
 
-#confirmCardButton{
-  margin: 5px;
+.selectedBox {
+  float: right;
 }
