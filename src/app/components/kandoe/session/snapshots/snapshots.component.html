@@ -2,7 +2,7 @@
   <button mat-raised-button color="primary" [disabled]="snapShotIndex===0" (click)="perviousSnapshot()">Vorige</button>
   <button mat-raised-button color="primary" [disabled]="(snapShotIndex+1)===session.snapshotDtos.length" (click)="nextSnapshot()">Volgende</button>
   <p>{{session.name}}</p>
-  <p *ngFor="let sessionCardId of currentSnapshot.sessionCardIds; let i = index">SessionCardId: {{sessionCardId}}, Priority: {{currentSnapshot.priorities[i]}}</p>
+  <p>{{currentSnapshot.date | date: 'dd/MM/yyyy/hh:mm'}}</p>
   <div class="circle">
     <div *ngFor="let ring of rings" class="subcircle"
          [style.width]="ring.width + '%'" [style.height]="ring.height + '%'"

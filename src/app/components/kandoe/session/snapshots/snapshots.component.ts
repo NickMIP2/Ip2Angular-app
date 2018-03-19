@@ -6,6 +6,7 @@ import {Session} from '../../../../model/session';
 import {Snapshot} from '../../../../model/snapshot';
 import {Ring} from '../../../../model/ring';
 import {SessionCard} from '../../../../model/sessioncard';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-snapshots',
@@ -75,6 +76,11 @@ export class SnapshotsComponent implements OnInit, OnChanges {
               this.rings.push(new Ring(step + (i * step), step + (i * step), z));
               z = z - 1;
             }
+
+            for (let card of this.sessionCards) {
+              card.distance = this.amountOfRings;
+            }
+
             this.setCards();
           });
       }
@@ -94,6 +100,8 @@ export class SnapshotsComponent implements OnInit, OnChanges {
           console.error('Error loading messages!');
           console.log(error);
           alert('Error loading messages');
+        }, () => {
+          this.setCorrectSessionCards();
         });
     } else {
       this.snapShotIndex--;
@@ -113,18 +121,42 @@ export class SnapshotsComponent implements OnInit, OnChanges {
           console.error('Error loading messages!');
           console.log(error);
           alert('Error loading messages');
-        });
+        }, () => {
+          this.setCorrectSessionCards();
+      });
     }
   }
 
-  // circle methods
+  public setCorrectSessionCards() {
+    this.sessionCards = [];
 
-  ngOnChanges(changes: SimpleChanges): void {
+    for (let i = 0; i < this.currentSnapshot.sessionCardIds.length; i++){
+      for (let sessionCard of this.session.sessionCardDtos) {
+        if (this.currentSnapshot.sessionCardIds[i] === sessionCard.id) {
+          sessionCard.priority = this.currentSnapshot.priorities[i];
+          this.sessionCards.push(sessionCard);
+        }
+      }
+    }
+
+    const step = 100 / (this.amountOfRings);
+    let z = 10;
+    for (let i = 0; i < this.amountOfRings; i++) {
+      this.rings.push(new Ring(step + (i * step), step + (i * step), z));
+      z = z - 1;
+    }
+
     for (let card of this.sessionCards) {
       card.distance = this.amountOfRings;
     }
 
     this.setCards();
+  }
+
+  // circle methods
+
+  ngOnChanges(changes: SimpleChanges): void {
+
   }
 
   public setCards() {
@@ -148,6 +180,8 @@ export class SnapshotsComponent implements OnInit, OnChanges {
 
       this.sessionCards[index].x = circleStart + (ringRadius * Math.cos(angleRadians));
       this.sessionCards[index].y = circleStart + (ringRadius * Math.sin(angleRadians));
+      console.log(this.sessionCards[index].x);
+      console.log(this.sessionCards[index].y);
     }
   }
 
