@@ -1,1 +1,6 @@
-<app-chat class="col-md-2" [sessionId]="session.id"></app-chat>
+
+  <div class="row">
+    <app-circle [sessionId]="sessionId" [currentUserTurnId]="session.currentUserId" [isOrganiser]="userOrganiser" [sessionCards]="session.sessionCardDtos" class="col-md-9 circlerow"></app-circle>
+
+    <app-chat class="col-md-3 chatrow" [sessionId]="sessionId"></app-chat><!--[sessionId]="sessionId"-->
+  </div>

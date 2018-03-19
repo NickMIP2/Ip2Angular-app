@@ -53,6 +53,10 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+  startSession(session: Session) {
+    console.log(session.id + 'state moet nu op 1')
+    this.sessionService.startSession(session.id, this.userId).subscribe();
+  }
   continueSession(session) {
     if (session.state === 1) {
       this.router.navigate(['kandoe/sessions/' + session.id + '/phase1']);

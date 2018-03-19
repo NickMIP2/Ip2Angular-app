@@ -19,12 +19,14 @@ import {Phase1Component} from './components/kandoe/session/phase1/phase1.compone
 import {Phase2Component} from './components/kandoe/session/phase2/phase2.component';
 import {CardOverviewComponent} from './components/kandoe/themedetail/components/cards/card-overview/card-overview.component';
 import {UsersComponent} from './components/kandoe/users/users.component';
+import {WinningCardComponent} from './components/kandoe/winning-card/winning-card.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'chat', component: ChatComponent},
+  {path: 'viktory', component: WinningCardComponent},
   {
     path: 'kandoe', component: KandoeComponent,
     children: [

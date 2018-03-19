@@ -67,13 +67,6 @@ describe('ThemeComponent', () => {
     }
   );
 
-  // it('should return themes of user', () => {
-  //   // spy = spyOn(themeService, 'getThemesOfUser').and.returnValue(Observable.of(mockThemes));
-  //   expect(themeService).toHaveBeenCalled();
-  //   // expect(component.needsLogin()).toBeTruthy();
-  //   // expect(service.isAuthenticated).toHaveBeenCalled();
-  //
-  // });
 
   it('should show the themes after getThemes promise resolves', async () => {
     fixture.detectChanges();

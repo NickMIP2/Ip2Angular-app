@@ -1,3 +1,7 @@
+.container{
+  width: 100%;
+}
+
 .chat
 {
   list-style: none;
@@ -12,10 +16,10 @@
   border-bottom: 1px dotted #B3A9A9;
 }
 
-.chat li.left .chat-body
+/*.chat li.left .chat-body
 {
   margin-left: 60px;
-}
+}*/
 
 .chat li.right .chat-body
 {
@@ -37,7 +41,7 @@
 .panel-body
 {
   overflow-y: scroll;
-  height: 250px;
+  height: 40em;
 }
 
 ::-webkit-scrollbar-track
@@ -60,4 +64,13 @@
 
 p{
   text-align: left;
+}
+
+#btn-chat{
+  height: 100%;
+}
+
+.cardBox{
+  width: 5%;
+
 }

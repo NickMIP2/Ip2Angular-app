@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-kandoe',
@@ -6,6 +6,8 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./kandoe.component.css']
 })
 export class KandoeComponent implements OnInit {
+
+  @Input() sessionCard;
 
   constructor() {
   }
