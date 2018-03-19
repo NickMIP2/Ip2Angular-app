@@ -13,6 +13,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 })
 
 export class BreadcrumbComponent implements OnInit {
+  /*
   breadcrumbs$ = this.router.events
     .filter(event => event instanceof NavigationEnd)
     .distinctUntilChanged()
@@ -23,8 +24,7 @@ export class BreadcrumbComponent implements OnInit {
               private router: Router) {
   }
 
-  ngOnInit() {
-  }
+
 
   buildBreadCrumb(route: ActivatedRoute, url: string = '',
                   breadcrumbs: Array<BreadCrumb> = []): Array<BreadCrumb> {
@@ -45,5 +45,8 @@ export class BreadcrumbComponent implements OnInit {
       return this.buildBreadCrumb(route.firstChild, nextUrl, newBreadcrumbs);
     }
     return newBreadcrumbs;
+  }
+  */
+  ngOnInit() {
   }
 }
