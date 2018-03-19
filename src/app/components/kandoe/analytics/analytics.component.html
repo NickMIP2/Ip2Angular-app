@@ -1,0 +1,27 @@
+<h1>Analyse</h1>
+<div [hidden]="!selecting">
+<form #analyseForm="ngForm" class="analyseContainer" name="analyseForm">
+<h3>Selecteer thema</h3>
+<mat-form-field  style="width: 40%">
+  <mat-select required placeholder="Thema naam" [(ngModel)]="theme" name="themes">
+    <mat-option required *ngFor="let theme of themes;let i = index" [value]="themes[i]">
+      {{theme.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+  <br>
+  <button [disabled]="!analyseForm.form.valid || theme.id===null" class="submitSelectedTheme" style="width: 20%;" mat-raised-button color="primary" name="submitSelectedTheme"
+          (click)="submitSelectedTheme()">Bekijk analyses
+  </button>
+</form>
+</div>
+<mat-tab-group class="tabAnalyseContainer" [hidden]="selecting">
+  <mat-tab label="Master cirkel">
+  </mat-tab>
+  <mat-tab label="Correlatie">
+  </mat-tab>
+  <mat-tab label="Clusteranalyse">
+  </mat-tab>
+  <mat-tab label="Kaartjescombinaties">
+  </mat-tab>
+</mat-tab-group>
