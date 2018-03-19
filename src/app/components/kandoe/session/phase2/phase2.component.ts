@@ -19,14 +19,10 @@ export class Phase2Component implements OnInit {
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
 
   public userTurn: boolean;
-<<<<<<< HEAD
 
   public userOrganiser = true;
   public currentCardId;
-  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0);
-=======
   public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, null);
->>>>>>> I2-90-organisatoren-thema
 
 
   constructor(private route: ActivatedRoute, private useridStorage: UseridStorage, private sessionService: SessionService) {
