@@ -116,7 +116,7 @@ export class CircleComponent implements OnInit, OnChanges {
       that.stompClient.subscribe('/cards/' + id, (cardid) => {
           if (cardid.body) {
             let selectedCardId = Number(cardid.body.toString().split(';')[0]);
-            if (!cardid.body.toString().split(';')[1].equals('finished')) {
+            if (!(cardid.body.toString().split(';')[1] === 'finished')) {
               let currentUserId = Number(cardid.body.toString().split(';')[1]);
               comp.increaseCardPriority(selectedCardId);
               comp.setCards();
@@ -125,7 +125,6 @@ export class CircleComponent implements OnInit, OnChanges {
               }
             } else {
               comp.increaseCardPriority(selectedCardId);
-              comp.setCards();
               comp.gameOver(selectedCardId);
             }
           }
@@ -139,6 +138,9 @@ export class CircleComponent implements OnInit, OnChanges {
     for (let card of this.sessionCards) {
       if (card.id === id) {
         card.priority += 1;
+        if(card.priority === this.amountOfRings){
+          this.gameOver(id);
+        }
       }
     }
   }
@@ -154,7 +156,6 @@ export class CircleComponent implements OnInit, OnChanges {
       }
     }
     // set session state gebeurt voor elke deelnemer?
-    this.endSession(this.sessionId, this.userId);
     this.gameIsFinished = true;
   }
 
