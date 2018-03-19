@@ -2,9 +2,9 @@ import {Component, OnInit, Input} from '@angular/core';
 import * as $ from 'jquery';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
-import {UseridStorage} from '../../../sessionStorage/userid-storage';
-import {Message} from '../../../model/message';
-import {MessageService} from '../../../services/message.service';
+import {UseridStorage} from '../../../../sessionStorage/userid-storage';
+import {Message} from '../../../../model/message';
+import {MessageService} from '../../../../services/message.service';
 import {ActivatedRoute, Route} from '@angular/router';
 
 
