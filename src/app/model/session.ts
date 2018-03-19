@@ -13,7 +13,7 @@ export class Session {
               public participants: string[],
               public organisers: string[],
               public participantIds: number[],
-              public organiserIds: number[],
+              public organisersIds: number[],
               public type: number,
               public sessionCardDtos: SessionCard[],
               public state: number,

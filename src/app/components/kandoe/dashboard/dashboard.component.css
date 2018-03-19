@@ -17,6 +17,7 @@ li {
 
 .sessionBox{
   width: 30%;
+
   display: inline-block;
   margin: 1%;
   padding: 1%;
@@ -44,4 +45,12 @@ mat-card-content {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.sessionStartButton {
+  min-height: 5em;
+}
+
+.plannedSessionWrapper{
+  display: block;
 }

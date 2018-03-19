@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   public pastSessions = [];
   public currentSessions = [];
   public plannedSessions = [];
-  private userId;
+  private userId: number;
 
   constructor(private router: Router, private titleService: Title, private sessionService: SessionService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
@@ -54,18 +54,26 @@ export class DashboardComponent implements OnInit {
   }
 
   startSession(session: Session) {
-    console.log(session.id + 'state moet nu op 1')
+    console.log(session.id + 'state moet nu op 1');
     this.sessionService.startSession(session.id, this.userId).subscribe();
   }
+
   continueSession(session) {
     if (session.state === 1) {
       this.router.navigate(['kandoe/sessions/' + session.id + '/phase1']);
-    } else {
+    } else if (session.state === 2) {
       this.router.navigate(['kandoe/sessions/' + session.id + '/phase2']);
     }
   }
 
   viewSnapshots(session) {
-    this.router.navigate(['kandoe/sessions/' + session.id + '/snapshots'])
+    this.router.navigate(['kandoe/sessions/' + session.id + '/snapshots']);
+  }
+
+  showOrganiserButton(session: Session) {
+    const organiserIds = session.organisersIds;
+    if (organiserIds.indexOf(this.userId) === -1) {
+      return false;
+    } else return true;
   }
 }
