@@ -16,7 +16,7 @@ import { DatePipe } from '@angular/common';
 })
 export class NewSessionComponent implements OnInit {
 
-  newSession = new Session(0, '', null, 0, 0, null, 1, [], [], [], [], 0, [], 0, false, new Date(), false, 0);
+  newSession = new Session(0, '', null, 0, 0, null, 1, [], [], [], [], 0, [], 0, false, new Date(), false, 0, null);
   participantEmail = '';
   public themes = [];
   public categoryArray = [];

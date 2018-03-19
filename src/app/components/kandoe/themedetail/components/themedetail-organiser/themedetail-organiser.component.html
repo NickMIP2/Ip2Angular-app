@@ -1,21 +1,25 @@
-<!--<app-themedetail-navbar [themeId]="themeId">  </app-themedetail-navbar>-->
-<div class="container">
-  <table class="table text-left">
-    <tr>
+<div class="organiserContainer">
+  <form #organiserForm="ngForm" class="formcontainer" style="width: 100%">
+        <mat-form-field  style="width: 50%;">
+          <input (change)="emailAlreadyExists()" matInput="email" placeholder="Email" name="emailOrganiser" required [(ngModel)]="newOrganiser">
+        </mat-form-field>
+        <span style="float: right; margin-top: 10px; width: 30%">
+        <button [disabled]="!uniqueMail || !organiserForm.form.valid" style="width: 100%;" mat-raised-button color="primary" name="buttonOrganiser" (click)="registerNewOrganiser()">Voeg toe</button>
+        </span>
+  </form>
+  <table style="width: 100%">
+  <tr>
       <th>Email</th>
-      <th>Naam</th>
       <th>Voornaam</th>
-      <th>Organisator</th>
+      <th>Achteraam</th>
     </tr>
-    <!--
-    <tr *ngFor="let user of users" >
-      <td>{{user.email}}</td>
-      <td>{{user.lastname}}</td>
-      <td>{{user.firstname}}</td>
-      <td *ngIf="user.organiser === 'true'"><input type="checkbox" class="" id="{{user.id}}" checked /></td>
-      <td *ngIf="user.organiser === 'false'"><input type="checkbox" class="" id="{{user.id}}"/></td>
+    <tr *ngFor="let user of users">
+      <td  style="padding-top: 10px">{{user.email}}</td>
+      <td  style="padding-top: 10px">{{user.firstname}}</td>
+      <td  style="padding-top: 10px">{{user.lastname}}</td>
+      <td  style="padding-top: 10px; text-align: right">
+      <button [disabled]="lastOrganiser" mat-raised-button color="warn" (click)="removeOrganiser(user)">Verwijder</button>
+      </td>
     </tr>
-    -->
   </table>
-  <button class="btn btn-primary" (click)="saveChanges()" name="saveOrganisors">Opslaan</button>
 </div>

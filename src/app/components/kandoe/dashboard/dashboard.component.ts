@@ -64,4 +64,8 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['kandoe/sessions/' + session.id + '/phase2']);
     }
   }
+
+  viewSnapshots(session) {
+    this.router.navigate(['kandoe/sessions/' + session.id + '/snapshots'])
+  }
 }

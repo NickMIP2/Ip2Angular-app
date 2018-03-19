@@ -1,12 +1,9 @@
-.borderRed {
-  border: 1px solid red;
-}
-
-.borderGreen {
-  border: 1px solid green;
-}
-
-.tablecontainer {
+.organiserContainer {
+  width: 50%;
+  text-align: left;
   margin: auto;
-
+  margin-top: 2%;
+  background: #E2E0FB;
+  padding: 15px;
+  border-radius: 10px;
 }

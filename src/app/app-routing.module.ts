@@ -18,6 +18,7 @@ import {SessionOverviewComponent} from './components/kandoe/session/session-over
 import {Phase1Component} from './components/kandoe/session/phase1/phase1.component';
 import {Phase2Component} from './components/kandoe/session/phase2/phase2.component';
 import {CardOverviewComponent} from './components/kandoe/themedetail/components/cards/card-overview/card-overview.component';
+import {SnapshotsComponent} from './components/kandoe/session/snapshots/snapshots.component';
 import {UsersComponent} from './components/kandoe/users/users.component';
 import {WinningCardComponent} from './components/kandoe/winning-card/winning-card.component';
 
@@ -28,31 +29,32 @@ const routes: Routes = [
   {path: 'chat', component: ChatComponent},
   {path: 'viktory', component: WinningCardComponent},
   {
-    path: 'kandoe', component: KandoeComponent,
+    path: 'kandoe', component: KandoeComponent, data: {breadcrumb: 'kandoe'},
     children: [
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-      {path: 'dashboard', component: DashboardComponent},
-      {path: 'themes', component: ThemesComponent},
-      {path: 'themes/thema-toevoegen', component: NewThemeComponent},
-      {path: 'users/:userId', component: UsersComponent},
-      {path: 'new-session', component: NewSessionComponent},
+      {path: 'dashboard', component: DashboardComponent, data: {breadcrumb: 'dashboard'}},
+      {path: 'themes', component: ThemesComponent, data: {breadcrumb: 'themas'}},
+      {path: 'themes/thema-toevoegen', component: NewThemeComponent, data: {breadcrumb: 'themas/thema-toevoegen'}},
+      {path: 'new-session', component: NewSessionComponent, data: {breadcrumb: 'sessie-toevoegen'}},
+      {path: 'users/:userId', component: UsersComponent, data: {breadcrumb: 'profiel'}},
       {
-        path: 'themes/:themeId', component: ThemedetailComponent,
+        path: 'themes/:themeId', component: ThemedetailComponent, data: {breadcrumb: 'themas'},
         children: [
           {path: '', redirectTo: 'overview', pathMatch: 'full'},
-          {path: 'overview', component: ThemedetailOverviewComponent},
-          {path: 'categories/:categoryId/cards/new-card', component: CardNewComponent},
-          {path: 'categories/:categoryId/cards/:cardId/edit-card', component: CardEditComponent},
-          {path: 'organisers', component: ThemedetailOrganiserComponent},
-          {path: 'categories', component: ThemedetailCategoriesComponent},
-          {path: 'categories/:categoryId/overview', component: CardOverviewComponent}
+          {path: 'overview', component: ThemedetailOverviewComponent, data: {breadcrumb: 'overzicht'}},
+          {path: 'categories/:categoryId/cards/new-card', component: CardNewComponent, data: {breadcrumb: 'categorie/kaart-toevoegen'}},
+          {path: 'categories/:categoryId/cards/:cardId/edit-card', component: CardEditComponent, data: {breadcrumb: 'categorie/kaart-wijzigen'}},
+          {path: 'organisers', component: ThemedetailOrganiserComponent, data: {breadcrumb: 'organisatoren'}},
+          {path: 'categories', component: ThemedetailCategoriesComponent, data: {breadcrumb: 'categoriën'}},
+          {path: 'categories/:categoryId/overview', component: CardOverviewComponent, data: {breadcrumb: 'categorie/overzicht'}}
         ]
       },
       {
-        path: 'sessions/:sessionId', component: SessionOverviewComponent,
+        path: 'sessions/:sessionId', component: SessionOverviewComponent, data: {breadcrumb: 'sessie'},
         children: [
-          {path: 'phase1', component: Phase1Component},
-          {path: 'phase2', component: Phase2Component}
+          {path: 'phase1', component: Phase1Component, data: {breadcrumb: 'fase 1'}},
+          {path: 'phase2', component: Phase2Component, data: {breadcrumb: 'fase 2'}},
+          {path: 'snapshots', component: SnapshotsComponent, data: {breadcrumb: 'snapshots'}}
         ]
       }
     ]

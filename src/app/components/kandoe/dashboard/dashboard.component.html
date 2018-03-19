@@ -12,7 +12,7 @@
         </p>
       </mat-card-content>
       <mat-card-actions style="padding-bottom: 4%">
-        <button style="width: 80%;" mat-raised-button color="primary">Analyse</button>
+        <button style="width: 80%;" mat-raised-button color="primary" (click)="viewSnapshots(session)">Snapshots</button>
       </mat-card-actions>
     </mat-card>
     </div>
@@ -49,22 +49,6 @@
         </mat-card-actions>
       </mat-card>
       </div>
-    <!--<div *ngFor="let session of currentSessions">
-    <div *ngIf="session.state === 1" class="sessionBoxSelecteren"
-         style="background-size: 100% 100%">
-      <h2>{{session.name}}</h2>
-      <div class="descriptionContainer" *ngIf="session.state === 1">Selecteren</div>
-      <div class="descriptionContainer" *ngIf="session.state === 2">Cirkelen</div>
-      <button mat-raised-button color="primary" (click)="continueSession(session)" [disabled]="session.userSubmitted">Hervat</button>
-    </div>
-      <div *ngIf="session.state === 2" class="sessionBoxCirkelen"
-           style="background-size: 100% 100%">
-        <h2>{{session.name}}</h2>
-        <div class="descriptionContainer" *ngIf="session.state === 1">Selecteren</div>
-        <div class="descriptionContainer" *ngIf="session.state === 2">Cirkelen</div>
-        <button mat-raised-button color="primary" (click)="continueSession(session)" [disabled]="session.userSubmitted">Hervat</button>
-      </div>
-    </div>-->
     </div>
   </mat-tab>
   <mat-tab label="Geplande sessies">
@@ -76,19 +60,11 @@
             <span style="font-weight: bold; font-size: large">{{session.name}}</span>
           </p>
           <p style="text-align: center">
-            <span>26-07-2018, 16:00</span>
+            <span>{{session.startDate | date: 'dd/MM/yyyy/hh:mm'}}</span>
           </p>
           <button (click)="startSession(session)"> start sessie</button>
         </mat-card-content>
-        <!--<mat-card-actions style="padding-bottom: 4%">
-          <button style="width: 80%;" mat-raised-button color="primary">Analyse</button>
-        </mat-card-actions>-->
       </mat-card>
-    <!--<div *ngFor="let session of plannedSessions" class="sessionBox"
-         style="background-size: 100% 100%">
-      <h2>{{session.name}}</h2>
-      <div class="descriptionContainer">16-03-2018, 16:00</div>
-    </div>-->
     </div>
   </mat-tab>
 </mat-tab-group>

@@ -60,5 +60,9 @@ export class SessionService {
   getSessionCards(sessionId: number, userId: number): Observable <any> {
     return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId);
   }
+
+  getMessagesOfBeforeSnapshot(snapshotId: number, sessionId: number, userId: number): Observable<any> {
+    return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/snapshots/' + snapshotId + '/messages', httpOptions);
+  }
 }
 

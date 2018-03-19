@@ -46,4 +46,17 @@ export class ThemeService {
     return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes');
   }
 
+  getUsersOfTheme(themeId: number, userId: number): Observable<any> {
+    return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/users');
+  }
+
+  addUserToTheme(email: string, themeId: number, userId: number): Observable<any> {
+    console.log('user id: ' + userId);
+    console.log('json body:' + email);
+    return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/users', email, httpOptions);
+  }
+
+  removeUserFromTheme(organiserId: number, themeId: number, userId: number): Observable<any> {
+    return this.http.delete('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/users/' + organiserId + '/remove', httpOptions);
+  }
 }
