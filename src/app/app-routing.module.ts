@@ -29,32 +29,32 @@ const routes: Routes = [
   {path: 'chat', component: ChatComponent},
   {path: 'viktory', component: WinningCardComponent},
   {
-    path: 'kandoe', component: KandoeComponent, data: {breadcrumb: 'kandoe'},
+    path: 'kandoe', component: KandoeComponent,
     children: [
       {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-      {path: 'dashboard', component: DashboardComponent, data: {breadcrumb: 'dashboard'}},
-      {path: 'themes', component: ThemesComponent, data: {breadcrumb: 'themas'}},
-      {path: 'themes/thema-toevoegen', component: NewThemeComponent, data: {breadcrumb: 'themas/thema-toevoegen'}},
-      {path: 'new-session', component: NewSessionComponent, data: {breadcrumb: 'sessie-toevoegen'}},
-      {path: 'users/:userId', component: UsersComponent, data: {breadcrumb: 'profiel'}},
+      {path: 'dashboard', component: DashboardComponent},
+      {path: 'themes', component: ThemesComponent},
+      {path: 'themes/thema-toevoegen', component: NewThemeComponent},
+      {path: 'new-session', component: NewSessionComponent},
+      {path: 'users/:userId', component: UsersComponent},
       {
-        path: 'themes/:themeId', component: ThemedetailComponent, data: {breadcrumb: 'themas'},
+        path: 'themes/:themeId', component: ThemedetailComponent,
         children: [
           {path: '', redirectTo: 'overview', pathMatch: 'full'},
-          {path: 'overview', component: ThemedetailOverviewComponent, data: {breadcrumb: 'overzicht'}},
-          {path: 'categories/:categoryId/cards/new-card', component: CardNewComponent, data: {breadcrumb: 'categorie/kaart-toevoegen'}},
-          {path: 'categories/:categoryId/cards/:cardId/edit-card', component: CardEditComponent, data: {breadcrumb: 'categorie/kaart-wijzigen'}},
-          {path: 'organisers', component: ThemedetailOrganiserComponent, data: {breadcrumb: 'organisatoren'}},
-          {path: 'categories', component: ThemedetailCategoriesComponent, data: {breadcrumb: 'categoriën'}},
-          {path: 'categories/:categoryId/overview', component: CardOverviewComponent, data: {breadcrumb: 'categorie/overzicht'}}
+          {path: 'overview', component: ThemedetailOverviewComponent},
+          {path: 'categories/:categoryId/cards/new-card', component: CardNewComponent},
+          {path: 'categories/:categoryId/cards/:cardId/edit-card', component: CardEditComponent},
+          {path: 'organisers', component: ThemedetailOrganiserComponent},
+          {path: 'categories', component: ThemedetailCategoriesComponent},
+          {path: 'categories/:categoryId/overview', component: CardOverviewComponent}
         ]
       },
       {
-        path: 'sessions/:sessionId', component: SessionOverviewComponent, data: {breadcrumb: 'sessie'},
+        path: 'sessions/:sessionId', component: SessionOverviewComponent,
         children: [
-          {path: 'phase1', component: Phase1Component, data: {breadcrumb: 'fase 1'}},
-          {path: 'phase2', component: Phase2Component, data: {breadcrumb: 'fase 2'}},
-          {path: 'snapshots', component: SnapshotsComponent, data: {breadcrumb: 'snapshots'}}
+          {path: 'phase1', component: Phase1Component},
+          {path: 'phase2', component: Phase2Component},
+          {path: 'snapshots', component: SnapshotsComponent}
         ]
       }
     ]

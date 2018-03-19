@@ -48,7 +48,6 @@ import {CardOverviewComponent} from './components/kandoe/themedetail/components/
 import {MatFormFieldModule} from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { SnapshotsComponent } from './components/kandoe/session/snapshots/snapshots.component';
-import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { UsersComponent } from './components/kandoe/users/users.component';
 import {UserService} from './services/user.service';
 import { WinningCardComponent } from './components/kandoe/winning-card/winning-card.component';
@@ -84,7 +83,6 @@ import { WinningCardComponent } from './components/kandoe/winning-card/winning-c
     UsersComponent,
     WinningCardComponent,
     SnapshotsComponent,
-    BreadcrumbComponent,
   ],
   imports: [
     BrowserModule,
