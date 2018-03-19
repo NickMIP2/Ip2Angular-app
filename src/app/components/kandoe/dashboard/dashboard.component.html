@@ -56,7 +56,6 @@
   </mat-tab>
   <mat-tab label="Geplande sessies">
     <div class="tabContainer">
-      <div class="plannedSessionWrapper">
         <mat-card *ngFor="let session of plannedSessions" class="sessionBox"
                   style="background-size: 100% 100%">
           <mat-card-content>
@@ -67,13 +66,12 @@
               <span>{{session.startDate | date: 'dd/MM/yyyy/hh:mm'}}</span>
             </p>
           </mat-card-content>
-          <mat-card-actions style="padding-bottom: 4%" class="sessionStartButton">
-            <button *ngIf="showOrganiserButton(session)" style="width: 80%" mat-raised-button color="primary"
-                    (click)="startSession(session)"> Start sessie
+          <mat-card-actions style="padding-bottom: 4%">
+            <button [disabled]="!showOrganiserButton(session)" style="width: 80%" mat-raised-button color="primary"
+                    (click)="startSession(session)">Start sessie
             </button>
           </mat-card-actions>
         </mat-card>
-      </div>
     </div>
   </mat-tab>
 </mat-tab-group>
