@@ -7,6 +7,7 @@ import {Snapshot} from '../../../../model/snapshot';
 import {Ring} from '../../../../model/ring';
 import {SessionCard} from '../../../../model/sessioncard';
 import { DatePipe } from '@angular/common';
+import {Message} from '../../../../model/message';
 
 @Component({
   selector: 'app-snapshots',
@@ -19,7 +20,7 @@ export class SnapshotsComponent implements OnInit, OnChanges {
   public sessionId;
   public session = new Session(0, 'Geen snapshots', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, []);
   public currentSnapshot = new Snapshot(0, [], [], 0, new Date());
-  public messages = [];
+  public messages = [new Message('')];
   public snapShotIndex = 0;
   circleRingSize;
   // helft van div width/height
@@ -180,8 +181,6 @@ export class SnapshotsComponent implements OnInit, OnChanges {
 
       this.sessionCards[index].x = circleStart + (ringRadius * Math.cos(angleRadians));
       this.sessionCards[index].y = circleStart + (ringRadius * Math.sin(angleRadians));
-      console.log(this.sessionCards[index].x);
-      console.log(this.sessionCards[index].y);
     }
   }
 

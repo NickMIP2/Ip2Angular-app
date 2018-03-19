@@ -1,13 +1,28 @@
-.circle {
-  width: 45%;
-  height: 600px;
-  margin-top: 1px;
-  margin-left: 2px;
-  position: relative;
+.snapShotContainer {
+  width: 100%;
+  padding: 2%;
 }
 
-.game {
-  display: flex;
+.snapShotHeader {
+  margin: auto;
+  text-align: center;
+}
+
+.circleContainer {
+  display: table-cell;
+  width: 685px;
+  height: 685px;
+  border-radius: 10px;
+  background: #E2E0FB;
+  vertical-align: middle;
+}
+
+.circle {
+  display: inline-block;
+  width: 600px;
+  height: 600px;
+  position: relative;
+  margin: auto;
 }
 
 .sessioncard {
@@ -16,9 +31,9 @@
   position: absolute;
   z-index: 20;
   background-color: white;
-  box-shadow: 0 1px 2px black;
-  -webkit-box-shadow: 0 1px 2px black;
-  -moz-box-shadow: 0 1px 2px black;
+  box-shadow: 0px 0px 5px 1px red;
+  /*-webkit-box-shadow: 0 1px 2px red;
+  -moz-box-shadow: 0 1px 2px black;*/
   transition: width 0.5s ,height 0.5s;
   -webkit-transition: width 0.5s ,height 0.5s;
 ;
@@ -29,8 +44,10 @@
   background-color: gainsboro;
 }
 .sessioncard:hover{
-  width: 90px;
-  height: 90px;
+  font-size: 0.5em;
+  -webkit-transform: scale(3);
+  -ms-transform: scale(3);
+  transform: scale(3);
 }
 
 .sessioncard:hover > #hovercarddetails {
@@ -61,27 +78,92 @@
 
 }
 
-
-#selectedCardDetails {
-  display: flex;
+.selectedBox {
   width: 100%;
-  float: right;
-}
-
-.carddetails{
-  display: flex;
-  margin-left: 5em;
-  width: 100%;
-  overflow-y: scroll;
-  max-height: 500px;
+  overflow: auto;
+  height: 150px;
+  white-space: nowrap;
 }
 
 .cardBox{
-  width: 800%;
-  margin-top: 5px;
+  display: inline-block;
+  width: 30%;
+  margin: 1%;
+  padding: 1%;
 }
 
-.selectedBox {
-  width: 49%;
+.container{
+  display: inline-block;
+  width: 40%;
+  height: 700px;
   float: right;
 }
+
+.chat
+{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.chat li
+{
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat li.right .chat-body
+{
+  margin-right: 60px;
+}
+
+
+.chat li .chat-body p
+{
+  margin: 0;
+  color: #777777;
+}
+
+.panel .slidedown .glyphicon, .chat .glyphicon
+{
+  margin-right: 5px;
+}
+
+.panel-body
+{
+  overflow-y: scroll;
+  height: 40em;
+}
+
+::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #555;
+}
+
+p{
+  text-align: left;
+}
+
+#btn-chat{
+  height: 100%;
+}
+
+.cardBox{
+  width: 5%;
+
+}
+
