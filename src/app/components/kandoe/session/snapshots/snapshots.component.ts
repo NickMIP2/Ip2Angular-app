@@ -75,7 +75,7 @@ export class SnapshotsComponent implements OnInit, OnChanges {
               this.rings.push(new Ring(step + (i * step), step + (i * step), z));
               z = z - 1;
             }
-            //this.setCards();
+            this.setCards();
           });
       }
       });
