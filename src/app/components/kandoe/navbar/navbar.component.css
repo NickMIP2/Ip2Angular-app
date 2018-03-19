@@ -1,6 +1,13 @@
-footer {
-  margin-top: 5%;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
+.bg {
+  min-height: 570px;
+
+  background: no-repeat center;
+  background-size: cover;
+}
+
+.material-icons {
+  margin: 2% 2% 2% 2%;
+  font-size: 20px;
+  display: inline-block;
+  vertical-align: middle;
 }

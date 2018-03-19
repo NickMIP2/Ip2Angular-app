@@ -48,6 +48,8 @@ import {MatFormFieldModule} from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { SnapshotsComponent } from './components/kandoe/session/snapshots/snapshots.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { UsersComponent } from './components/kandoe/users/users.component';
+import {UserService} from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,8 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     SessionOverviewComponent,
     CardOverviewComponent,
     SnapshotsComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -111,7 +114,8 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     SessionService,
     Interceptor,
     UseridStorage,
-    MessageService
+    MessageService,
+    UserService
   ],
 
   bootstrap: [AppComponent]
