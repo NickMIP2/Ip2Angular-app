@@ -116,7 +116,7 @@ export class CircleComponent implements OnInit, OnChanges {
       that.stompClient.subscribe('/cards/' + id, (cardid) => {
           if (cardid.body) {
             let selectedCardId = Number(cardid.body.toString().split(';')[0]);
-            if (!(cardid.body.toString().split(';')[1] === 'finished')) {
+            if (!(cardid.body.toString().split(';')[1] === '-11')) {
               let currentUserId = Number(cardid.body.toString().split(';')[1]);
               comp.increaseCardPriority(selectedCardId);
               comp.setCards();
