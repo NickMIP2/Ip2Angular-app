@@ -62,7 +62,7 @@ export class CircleComponent implements OnInit, OnChanges {
       card.distance = this.amountOfRings;
     }
 
-    if(this.currentUserTurnId === this.userId){
+    if (this.currentUserTurnId === this.userId) {
       this.isMyTurn = false;
     }
     this.setCards();
@@ -93,10 +93,10 @@ export class CircleComponent implements OnInit, OnChanges {
   }
 
   confirmMoveCard() {
-      // spreek service aan
-      this.sessionService.saveSelectedCard(this.selectedCard, this.sessionId, this.userIdStorage.getUserId()).subscribe(data => {
-        this.stompClient.send('/app/send/sessionCard/' + this.sessionId, {}, this.selectedCard.id + ';' + data);
-      });
+    // spreek service aan
+    this.sessionService.saveSelectedCard(this.selectedCard, this.sessionId, this.userIdStorage.getUserId()).subscribe(data => {
+      this.stompClient.send('/app/send/sessionCard/' + this.sessionId, {}, this.selectedCard.id + ';' + data);
+    });
 
     this.isMyTurn = true;
   }
@@ -107,10 +107,6 @@ export class CircleComponent implements OnInit, OnChanges {
     this.index = i;
   }
 
-  public endSession() {
-
-  }
-
   initializeWebSocketConnection(id: number, userId: number, comp: CircleComponent) {
     console.log('completed + sessionId:' + this.sessionId);
     const ws = new SockJS(this.serverUrl);
@@ -118,38 +114,51 @@ export class CircleComponent implements OnInit, OnChanges {
     const that = this;
     this.stompClient.connect({}, function (frame) {
       that.stompClient.subscribe('/cards/' + id, (cardid) => {
-        if (cardid.body) {
-          if(!cardid.body.toString().equals("finished")){
-            let selectedCardId = Number(cardid.body.toString().split(";")[0]);
-            let currentUserId = Number(cardid.body.toString().split(';')[1]);
-            comp.increaseCardPriority(selectedCardId);
-            comp.setCards();
-            if(currentUserId === userId){
-              comp.isMyTurn = false;
+          if (cardid.body) {
+            let selectedCardId = Number(cardid.body.toString().split(';')[0]);
+            if (!cardid.body.toString().split(';')[1].equals('finished')) {
+              let currentUserId = Number(cardid.body.toString().split(';')[1]);
+              comp.increaseCardPriority(selectedCardId);
+              comp.setCards();
+              if (currentUserId === userId) {
+                comp.isMyTurn = false;
+              }
+            } else {
+              comp.increaseCardPriority(selectedCardId);
+              comp.setCards();
+              comp.gameOver(selectedCardId);
             }
-          } else{
-            comp.gameOver();
           }
-
         }
-      });
+      );
     });
   }
 
-  public increaseCardPriority(id: number){
 
-    for(let card of this.sessionCards){
-      if (card.id === id){
+  public increaseCardPriority(id: number) {
+    for (let card of this.sessionCards) {
+      if (card.id === id) {
         card.priority += 1;
       }
     }
   }
 
   takeSnapshot() {
-
+    this.sessionService.takeSnapShot(this.sessionId, this.userId).subscribe();
   }
 
-  gameOver(){
+  gameOver(id: number) {
+    for (let card of this.sessionCards) {
+      if (card.id === id) {
+        this.winningCardName = card.name;
+      }
+    }
+    // set session state gebeurt voor elke deelnemer?
+    this.endSession(this.sessionId, this.userId);
     this.gameIsFinished = true;
+  }
+
+  public endSession(sessionId: number, userId: number) {
+    this.sessionService.endSession(sessionId, userId).subscribe();
   }
 }
