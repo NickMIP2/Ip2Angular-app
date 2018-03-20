@@ -45,11 +45,8 @@ export class Phase2Component implements OnInit {
         console.log(error);
         alert('Error loading Session');
       });
-    for (const id in this.session.organisersIds) {
-      if (id === this.userId) {
-        this.userOrganiser = true;
-      }
-    }
+    this.userOrganiser = (this.session.organisersIds.indexOf(this.userId) != -1 );
+
   }
 }
 
