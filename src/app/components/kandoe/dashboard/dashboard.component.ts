@@ -6,6 +6,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
 import {Session} from '../../../model/session';
 import {Router} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +22,7 @@ export class DashboardComponent implements OnInit {
   public currentSessions = [];
   public plannedSessions = [];
   private userId: number;
+  private pollingSessions: any;
 
   constructor(private router: Router, private titleService: Title, private sessionService: SessionService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
@@ -39,6 +42,19 @@ export class DashboardComponent implements OnInit {
         console.log(this.oldSessions);
         this.divideSessions();
       });
+
+    this.pollingSessions = Observable.interval(5000).subscribe(() =>
+      this.sessionService.getSessionsOfUser(this.userId).subscribe(data => {
+        this.oldSessions = data;
+        this.pastSessions = [];
+        this.currentSessions = [];
+        this.plannedSessions = [];
+        this.divideSessions();
+        console.log(data);
+      }, error => {
+        console.error('Error loading sessions!');
+        console.log(error);
+      }));
   }
 
   divideSessions() {
