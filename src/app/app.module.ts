@@ -24,7 +24,6 @@ import {RouterLinkDirectiveStub} from './testing/router-link-directive-stub';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {Interceptor} from './interceptor';
 import {TokenStorage} from './sessionStorage/token-storage';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import {CardEditComponent} from './components/kandoe/themedetail/components/cards/card-edit/card-edit.component';
 import {CardService} from './services/card.service';
@@ -75,6 +74,7 @@ import { WinningCardComponent } from './components/kandoe/session/winning-card/w
     CardNewComponent,
     ChatComponent,
     FileUploadComponent,
+
     CircleComponent,
     Phase1Component,
     Phase2Component,
@@ -101,8 +101,7 @@ import { WinningCardComponent } from './components/kandoe/session/winning-card/w
     MatSelectModule,
     MatRadioModule,
     MatSliderModule,
-    HttpClientModule,
-    MDBBootstrapModule.forRoot()
+    HttpClientModule
   ],
   providers: [
     TokenStorage,
