@@ -20,7 +20,7 @@ export class Phase2Component implements OnInit {
 
   public userTurn: boolean;
 
-  public userOrganiser = true;
+  public userOrganiser = false;
   public currentCardId;
   public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, null, 0);
 
