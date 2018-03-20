@@ -5,6 +5,12 @@
   margin-left: 60px;
   position: relative;
 }
+.jumbotron{
+  border: solid;
+  height: min-content;
+  width: 100%;
+  background-color: #85d8ce;
+}
 
 .game {
   display: flex;

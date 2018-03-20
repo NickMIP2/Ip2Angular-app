@@ -1,7 +1,6 @@
 import {AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {SessionCard} from '../../../../model/sessioncard';
 import {Ring} from '../../../../model/ring';
-
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 import {SessionService} from '../../../../services/session.service';
@@ -15,6 +14,7 @@ import {UseridStorage} from '../../../../sessionStorage/userid-storage';
 export class CircleComponent implements OnInit, OnChanges {
 
   constructor(private sessionService: SessionService, private userIdStorage: UseridStorage, private ref: ChangeDetectorRef) {
+
   }
 
   @Input() public isOrganiser = true;
