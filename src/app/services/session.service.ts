@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Session} from '../model/session';
 import {SessionCard} from '../model/sessioncard';
+import {Snapshot} from '../model/snapshot';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -69,8 +70,9 @@ export class SessionService {
   }
 
   takeSnapShot(sessionId: number, userId: number): Observable<any> {
-    const date = new Date().toUTCString();
-    return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/snapshot', date, httpOptions);
+    const snapshot = new Snapshot(0, null, null, 0, new Date());
+    const body = JSON.stringify(snapshot);
+    return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/snapshot', body, httpOptions);
   }
 
   saveReview(sessionCards: SessionCard[], sessionId: number, userId: number): Observable<any> {
