@@ -35,17 +35,16 @@ export class Phase2Component implements OnInit {
   ngOnInit() {
 
     this.sessionService.getSession(this.sessionId, this.userId).subscribe(data => {
-        console.log(data);
         this.session = data;
-        console.log(this.session);
 
       },
       error => {
         console.error('Error loading Session!');
         console.log(error);
         alert('Error loading Session');
+      }, () => {
+        this.userOrganiser = (this.session.organisersIds.indexOf(this.userId) != -1 );
       });
-    this.userOrganiser = (this.session.organisersIds.indexOf(this.userId) != -1 );
 
   }
 

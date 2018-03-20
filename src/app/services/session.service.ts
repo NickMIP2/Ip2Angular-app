@@ -56,8 +56,6 @@ export class SessionService {
     return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/startPhase1', httpOptions);
 
   }
-
-
   getSessionCards(sessionId: number, userId: number): Observable<any> {
     return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId);
   }
@@ -67,11 +65,11 @@ export class SessionService {
   }
 
   endSession(sessionId: number, userId: number): Observable<any> {
-    return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/endSession', httpOptions);
+    return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/endSession', httpOptions);
   }
 
   takeSnapShot(sessionId: number, userId: number): Observable<any> {
-    return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/snapshot', httpOptions);
+    return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/snapshot', httpOptions);
   }
 
   saveReview(sessionCards: SessionCard[], sessionId: number, userId: number): Observable<any> {
