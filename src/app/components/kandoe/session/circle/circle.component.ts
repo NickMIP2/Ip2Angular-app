@@ -116,17 +116,21 @@ export class CircleComponent implements OnInit, OnChanges {
     this.stompClient.connect({}, function (frame) {
       that.stompClient.subscribe('/cards/' + id, (cardid) => {
           if (cardid.body) {
-            let selectedCardId = Number(cardid.body.toString().split(';')[0]);
-            if (!(cardid.body.toString().split(';')[1] === '-11')) {
-              let currentUserId = Number(cardid.body.toString().split(';')[1]);
-              comp.increaseCardPriority(selectedCardId);
-              comp.setCards();
-              if (currentUserId === userId) {
-                comp.isMyTurn = false;
-              }
+            if (cardid.body.toString() === 'finished') {
+              comp.gameIsFinished = true;
             } else {
-              comp.increaseCardPriority(selectedCardId);
-              comp.gameOver(false);
+              let selectedCardId = Number(cardid.body.toString().split(';')[0]);
+              if (!(cardid.body.toString().split(';')[1] === '-11')) {
+                let currentUserId = Number(cardid.body.toString().split(';')[1]);
+                comp.increaseCardPriority(selectedCardId);
+                comp.setCards();
+                if (currentUserId === userId) {
+                  comp.isMyTurn = false;
+                }
+              } else {
+                comp.increaseCardPriority(selectedCardId);
+                comp.gameOver(false);
+              }
             }
           }
         }
@@ -139,7 +143,7 @@ export class CircleComponent implements OnInit, OnChanges {
     for (let card of this.sessionCards) {
       if (card.id === id) {
         card.priority += 1;
-        if(card.priority === this.amountOfRings){
+        if (card.priority === this.amountOfRings) {
           this.gameOver(false);
         }
       }
@@ -151,7 +155,7 @@ export class CircleComponent implements OnInit, OnChanges {
   }
 
   gameOver(earlyStop) {
-    if(earlyStop){
+    if (earlyStop) {
       this.earlyStop = true;
     }
     let highestPriority = 0;
@@ -172,6 +176,7 @@ export class CircleComponent implements OnInit, OnChanges {
 
   public endSession() {
     this.sessionService.endSession(this.sessionId, this.userId).subscribe();
+    this.stompClient.send('/app/send/sessionCard/' + this.sessionId, {}, 'finished');
   }
 
 }
