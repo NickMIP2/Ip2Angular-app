@@ -48,7 +48,7 @@ export class SessionService {
 
   saveSelectedCard(selectedCard: SessionCard, sessionId: number, userId: number): Observable<any> {
     const body = JSON.stringify(selectedCard);
-    return this.http.put('http://localhost:8080/users/' + userId + '/sessions/' + sessionId + '/sessionCards/' + selectedCard.id, body, httpOptions);
+    return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/sessionCards/' + selectedCard.id, body, httpOptions);
   }
 
   startSession(sessionId: number, userId: number): Observable<any> {
