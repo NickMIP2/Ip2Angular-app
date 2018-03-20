@@ -17,7 +17,7 @@ export class CircleComponent implements OnInit, OnChanges {
   constructor(private sessionService: SessionService, private userIdStorage: UseridStorage, private ref: ChangeDetectorRef) {
   }
 
-  @Input() public isOrganiser = true;
+  @Input() public isOrganiser;
   public isMyTurn = true;
 
   public selectedCard = new SessionCard(null, '', '', '', 0, 0, 0, 0);
