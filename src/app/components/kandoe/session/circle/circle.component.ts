@@ -33,7 +33,7 @@ export class CircleComponent implements OnInit, OnChanges {
   public angles = [];
   public index;
   userId;
-  public earlyStop;
+  public earlyStop = false;
   public username;
   private stompClient;
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
@@ -129,7 +129,7 @@ export class CircleComponent implements OnInit, OnChanges {
                 }
               } else {
                 comp.increaseCardPriority(selectedCardId);
-                comp.gameOver(false);
+                comp.gameOver();
               }
             }
           }
@@ -144,7 +144,7 @@ export class CircleComponent implements OnInit, OnChanges {
       if (card.id === id) {
         card.priority += 1;
         if (card.priority === this.amountOfRings) {
-          this.gameOver(false);
+          this.gameOver();
         }
       }
     }
@@ -154,10 +154,7 @@ export class CircleComponent implements OnInit, OnChanges {
     this.sessionService.takeSnapShot(this.sessionId, this.userId).subscribe();
   }
 
-  gameOver(earlyStop) {
-    if (earlyStop) {
-      this.earlyStop = true;
-    }
+  gameOver() {
     let highestPriority = 0;
     for (let card of this.sessionCards) {
       if (card.priority > highestPriority) {
@@ -170,11 +167,26 @@ export class CircleComponent implements OnInit, OnChanges {
         this.winningCards.push(card);
       }
     }
-    this.endSession();
+    this.sessionService.endSession(this.sessionId, this.userId).subscribe();
     this.gameIsFinished = true;
   }
 
   public endSession() {
+    let highestPriority = 0;
+    for (let card of this.sessionCards) {
+      if (card.priority > highestPriority) {
+        highestPriority = card.priority;
+      }
+    }
+    for (let card of this.sessionCards) {
+      if (card.priority === highestPriority) {
+        console.log(card.name);
+        this.winningCards.push(card);
+      }
+    }
+
+    this.earlyStop = true;
+    this.gameIsFinished = true;
     this.sessionService.endSession(this.sessionId, this.userId).subscribe();
     this.stompClient.send('/app/send/sessionCard/' + this.sessionId, {}, 'finished');
   }
