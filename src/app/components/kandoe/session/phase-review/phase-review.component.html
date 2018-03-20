@@ -1,5 +1,6 @@
 <h1>Review de geselecteerde kaarten</h1>
-<div *ngFor="let card of session.sessionCardDtos;let i = index">
+<div style="width: 80%">
+<div *ngFor="let card of session.sessionCardDtos;let i = index" style="width: 30%; display: inline-block; margin: 1%; padding: 1%;">
 <mat-card *ngIf="removedCards[i]" class="cardBoxRed"
           style="background-size: 100% 100%">
   <mat-card-content>
@@ -29,4 +30,5 @@
     </mat-card-actions>
   </mat-card>
 </div>
-<button style="width: 80%;" mat-raised-button color="primary" (click)="saveSelection()">Start cirkelen</button>
+<button style="width: 30%;" mat-raised-button color="primary" (click)="saveSelection()">Start cirkelen</button>
+</div>
