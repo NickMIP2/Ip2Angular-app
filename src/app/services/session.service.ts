@@ -67,12 +67,15 @@ export class SessionService {
 
   endSession(sessionId: number, userId: number): Observable<any> {
     return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/endSession', httpOptions);
-
   }
 
   takeSnapShot(sessionId: number, userId: number): Observable<any> {
     return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/snapshot', httpOptions);
+  }
 
+  saveReview(sessionCards: SessionCard[], sessionId: number, userId: number): Observable<any> {
+    const body = JSON.stringify(sessionCards);
+    return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/startPhase2', body, httpOptions);
   }
 }
 

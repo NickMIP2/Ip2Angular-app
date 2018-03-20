@@ -22,7 +22,7 @@ export class Phase2Component implements OnInit {
 
   public userOrganiser = true;
   public currentCardId;
-  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, null);
+  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, null, 0);
 
 
   constructor(private route: ActivatedRoute, private useridStorage: UseridStorage, private sessionService: SessionService) {

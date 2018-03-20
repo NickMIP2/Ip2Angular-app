@@ -45,9 +45,9 @@ export class DashboardComponent implements OnInit {
     for (const session of this.oldSessions) {
       if (session.state === 0) {
         this.plannedSessions.push(session);
-      } else if (session.state === 1 || session.state === 2) {
+      } else if (session.state === 1 || session.state === 2 || session.state === 3) {
         this.currentSessions.push(session);
-      } else if (session.state === 3) {
+      } else if (session.state === 4) {
         this.pastSessions.push(session);
       }
     }
@@ -64,6 +64,10 @@ export class DashboardComponent implements OnInit {
     } else if (session.state === 2) {
       this.router.navigate(['kandoe/sessions/' + session.id + '/phase2']);
     }
+  }
+
+  reviewSession(session) {
+    this.router.navigate(['kandoe/sessions/' + session.id + '/phaseReview']);
   }
 
   viewSnapshots(session) {

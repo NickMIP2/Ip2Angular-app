@@ -18,13 +18,6 @@
       <button style="width: 80%;" mat-raised-button color="warn" *ngIf="buttonStates[i]" (click)="deselectCard(card, i)">Verwijder</button>
     </mat-card-actions>
   </mat-card>
-  <!--<div *ngFor="let card of cards;let i = index" class="cardBox"
-     style="background-size: 100% 100%">
-  <h1>{{card.name}}</h1>
-  <div class="descriptionContainer">{{card.description}}</div>
-  <button mat-raised-button color="primary" *ngIf="!buttonStates[i]" (click)="selectCard(card, i)" [disabled]="selectedCards.length === session.maxCards">Selecteer</button>
-  <button mat-raised-button color="warn" *ngIf="buttonStates[i]" (click)="deselectCard(card, i)">Verwijder</button>
-</div>-->
 <br>
 <button mat-raised-button color="primary" (click)="saveCards()">Klaar</button>
 </div>

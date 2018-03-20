@@ -1,0 +1,23 @@
+.cardBox {
+  width: 25%;
+  display: inline-block;
+  margin: 1%;
+  padding: 1%;
+}
+
+.cardBoxRed {
+  width: 25%;
+  display: inline-block;
+  color: red;
+  opacity: 0.5;
+  margin: 1%;
+  padding: 1%;
+}
+
+.descriptionContainer {
+  text-align: left;
+  width: 95%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

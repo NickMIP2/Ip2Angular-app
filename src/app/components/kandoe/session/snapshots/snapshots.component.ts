@@ -18,7 +18,7 @@ export class SnapshotsComponent implements OnInit, OnChanges {
 
   public userId;
   public sessionId;
-  public session = new Session(0, 'Geen snapshots', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, []);
+  public session = new Session(0, 'Geen snapshots', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, [], 0);
   public currentSnapshot = new Snapshot(0, [], [], 0, new Date());
   public messages = [new Message('')];
   public snapShotIndex = 0;
