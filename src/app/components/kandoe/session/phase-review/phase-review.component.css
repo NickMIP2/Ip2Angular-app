@@ -8,7 +8,7 @@
 .cardBoxRed {
   width: 25%;
   display: inline-block;
-  color: red;
+  background: red;
   opacity: 0.5;
   margin: 1%;
   padding: 1%;
