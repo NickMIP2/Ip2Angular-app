@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {SessionService} from '../../../services/session.service';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
@@ -14,7 +14,9 @@ import 'rxjs/add/observable/interval';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+
+export class DashboardComponent implements OnInit, OnDestroy {
+
   title = 'Dashboard';
   // public oldSessions: Set<Session> = new Set<Session>();
   public oldSessions = [];
@@ -96,5 +98,9 @@ export class DashboardComponent implements OnInit {
     if (organiserIds.indexOf(this.userId) === -1) {
       return false;
     } else return true;
+  }
+
+  ngOnDestroy(): void {
+    this.pollingSessions.unsubscribe();
   }
 }
