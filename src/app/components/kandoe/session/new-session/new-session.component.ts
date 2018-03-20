@@ -52,7 +52,9 @@ export class NewSessionComponent implements OnInit {
 
   cloneSession() {
     this.newSession = this.oldSession;
+
     this.newSession.id = 0;
+    this.newSession.startDate = new Date();
     this.categoryIndexId = this.oldSession.categoryId;
     this.themeIndexId = this.oldSession.themeId;
     this.setCategory();
