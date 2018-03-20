@@ -59,8 +59,9 @@ export class NewSessionComponent implements OnInit {
     this.themeIndexId = this.oldSession.themeId;
     this.newSession.participantIds = [];
     this.newSession.organisersIds = [];
-    this.newSession.organisers = null;
-    this.newSession.sessionCardDtos = null;
+    this.newSession.organisers = [];
+    this.newSession.sessionCardDtos = [];
+    this.newSession.state = 0;
     this.newSession.userSubmitted = false;
     this.newSession.currentUserId = 0;
     this.newSession.snapshotDtos = null;
