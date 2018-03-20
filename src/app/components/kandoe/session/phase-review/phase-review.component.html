@@ -1,5 +1,5 @@
 <h1>Review de geselecteerde kaarten</h1>
-<div style="width: 80%">
+<div class="reviewContainer">
 <div *ngFor="let card of session.sessionCardDtos;let i = index" style="width: 30%; display: inline-block; margin: 1%; padding: 1%;">
 <mat-card *ngIf="removedCards[i]" class="cardBoxRed"
           style="background-size: 100% 100%">

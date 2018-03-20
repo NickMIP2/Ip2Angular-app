@@ -10,6 +10,15 @@
   opacity: 0.5;
 }
 
+.reviewContainer {
+  width: 80%;
+  margin: auto;
+  margin-top: 2%;
+  background: #E2E0FB;
+  padding: 15px;
+  border-radius: 10px;
+}
+
 .descriptionContainer {
   text-align: left;
   width: 95%;
