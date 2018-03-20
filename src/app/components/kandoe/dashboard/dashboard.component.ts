@@ -58,6 +58,7 @@ export class DashboardComponent implements OnInit {
   }
 
   divideSessions() {
+    this.oldSessions.sort((a, b) => a.id - b.id);
     for (const session of this.oldSessions) {
       if (session.state === 0) {
         this.plannedSessions.push(session);
