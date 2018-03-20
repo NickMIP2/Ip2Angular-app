@@ -69,7 +69,8 @@ export class SessionService {
   }
 
   takeSnapShot(sessionId: number, userId: number): Observable<any> {
-    return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/snapshot', httpOptions);
+    const date = new Date().toUTCString();
+    return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/snapshot', date, httpOptions);
   }
 
   saveReview(sessionCards: SessionCard[], sessionId: number, userId: number): Observable<any> {
