@@ -46,11 +46,11 @@
     <div class="organiserButtons">
       <button mat-raised-button color="primary" id="snapshotButton" *ngIf="isOrganiser" (click)="takeSnapshot()"> Snapshot nemen
       </button> <br>
-      <button class="btn btn-danger" id="endSessionButton" *ngIf="isOrganiser" (click)="endSession()"> Sessie beëindigen
+      <button class="btn btn-danger" id="endSessionButton" *ngIf="isOrganiser" (click)="gameOver(true)"> Sessie beëindigen
       </button>
     </div>
   </div>
 </div>
 <div [hidden]="!gameIsFinished">
-  <app-winning-card [winningCards]="winningCards" ></app-winning-card>
+  <app-winning-card [earlyStop]="earlyStop" [winningCards]="winningCards" ></app-winning-card>
 </div>

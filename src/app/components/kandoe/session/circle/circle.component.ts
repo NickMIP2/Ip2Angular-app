@@ -33,6 +33,7 @@ export class CircleComponent implements OnInit, OnChanges {
   public angles = [];
   public index;
   userId;
+  public earlyStop;
   public username;
   private stompClient;
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
@@ -125,7 +126,7 @@ export class CircleComponent implements OnInit, OnChanges {
               }
             } else {
               comp.increaseCardPriority(selectedCardId);
-              comp.gameOver();
+              comp.gameOver(false);
             }
           }
         }
@@ -139,7 +140,7 @@ export class CircleComponent implements OnInit, OnChanges {
       if (card.id === id) {
         card.priority += 1;
         if(card.priority === this.amountOfRings){
-          this.gameOver();
+          this.gameOver(false);
         }
       }
     }
@@ -149,7 +150,10 @@ export class CircleComponent implements OnInit, OnChanges {
     this.sessionService.takeSnapShot(this.sessionId, this.userId).subscribe();
   }
 
-  gameOver() {
+  gameOver(earlyStop) {
+    if(earlyStop){
+      this.earlyStop = true;
+    }
     let highestPriority = 0;
     for (let card of this.sessionCards) {
       if (card.priority > highestPriority) {
@@ -162,11 +166,12 @@ export class CircleComponent implements OnInit, OnChanges {
         this.winningCards.push(card);
       }
     }
-    // set session state gebeurt voor elke deelnemer?
+    this.endSession();
     this.gameIsFinished = true;
   }
 
-  public endSession(sessionId: number, userId: number) {
-    this.sessionService.endSession(sessionId, userId).subscribe();
+  public endSession() {
+    this.sessionService.endSession(this.sessionId, this.userId).subscribe();
   }
+
 }
