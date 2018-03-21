@@ -7,6 +7,7 @@ import {UseridStorage} from '../../../../../../sessionStorage/userid-storage';
 import {CardService} from '../../../../../../services/card.service';
 import {MatSnackBar} from '@angular/material';
 import {TranslateService} from '@ngx-translate/core';
+import {ImageB64ConvertService} from '../../../../../../services/image-b64-convert.service';
 
 @Component({
   selector: 'app-card-new',
@@ -35,7 +36,8 @@ export class CardNewComponent implements OnInit {
               private userIdStorage: UseridStorage,
               private router: Router,
               private snackBar: MatSnackBar,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private imageb64Service: ImageB64ConvertService) {
     this.userId = userIdStorage.getUserId();
   }
 

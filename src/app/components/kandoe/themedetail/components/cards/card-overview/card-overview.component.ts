@@ -5,6 +5,8 @@ import {CardService} from '../../../../../../services/card.service';
 import {ThemeService} from '../../../../../../services/theme.service';
 import {MatSnackBar} from '@angular/material';
 import {TranslateService} from '@ngx-translate/core';
+import {ImageB64ConvertService} from '../../../../../../services/image-b64-convert.service';
+
 
 @Component({
   selector: 'app-card-overview',
@@ -27,7 +29,8 @@ export class CardOverviewComponent implements OnInit {
               private userIdStorage: UseridStorage,
               private router: Router,
               private snackBar: MatSnackBar,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private imageb64convert: ImageB64ConvertService) {
     this.userId = userIdStorage.getUserId();
   }
 
@@ -52,6 +55,7 @@ export class CardOverviewComponent implements OnInit {
 
       });
     for (const card of this.cards) {
+      card.image = this.imageb64convert.convert(card.image);
       console.log(card.image.substring(0, 30));
     }
   }

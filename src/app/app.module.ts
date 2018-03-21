@@ -56,6 +56,7 @@ import { WinningCardComponent } from './components/kandoe/session/winning-card/w
 import { PhaseReviewComponent } from './components/kandoe/session/phase-review/phase-review.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {ImageB64ConvertService} from './services/image-b64-convert.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -136,7 +137,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     Interceptor,
     UseridStorage,
     MessageService,
-    UserService
+    UserService,
+    ImageB64ConvertService
   ],
 
   bootstrap: [AppComponent]

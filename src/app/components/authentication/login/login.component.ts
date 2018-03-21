@@ -13,7 +13,12 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private translate: TranslateService, private authService: AuthenticationService, private userIdStorage: UseridStorage, private tokenStorage: TokenStorage) {
+  constructor(private router: Router,
+              private translate: TranslateService,
+              private authService: AuthenticationService,
+              private userIdStorage: UseridStorage,
+              private tokenStorage: TokenStorage,
+              private translate: TranslateService) {
   }
 
   title = '';
