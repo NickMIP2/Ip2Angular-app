@@ -209,6 +209,7 @@
         "tb_name": "Naam",
         "tb_first_name": "Voornaam",
         "tb_organiser": "Organisator",
+        "button_add":"Toevoegen",
         "button_save": "Opslaan",
         "button_remove": "Verwijder"
       },
