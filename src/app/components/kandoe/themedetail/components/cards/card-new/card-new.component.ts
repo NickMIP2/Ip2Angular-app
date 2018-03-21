@@ -6,6 +6,7 @@ import {Card} from '../../../../../../model/card';
 import {UseridStorage} from '../../../../../../sessionStorage/userid-storage';
 import {CardService} from '../../../../../../services/card.service';
 import {MatSnackBar} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-card-new',
@@ -13,6 +14,9 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./card-new.component.css']
 })
 export class CardNewComponent implements OnInit {
+
+  title = '';
+  error_message = '';
   public myfile: any;
   public card = new Card(0, 0, '', '', '');
   public oldCards = [];
@@ -30,18 +34,24 @@ export class CardNewComponent implements OnInit {
               private route: ActivatedRoute,
               private userIdStorage: UseridStorage,
               private router: Router,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private translate: TranslateService) {
     this.userId = userIdStorage.getUserId();
   }
 
   ngOnInit() {
-    window.document.title = 'Nieuwe kaart';
+
+    this.translate.get('Kandoe.Themedetail.cards.new.page_title', {value: 'world'}).subscribe(e => {
+      this.title = e;
+    });
+    window.document.title = this.title;
+
     this.themeId = this.route.parent.snapshot.params['themeId'];
     this.categoryId = this.route.snapshot.params['categoryId'];
     this.themeName = this.route.snapshot.queryParamMap.get('themeName');
     this.categoryName = this.route.snapshot.queryParamMap.get('categoryName');
 
-    this.cardService.getCardsByCategory(this.categoryId ,this.themeId, this.userId).subscribe(data => {
+    this.cardService.getCardsByCategory(this.categoryId , this.themeId, this.userId).subscribe(data => {
         this.oldCards = data;
       },
       error => {

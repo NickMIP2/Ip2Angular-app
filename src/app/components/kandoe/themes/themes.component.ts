@@ -4,6 +4,7 @@ import {UseridStorage} from '../../../sessionStorage/userid-storage';
 import {Theme} from '../../../model/theme';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-theme',
@@ -14,13 +15,22 @@ import {MatSnackBar} from '@angular/material';
 })
 export class ThemesComponent implements OnInit {
   public themes: Set<Theme> = new Set<Theme>();
+  title = '';
+  error_message = '';
 
-  constructor(private themeService: ThemeService, private useridStorage: UseridStorage, private router: Router, public snackBar: MatSnackBar) {
+  constructor(private themeService: ThemeService,
+              private useridStorage: UseridStorage,
+              private router: Router,
+              public snackBar: MatSnackBar,
+              private translate: TranslateService) {
 
   }
 
   ngOnInit() {
-    window.document.title = 'Uw thema\'s';
+    this.translate.get('Kandoe.Themes.page_title', {value: 'world'}).subscribe(e => {
+      this.title = e;
+    });
+    window.document.title = this.title;
     this.themeService.getThemesOfUser(this.useridStorage.getUserId()).subscribe(data => {
         this.themes = data;
       },

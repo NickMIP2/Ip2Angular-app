@@ -9,6 +9,7 @@ import {SessionService} from '../../../../services/session.service';
 import {Router} from '@angular/router';
 import {DatePipe} from '@angular/common';
 import {MatSnackBar} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-new-session',
@@ -38,6 +39,8 @@ export class NewSessionComponent implements OnInit {
   thumbLabel = true;
   vertical = false;
   showClone = false;
+  title = '';
+  error_message = '';
 
   get tickInterval(): number | 'auto' {
     return this.showTicks ? (this.autoTicks ? 'auto' : this._tickInterval) : 0;
@@ -50,7 +53,10 @@ export class NewSessionComponent implements OnInit {
   private _tickInterval = 1;
 
   constructor(private router: Router, private sessionService: SessionService, private themeService: ThemeService,
-              private categoryService: CategoryService, private useridStorage: UseridStorage, private snackBar: MatSnackBar) {
+              private categoryService: CategoryService,
+              private useridStorage: UseridStorage,
+              private snackBar: MatSnackBar,
+              private translate: TranslateService) {
     this.userId = useridStorage.getUserId();
   }
 
@@ -74,7 +80,10 @@ export class NewSessionComponent implements OnInit {
   }
 
   ngOnInit() {
-    window.document.title = 'Nieuwe sessie';
+    this.translate.get('Kandoe.Session.New.page_title', {value: 'world'}).subscribe(e => {
+      this.title = e;
+    });
+    window.document.title = this.title;
     console.log(this.participantEmail);
     this.themeService.getThemesOfUser(this.userId).subscribe(data => {
         this.themes = data;

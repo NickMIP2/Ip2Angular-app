@@ -4,6 +4,7 @@ import {ThemeService} from '../../../../../services/theme.service';
 import {ActivatedRoute} from '@angular/router';
 import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
 import {MatSnackBar} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-themedetail-organiser',
@@ -12,6 +13,8 @@ import {MatSnackBar} from '@angular/material';
 })
 export class ThemedetailOrganiserComponent implements OnInit {
 
+  title = '';
+  error_message = '';
   public themeId;
   public theme: Theme;
   public users = [];
@@ -21,13 +24,19 @@ export class ThemedetailOrganiserComponent implements OnInit {
   public alreadyExistsCheck = false;
   public lastOrganiser = false;
 
-  constructor(private themeService: ThemeService, private route: ActivatedRoute, private userIdStorage: UseridStorage, private snackBar: MatSnackBar) {
+  constructor(private themeService: ThemeService,
+              private route: ActivatedRoute,
+              private userIdStorage: UseridStorage,
+              private snackBar: MatSnackBar,
+              private translate: TranslateService) {
     this.userId = userIdStorage.getUserId();
   }
 
   ngOnInit() {
-    window.document.title = 'Organisators';
-    this.themeId = this.route.parent.snapshot.params['themeId'];
+    this.translate.get('Kandoe.Themedetail.organiser.page_title', {value: 'world'}).subscribe(e => {
+      this.title = e;
+    });
+    window.document.title = this.title;    this.themeId = this.route.parent.snapshot.params['themeId'];
 
     this.themeService.getUsersOfTheme(this.themeId, this.userId).subscribe(
       data => {

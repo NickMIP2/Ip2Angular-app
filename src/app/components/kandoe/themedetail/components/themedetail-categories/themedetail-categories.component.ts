@@ -6,6 +6,7 @@ import {CategoryService} from '../../../../../services/category.service';
 import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
 import {MatSnackBar} from '@angular/material';
 import {Theme} from '../../../../../model/theme';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-themedetail-categories',
@@ -13,6 +14,8 @@ import {Theme} from '../../../../../model/theme';
   styleUrls: ['./themedetail-categories.component.css']
 })
 export class ThemedetailCategoriesComponent implements OnInit {
+  title = '';
+  error_message = '';
   editing = 0;
   categories = [];
   editfield = '';
@@ -27,14 +30,23 @@ export class ThemedetailCategoriesComponent implements OnInit {
   public themeId = 0;
   public userId;
 
-  constructor(private themeService: ThemeService, private router: Router, private categoryService: CategoryService,
-              private route: ActivatedRoute, private userIdStorage: UseridStorage, private snackBar: MatSnackBar) {
+  constructor(private themeService: ThemeService,
+              private router: Router,
+              private categoryService: CategoryService,
+              private route: ActivatedRoute,
+              private userIdStorage: UseridStorage,
+              private snackBar: MatSnackBar,
+              private translate: TranslateService) {
     this.userId = userIdStorage.getUserId();
 
   }
 
   ngOnInit() {
-    window.document.title = 'Categoriën';
+
+    this.translate.get('Kandoe.Themedetail.categories.page_title', {value: 'world'}).subscribe(e => {
+      this.title = e;
+    });
+    window.document.title = this.title;
     this.themeId = this.route.parent.snapshot.params['themeId'];
     // get theme to display name
     this.themeService.getTheme(this.themeId, this.userId).subscribe(data => {

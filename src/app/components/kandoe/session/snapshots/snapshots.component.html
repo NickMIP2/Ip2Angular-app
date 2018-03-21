@@ -1,8 +1,8 @@
 <div class="snapShotContainer" *ngIf="!noSnapshots">
   <div class="snapShotHeader">
   <h2 style="text-align: center">{{session.name}}</h2>
-  <button mat-raised-button color="primary" [disabled]="snapShotIndex===0" (click)="perviousSnapshot()">Vorige</button>
-  <button mat-raised-button color="primary" [disabled]="(snapShotIndex+1)===session.snapshotDtos.length" (click)="nextSnapshot()">Volgende</button>
+  <button mat-raised-button color="primary" [disabled]="snapShotIndex===0" (click)="perviousSnapshot()">{{ 'Kandoe.Session.snapshots.previous' | translate }}</button>
+  <button mat-raised-button color="primary" [disabled]="(snapShotIndex+1)===session.snapshotDtos.length" (click)="nextSnapshot()">{{ 'Kandoe.Session.snapshots.next' | translate }}</button>
   <p style="text-align: center">{{currentSnapshot.date | date: 'dd/MM/yyyy/hh:mm'}}</p>
   </div>
   <div style="display: inline-block">
@@ -55,7 +55,7 @@
   </div>
 </div>
 <div *ngIf="noSnapshots">
-  <h1 style="margin-top: 2%">Er zijn voor deze sessie geen snapshots!</h1>
+  <h1 style="margin-top: 2%">{{ 'Kandoe.Session.snapshots.no_snap' | translate }}</h1>
   <img src="../../../../../assets/images/errorperson.png" class="noSnapshotImage" />
 </div>
 

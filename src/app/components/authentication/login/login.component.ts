@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
 import {TokenStorage} from '../../../sessionStorage/token-storage';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,11 @@ import {TokenStorage} from '../../../sessionStorage/token-storage';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private authService: AuthenticationService, private userIdStorage: UseridStorage, private tokenStorage: TokenStorage) {
+  constructor(private router: Router, private translate: TranslateService, private authService: AuthenticationService, private userIdStorage: UseridStorage, private tokenStorage: TokenStorage) {
   }
 
-  error: '';
+  title = '';
+  error_message = '';
 
   loading = false;
   usernametext: string;
@@ -32,14 +34,20 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['kandoe/dashboard']);
       },
       error => {
-        console.error('Error logging in!');
+        this.translate.get('Authentication.Login.error_message', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Unable to login');
+        alert(this.error_message);
       });
   }
 
   ngOnInit(): void {
-
+    this.translate.get('Authentication.Login.page_title', {value: 'world'}).subscribe(e => {
+      this.title = e;
+    });
+    window.document.title = this.title;
   }
 
 

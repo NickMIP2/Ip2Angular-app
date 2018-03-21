@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../../../model/user';
 import {Router, ActivatedRoute} from '@angular/router';
 import {AuthenticationService} from '../../../services/authentication.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
@@ -13,17 +14,22 @@ import {AuthenticationService} from '../../../services/authentication.service';
 export class RegisterComponent implements OnInit {
   model = new User(0, '', '', '', '', '');
   passwordCheck = '';
-  error = '';
+  title = '';
+  error_message = '';
   pwMatch: boolean = this.model.password === this.passwordCheck;
   loading = false;
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private authService: AuthenticationService) {
+              private authService: AuthenticationService,
+              private translate: TranslateService) {
   }
 
   ngOnInit() {
-    window.document.title = 'Register | Kandoe';
+    this.translate.get('Authentication.Register.page_title', {value: 'world'}).subscribe(e => {
+      this.title = e;
+    });
+    window.document.title = this.title;
   }
 
   register() {
@@ -34,9 +40,12 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/login']);
       },
       error => {
-        console.error('Error registering User!');
+        this.translate.get('Authentication.Register.error_message', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Unable to register User');
+        alert(this.error_message);
       });
   }
 

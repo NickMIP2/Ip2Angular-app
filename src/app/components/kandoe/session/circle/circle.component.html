@@ -17,14 +17,14 @@
 
   <div class="col-md-4 cards">
     <p class="row currentTurn" [hidden]="isMyTurn">
-      Het is jouw beurt {{username}}!
+      {{ 'Kandoe.Session.circle.your_turn' | translate }}{{username}}!
     </p>
     <div class="row" id="selectedCardDetails" [style.visibility]="selectedCard.name !== '' ? 'visible': 'hidden'">
-      <b>Geselecteerde kaart</b>:
+      <b>{{ 'Kandoe.Session.circle.selected_card' | translate }}</b>:
       {{selectedCard.name}}
 
       <button mat-raised-button color="primary" id="confirmCardButton" *ngIf="!isMyTurn" (click)="confirmMoveCard()">
-        Geselecteerde kaart verplaatsen
+        {{ 'Kandoe.Session.circle.move_selected_Card' | translate }}
       </button>
     </div>
     <div class="row carddetails">
@@ -39,14 +39,18 @@
           </p>
         </mat-card-content>
         <mat-card-actions style="padding-bottom: 4%">
-          <button style="width: 80%;" mat-raised-button color="primary" (click)="selectCard(card, i)">Selecteer</button>
+          <button style="width: 80%;" mat-raised-button color="primary" (click)="selectCard(card, i)">
+            {{ 'Kandoe.Session.circle.select' | translate }}
+          </button>
         </mat-card-actions>
       </mat-card>
     </div>
     <div class="organiserButtons">
-      <button mat-raised-button color="primary" id="snapshotButton" *ngIf="isOrganiser" (click)="takeSnapshot()"> Snapshot nemen
+      <button mat-raised-button color="primary" id="snapshotButton" *ngIf="isOrganiser" (click)="takeSnapshot()">
+        {{ 'Kandoe.Session.circle.take_snap' | translate }}
       </button> <br>
-      <button class="btn btn-danger" id="endSessionButton" *ngIf="isOrganiser" (click)="endSession()"> Sessie beëindigen
+      <button class="btn btn-danger" id="endSessionButton" *ngIf="isOrganiser" (click)="endSession()">
+        {{ 'Kandoe.Session.circle.end_session' | translate }}
       </button>
     </div>
   </div>
