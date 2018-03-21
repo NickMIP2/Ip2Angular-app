@@ -12,7 +12,8 @@ import {MatSnackBar} from '@angular/material';
 })
 export class CardOverviewComponent implements OnInit {
 
-
+  public themeName;
+  public categoryName;
   public cards = [];
   public themeId;
   public categoryId;
@@ -27,6 +28,8 @@ export class CardOverviewComponent implements OnInit {
     window.document.title = 'Kaarten';
     this.themeId = this.route.parent.snapshot.params['themeId'];
     this.categoryId = this.route.snapshot.params['categoryId'];
+    this.themeName = this.route.snapshot.queryParamMap.get('themeName');
+    this.categoryName = this.route.snapshot.queryParamMap.get('categoryName');
 
     // get cards of category
     this.cardService.getCardsByCategory(this.categoryId, this.themeId, this.userId).subscribe(data => {
