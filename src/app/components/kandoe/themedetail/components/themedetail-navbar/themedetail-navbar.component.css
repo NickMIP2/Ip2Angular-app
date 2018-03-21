@@ -1,7 +1,24 @@
-ul {
+
+#navbarsDefault{
   margin: auto;
 }
+.root{
+  margin-left: 1%;
+  float: left;
+  margin-right: 3%;
+}
+#currentTheme{
 
+  color: white;
+  font-weight: bold;
+  font-size: large;
+
+}
 .activeitem{
+
+  background-color: #ff6d02;
+}
+
+a:hover{
   background-color: darkorange;
 }

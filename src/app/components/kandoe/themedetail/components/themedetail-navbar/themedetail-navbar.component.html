@@ -5,7 +5,11 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarsDefault">
+    <a class="nav-link font-weight-bold" id="currentTheme" [routerLink]="['/kandoe/themes']">{{theme.name}}</a>
+
     <ul class="navbar-nav mr-auto">
+      <li class="nav-item root">
+      </li>
       <li class="nav-item active">
         <a class="nav-link font-weight-bold" [routerLink]="['overview']" routerLinkActive="activeitem" [routerLinkActiveOptions]="{exact:true}">Overzicht</a>
       </li>

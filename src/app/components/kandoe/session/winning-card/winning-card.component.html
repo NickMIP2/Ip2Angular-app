@@ -7,9 +7,9 @@
         <li ><h1 >{{currentCard.name}}</h1></li>
       </ul>
     </div>
-    <div class="row">
+    <div class="row detailrow">
       <p [hidden]="!earlyStop">De sessie is vroegtijdig gestopt door een organiser</p>
-      <p [hidden]="earlyStop">Het ziet er naar uit dat bovenstaande kaart(en) de meeste stemmen had(den) van deze Kandoe brainstorm sessie. </p>
+      <p [hidden]="earlyStop">Het ziet er naar uit dat bovenstaande kaart(en) de meeste stemmen had(den) van deze Kandoe brainstorm sessie.</p>
       <button class="btn btn-primary" (click)="toDashboard()">Haal me hier weg</button>
     </div>
   </div>

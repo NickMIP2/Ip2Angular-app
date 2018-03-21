@@ -35,7 +35,7 @@
 
 .highlight button {
   margin-left: 1%;
-  float: right;
+  float: left;
 }
 
 .highlight h2,h3,h4,h5,h6 {
@@ -49,3 +49,15 @@
 .highlight p {
   text-align: justify;
 }
+
+.detailrow{
+  margin: auto;
+  margin-top: 10em;
+}
+
+.detailrow p {
+
+  margin-left: 12em;
+}
+
+
