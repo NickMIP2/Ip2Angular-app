@@ -20,12 +20,13 @@
   margin: 10px;
 }
 
-.highlight h1 {
+.highlight li {
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 5px;
   float: left;
-  clear: right
+  clear: right;
+  list-style-type: none;
 }
 
 .highlight button {

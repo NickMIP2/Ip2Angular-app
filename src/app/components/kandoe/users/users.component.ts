@@ -3,6 +3,7 @@ import {User} from '../../../model/user';
 import {UserService} from '../../../services/user.service';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
 import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-users',
@@ -21,7 +22,7 @@ export class UsersComponent implements OnInit, AfterViewChecked {
   pwHash: any;
   public userId: number;
 
-  constructor(private userService: UserService, private  useridStorage: UseridStorage, private router: Router) {
+  constructor(private userService: UserService, private  useridStorage: UseridStorage, private router: Router, private snackBar:MatSnackBar) {
     this.userId = this.useridStorage.getUserId();
   }
 
@@ -33,7 +34,8 @@ export class UsersComponent implements OnInit, AfterViewChecked {
     }, error => {
       console.error('Error loading user!');
       console.log(error);
-      alert('Error loading user');
+      this.snackBar.open('Fout bij ophalen gebruiker', 'x', {duration: 2000});
+
     });
   }
 
@@ -50,15 +52,15 @@ export class UsersComponent implements OnInit, AfterViewChecked {
       if (data !== null) {
         this.user = data;
         this.router.navigate(['kandoe/dashboard']);
-        alert('Userdetails opgeslagen');
+        this.snackBar.open('Wijzigingen opgeslagen', 'x', {duration: 2000});
       } else {
-        alert('Error updating user');
+        this.snackBar.open('Fout bij opslaan wijzigingen', 'x', {duration: 2000});
         this.ngOnInit();
       }
     }, error => {
       console.error('Error updating user!');
       console.log(error);
-      alert('Error updating user');
+      this.snackBar.open('Fout bij opslaan wijzigingen', 'x', {duration: 2000});
     });
   }
 }

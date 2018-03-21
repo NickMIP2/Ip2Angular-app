@@ -7,7 +7,8 @@ import {UseridStorage} from '../../../../sessionStorage/userid-storage';
 import {Theme} from '../../../../model/theme';
 import {SessionService} from '../../../../services/session.service';
 import {Router} from '@angular/router';
-import { DatePipe } from '@angular/common';
+import {DatePipe} from '@angular/common';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-new-session',
@@ -16,7 +17,7 @@ import { DatePipe } from '@angular/common';
 })
 export class NewSessionComponent implements OnInit {
 
-  newSession = new Session(0, '', null, 1, 1, null, 1, [], [], [], [], 0, [], 0, false, new Date(), false, 0, null);
+  newSession = new Session(0, '', null, 1, 1, null, 1, [], [], [], [], 0, [], 0, false, new Date(), false, 0, null, 0);
   participantEmail = '';
   public themes = [];
   public categoryArray = [];
@@ -41,20 +42,34 @@ export class NewSessionComponent implements OnInit {
   get tickInterval(): number | 'auto' {
     return this.showTicks ? (this.autoTicks ? 'auto' : this._tickInterval) : 0;
   }
+
   set tickInterval(v) {
     this._tickInterval = Number(v);
   }
+
   private _tickInterval = 1;
 
-  constructor(private router: Router, private sessionService: SessionService, private themeService: ThemeService, private categoryService: CategoryService, private useridStorage: UseridStorage) {
+  constructor(private router: Router, private sessionService: SessionService, private themeService: ThemeService,
+              private categoryService: CategoryService, private useridStorage: UseridStorage, private snackBar: MatSnackBar) {
     this.userId = useridStorage.getUserId();
   }
 
   cloneSession() {
     this.newSession = this.oldSession;
+
     this.newSession.id = 0;
+    this.newSession.startDate = new Date();
     this.categoryIndexId = this.oldSession.categoryId;
     this.themeIndexId = this.oldSession.themeId;
+    this.newSession.participantIds = [];
+    this.newSession.organisersIds = [];
+    this.newSession.organisers = [];
+    this.newSession.sessionCardDtos = [];
+    this.newSession.state = 0;
+    this.newSession.userSubmitted = false;
+    this.newSession.currentUserId = 0;
+    this.newSession.snapshotDtos = null;
+    this.newSession.amountSubmitted = 0;
     this.setCategory();
   }
 
@@ -67,7 +82,7 @@ export class NewSessionComponent implements OnInit {
       error => {
         console.error('Error loading themes!');
         console.log(error);
-        alert('Error loading themes');
+        this.snackBar.open('Fout bij ophalen themas', 'x', {duration: 2000});
       }, () => {
         // this.setCategory();
       });
@@ -78,6 +93,8 @@ export class NewSessionComponent implements OnInit {
       error => {
         console.error('Error loading sessions!');
         console.log(error);
+        this.snackBar.open('Fout bij ophalen sessies', 'x', {duration: 2000});
+
       });
   }
 
@@ -89,7 +106,7 @@ export class NewSessionComponent implements OnInit {
       error => {
         console.error('Error loading categories!');
         console.log(error);
-        alert('Error loading categories');
+        this.snackBar.open('Fout bij ophalen categorieën', 'x', {duration: 2000});
       });
   }
 
@@ -112,7 +129,7 @@ export class NewSessionComponent implements OnInit {
         error => {
           console.error('Error creating session!');
           console.log(error);
-          alert('Error creating session');
+          this.snackBar.open('Fout bij aanmaken van sessie', 'x', {duration: 2000});
         });
     }
   }

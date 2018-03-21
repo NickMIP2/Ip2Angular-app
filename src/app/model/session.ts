@@ -13,7 +13,7 @@ export class Session {
               public participants: string[],
               public organisers: string[],
               public participantIds: number[],
-              public organiserIds: number[],
+              public organisersIds: number[],
               public type: number,
               public sessionCardDtos: SessionCard[],
               public state: number,
@@ -21,6 +21,7 @@ export class Session {
               public startDate: Date,
               public allowCardCreation: boolean,
               public currentUserId: number,
-              public snapshotDtos: Snapshot[]) {
+              public snapshotDtos: Snapshot[],
+              public amountSubmitted: number) {
   }
 }

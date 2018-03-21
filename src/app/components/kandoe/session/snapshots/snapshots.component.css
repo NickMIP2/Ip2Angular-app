@@ -44,7 +44,7 @@
   background-color: gainsboro;
 }
 .sessioncard:hover{
-  font-size: 0.5em;
+  font-size: 0.3em;
   -webkit-transform: scale(3);
   -ms-transform: scale(3);
   transform: scale(3);
@@ -164,6 +164,11 @@ p{
 
 .cardBox{
   width: 5%;
+}
 
+.noSnapshotImage {
+  width: 70%;
+  height: 400px;
+  margin-top: 3%;
 }
 

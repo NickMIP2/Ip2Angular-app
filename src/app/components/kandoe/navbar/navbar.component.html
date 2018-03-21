@@ -8,20 +8,20 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" name="dashboard" routerLink="dashboard">Dashboard</a>
+        <a class="nav-link" name="dashboard" routerLink="dashboard" routerLinkActive="activeitem" [routerLinkActiveOptions]="{exact:true}">Dashboard</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" name="themes" routerLink="themes">Thema's</a>
+        <a class="nav-link" name="themes" routerLink="themes" routerLinkActive="activeitem" [routerLinkActiveOptions]="{exact:false}">Thema's</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" name="session" routerLink="new-session">Nieuwe sessie</a>
+        <a class="nav-link" name="session" routerLink="new-session" routerLinkActive="activeitem" [routerLinkActiveOptions]="{exact:true}">Nieuwe sessie</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" name="analytics" routerLink="analytics">Analyses</a>
+        <a class="nav-link disabled" name="analytics" routerLink="analytics" routerLinkActive="activeitem" [routerLinkActiveOptions]="{exact:true}">Analyses</a>
       </li>
     </ul>
     <form class="form-inline my-3 my-lg-0">
-      <button class="btn btn-outline-info my-2 mr-2 my-sm-0 text-bold" [routerLink]='["users/",userId]'>
+      <button class="btn btn-outline-info my-2 mr-2 my-sm-0 text-bold" [routerLink]='["users/",userId]' routerLinkActive="activeuser" [routerLinkActiveOptions]="{exact:true}">
         <i class="material-icons">settings</i> Account
       </button>
       <button class="btn btn-outline-danger my-2 my-sm-0 text-bold" routerLink="/login">

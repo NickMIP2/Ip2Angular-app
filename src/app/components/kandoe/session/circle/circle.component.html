@@ -1,4 +1,4 @@
-<div class="container game">
+<div class="container game" [hidden]="gameIsFinished">
 
   <div class="circle">
     <div *ngFor="let ring of rings" class="subcircle"
@@ -50,4 +50,7 @@
       </button>
     </div>
   </div>
+</div>
+<div [hidden]="!gameIsFinished">
+  <app-winning-card [earlyStop]="earlyStop" [winningCards]="winningCards" ></app-winning-card>
 </div>

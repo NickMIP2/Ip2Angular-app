@@ -17,7 +17,7 @@ export class Phase1Component implements OnInit {
 
   public userId;
   public sessionId;
-  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, null);
+  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, null, 0);
   public cards = [];
   public selectedCards = [];
   public buttonStates = [];
@@ -78,7 +78,7 @@ export class Phase1Component implements OnInit {
     this.sessionService.saveSessionCards(this.selectedCards, this.session.id, this.userId).subscribe(data => {
       console.log('selectedcard' + this.selectedCards.toString());
       console.log('sessioncards' + data.sessionCardDtos[0]);
-        this.router.navigate(['kandoe/sessions/' + this.session.id + '/phase2']);
+        this.router.navigate(['kandoe/dashboard']);
       },
       error => {
         console.error('Error saving selected cards!');

@@ -31,12 +31,13 @@ import {CategoryService} from './services/category.service';
 import {ThemedetailComponent} from './components/kandoe/themedetail/themedetail.component';
 import {UseridStorage} from './sessionStorage/userid-storage';
 import {CardNewComponent} from './components/kandoe/themedetail/components/cards/card-new/card-new.component';
-import {ChatComponent} from './components/kandoe/chat/chat.component';
+import {ChatComponent} from './components/kandoe/session/chat/chat.component';
 import {FileUploadComponent} from './file-upload/file-upload.component';
 import {MessageService} from './services/message.service';
-import {CircleComponent} from './circle/circle.component';
+import {CircleComponent} from './components/kandoe/session/circle/circle.component';
 import {
   MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatNativeDateModule, MatRadioModule, MatSelectModule, MatSliderModule,
+  MatSnackBar,
   MatTabsModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -47,11 +48,13 @@ import {SessionOverviewComponent} from './components/kandoe/session/session-over
 import {CardOverviewComponent} from './components/kandoe/themedetail/components/cards/card-overview/card-overview.component';
 import {MatFormFieldModule} from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSnackBarModule} from '@angular/material';
 import { SnapshotsComponent } from './components/kandoe/session/snapshots/snapshots.component';
 import { UsersComponent } from './components/kandoe/users/users.component';
 import {UserService} from './services/user.service';
-import { WinningCardComponent } from './components/kandoe/winning-card/winning-card.component';
 import { AnalyticsComponent } from './components/kandoe/analytics/analytics.component';
+import { WinningCardComponent } from './components/kandoe/session/winning-card/winning-card.component';
+import { PhaseReviewComponent } from './components/kandoe/session/phase-review/phase-review.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +87,8 @@ import { AnalyticsComponent } from './components/kandoe/analytics/analytics.comp
     UsersComponent,
     WinningCardComponent,
     SnapshotsComponent,
-    AnalyticsComponent
+    AnalyticsComponent,
+    PhaseReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -97,6 +101,7 @@ import { AnalyticsComponent } from './components/kandoe/analytics/analytics.comp
     MatFormFieldModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
+    MatSnackBarModule,
     MatNativeDateModule,
     MatCardModule,
     MatInputModule,

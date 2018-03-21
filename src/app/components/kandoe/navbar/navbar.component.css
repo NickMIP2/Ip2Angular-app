@@ -11,3 +11,11 @@
   display: inline-block;
   vertical-align: middle;
 }
+
+.activeitem{
+  background-color: darkblue;
+}
+
+.activeuser{
+  background-color: darkblue;
+}

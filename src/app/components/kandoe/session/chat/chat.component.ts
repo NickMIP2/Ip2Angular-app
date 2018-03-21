@@ -2,10 +2,11 @@ import {Component, OnInit, Input} from '@angular/core';
 import * as $ from 'jquery';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
-import {UseridStorage} from '../../../sessionStorage/userid-storage';
-import {Message} from '../../../model/message';
-import {MessageService} from '../../../services/message.service';
+import {UseridStorage} from '../../../../sessionStorage/userid-storage';
+import {Message} from '../../../../model/message';
+import {MessageService} from '../../../../services/message.service';
 import {ActivatedRoute, Route} from '@angular/router';
+import {MatSnackBar} from '@angular/material';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class ChatComponent implements OnInit {
   public messages = [new Message('')];
 
 
-  constructor(private userIdStorage: UseridStorage, private messageService: MessageService, private route: ActivatedRoute) {
+  constructor(private userIdStorage: UseridStorage, private messageService: MessageService, private route: ActivatedRoute,private snackBar: MatSnackBar) {
     // this.sessionId = this.route.parent.snapshot.params['sessionId'];
     this.username = userIdStorage.getUsername();
   }
@@ -35,7 +36,7 @@ export class ChatComponent implements OnInit {
       error => {
         console.error('Error loading messages!');
         console.log(error);
-        alert('Error loading messages');
+        this.snackBar.open('Fout bij ophalen berichten', 'x', {duration: 2000});
       },
       () => this.initializeWebSocketConnection(this.sessionId));
   }

@@ -20,8 +20,8 @@
       <input style="width: 100%;" matInput placeholder="Password" id="pwOne" type="password" required
              [(ngModel)]="user.password" name="pwOne" #pwOne="ngModel">
     </mat-form-field>
-    <div style="width: 100%;">
-      <button mat-raised-button color="primary"
+    <div style="width: 100%; text-align: center">
+      <button mat-raised-button color="primary" style="width: 30%"
               [disabled]="!userform.form.valid" (click)="saveChanges()">
         Save changes
       </button>

@@ -1,0 +1,35 @@
+<h1>Review de geselecteerde kaarten</h1>
+<div class="reviewContainer">
+<div *ngFor="let card of session.sessionCardDtos;let i = index" style="width: 30%; display: inline-block; margin: 1%; padding: 1%;">
+<mat-card *ngIf="removedCards[i]" class="cardBoxRed"
+          style="background-size: 100% 100%">
+  <mat-card-content>
+    <p style="text-align: center">
+      <span style="font-weight: bold; font-size: large">{{card.name}}</span>
+    </p>
+    <p style="text-align: center">
+      <span>{{card.description}}</span>
+    </p>
+  </mat-card-content>
+  <mat-card-actions style="padding-bottom: 4%">
+    <button style="width: 80%;" mat-raised-button color="warn" [disabled] (click)="removeCard(card, i)">Verwijder</button>
+  </mat-card-actions>
+</mat-card>
+  <mat-card *ngIf="!removedCards[i]" class="cardBox"
+            style="background-size: 100% 100%">
+    <mat-card-content>
+      <p style="text-align: center">
+        <span style="font-weight: bold; font-size: large">{{card.name}}</span>
+      </p>
+      <p style="text-align: center">
+        <span>{{card.description}}</span>
+      </p>
+    </mat-card-content>
+    <mat-card-actions style="padding-bottom: 4%">
+      <button style="width: 80%;" mat-raised-button color="warn" (click)="removeCard(card, i)">Verwijder</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+  <br>
+<button style="width: 30%;" mat-raised-button color="primary" (click)="saveSelection()">Start cirkelen</button>
+</div>

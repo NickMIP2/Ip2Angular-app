@@ -3,6 +3,7 @@ import {Theme} from '../../../../../model/theme';
 import {ThemeService} from '../../../../../services/theme.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-themedetail-overview',
@@ -24,7 +25,7 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
   editing = 0;
   tagValue = '';
 
-  constructor(private themeService: ThemeService, private route: ActivatedRoute, private useridStorage: UseridStorage, private router: Router) {
+  constructor(private themeService: ThemeService, private route: ActivatedRoute, private useridStorage: UseridStorage, private router: Router, public snackBar: MatSnackBar) {
     this.themeId = this.route.parent.snapshot.params['themeId'];
     console.log('themeId = ' + this.themeId);
 
@@ -37,7 +38,8 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
       error => {
         console.error('Error loading theme details!');
         console.log(error);
-        alert('Error loading theme details');
+        this.snackBar.open('Er ging iets mis bij het ophalen van dit thema', 'x', {duration: 2000});
+
       });
 
   }
@@ -49,12 +51,16 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
   save() {
     this.themeService.updateTheme(this.theme, this.useridStorage.getUserId()).subscribe(data => {
         this.theme = data;
-        // routing naar andere component
+
       },
       error => {
         console.error('Error saving Theme!');
         console.log(error);
-        alert('Error saving Theme');
+        this.snackBar.open('Opslaan van wijzigingen mislukt!', 'x', {duration: 2000});
+
+      }, () => {
+        this.snackBar.open('Wijzigingen opgeslagen', 'x', {duration: 2000});
+
       });
     this.editing = 0;
   }
