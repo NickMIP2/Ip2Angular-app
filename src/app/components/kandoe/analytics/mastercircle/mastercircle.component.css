@@ -87,3 +87,9 @@
   width: 100%;
   padding: 2%;
 }
+
+.noDataImage {
+  width: 70%;
+  height: 400px;
+  margin-top: 3%;
+}

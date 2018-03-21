@@ -87,7 +87,6 @@
 
 .cardBox{
   display: inline-block;
-  width: 30%;
   margin: 1%;
   padding: 1%;
 }
@@ -160,10 +159,6 @@ p{
 
 #btn-chat{
   height: 100%;
-}
-
-.cardBox{
-  width: 5%;
 }
 
 .noSnapshotImage {

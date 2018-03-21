@@ -26,6 +26,7 @@ export class MastercircleComponent implements OnInit, OnChanges {
   amountOfRings = 8;
   public rings = [];
   public angles = [];
+  public noData = false;
 
   constructor(private sessionService: SessionService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
@@ -58,6 +59,10 @@ export class MastercircleComponent implements OnInit, OnChanges {
         }
 
         this.setCards();
+
+        if (this.sessionCards.length == 0) {
+          this.noData = true;
+        }
       });
     }
   }

@@ -1,4 +1,4 @@
-<div class="masterCircleContainer">
+<div class="masterCircleContainer" *ngIf="!noData">
 <div style="display: inline-block">
   <div class="circleContainer">
     <div class="circle">
@@ -26,4 +26,8 @@
     </mat-card-content>
   </mat-card>
 </div>
+</div>
+<div *ngIf="noData">
+  <h2 style="margin-top: 2%">Geen afgelopen sessies</h2>
+  <img src="../../../../../assets/images/errorperson.png" class="noDataImage" />
 </div>
