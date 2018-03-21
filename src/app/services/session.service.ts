@@ -79,5 +79,9 @@ export class SessionService {
     const body = JSON.stringify(sessionCards);
     return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + sessionId + '/startPhase2', body, httpOptions);
   }
+
+  getSessionsOfTheme(themeId: number, userId: number): Observable<any> {
+    return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + themeId + '/sessions', httpOptions);
+  }
 }
 

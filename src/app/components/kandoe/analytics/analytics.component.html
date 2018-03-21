@@ -17,7 +17,7 @@
 </div>
 <mat-tab-group class="tabAnalyseContainer" [hidden]="selecting" [selectedIndex]="0">
   <mat-tab label="Master cirkel">
-    <app-mastercircle></app-mastercircle>
+    <app-mastercircle [selecting]="selecting" [themeId]="theme.id"></app-mastercircle>
   </mat-tab>
   <mat-tab label="Correlatie">
   </mat-tab>
