@@ -19,6 +19,8 @@ export class CardEditComponent implements OnInit {
   public correctName = true;
   public check = false;
   public oldCards = [];
+  public themeName;
+  public categoryName;
 
   constructor(private cardService: CardService,
               private route: ActivatedRoute,
@@ -32,6 +34,8 @@ export class CardEditComponent implements OnInit {
     this.themeId = this.route.parent.snapshot.params['themeId'];
     this.cardId = this.route.snapshot.params['cardId'];
     this.categoryId = this.route.snapshot.params['categoryId'];
+    this.themeName = this.route.snapshot.queryParamMap.get('themeName');
+    this.categoryName = this.route.snapshot.queryParamMap.get('categoryName');
 
     // get card
     this.cardService.getCard(this.categoryId, this.cardId, this.themeId, this.userId).subscribe(data => {
@@ -67,7 +71,7 @@ export class CardEditComponent implements OnInit {
     if (this.correctName) {
       this.cardService.updateCard(this.categoryId, this.card, this.themeId, this.userId).subscribe(data => {
           this.card = data;
-          this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview']);
+          this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview'], {queryParams: {themeName: this.themeName, categoryName: this.categoryName}});
         },
         error => {
           console.error('Error saving card!');
@@ -93,7 +97,7 @@ export class CardEditComponent implements OnInit {
   }
 
   discardChanges() {
-    this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview']);
+    this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview'], {queryParams: {themeName: this.themeName, categoryName: this.categoryName}});
   }
 
   checkName() {

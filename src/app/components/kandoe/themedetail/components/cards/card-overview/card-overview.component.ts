@@ -61,11 +61,11 @@ export class CardOverviewComponent implements OnInit {
   }
 
   navigateNewCard() {
-    this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/cards/new-card']);
+    this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/cards/new-card'], {queryParams: {themeName: this.themeName, categoryName: this.categoryName}});
   }
 
   editCard(id: number) {
-    this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/cards/' + id + '/edit-card']);
+    this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/cards/' + id + '/edit-card'], {queryParams: {themeName: this.themeName, categoryName: this.categoryName}});
 
   }
 }
