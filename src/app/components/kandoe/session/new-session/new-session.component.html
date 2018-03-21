@@ -149,7 +149,7 @@
   <div class="bottomSide">
   <button mat-raised-button color="primary" style="width: 30%; margin: auto"
           (click)="onClickSubmit()"
-          [disabled]="!sessionform.form.valid">
+          [disabled]="!sessionform.form.valid || newSession.participants.length === 0">
     Sessie maken
   </button>
   </div>

@@ -21,6 +21,7 @@ export class Session {
               public startDate: Date,
               public allowCardCreation: boolean,
               public currentUserId: number,
-              public snapshotDtos: Snapshot[]) {
+              public snapshotDtos: Snapshot[],
+              public amountSubmitted: number) {
   }
 }

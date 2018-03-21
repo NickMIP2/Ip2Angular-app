@@ -17,7 +17,7 @@ export class CircleComponent implements OnInit, OnChanges {
   constructor(private sessionService: SessionService, private userIdStorage: UseridStorage, private ref: ChangeDetectorRef) {
   }
 
-  @Input() public isOrganiser = true;
+  @Input() public isOrganiser;
   public isMyTurn = true;
 
   public selectedCard = new SessionCard(null, '', '', '', 0, 0, 0, 0);
@@ -33,6 +33,7 @@ export class CircleComponent implements OnInit, OnChanges {
   public angles = [];
   public index;
   userId;
+  public earlyStop = false;
   public username;
   private stompClient;
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
@@ -115,17 +116,22 @@ export class CircleComponent implements OnInit, OnChanges {
     this.stompClient.connect({}, function (frame) {
       that.stompClient.subscribe('/cards/' + id, (cardid) => {
           if (cardid.body) {
-            let selectedCardId = Number(cardid.body.toString().split(';')[0]);
-            if (!(cardid.body.toString().split(';')[1] === '-11')) {
-              let currentUserId = Number(cardid.body.toString().split(';')[1]);
-              comp.increaseCardPriority(selectedCardId);
-              comp.setCards();
-              if (currentUserId === userId) {
-                comp.isMyTurn = false;
-              }
+            if (cardid.body.toString() === 'finished') {
+              comp.stompEarlyFinish();
+              comp.gameIsFinished = true;
             } else {
-              comp.increaseCardPriority(selectedCardId);
-              comp.gameOver();
+              let selectedCardId = Number(cardid.body.toString().split(';')[0]);
+              if (!(cardid.body.toString().split(';')[1] === '-11')) {
+                let currentUserId = Number(cardid.body.toString().split(';')[1]);
+                comp.increaseCardPriority(selectedCardId);
+                comp.setCards();
+                if (currentUserId === userId) {
+                  comp.isMyTurn = false;
+                }
+              } else {
+                comp.increaseCardPriority(selectedCardId);
+                comp.gameOver();
+              }
             }
           }
         }
@@ -138,7 +144,7 @@ export class CircleComponent implements OnInit, OnChanges {
     for (let card of this.sessionCards) {
       if (card.id === id) {
         card.priority += 1;
-        if(card.priority === this.amountOfRings){
+        if (card.priority === this.amountOfRings) {
           this.gameOver();
         }
       }
@@ -162,11 +168,43 @@ export class CircleComponent implements OnInit, OnChanges {
         this.winningCards.push(card);
       }
     }
-    // set session state gebeurt voor elke deelnemer?
+    this.sessionService.endSession(this.sessionId, this.userId).subscribe();
     this.gameIsFinished = true;
   }
 
-  public endSession(sessionId: number, userId: number) {
-    this.sessionService.endSession(sessionId, userId).subscribe();
+  public endSession() {
+    let highestPriority = 0;
+    for (let card of this.sessionCards) {
+      if (card.priority > highestPriority) {
+        highestPriority = card.priority;
+      }
+    }
+    for (let card of this.sessionCards) {
+      if (card.priority === highestPriority) {
+        console.log(card.name);
+        this.winningCards.push(card);
+      }
+    }
+
+    this.earlyStop = true;
+    this.gameIsFinished = true;
+    this.sessionService.endSession(this.sessionId, this.userId).subscribe();
+    this.stompClient.send('/app/send/sessionCard/' + this.sessionId, {}, 'finished');
   }
+
+  public stompEarlyFinish(){
+    let highestPriority = 0;
+    for (let card of this.sessionCards) {
+      if (card.priority > highestPriority) {
+        highestPriority = card.priority;
+      }
+    }
+    for (let card of this.sessionCards) {
+      if (card.priority === highestPriority) {
+        console.log(card.name);
+        this.winningCards.push(card);
+      }
+    }
+  }
+
 }

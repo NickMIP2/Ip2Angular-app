@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-winning-card',
@@ -8,10 +9,15 @@ import {Component, Input, OnInit} from '@angular/core';
 export class WinningCardComponent implements OnInit {
 
   @Input() winningCards;
+  @Input() earlyStop;
 
-  constructor() { }
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  toDashboard() {
+    this.router.navigate(['kandoe/dashboard']);
+  }
 }

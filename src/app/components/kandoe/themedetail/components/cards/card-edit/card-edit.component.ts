@@ -3,6 +3,7 @@ import {CardService} from '../../../../../../services/card.service';
 import {Card} from '../../../../../../model/card';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UseridStorage} from '../../../../../../sessionStorage/userid-storage';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-card-edit',
@@ -18,11 +19,13 @@ export class CardEditComponent implements OnInit {
   public correctName = true;
   public check = false;
   public oldCards = [];
+  public themeName;
+  public categoryName;
 
   constructor(private cardService: CardService,
               private route: ActivatedRoute,
               private userIdStorage: UseridStorage,
-              private router: Router) {
+              private router: Router, private snackBar: MatSnackBar) {
     this.userId = userIdStorage.getUserId();
   }
 
@@ -31,6 +34,8 @@ export class CardEditComponent implements OnInit {
     this.themeId = this.route.parent.snapshot.params['themeId'];
     this.cardId = this.route.snapshot.params['cardId'];
     this.categoryId = this.route.snapshot.params['categoryId'];
+    this.themeName = this.route.snapshot.queryParamMap.get('themeName');
+    this.categoryName = this.route.snapshot.queryParamMap.get('categoryName');
 
     // get card
     this.cardService.getCard(this.categoryId, this.cardId, this.themeId, this.userId).subscribe(data => {
@@ -39,15 +44,16 @@ export class CardEditComponent implements OnInit {
       error => {
         console.error('Error loading card!');
         console.log(error);
-        alert('Error loading card!');
+        this.snackBar.open('Fout bij ophalen kaart', 'x', {duration: 2000});
       }, () => {
-        this.cardService.getCardsByCategory(this.categoryId ,this.themeId, this.userId).subscribe(data => {
+        this.cardService.getCardsByCategory(this.categoryId, this.themeId, this.userId).subscribe(data => {
             this.oldCards = data;
           },
           error => {
             console.error('Error loading cards!');
             console.log(error);
-            alert('Error loading cards!');
+            this.snackBar.open('Fout bij ophalen kaartjes!', 'x', {duration: 2000});
+
           }, () => {
             let index = 0;
             for (let i = 0; i < this.oldCards.length; i++) {
@@ -65,12 +71,14 @@ export class CardEditComponent implements OnInit {
     if (this.correctName) {
       this.cardService.updateCard(this.categoryId, this.card, this.themeId, this.userId).subscribe(data => {
           this.card = data;
-          this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview']);
+          this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview'], {queryParams: {themeName: this.themeName, categoryName: this.categoryName}});
         },
         error => {
           console.error('Error saving card!');
           console.log(error);
-          alert('Error saving card');
+          this.snackBar.open('Fout bij opslaan wijzigingen', 'x', {duration: 2000});
+        }, () => {
+          this.snackBar.open('Wijzigingen opgeslagen', 'x', {duration: 2000});
         });
     }
   }
@@ -89,7 +97,7 @@ export class CardEditComponent implements OnInit {
   }
 
   discardChanges() {
-    this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview']);
+    this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview'], {queryParams: {themeName: this.themeName, categoryName: this.categoryName}});
   }
 
   checkName() {

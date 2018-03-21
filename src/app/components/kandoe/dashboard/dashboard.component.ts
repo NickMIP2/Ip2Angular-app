@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {SessionService} from '../../../services/session.service';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
@@ -14,7 +14,9 @@ import 'rxjs/add/observable/interval';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+
+export class DashboardComponent implements OnInit, OnDestroy {
+
   title = 'Dashboard';
   // public oldSessions: Set<Session> = new Set<Session>();
   public oldSessions = [];
@@ -58,12 +60,13 @@ export class DashboardComponent implements OnInit {
   }
 
   divideSessions() {
+    this.oldSessions.sort((a, b) => a.id - b.id);
     for (const session of this.oldSessions) {
       if (session.state === 0) {
         this.plannedSessions.push(session);
-      } else if (session.state === 1 || session.state === 2) {
+      } else if (session.state === 1 || session.state === 2 || session.state === 3) {
         this.currentSessions.push(session);
-      } else if (session.state === 3) {
+      } else if (session.state === 4) {
         this.pastSessions.push(session);
       }
     }
@@ -77,9 +80,13 @@ export class DashboardComponent implements OnInit {
   continueSession(session) {
     if (session.state === 1) {
       this.router.navigate(['kandoe/sessions/' + session.id + '/phase1']);
-    } else if (session.state === 2) {
+    } else if (session.state === 3) {
       this.router.navigate(['kandoe/sessions/' + session.id + '/phase2']);
     }
+  }
+
+  reviewSession(session) {
+    this.router.navigate(['kandoe/sessions/' + session.id + '/phaseReview']);
   }
 
   viewSnapshots(session) {
@@ -91,5 +98,9 @@ export class DashboardComponent implements OnInit {
     if (organiserIds.indexOf(this.userId) === -1) {
       return false;
     } else return true;
+  }
+
+  ngOnDestroy(): void {
+    this.pollingSessions.unsubscribe();
   }
 }

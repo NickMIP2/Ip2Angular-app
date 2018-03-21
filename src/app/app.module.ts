@@ -37,6 +37,7 @@ import {MessageService} from './services/message.service';
 import {CircleComponent} from './components/kandoe/session/circle/circle.component';
 import {
   MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatNativeDateModule, MatRadioModule, MatSelectModule, MatSliderModule,
+  MatSnackBar,
   MatTabsModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -47,10 +48,12 @@ import {SessionOverviewComponent} from './components/kandoe/session/session-over
 import {CardOverviewComponent} from './components/kandoe/themedetail/components/cards/card-overview/card-overview.component';
 import {MatFormFieldModule} from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSnackBarModule} from '@angular/material';
 import { SnapshotsComponent } from './components/kandoe/session/snapshots/snapshots.component';
 import { UsersComponent } from './components/kandoe/users/users.component';
 import {UserService} from './services/user.service';
 import { WinningCardComponent } from './components/kandoe/session/winning-card/winning-card.component';
+import { PhaseReviewComponent } from './components/kandoe/session/phase-review/phase-review.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +86,7 @@ import { WinningCardComponent } from './components/kandoe/session/winning-card/w
     UsersComponent,
     WinningCardComponent,
     SnapshotsComponent,
+    PhaseReviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,6 +99,7 @@ import { WinningCardComponent } from './components/kandoe/session/winning-card/w
     MatFormFieldModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
+    MatSnackBarModule,
     MatNativeDateModule,
     MatCardModule,
     MatInputModule,

@@ -8,6 +8,7 @@ import {Ring} from '../../../../model/ring';
 import {SessionCard} from '../../../../model/sessioncard';
 import { DatePipe } from '@angular/common';
 import {Message} from '../../../../model/message';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-snapshots',
@@ -18,7 +19,7 @@ export class SnapshotsComponent implements OnInit, OnChanges {
 
   public userId;
   public sessionId;
-  public session = new Session(0, 'Geen snapshots', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, []);
+  public session = new Session(0, 'Geen snapshots', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, [], 0);
   public currentSnapshot = new Snapshot(0, [], [], 0, new Date());
   public messages = [new Message('')];
   public snapShotIndex = 0;
@@ -34,7 +35,8 @@ export class SnapshotsComponent implements OnInit, OnChanges {
   public sessionCards = [];
   public selectedCard = new SessionCard(null, '', '', '', 0, 0, 0, 0);
 
-  constructor(private router: Router, private route: ActivatedRoute, private sessionService: SessionService, private useridStorage: UseridStorage) {
+  constructor(private router: Router, private route: ActivatedRoute, private sessionService: SessionService,
+              private useridStorage: UseridStorage, private snackBar: MatSnackBar) {
     this.userId = useridStorage.getUserId();
     this.sessionId = this.route.parent.snapshot.params['sessionId'];
   }
@@ -48,7 +50,8 @@ export class SnapshotsComponent implements OnInit, OnChanges {
       error => {
         console.error('Error loading session!');
         console.log(error);
-        alert('Error loading session');
+        this.snackBar.open('Fout bij ophalen sessie', 'x', {duration: 2000});
+
       }, () => {
       if (this.session.snapshotDtos.length > this.snapShotIndex) {
         this.currentSnapshot = this.session.snapshotDtos[this.snapShotIndex];
@@ -59,7 +62,7 @@ export class SnapshotsComponent implements OnInit, OnChanges {
           error => {
             console.error('Error loading messages!');
             console.log(error);
-            alert('Error loading messages');
+            this.snackBar.open('Fout bij ophalen berichten', 'x', {duration: 2000});
           }, () => {
 
           for (let i = 0; i < this.currentSnapshot.sessionCardIds.length; i++){
@@ -100,7 +103,7 @@ export class SnapshotsComponent implements OnInit, OnChanges {
         error => {
           console.error('Error loading messages!');
           console.log(error);
-          alert('Error loading messages');
+          this.snackBar.open('Fout bij ophalen berichten', 'x', {duration: 2000});
         }, () => {
           this.setCorrectSessionCards();
         });
@@ -121,7 +124,7 @@ export class SnapshotsComponent implements OnInit, OnChanges {
         error => {
           console.error('Error loading messages!');
           console.log(error);
-          alert('Error loading messages');
+          this.snackBar.open('Fout bij ophalen berichten', 'x', {duration: 2000});
         }, () => {
           this.setCorrectSessionCards();
       });
@@ -163,7 +166,6 @@ export class SnapshotsComponent implements OnInit, OnChanges {
   public setCards() {
     this.circleRingSize = this.circleRadius / (this.amountOfRings);
     let index = 0;
-    //console.log('setcard' + this.currentSnapshot.sessionCardIds.length);
     for (index; index < this.sessionCards.length; index++) {
 
       const angleDegrees = ((360 / this.sessionCards.length) * index);
@@ -171,11 +173,7 @@ export class SnapshotsComponent implements OnInit, OnChanges {
       const angleRadians = angleDegrees * (Math.PI / 180);
       this.angles.push(angleRadians);
 
-      //console.log(this.circleRingSize);
-
       const ringRadius = (this.circleRadius - ((this.circleRadius) - (this.sessionCards[index].distance + 1 - this.sessionCards[index].priority) * this.circleRingSize)) - this.cardThickness;
-
-      //console.log(ringRadius);
 
       const circleStart = this.circleRadius - this.cardThickness;
 

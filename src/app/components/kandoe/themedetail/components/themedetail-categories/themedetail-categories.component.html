@@ -1,3 +1,4 @@
+<h3 style="margin-top: 2%;">{{theme.name}} categoriën</h3>
 <div class="categoryContainer">
   <form #newCategoryForm="ngForm" class="form-group" *ngIf="editing ==1">
   <mat-form-field class="form-group" style="width: 100%">
@@ -12,7 +13,7 @@
   <button [disabled]="!editCategoryForm.form.valid" style="width: 50%;" mat-raised-button color="primary" (click)="editing === 2 ? updateCategory() : editing=0">Opslaan</button>
   </form>
 <div id="display-all-categories" *ngIf="editing !== 1 && editing !== 2">
-  <button style="width: 50%" mat-raised-button color="primary" (click)="editing=1">Nieuwe categorie</button>
+  <button style="width: 20%" mat-raised-button color="primary" (click)="editing=1">Nieuwe categorie</button>
   <table class="table paddingtop">
     <tr *ngFor="let category of categories">
       <td>{{category.name}}</td>
@@ -23,7 +24,7 @@
         <button mat-raised-button color="warn" (click)="deleteCategory(category.id)">Verwijder</button>
       </td>
       <td>
-        <button mat-raised-button color="primary" (click)="goToCards(category.id)">Bekijk kaarten</button>
+        <button mat-raised-button color="primary" (click)="goToCards(category.id, category.name)">Bekijk kaarten</button>
       </td>
     </tr>
   </table>

@@ -1,0 +1,28 @@
+.cardBox {
+  width: 100%;
+  display: inline-block;
+}
+
+.cardBoxRed {
+  width: 100%;
+  display: inline-block;
+  background: red;
+  opacity: 0.5;
+}
+
+.reviewContainer {
+  width: 80%;
+  margin: auto;
+  margin-top: 2%;
+  background: #E2E0FB;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.descriptionContainer {
+  text-align: left;
+  width: 95%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

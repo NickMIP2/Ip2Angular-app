@@ -38,6 +38,12 @@ mat-card-content {
   box-shadow: 0px 0px 5px 1px #43EF1F;
 }
 
+.sessionBoxReviewen {
+  width: 100%;
+  display: inline-block;
+  box-shadow: 0px 0px 5px 1px #3E52B5;
+}
+
 .descriptionContainer {
   text-align: center;
   width: 95%;
