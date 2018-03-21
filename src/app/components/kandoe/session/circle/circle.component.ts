@@ -118,7 +118,6 @@ export class CircleComponent implements OnInit, OnChanges {
           if (cardid.body) {
             if (cardid.body.toString() === 'finished') {
               comp.stompEarlyFinish();
-              comp.gameIsFinished = true;
             } else {
               let selectedCardId = Number(cardid.body.toString().split(';')[0]);
               if (!(cardid.body.toString().split(';')[1] === '-11')) {
@@ -130,6 +129,7 @@ export class CircleComponent implements OnInit, OnChanges {
                 }
               } else {
                 comp.increaseCardPriority(selectedCardId);
+                comp.winningCards = [];
                 comp.gameOver();
               }
             }
@@ -173,21 +173,7 @@ export class CircleComponent implements OnInit, OnChanges {
   }
 
   public endSession() {
-    let highestPriority = 0;
-    for (let card of this.sessionCards) {
-      if (card.priority > highestPriority) {
-        highestPriority = card.priority;
-      }
-    }
-    for (let card of this.sessionCards) {
-      if (card.priority === highestPriority) {
-        console.log(card.name);
-        this.winningCards.push(card);
-      }
-    }
 
-    this.earlyStop = true;
-    this.gameIsFinished = true;
     this.sessionService.endSession(this.sessionId, this.userId).subscribe();
     this.stompClient.send('/app/send/sessionCard/' + this.sessionId, {}, 'finished');
   }
@@ -205,6 +191,9 @@ export class CircleComponent implements OnInit, OnChanges {
         this.winningCards.push(card);
       }
     }
+
+    this.earlyStop = true;
+    this.gameIsFinished = true;
   }
 
 }
