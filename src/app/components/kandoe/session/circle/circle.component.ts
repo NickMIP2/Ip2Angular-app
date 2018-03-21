@@ -38,7 +38,7 @@ export class CircleComponent implements OnInit, OnChanges {
   public username;
   private stompClient;
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
-  public gameIsFinished = false;
+  public gameIsFinished = true;
   public winningCards = [];
   @Input() private sessionId;
   @Input() currentUserTurnId;

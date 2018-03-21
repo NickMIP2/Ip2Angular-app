@@ -1,7 +1,11 @@
-
+.main-container{
+  width: 100%;
+  min-height: 100%;
+  margin: 20px;
+}
 .highlight  {
-  width: 50%;
   color: white;
+  min-height: 40em;
   background: rgba(0, 0, 0, 0.26);
   border-radius: 10px;
   padding: 3%;
