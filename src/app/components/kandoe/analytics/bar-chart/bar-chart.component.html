@@ -1,0 +1,15 @@
+<div *ngIf="!noData">
+  <div style="display: block">
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+    ></canvas>
+  </div>
+</div>
+<div *ngIf="noData">
+  <h2 style="margin-top: 2%">Geen afgelopen sessies</h2>
+  <img src="../../../../../assets/images/errorperson.png" class="noDataImage" />
+</div>

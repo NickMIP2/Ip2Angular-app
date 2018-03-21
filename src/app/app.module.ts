@@ -35,6 +35,7 @@ import {ChatComponent} from './components/kandoe/session/chat/chat.component';
 import {FileUploadComponent} from './file-upload/file-upload.component';
 import {MessageService} from './services/message.service';
 import {CircleComponent} from './components/kandoe/session/circle/circle.component';
+import { ChartsModule } from 'ng2-charts';
 import {
   MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatNativeDateModule, MatRadioModule, MatSelectModule, MatSliderModule,
   MatSnackBar,
@@ -56,6 +57,7 @@ import { AnalyticsComponent } from './components/kandoe/analytics/analytics.comp
 import { WinningCardComponent } from './components/kandoe/session/winning-card/winning-card.component';
 import { PhaseReviewComponent } from './components/kandoe/session/phase-review/phase-review.component';
 import { MastercircleComponent } from './components/kandoe/analytics/mastercircle/mastercircle.component';
+import { BarChartComponent } from './components/kandoe/analytics/bar-chart/bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,6 @@ import { MastercircleComponent } from './components/kandoe/analytics/mastercircl
     CardNewComponent,
     ChatComponent,
     FileUploadComponent,
-
     CircleComponent,
     Phase1Component,
     Phase2Component,
@@ -90,9 +91,11 @@ import { MastercircleComponent } from './components/kandoe/analytics/mastercircl
     SnapshotsComponent,
     AnalyticsComponent,
     PhaseReviewComponent,
-    MastercircleComponent
+    MastercircleComponent,
+    BarChartComponent
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
