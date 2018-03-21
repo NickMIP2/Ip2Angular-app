@@ -167,15 +167,6 @@
       </mat-slider>
       {{newSession.timeForMove}}
     </div>
-    <div style="margin-top: 50px">
-      <p *ngFor="let participant of newSession.participants; let i = index" style="width: 100%">
-        <button style="width: 10%;" mat-raised-button color="warn" (click)="removeFromList(i,participant)">-</button>
-        <span style="width: 69%">&emsp;{{participant}}&emsp;</span>
-        <mat-checkbox style="width: 19%; float: right" #isOrganiserCheckBox class="isOrganiserCheckbox"
-                      name="isOrganiserCheckbox" [checked]="isOrganiser"
-                      (change)="checkIfOrganiser(isOrganiserCheckBox.checked,participant,i)"></mat-checkbox>
-      </p>
-    </div>
 <!--    </mat-card-content>
     </mat-card>-->
   </div>
