@@ -6,6 +6,7 @@ import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 import {SessionService} from '../../../../services/session.service';
 import {UseridStorage} from '../../../../sessionStorage/userid-storage';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-circle',
@@ -14,7 +15,7 @@ import {UseridStorage} from '../../../../sessionStorage/userid-storage';
 })
 export class CircleComponent implements OnInit, OnChanges {
 
-  constructor(private sessionService: SessionService, private userIdStorage: UseridStorage, private ref: ChangeDetectorRef) {
+  constructor(private snackBar: MatSnackBar, private sessionService: SessionService, private userIdStorage: UseridStorage, private ref: ChangeDetectorRef) {
   }
 
   @Input() public isOrganiser;
@@ -153,6 +154,7 @@ export class CircleComponent implements OnInit, OnChanges {
 
   takeSnapshot() {
     this.sessionService.takeSnapShot(this.sessionId, this.userId).subscribe();
+    this.snackBar.open('Snapshot genomen', 'x', {duration: 2000});
   }
 
   gameOver() {
