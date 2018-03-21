@@ -21,6 +21,8 @@ export class CardNewComponent implements OnInit {
   public categoryId;
   public correctName = true;
   public check = false;
+  public themeName;
+  public categoryName;
 
   constructor(private themeService: ThemeService,
               private cardService: CardService,
@@ -36,6 +38,8 @@ export class CardNewComponent implements OnInit {
     window.document.title = 'Nieuwe kaart';
     this.themeId = this.route.parent.snapshot.params['themeId'];
     this.categoryId = this.route.snapshot.params['categoryId'];
+    this.themeName = this.route.snapshot.queryParamMap.get('themeName');
+    this.categoryName = this.route.snapshot.queryParamMap.get('categoryName');
 
     this.cardService.getCardsByCategory(this.categoryId ,this.themeId, this.userId).subscribe(data => {
         this.oldCards = data;
@@ -64,7 +68,7 @@ export class CardNewComponent implements OnInit {
     if (this.correctName) {
     this.cardService.createCard(this.categoryId, this.card, this.themeId, this.userId).subscribe(data => {
         this.card = data;
-        this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview']);
+        this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview'], {queryParams: {themeName: this.themeName, categoryName: this.categoryName}});
       },
       error => {
         console.error('Error creating card!');
@@ -88,6 +92,6 @@ export class CardNewComponent implements OnInit {
   }
 
   navigateAbort() {
-    this.router.navigate(['kandoe/themes/' + this.themeId + '/cards']);
+    this.router.navigate(['kandoe/themes/' + this.themeId + '/cards'], {queryParams: {themeName: this.themeName, categoryName: this.categoryName}});
   }
 }
