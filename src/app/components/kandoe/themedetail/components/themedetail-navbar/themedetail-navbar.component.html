@@ -7,13 +7,13 @@
   <div class="collapse navbar-collapse" id="navbarsDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link font-weight-bold" [routerLink]="['overview']">Overzicht</a>
+        <a class="nav-link font-weight-bold" [routerLink]="['overview']" routerLinkActive="activeitem" [routerLinkActiveOptions]="{exact:true}">Overzicht</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link font-weight-bold" [routerLink]="['categories']">Categoriën</a>
+        <a class="nav-link font-weight-bold" [routerLink]="['categories']" routerLinkActive="activeitem" [routerLinkActiveOptions]="{exact:false}">Categoriën</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link font-weight-bold" [routerLink]="['organisers']">Organisators</a>
+        <a class="nav-link font-weight-bold" [routerLink]="['organisers']" routerLinkActive="activeitem" [routerLinkActiveOptions]="{exact:true}">Organisators</a>
       </li>
     </ul>
   </div>
