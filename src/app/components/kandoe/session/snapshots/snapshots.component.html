@@ -1,4 +1,4 @@
-<div class="snapShotContainer">
+<div class="snapShotContainer" *ngIf="!noSnapshots">
   <div class="snapShotHeader">
   <h2 style="text-align: center">{{session.name}}</h2>
   <button mat-raised-button color="primary" [disabled]="snapShotIndex===0" (click)="perviousSnapshot()">Vorige</button>
@@ -53,5 +53,9 @@
         </mat-card-content>
       </mat-card>
   </div>
+</div>
+<div *ngIf="noSnapshots">
+  <h1 style="margin-top: 2%">Geen snapshots beschikbaar</h1>
+  <img src="../../../../../assets/images/errorperson.png" class="noSnapshotImage" />
 </div>
 

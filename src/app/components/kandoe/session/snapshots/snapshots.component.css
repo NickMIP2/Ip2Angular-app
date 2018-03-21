@@ -164,6 +164,11 @@ p{
 
 .cardBox{
   width: 5%;
+}
 
+.noSnapshotImage {
+  width: 70%;
+  height: 400px;
+  margin-top: 3%;
 }
 

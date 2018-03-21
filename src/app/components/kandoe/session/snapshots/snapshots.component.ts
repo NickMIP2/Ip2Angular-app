@@ -34,6 +34,7 @@ export class SnapshotsComponent implements OnInit, OnChanges {
   public index;
   public sessionCards = [];
   public selectedCard = new SessionCard(null, '', '', '', 0, 0, 0, 0);
+  public noSnapshots = false;
 
   constructor(private router: Router, private route: ActivatedRoute, private sessionService: SessionService,
               private useridStorage: UseridStorage, private snackBar: MatSnackBar) {
@@ -87,6 +88,8 @@ export class SnapshotsComponent implements OnInit, OnChanges {
 
             this.setCards();
           });
+      } else {
+        this.noSnapshots = true;
       }
       });
   }
