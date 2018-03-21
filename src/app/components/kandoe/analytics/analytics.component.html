@@ -15,8 +15,9 @@
   </button>
 </form>
 </div>
-<mat-tab-group class="tabAnalyseContainer" [hidden]="selecting">
+<mat-tab-group class="tabAnalyseContainer" [hidden]="selecting" [selectedIndex]="0">
   <mat-tab label="Master cirkel">
+    <app-mastercircle></app-mastercircle>
   </mat-tab>
   <mat-tab label="Correlatie">
   </mat-tab>

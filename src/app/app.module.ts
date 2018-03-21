@@ -55,6 +55,7 @@ import {UserService} from './services/user.service';
 import { AnalyticsComponent } from './components/kandoe/analytics/analytics.component';
 import { WinningCardComponent } from './components/kandoe/session/winning-card/winning-card.component';
 import { PhaseReviewComponent } from './components/kandoe/session/phase-review/phase-review.component';
+import { MastercircleComponent } from './components/kandoe/analytics/mastercircle/mastercircle.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { PhaseReviewComponent } from './components/kandoe/session/phase-review/p
     WinningCardComponent,
     SnapshotsComponent,
     AnalyticsComponent,
-    PhaseReviewComponent
+    PhaseReviewComponent,
+    MastercircleComponent
   ],
   imports: [
     BrowserModule,
