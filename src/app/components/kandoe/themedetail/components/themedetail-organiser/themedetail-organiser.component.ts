@@ -3,6 +3,7 @@ import {Theme} from '../../../../../model/theme';
 import {ThemeService} from '../../../../../services/theme.service';
 import {ActivatedRoute} from '@angular/router';
 import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-themedetail-organiser',
@@ -20,7 +21,7 @@ export class ThemedetailOrganiserComponent implements OnInit {
   public alreadyExistsCheck = false;
   public lastOrganiser = false;
 
-  constructor(private themeService: ThemeService, private route: ActivatedRoute, private userIdStorage: UseridStorage) {
+  constructor(private themeService: ThemeService, private route: ActivatedRoute, private userIdStorage: UseridStorage, private snackBar: MatSnackBar) {
     this.userId = userIdStorage.getUserId();
   }
 
@@ -35,7 +36,8 @@ export class ThemedetailOrganiserComponent implements OnInit {
       error => {
         console.error('Error loading users!');
         console.log(error);
-        alert('Error loading users');
+        this.snackBar.open('Er ging iets mis bij het ophalen van deze gegevens', 'x', {duration: 2000});
+
       }, () => {
         this.checkIfLastOrganiser();
       });
@@ -51,11 +53,15 @@ export class ThemedetailOrganiserComponent implements OnInit {
       error => {
         console.error('Error adding user!');
         console.log(error);
-        alert('Error adding user');
+        this.snackBar.open('Er ging iets mis bij het opslaan van deze gegevens', 'x', {duration: 2000});
       }, () => {
         this.checkIfLastOrganiser();
+
+        this.snackBar.open('Wijzigingen opgeslagen', 'x', {duration: 2000});
+
       });
   }
+
 
   emailAlreadyExists() {
     for (const user of this.users) {
@@ -79,9 +85,11 @@ export class ThemedetailOrganiserComponent implements OnInit {
         error => {
           console.error('Error removing user!');
           console.log(error);
-          alert('Error removing user');
+          this.snackBar.open('Fout bij verwijderen organisator', 'x', {duration: 2000});
         }, () => {
           this.checkIfLastOrganiser();
+          this.snackBar.open('Verwijderen succesvol!', 'x', {duration: 2000});
+
         });
     }
   }

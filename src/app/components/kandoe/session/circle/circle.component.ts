@@ -117,6 +117,7 @@ export class CircleComponent implements OnInit, OnChanges {
       that.stompClient.subscribe('/cards/' + id, (cardid) => {
           if (cardid.body) {
             if (cardid.body.toString() === 'finished') {
+              comp.stompEarlyFinish();
               comp.gameIsFinished = true;
             } else {
               let selectedCardId = Number(cardid.body.toString().split(';')[0]);
@@ -189,6 +190,21 @@ export class CircleComponent implements OnInit, OnChanges {
     this.gameIsFinished = true;
     this.sessionService.endSession(this.sessionId, this.userId).subscribe();
     this.stompClient.send('/app/send/sessionCard/' + this.sessionId, {}, 'finished');
+  }
+
+  public stompEarlyFinish(){
+    let highestPriority = 0;
+    for (let card of this.sessionCards) {
+      if (card.priority > highestPriority) {
+        highestPriority = card.priority;
+      }
+    }
+    for (let card of this.sessionCards) {
+      if (card.priority === highestPriority) {
+        console.log(card.name);
+        this.winningCards.push(card);
+      }
+    }
   }
 
 }

@@ -3,6 +3,7 @@ import {CardService} from '../../../../../../services/card.service';
 import {Card} from '../../../../../../model/card';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UseridStorage} from '../../../../../../sessionStorage/userid-storage';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-card-edit',
@@ -22,7 +23,7 @@ export class CardEditComponent implements OnInit {
   constructor(private cardService: CardService,
               private route: ActivatedRoute,
               private userIdStorage: UseridStorage,
-              private router: Router) {
+              private router: Router, private snackBar: MatSnackBar) {
     this.userId = userIdStorage.getUserId();
   }
 
@@ -39,15 +40,16 @@ export class CardEditComponent implements OnInit {
       error => {
         console.error('Error loading card!');
         console.log(error);
-        alert('Error loading card!');
+        this.snackBar.open('Fout bij ophalen kaart', 'x', {duration: 2000});
       }, () => {
-        this.cardService.getCardsByCategory(this.categoryId ,this.themeId, this.userId).subscribe(data => {
+        this.cardService.getCardsByCategory(this.categoryId, this.themeId, this.userId).subscribe(data => {
             this.oldCards = data;
           },
           error => {
             console.error('Error loading cards!');
             console.log(error);
-            alert('Error loading cards!');
+            this.snackBar.open('Fout bij ophalen kaartjes!', 'x', {duration: 2000});
+
           }, () => {
             let index = 0;
             for (let i = 0; i < this.oldCards.length; i++) {
@@ -70,7 +72,9 @@ export class CardEditComponent implements OnInit {
         error => {
           console.error('Error saving card!');
           console.log(error);
-          alert('Error saving card');
+          this.snackBar.open('Fout bij opslaan wijzigingen', 'x', {duration: 2000});
+        }, () => {
+          this.snackBar.open('Wijzigingen opgeslagen', 'x', {duration: 2000});
         });
     }
   }

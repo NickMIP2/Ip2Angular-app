@@ -5,6 +5,7 @@ import {CategoryService} from '../../../../../../services/category.service';
 import {Card} from '../../../../../../model/card';
 import {UseridStorage} from '../../../../../../sessionStorage/userid-storage';
 import {CardService} from '../../../../../../services/card.service';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-card-new',
@@ -26,7 +27,8 @@ export class CardNewComponent implements OnInit {
               private categoryService: CategoryService,
               private route: ActivatedRoute,
               private userIdStorage: UseridStorage,
-              private router: Router) {
+              private router: Router,
+              private snackBar: MatSnackBar) {
     this.userId = userIdStorage.getUserId();
   }
 
@@ -41,7 +43,7 @@ export class CardNewComponent implements OnInit {
       error => {
         console.error('Error loading cards!');
         console.log(error);
-        alert('Error loading cards!');
+        this.snackBar.open('Fout bij ophalen kaartjes', 'x', {duration: 2000});
       });
   }
 
@@ -67,7 +69,7 @@ export class CardNewComponent implements OnInit {
       error => {
         console.error('Error creating card!');
         console.log(error);
-        alert('Error creating card');
+        this.snackBar.open('Fout bij aanmaken kaart', 'x', {duration: 2000});
       });
     }
   }
