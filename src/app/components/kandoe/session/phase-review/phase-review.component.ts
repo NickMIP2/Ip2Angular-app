@@ -12,7 +12,7 @@ import {MatSnackBar} from '@angular/material';
 })
 export class PhaseReviewComponent implements OnInit {
 
-  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, null, 0);
+  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, null, 0,[]);
   public sessionId = 0;
   private userId;
   public removedCards = [];

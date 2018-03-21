@@ -51,3 +51,7 @@ mat-card-content {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.pastSessionsContent{
+  min-height: 9em;
+}
