@@ -81,13 +81,15 @@
 .selectedBox {
   width: 100%;
   overflow: auto;
-  height: 150px;
+  height: 250px;
   white-space: nowrap;
 }
 
 .cardBox{
   display: inline-block;
   width: 30%;
+  min-height: 30%;
+  max-height: 80%;
   margin: 1%;
   padding: 1%;
 }
