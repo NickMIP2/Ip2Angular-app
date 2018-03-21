@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {UseridStorage} from '../../../../sessionStorage/userid-storage';
 import {SessionService} from '../../../../services/session.service';
 import {Session} from '../../../../model/session';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-phase-review',
@@ -17,7 +18,8 @@ export class PhaseReviewComponent implements OnInit {
   public removedCards = [];
   public correctSessionCards = [];
 
-  constructor(private router: Router, private route: ActivatedRoute, private useridStorage: UseridStorage, private sessionService: SessionService) {
+  constructor(private router: Router, private route: ActivatedRoute, private useridStorage: UseridStorage,
+              private sessionService: SessionService, private snackBar: MatSnackBar) {
 
     this.sessionId = this.route.parent.snapshot.params['sessionId'];
     this.userId = this.useridStorage.getUserId();
@@ -31,7 +33,7 @@ export class PhaseReviewComponent implements OnInit {
       error => {
         console.error('Error loading Session!');
         console.log(error);
-        alert('Error loading Session');
+        this.snackBar.open('Fout bij ophalen sessie', 'x', {duration: 2000});
       }, () => {
         for (let card of this.session.sessionCardDtos) {
           this.removedCards.push(false);
@@ -53,7 +55,7 @@ export class PhaseReviewComponent implements OnInit {
       error => {
         console.error('Error saving selected cards!');
         console.log(error);
-        alert('Error saving selected cards');
+        this.snackBar.open('Fout bij opslaan geselecteerde kaartjes', 'x', {duration: 2000});
       });
   }
 

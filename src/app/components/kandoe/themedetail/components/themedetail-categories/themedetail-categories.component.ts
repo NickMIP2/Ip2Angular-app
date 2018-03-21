@@ -4,6 +4,7 @@ import {ThemeService} from '../../../../../services/theme.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CategoryService} from '../../../../../services/category.service';
 import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-themedetail-categories',
@@ -19,8 +20,10 @@ export class ThemedetailCategoriesComponent implements OnInit {
   public themeId = 0;
   public userId;
 
-  constructor(private themeService: ThemeService, private router: Router, private categoryService: CategoryService, private route: ActivatedRoute, private userIdStorage: UseridStorage) {
+  constructor(private themeService: ThemeService, private router: Router, private categoryService: CategoryService,
+              private route: ActivatedRoute, private userIdStorage: UseridStorage, private snackBar: MatSnackBar) {
     this.userId = userIdStorage.getUserId();
+
   }
 
   ngOnInit() {
@@ -33,7 +36,7 @@ export class ThemedetailCategoriesComponent implements OnInit {
       error => {
         console.error('Error loading categories!');
         console.log(error);
-        alert('Error loading categories!');
+        this.snackBar.open('Er ging iets mis bij het ophalen van deze categorie', 'x', {duration: 2000});
       });
   }
 
@@ -49,7 +52,10 @@ export class ThemedetailCategoriesComponent implements OnInit {
       error => {
         console.error('Error creating category!');
         console.log(error);
-        alert('Error creating category');
+        this.snackBar.open('Fout bij aanmaken categorie!', 'x', {duration: 2000});
+
+      }, () => {
+        this.snackBar.open('Categorie aangemaakt', 'x', {duration: 2000});
       });
   }
 
@@ -60,7 +66,10 @@ export class ThemedetailCategoriesComponent implements OnInit {
       error => {
         console.error('Error deleting category!' + id);
         console.log(error);
-        alert('Error deleting category!');
+        this.snackBar.open('Categorie verwijderen mislukt!', 'x', {duration: 2000});
+      }, () => {
+        this.snackBar.open('Categorie verwijderd', 'x', {duration: 2000});
+
       });
   }
 
@@ -72,8 +81,11 @@ export class ThemedetailCategoriesComponent implements OnInit {
       error => {
         console.error('Error saving Category!');
         console.log(error);
-        alert('Error saving Category');
-      });
+        this.snackBar.open('Wijzigingen opslaan mislukt!', 'x', {duration: 2000});
+      }, () => {
+        this.snackBar.open('Wijzigingen opgeslagen!', 'x', {duration: 2000});
+      }
+    );
     this.editing = 0;
   }
 
