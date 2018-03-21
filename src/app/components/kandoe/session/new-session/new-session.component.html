@@ -33,6 +33,7 @@
           'Kandoe.Session.New.copy_existing_session' | translate }}
         </button>
         <br>
+        <<<<<<< HEAD
         <br>
       </div>
       <mat-card class="sessionBox">
@@ -166,6 +167,93 @@
       </mat-slider>
       {{newSession.timeForMove}}
     </div>
+    <div style="margin-top: 50px">
+      <p *ngFor="let participant of newSession.participants; let i = index" style="width: 100%">
+        <button style="width: 10%;" mat-raised-button color="warn" (click)="removeFromList(i,participant)">-</button>
+        <span style="width: 69%">&emsp;{{participant}}&emsp;</span>
+        <mat-checkbox style="width: 19%; float: right" #isOrganiserCheckBox class="isOrganiserCheckbox"
+                      name="isOrganiserCheckbox" [checked]="isOrganiser"
+                      (change)="checkIfOrganiser(isOrganiserCheckBox.checked,participant,i)"></mat-checkbox>
+      </p>
+    </div>
+    </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="rightSide">
+    <mat-form-field style="width: 80%">
+      <mat-select required placeholder="Thema" [(ngModel)]="themeIndexId" name="themes" (change)="setCategory()">
+        <mat-option *ngFor="let theme of themes;let i = index" [value]="theme.id">
+          {{theme.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field style="width: 80%">
+      <mat-select required placeholder="Categorie" [(ngModel)]="categoryIndexId" name="categories">
+        <mat-option *ngFor="let category of categoryArray" [value]="category.id">
+          {{category.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <br>
+    <span style="font-weight: bold">Type cirkel</span>
+    <br>
+    <br>
+    <mat-radio-group style="width: 80%; text-align: left" name="optKans" [(ngModel)]="newSession.type">
+      <mat-radio-button style="float: left; width: 50%; padding-left: 20%" [value]="0">Kans</mat-radio-button>
+      <mat-radio-button style="float: left; width: 50%; padding-left: 20%" [value]="1">Probleem</mat-radio-button>
+    </mat-radio-group>
+    <br>
+    <br>
+    <span style="font-weight: bold">Sta toe dat gebruikers kaarten toevoegen</span>
+    <br>
+    <br>
+    <mat-radio-group style="width: 80%; text-align: left" name="optCardCreation"
+                     [(ngModel)]="newSession.allowCardCreation">
+      <mat-radio-button style="float: left; width: 50%; padding-left: 20%" [value]="true">Ja</mat-radio-button>
+      <mat-radio-button style="float: left; width: 50%; padding-left: 20%" [value]="false">Nee</mat-radio-button>
+    </mat-radio-group>
+    <br>
+    <br>
+    <span style="font-weight: bold">Maximum kaarten</span>
+    <br>
+    <mat-slider
+      class="sliderCss"
+      [disabled]="disabled"
+      [invert]="invert"
+      [max]="max"
+      [min]="min"
+      [step]="step"
+      [thumb-label]="thumbLabel"
+      [tick-interval]="tickInterval"
+      [(ngModel)]="newSession.maxCards"
+      name="inputMaxCards"
+      [vertical]="vertical">
+    </mat-slider>
+    {{newSession.maxCards}}
+    <br>
+    <br>
+    <span style="font-weight: bold">Aantal rondes</span>
+    <br>
+    <mat-slider
+      class="sliderCss"
+      [disabled]="disabled"
+      [invert]="invert"
+      [max]="max"
+      [min]="min"
+      [step]="step"
+      [thumb-label]="thumbLabel"
+      [tick-interval]="tickInterval"
+      [(ngModel)]="newSession.totalRounds"
+      name="inputNoOfRounds"
+      [vertical]="vertical">
+    </mat-slider>
+    {{newSession.totalRounds}}
+    <br>
+    <br>
+
+  </div>
   </div>
   <div class="bottomSide">
     <button mat-raised-button color="primary" style="width: 30%; margin: auto"

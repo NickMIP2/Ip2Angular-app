@@ -7,7 +7,7 @@
         <li ><h1 >{{currentCard.name}}</h1></li>
       </ul>
     </div>
-    <div class="row">
+    <div class="row detailrow">
       <p [hidden]="!earlyStop">{{ 'Kandoe.Session.winning_card.early_stop' | translate }}</p>
       <p [hidden]="earlyStop">{{ 'Kandoe.Session.winning_card.winner_msg' | translate }}</p>
       <button class="btn btn-primary" (click)="toDashboard()">{{ 'Kandoe.Session.winning_card.exit' | translate }}</button>
