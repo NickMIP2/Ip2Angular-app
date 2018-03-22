@@ -23,7 +23,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   private stompClient;
   public username;
   public messages = [new Message('')];
-  private error_message= '';
+  private error_message = '';
   public subscription;
 
 
