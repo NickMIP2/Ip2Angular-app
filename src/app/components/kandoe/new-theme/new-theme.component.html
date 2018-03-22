@@ -1,25 +1,9 @@
 <div class="container">
   <form #themeform="ngForm" class="formcontainer">
-    <!--<div class="form-group"><label>Naam: </label>
-      <input class="form-control" id="themename" type="text" required [(ngModel)]="theme.name"
-             name="themename"
-             #themename="ngModel">
-      <div [hidden]="themename.valid || themename.pristine" class="alert alert-danger">
-        Naam is verplicht.
-      </div>
-    </div>-->
     <mat-form-field class="form-group" style="width: 100%">
       <input style="width: 100%" matInput placeholder="{{ 'Kandoe.New-theme.ph_name' | translate }}" id="themename" type="text" required
              [(ngModel)]="theme.name" name="themename" #themename="ngModel">
     </mat-form-field>
-    <!--<label>Beschrijving: </label>
-      <textarea class="form-control" id="themedescription" cols="40" rows="5" required
-                [(ngModel)]="theme.description"
-                name="description"
-                #themedescription="ngModel"></textarea>
-      <div [hidden]="themedescription.valid || themedescription.pristine" class="alert alert-danger">
-        Beschrijving is verplicht.
-      </div>-->
     <mat-form-field class="form-group" style="width: 100%">
       <textarea style="width: 100%" matInput placeholder="{{ 'Kandoe.New-theme.ph_desc' | translate }}" id="themedescription" required
                 [(ngModel)]="theme.description" name="description" #themedescription="ngModel"></textarea>
@@ -59,7 +43,7 @@
       <app-file-upload name="upload" [(ngModel)]="theme.image"></app-file-upload>
     </div>
     <div style="width: 100%">
-      <button style="width: 49%; margin-top: 30px" mat-raised-button color="primary" [disabled]="!themeform.form.valid"
+      <button style="width: 49%; margin-top: 30px" mat-raised-button color="primary" [disabled]="!themeform.form.valid" name="createTheme"
               (click)="createTheme()">{{ 'Kandoe.New-theme.button_add' | translate }}
       </button>
       <button style="width: 49%; margin-top: 30px" mat-raised-button (click)="navigateAbort()">{{ 'Kandoe.New-theme.button_cancel' | translate }}</button>
