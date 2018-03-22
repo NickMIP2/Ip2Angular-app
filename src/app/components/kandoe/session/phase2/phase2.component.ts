@@ -19,6 +19,7 @@ export class Phase2Component implements OnInit {
 
   title = '';
   error_message = '';
+  viewchat = false;
   private stompClient;
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
 
@@ -60,7 +61,9 @@ export class Phase2Component implements OnInit {
 
   }
 
-
+  togglechat(){
+    this.viewchat = !this.viewchat;
+  }
 }
 
 

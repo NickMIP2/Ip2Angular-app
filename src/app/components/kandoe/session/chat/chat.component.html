@@ -22,8 +22,8 @@
                placeholder="{{ 'Kandoe.Chat.type_msg_here' | translate }}"
                (keyup.enter)="sendMessage(input.value)" #input/>
         <span class="input-group-btn">
-          <button class="btn btn-warning btn-sm" id="btn-chat" (click)="sendMessage(input.value)">
-            {{ 'Kandoe.Chat.button_send' | translate }}
+          <button mat-raised-button color="primary" id="btn-chat" (click)="sendMessage(input.value)">
+            <i class="material-icons">send</i><!--{{ 'Kandoe.Chat.button_send' | translate }}-->
           </button>
         </span>
       </div>
