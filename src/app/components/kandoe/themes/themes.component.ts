@@ -17,6 +17,7 @@ export class ThemesComponent implements OnInit {
   public themes: Set<Theme> = new Set<Theme>();
   title = '';
   error_message = '';
+  public image = '';
 
   constructor(private themeService: ThemeService,
               private useridStorage: UseridStorage,
@@ -33,6 +34,7 @@ export class ThemesComponent implements OnInit {
     window.document.title = this.title;
     this.themeService.getThemesOfUser(this.useridStorage.getUserId()).subscribe(data => {
         this.themes = data;
+        console.log(data);
       },
       error => {
         console.error('Error loading themes!');

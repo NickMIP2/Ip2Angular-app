@@ -5,6 +5,12 @@
 </button>
   <div style="margin-top: 3%;">
   <mat-card *ngFor="let currentTheme of themes" class="themeBox">
+    <div *ngIf="currentTheme.image!==null" style="margin: auto; margin-top: 20px">
+        <img mat-card-image src={{currentTheme.image}} />
+    </div>
+    <div *ngIf="currentTheme.image===null" style="margin: auto; margin-top: 20px">
+      <img mat-card-image src="../../../../assets/images/theme.png" />
+    </div>
     <mat-card-content>
       <p style="text-align: center">
         <span style="font-weight: bold; font-size: large">{{currentTheme.name}}</span>
