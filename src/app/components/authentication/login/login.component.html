@@ -11,18 +11,19 @@
               <p id="profile-name" class="profile-name-card"></p>
               <form class="form-signin" #f="ngForm" (ngSubmit)="f.form.valid && login()">
                 <span id="reauth-email" class="reauth-email"></span>
-                <div class="progress" style="margin-bottom: 2%" [hidden]="!this.loading">
+                <!--<div class="progress" style="margin-bottom: 2%" [hidden]="!this.loading">
                   <div class="progress-bar progress-bar-striped active" role="progressbar"
                        aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
                        style="width: 100%;">
                     <span class="sr-only">Loading</span>
                   </div>
-                </div>
+                </div>-->
+                <div class="loader" style="margin: auto auto 5%;height: 50px; width: 50px;" [hidden]="!this.loading"></div>
                 <input name="username" type="text" id="inputEmail" [(ngModel)]="usernametext"
-                       class="form-control"
+                       class="form-control" [hidden]="this.loading"
                        placeholder="{{ 'Authentication.Login.username_upper' | translate }}" required autofocus>
                 <input name="password" type="password" id="inputPassword" [(ngModel)]="passwordtext"
-                       class="form-control"
+                       class="form-control" [hidden]="this.loading"
                        placeholder="{{ 'Authentication.Login.password_upper' | translate }}" required>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">
                   {{ 'Authentication.Login.button_signin' | translate }}
