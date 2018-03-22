@@ -40,7 +40,6 @@ export class BarChartComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     if (!this.selecting) {
-
       this.sessionService.getSessionsOfTheme(this.themeId, this.userId).subscribe(data => {
         this.sessions = data;
         console.log(data);
