@@ -5,9 +5,10 @@ import * as Stomp from 'stompjs';
 import {UseridStorage} from '../../../../sessionStorage/userid-storage';
 import {Message} from '../../../../model/message';
 import {MessageService} from '../../../../services/message.service';
-import {ActivatedRoute, Route} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 import {TranslateService} from '@ngx-translate/core';
+import {DatePipe} from 'angular2/common';
 
 
 @Component({
@@ -24,15 +25,12 @@ export class ChatComponent implements OnInit, OnDestroy {
   public username;
   public messages = [new Message('')];
   private error_message = '';
-  public subscription;
-
 
   constructor(private userIdStorage: UseridStorage,
               private messageService: MessageService,
               private route: ActivatedRoute,
               private snackBar: MatSnackBar,
               private translate: TranslateService) {
-    // this.sessionId = this.route.parent.snapshot.params['sessionId'];
     this.username = userIdStorage.getUsername();
   }
 
@@ -56,7 +54,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     const that = this;
 
     this.stompClient.connect({}, function (frame) {
-      that.stompClient.subscribe('/chat/' + id, (message) => { // ipv 2 -> sessionId
+      that.stompClient.subscribe('/chat/' + id, (message) => {
         if (message.body) {
           $('.chat-body').append(
             '<div class=\'message\'>' +
@@ -73,7 +71,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   sendMessage(message) {
-    const usernameMessage = this.userIdStorage.getUsername() + ': ' + message;
+    const usernameMessage =  this.userIdStorage.getUsername() + ': ' + message;
     const dbMessage = new Message(usernameMessage);
     this.messageService.sendMessage(dbMessage, this.sessionId, this.userIdStorage.getUserId()).subscribe(data => {
         console.log('message successfully send to database');
@@ -84,7 +82,9 @@ export class ChatComponent implements OnInit, OnDestroy {
         });
         console.error(this.error_message);
       }, () => {
-        this.stompClient.send('/app/send/message/' + this.sessionId, {}, usernameMessage); // ipv 2 -> sessionId
+        let datePipe = new DatePipe();
+        let date = datePipe.transform(new Date(), 'MM/dd/yyyy hh:mm');
+        this.stompClient.send('/app/send/message/' + this.sessionId, {}, date+ " " + usernameMessage);
         $('#input').val('');
       });
   }
