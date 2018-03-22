@@ -96,7 +96,7 @@
         "button_create_session": "Sessie maken"
       },
       "circle": {
-        "your_turn":"Het is jouw beurt ",
+        "your_turn":"Het is jouw beurt, ",
         "selected_card": "Geselecteerde kaart",
         "move_selected_Card": "Geselecteerde kaart verplaatsen",
         "select": "Selecteer",

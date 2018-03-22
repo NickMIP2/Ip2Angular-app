@@ -1,5 +1,5 @@
-<div class="organiserButtons" id="OrganiserButtons" [hidden]="gameIsFinished">
-  <div>
+<div class="organiserButtons" id="CurrentPlayerInfo" [hidden]="gameIsFinished">
+  <div id="OrganiserButtons">
     <button mat-raised-button color="primary" id="snapshotButton" class="button_inline" *ngIf="isOrganiser"
             (click)="takeSnapshot()">
       {{ 'Kandoe.Session.circle.take_snap' | translate }}
@@ -9,11 +9,13 @@
       {{ 'Kandoe.Session.circle.end_session' | translate }}
     </button>
   </div>
-  <div class="text-center margin-top2">
-    <p [hidden]="isMyTurn">
+
+  <div class="text-center margin-top2 font-weight-bold " id="UserAlert">
+    <h1 [hidden]="isMyTurn" class="display-4 margin-top2">
       {{ 'Kandoe.Session.circle.your_turn' | translate }}{{username}}!
-    </p>
+    </h1>
   </div>
+
   <div class="" id="selectedCardDetails"
        [style.visibility]="selectedCard.name !== '' ? 'visible': 'hidden'">
     <p class="marginauto">
