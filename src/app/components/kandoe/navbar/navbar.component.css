@@ -14,8 +14,19 @@
 
 .activeitem{
   background-color: darkblue;
+  border-radius: 7px;
 }
 
 .activeuser{
   background-color: darkblue;
+  border-radius: 7px;
+
 }
+
+a:hover{
+  background-color: #0d408b;
+  border-radius: 7px;
+
+}
+
+

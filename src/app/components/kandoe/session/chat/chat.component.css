@@ -1,5 +1,8 @@
 .container{
-  width: 100%;
+  width: 125%;
+  height: 100%;
+  border: #0d408b 3px solid;
+  background: #F7F7F7;
 }
 
 .chat
@@ -40,7 +43,7 @@
 
 .panel-body
 {
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 40em;
 }
 
@@ -72,5 +75,4 @@ p{
 
 .cardBox{
   width: 5%;
-
 }

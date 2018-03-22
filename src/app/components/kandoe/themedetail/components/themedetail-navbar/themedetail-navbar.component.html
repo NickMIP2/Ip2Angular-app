@@ -5,15 +5,19 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarsDefault">
+    <a class="nav-link font-weight-bold" id="currentTheme" [routerLink]="['/kandoe/themes']">{{theme.name}}</a>
+
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link font-weight-bold" [routerLink]="['overview']" routerLinkActive="activeitem" [routerLinkActiveOptions]="{exact:true}">Overzicht</a>
+      <li class="nav-item root">
       </li>
       <li class="nav-item active">
-        <a class="nav-link font-weight-bold" [routerLink]="['categories']" routerLinkActive="activeitem" [routerLinkActiveOptions]="{exact:false}">Categoriën</a>
+        <a class="nav-link font-weight-bold" [routerLink]="['overview']" routerLinkActive="activeitem" [routerLinkActiveOptions]="{exact:true}">{{ 'Kandoe.Themedetail.navbar.link_overview' | translate }}</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link font-weight-bold" [routerLink]="['organisers']" routerLinkActive="activeitem" [routerLinkActiveOptions]="{exact:true}">Organisators</a>
+        <a class="nav-link font-weight-bold" [routerLink]="['categories']" routerLinkActive="activeitem" [routerLinkActiveOptions]="{exact:false}">{{ 'Kandoe.Themedetail.navbar.link_categories' | translate }}</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link font-weight-bold" [routerLink]="['organisers']" routerLinkActive="activeitem" [routerLinkActiveOptions]="{exact:true}">{{ 'Kandoe.Themedetail.navbar.link_organisers' | translate }}</a>
       </li>
     </ul>
   </div>

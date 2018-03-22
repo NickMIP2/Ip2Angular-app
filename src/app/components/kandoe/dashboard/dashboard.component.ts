@@ -8,6 +8,7 @@ import {Session} from '../../../model/session';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +18,8 @@ import 'rxjs/add/observable/interval';
 
 export class DashboardComponent implements OnInit, OnDestroy {
 
-  title = 'Dashboard';
+  title = '';
+  error_message = '';
   // public oldSessions: Set<Session> = new Set<Session>();
   public oldSessions = [];
   public pastSessions = [];
@@ -26,19 +28,27 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private userId: number;
   private pollingSessions: any;
 
-  constructor(private router: Router, private titleService: Title, private sessionService: SessionService, private useridStorage: UseridStorage) {
+  constructor(private router: Router, private translate: TranslateService, titleService: Title, private sessionService: SessionService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
   }
 
   ngOnInit() {
-    this.titleService.setTitle(this.title);
+
+    this.translate.get('Kandoe.Dashboard.page_title', {value: 'world'}).subscribe(e => {
+      this.title = e;
+    });
+    window.document.title = this.title;
 
     this.sessionService.getSessionsOfUser(this.userId).subscribe(data => {
         this.oldSessions = data;
       },
       error => {
-        console.error('Error loading sessions!');
+        this.translate.get('Kandoe.Dashboard.error_message', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
+        alert(this.error_message);
       },
       () => {
         console.log(this.oldSessions);
@@ -54,8 +64,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.divideSessions();
         console.log(data);
       }, error => {
-        console.error('Error loading sessions!');
+        this.translate.get('Kandoe.Dashboard.error_message', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
+        alert(this.error_message);
       }));
   }
 
@@ -113,9 +127,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const organiserIds = session.organisersIds;
     if (organiserIds.indexOf(this.userId) === -1) {
       return false;
-    } else {
-      return true;
-    }
+    } else { return true; }
   }
 
   ngOnDestroy(): void {

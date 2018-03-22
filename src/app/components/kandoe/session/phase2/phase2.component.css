@@ -5,3 +5,10 @@
 .chatrow{
   float: left;
 }
+
+.absolute{
+  position: absolute;
+  left: 64.2%;
+  top: 14.5%;
+}
+

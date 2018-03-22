@@ -4,6 +4,9 @@ import {UseridStorage} from '../../../../../../sessionStorage/userid-storage';
 import {CardService} from '../../../../../../services/card.service';
 import {ThemeService} from '../../../../../../services/theme.service';
 import {MatSnackBar} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
+import {ImageB64ConvertService} from '../../../../../../services/image-b64-convert.service';
+
 
 @Component({
   selector: 'app-card-overview',
@@ -11,7 +14,8 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./card-overview.component.css']
 })
 export class CardOverviewComponent implements OnInit {
-
+  title = '';
+  error_message = '';
   public themeName;
   public categoryName;
   public cards = [];
@@ -19,13 +23,22 @@ export class CardOverviewComponent implements OnInit {
   public categoryId;
   public userId;
 
-  constructor(private cardService: CardService, private themeService: ThemeService, private route: ActivatedRoute,
-              private userIdStorage: UseridStorage, private router: Router, private snackBar: MatSnackBar) {
+  constructor(private cardService: CardService,
+              private themeService: ThemeService,
+              private route: ActivatedRoute,
+              private userIdStorage: UseridStorage,
+              private router: Router,
+              private snackBar: MatSnackBar,
+              private translate: TranslateService,
+              private imageb64convert: ImageB64ConvertService) {
     this.userId = userIdStorage.getUserId();
   }
 
   ngOnInit() {
-    window.document.title = 'Kaarten';
+    this.translate.get('Kandoe.Themedetail.cards.overview.page_title', {value: 'world'}).subscribe(e => {
+      this.title = e;
+    });
+    window.document.title = this.title;
     this.themeId = this.route.parent.snapshot.params['themeId'];
     this.categoryId = this.route.snapshot.params['categoryId'];
     this.themeName = this.route.snapshot.queryParamMap.get('themeName');
@@ -42,6 +55,7 @@ export class CardOverviewComponent implements OnInit {
 
       });
     for (const card of this.cards) {
+      card.image = this.imageb64convert.convert(card.image);
       console.log(card.image.substring(0, 30));
     }
   }

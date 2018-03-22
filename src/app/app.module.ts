@@ -58,6 +58,13 @@ import { WinningCardComponent } from './components/kandoe/session/winning-card/w
 import { PhaseReviewComponent } from './components/kandoe/session/phase-review/phase-review.component';
 import { MastercircleComponent } from './components/kandoe/analytics/mastercircle/mastercircle.component';
 import { BarChartComponent } from './components/kandoe/analytics/bar-chart/bar-chart.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {ImageB64ConvertService} from './services/image-b64-convert.service';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -113,7 +120,14 @@ import { BarChartComponent } from './components/kandoe/analytics/bar-chart/bar-c
     MatSelectModule,
     MatRadioModule,
     MatSliderModule,
-    HttpClientModule
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     TokenStorage,
@@ -130,7 +144,8 @@ import { BarChartComponent } from './components/kandoe/analytics/bar-chart/bar-c
     Interceptor,
     UseridStorage,
     MessageService,
-    UserService
+    UserService,
+    ImageB64ConvertService
   ],
 
   bootstrap: [AppComponent]

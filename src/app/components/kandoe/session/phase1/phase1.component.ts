@@ -7,6 +7,7 @@ import {CategoryService} from '../../../../services/category.service';
 import {CardService} from '../../../../services/card.service';
 import {Session} from '../../../../model/session';
 import {Card} from '../../../../model/card';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-phase1',
@@ -14,7 +15,8 @@ import {Card} from '../../../../model/card';
   styleUrls: ['./phase1.component.css']
 })
 export class Phase1Component implements OnInit {
-
+  title = '';
+  error_message = '';
   public userId;
   public sessionId;
   public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, null, 0,[]);
@@ -26,13 +28,22 @@ export class Phase1Component implements OnInit {
   public correctName = true;
   public check = false;
 
-  constructor(private router: Router, private cardService: CardService, private route: ActivatedRoute, private sessionService: SessionService, private useridStorage: UseridStorage) {
+  constructor(private router: Router,
+              private cardService: CardService,
+              private route: ActivatedRoute,
+              private sessionService: SessionService,
+              private useridStorage: UseridStorage,
+              private translate: TranslateService) {
     this.userId = useridStorage.getUserId();
     this.sessionId = this.route.parent.snapshot.params['sessionId'];
   }
 
   ngOnInit() {
-    window.document.title = 'Fase 1';
+    this.translate.get('Kandoe.Session.p1.page_title', {value: 'world'}).subscribe(e => {
+      this.title = e;
+    });
+    window.document.title = this.title;
+
     this.sessionService.getSession(this.sessionId, this.userId).subscribe(data => {
         this.session = data;
       },
@@ -66,7 +77,7 @@ export class Phase1Component implements OnInit {
   }
 
   deselectCard(card, index) {
-    let cardIndex = this.selectedCards.indexOf(card);
+    const cardIndex = this.selectedCards.indexOf(card);
     if (cardIndex > -1) {
       this.selectedCards.splice(cardIndex, 1);
     }

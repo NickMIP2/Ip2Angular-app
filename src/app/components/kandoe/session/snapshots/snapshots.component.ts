@@ -9,6 +9,7 @@ import {SessionCard} from '../../../../model/sessioncard';
 import { DatePipe } from '@angular/common';
 import {Message} from '../../../../model/message';
 import {MatSnackBar} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-snapshots',
@@ -17,6 +18,8 @@ import {MatSnackBar} from '@angular/material';
 })
 export class SnapshotsComponent implements OnInit, OnChanges {
 
+  title = '';
+  error_message = '';
   public userId;
   public sessionId;
   public session = new Session(0, 'Geen snapshots', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, [], 0,[]);
@@ -36,14 +39,21 @@ export class SnapshotsComponent implements OnInit, OnChanges {
   public selectedCard = new SessionCard(null, '', '', '', 0, 0, 0, 0);
   public noSnapshots = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private sessionService: SessionService,
-              private useridStorage: UseridStorage, private snackBar: MatSnackBar) {
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private sessionService: SessionService,
+              private useridStorage: UseridStorage,
+              private snackBar: MatSnackBar,
+              private translate: TranslateService) {
     this.userId = useridStorage.getUserId();
     this.sessionId = this.route.parent.snapshot.params['sessionId'];
   }
 
   ngOnInit() {
-    window.document.title = 'Snapshots';
+    this.translate.get('package.component.page_title', {value: 'world'}).subscribe(e => {
+      this.title = e;
+    });
+    window.document.title = this.title;
 
     this.sessionService.getSession(this.sessionId, this.userId).subscribe(data => {
         this.session = data;
@@ -66,8 +76,8 @@ export class SnapshotsComponent implements OnInit, OnChanges {
             this.snackBar.open('Fout bij ophalen berichten', 'x', {duration: 2000});
           }, () => {
 
-          for (let i = 0; i < this.currentSnapshot.sessionCardIds.length; i++){
-            for (let sessionCard of this.session.sessionCardDtos) {
+          for (let i = 0; i < this.currentSnapshot.sessionCardIds.length; i++) {
+            for (const sessionCard of this.session.sessionCardDtos) {
               if (this.currentSnapshot.sessionCardIds[i] === sessionCard.id) {
                 sessionCard.priority = this.currentSnapshot.priorities[i];
                 this.sessionCards.push(sessionCard);
@@ -82,7 +92,7 @@ export class SnapshotsComponent implements OnInit, OnChanges {
               z = z - 1;
             }
 
-            for (let card of this.sessionCards) {
+            for (const card of this.sessionCards) {
               card.distance = this.amountOfRings;
             }
 
@@ -116,7 +126,7 @@ export class SnapshotsComponent implements OnInit, OnChanges {
   }
 
   perviousSnapshot() {
-    if (this.snapShotIndex != 0) {
+    if (this.snapShotIndex !== 0) {
       this.snapShotIndex--;
 
       this.currentSnapshot = this.session.snapshotDtos[this.snapShotIndex];
@@ -137,8 +147,8 @@ export class SnapshotsComponent implements OnInit, OnChanges {
   public setCorrectSessionCards() {
     this.sessionCards = [];
 
-    for (let i = 0; i < this.currentSnapshot.sessionCardIds.length; i++){
-      for (let sessionCard of this.session.sessionCardDtos) {
+    for (let i = 0; i < this.currentSnapshot.sessionCardIds.length; i++) {
+      for (const sessionCard of this.session.sessionCardDtos) {
         if (this.currentSnapshot.sessionCardIds[i] === sessionCard.id) {
           sessionCard.priority = this.currentSnapshot.priorities[i];
           this.sessionCards.push(sessionCard);
@@ -153,7 +163,7 @@ export class SnapshotsComponent implements OnInit, OnChanges {
       z = z - 1;
     }
 
-    for (let card of this.sessionCards) {
+    for (const card of this.sessionCards) {
       card.distance = this.amountOfRings;
     }
 

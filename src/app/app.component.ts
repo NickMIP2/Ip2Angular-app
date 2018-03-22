@@ -1,6 +1,7 @@
 import {AfterViewChecked, Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {ChangeDetectorRef} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,9 @@ import {ChangeDetectorRef} from '@angular/core';
 export class AppComponent implements AfterViewChecked {
   title = 'Kandoe';
 
-  constructor(private router: Router, private cdRef: ChangeDetectorRef) {
+  constructor(private router: Router, private cdRef: ChangeDetectorRef, private translate: TranslateService) {
+    translate.setDefaultLang('en');
+    translate.use('nl');
   }
 
   ngAfterViewChecked() {

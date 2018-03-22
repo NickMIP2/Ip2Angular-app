@@ -4,6 +4,7 @@ import {ThemeService} from '../../../../../services/theme.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
 import {MatSnackBar} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-themedetail-overview',
@@ -13,6 +14,8 @@ import {MatSnackBar} from '@angular/material';
 
 })
 export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
+  title = '';
+  error_message = '';
   public theme: Theme = {
     id: 0,
     name: '',
@@ -20,18 +23,28 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
     tags: [''],
     image: ''
   };
+
   public themeId;
   i = 0;
   editing = 0;
   tagValue = '';
+  public themeName;
+  public themeTags;
+  public themeDescription;
 
-  constructor(private themeService: ThemeService, private route: ActivatedRoute, private useridStorage: UseridStorage, private router: Router, public snackBar: MatSnackBar) {
+  constructor(private themeService: ThemeService,
+              private route: ActivatedRoute,
+              private useridStorage: UseridStorage,
+              private router: Router,
+              public snackBar: MatSnackBar,
+              private translate: TranslateService) {
     this.themeId = this.route.parent.snapshot.params['themeId'];
     console.log('themeId = ' + this.themeId);
 
   }
 
   ngOnInit() {
+
     this.themeService.getTheme(this.themeId, this.useridStorage.getUserId()).subscribe(data => {
         this.theme = data;
       },
@@ -40,8 +53,14 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
         console.log(error);
         this.snackBar.open('Er ging iets mis bij het ophalen van dit thema', 'x', {duration: 2000});
 
-      });
+      }, () => this.setValues());
 
+  }
+
+  setValues() {
+    this.themeName = this.theme.name;
+    this.themeDescription = this.theme.description;
+    this.themeTags = this.theme.tags;
   }
 
   ngAfterViewChecked() {
@@ -67,13 +86,27 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
 
   deleteTheme(id: number) {
     this.themeService.deleteThemeInOverview(id, this.useridStorage.getUserId()).subscribe(data => {
-        this.router.navigate(['themes']);
+        this.router.navigate(['kandoe/themes']);
       },
       error => {
         console.error('Error deleting theme!' + this.themeId);
         console.log(error);
-        alert('Error deleting theme');
+        this.snackBar.open('Fout bij verwijderen thema!', 'x', {duration: 3000});
+
       });
+  }
+
+  cancelEditing() {
+    this.theme.name = this.themeName;
+    this.theme.description = this.themeDescription;
+    this.theme.tags.slice(0);
+    this.theme.tags = this.themeTags;
+
+    this.editing = 0;
+  }
+
+  startEditing() {
+    this.editing = 0;
   }
 
   addTag() {

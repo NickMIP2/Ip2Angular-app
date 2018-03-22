@@ -7,6 +7,7 @@ import * as Stomp from 'stompjs';
 import {SessionService} from '../../../../services/session.service';
 import {UseridStorage} from '../../../../sessionStorage/userid-storage';
 import {MatSnackBar} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-circle',
@@ -15,7 +16,11 @@ import {MatSnackBar} from '@angular/material';
 })
 export class CircleComponent implements OnInit, OnChanges {
 
-  constructor(private snackBar: MatSnackBar, private sessionService: SessionService, private userIdStorage: UseridStorage, private ref: ChangeDetectorRef) {
+  constructor(private snackBar: MatSnackBar,
+              private sessionService: SessionService,
+              private userIdStorage: UseridStorage,
+              private ref: ChangeDetectorRef,
+              private translate: TranslateService) {
   }
 
   @Input() public isOrganiser;
@@ -60,7 +65,7 @@ export class CircleComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    for (let card of this.sessionCards) {
+    for (const card of this.sessionCards) {
       card.distance = this.amountOfRings;
     }
 
@@ -120,9 +125,9 @@ export class CircleComponent implements OnInit, OnChanges {
             if (cardid.body.toString() === 'finished') {
               comp.stompEarlyFinish();
             } else {
-              let selectedCardId = Number(cardid.body.toString().split(';')[0]);
+              const selectedCardId = Number(cardid.body.toString().split(';')[0]);
               if (!(cardid.body.toString().split(';')[1] === '-11')) {
-                let currentUserId = Number(cardid.body.toString().split(';')[1]);
+                const currentUserId = Number(cardid.body.toString().split(';')[1]);
                 comp.increaseCardPriority(selectedCardId);
                 comp.setCards();
                 if (currentUserId === userId) {
@@ -142,7 +147,7 @@ export class CircleComponent implements OnInit, OnChanges {
 
 
   public increaseCardPriority(id: number) {
-    for (let card of this.sessionCards) {
+    for (const card of this.sessionCards) {
       if (card.id === id) {
         card.priority += 1;
         if (card.priority === this.amountOfRings) {
@@ -159,12 +164,12 @@ export class CircleComponent implements OnInit, OnChanges {
 
   gameOver() {
     let highestPriority = 0;
-    for (let card of this.sessionCards) {
+    for (const card of this.sessionCards) {
       if (card.priority > highestPriority) {
         highestPriority = card.priority;
       }
     }
-    for (let card of this.sessionCards) {
+    for (const card of this.sessionCards) {
       if (card.priority === highestPriority) {
         console.log(card.name);
         this.winningCards.push(card);
@@ -180,14 +185,14 @@ export class CircleComponent implements OnInit, OnChanges {
     this.stompClient.send('/app/send/sessionCard/' + this.sessionId, {}, 'finished');
   }
 
-  public stompEarlyFinish(){
+  public stompEarlyFinish() {
     let highestPriority = 0;
-    for (let card of this.sessionCards) {
+    for (const card of this.sessionCards) {
       if (card.priority > highestPriority) {
         highestPriority = card.priority;
       }
     }
-    for (let card of this.sessionCards) {
+    for (const card of this.sessionCards) {
       if (card.priority === highestPriority) {
         console.log(card.name);
         this.winningCards.push(card);

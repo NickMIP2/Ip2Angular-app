@@ -1,7 +1,7 @@
 <title>Title</title>
 
 <mat-tab-group [selectedIndex]="1">
-  <mat-tab label="Afgelopen sessies">
+  <mat-tab label="{{ 'Kandoe.Dashboard.finished_sess' | translate }}">
     <div class="tabContainer">
       <mat-card *ngFor="let session of pastSessions" class="sessionBox">
         <mat-card-content class="pastSessionsContent">
@@ -15,13 +15,14 @@
           </p>
         </mat-card-content>
         <mat-card-actions style="padding-bottom: 4%">
-          <button style="width: 80%;" mat-raised-button color="primary" (click)="viewSnapshots(session)">Snapshots
+          <button style="width: 80%;" mat-raised-button color="primary" (click)="viewSnapshots(session)">
+            {{ 'Kandoe.Dashboard.snapshots' | translate }}
           </button>
         </mat-card-actions>
       </mat-card>
     </div>
   </mat-tab>
-  <mat-tab label="Huidige sessies">
+  <mat-tab label="{{ 'Kandoe.Dashboard.current_sess' | translate }}">
     <div class="tabContainer">
       <div *ngFor="let session of currentSessions" style="width: 30%; display: inline-block; margin: 1%; padding: 1%;">
         <mat-card *ngIf="session.state === 1" class="sessionBoxSelecteren"
@@ -32,12 +33,12 @@
             </p>
             <p style="text-align: center">
               <span>{{session.amountSubmitted}} / {{session.participantIds.length}}</span>
-              <span class="descriptionContainer">Selecteren</span>
+              <span class="descriptionContainer">{{ 'Kandoe.Dashboard.span_select' | translate }}</span>
             </p>
           </mat-card-content>
           <mat-card-actions style="padding-bottom: 4%">
             <button style="width: 80%" mat-raised-button color="primary" (click)="continueSession(session)"
-                    [disabled]="session.userSubmitted">Hervat
+                    [disabled]="session.userSubmitted">{{ 'Kandoe.Dashboard.button_resume' | translate }}
             </button>
           </mat-card-actions>
         </mat-card>
@@ -48,12 +49,12 @@
               <span style="font-weight: bold; font-size: large">{{session.name}}</span>
             </p>
             <p style="text-align: center">
-              <span class="descriptionContainer">Reviewen</span>
+              <span class="descriptionContainer">{{ 'Kandoe.Dashboard.reviewen' | translate }}</span>
             </p>
           </mat-card-content>
           <mat-card-actions style="padding-bottom: 4%">
             <button style="width: 80%" mat-raised-button color="primary" (click)="reviewSession(session)"
-                    [disabled]="session.organisersIds.indexOf(userId) === -1">Review
+                    [disabled]="session.organisersIds.indexOf(userId) === -1">{{ 'Kandoe.Dashboard.review' | translate }}
             </button>
           </mat-card-actions>
         </mat-card>
@@ -64,18 +65,19 @@
               <span style="font-weight: bold; font-size: large">{{session.name}}</span>
             </p>
             <p style="text-align: center">
-              <span class="descriptionContainer">Cirkelen</span>
+              <span class="descriptionContainer">{{ 'Kandoe.Dashboard.span_circle' | translate }}</span>
             </p>
           </mat-card-content>
           <mat-card-actions style="padding-bottom: 4%">
-            <button style="width: 80%" mat-raised-button color="primary" (click)="continueSession(session)">Hervat
+            <button style="width: 80%" mat-raised-button color="primary" (click)="continueSession(session)">
+              {{ 'Kandoe.Dashboard.button_resume' | translate }}
             </button>
           </mat-card-actions>
         </mat-card>
       </div>
     </div>
   </mat-tab>
-  <mat-tab label="Geplande sessies">
+  <mat-tab label="{{ 'Kandoe.Dashboard.future_sess' | translate }}">
     <div class="tabContainer">
         <mat-card *ngFor="let session of plannedSessions" class="sessionBox"
                   style="background-size: 100% 100%">
@@ -89,7 +91,8 @@
           </mat-card-content>
           <mat-card-actions style="padding-bottom: 4%">
             <button [disabled]="!showOrganiserButton(session)" style="width: 80%" mat-raised-button color="primary"
-                    (click)="startSession(session)">Start sessie
+                    (click)="startSession(session)">
+              {{ 'Kandoe.Dashboard.start_session' | translate }}
             </button>
           </mat-card-actions>
         </mat-card>

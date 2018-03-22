@@ -1,6 +1,6 @@
-
-  <div class="row">
-    <app-circle [sessionId]="sessionId" [currentUserTurnId]="session.currentUserId" [isOrganiser]="userOrganiser" [sessionCards]="session.sessionCardDtos" class="col-md-9 circlerow"></app-circle>
-
-    <app-chat class="col-md-3 chatrow" [sessionId]="sessionId"></app-chat><!--[sessionId]="sessionId"-->
-  </div>
+<button class="float-right" mat-raised-button color="primary" (click)="togglechat()">Chat</button>
+<div class="row">
+  <app-circle [sessionId]="sessionId" [currentUserTurnId]="session.currentUserId" [isOrganiser]="userOrganiser"
+              [sessionCards]="session.sessionCardDtos" class="col-md-12 circlerow"></app-circle>
+  <app-chat class="chatrow absolute" [sessionId]="sessionId" *ngIf="viewchat"></app-chat>
+</div>

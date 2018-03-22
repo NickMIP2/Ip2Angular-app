@@ -4,6 +4,7 @@ import {Card} from '../../../../../../model/card';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UseridStorage} from '../../../../../../sessionStorage/userid-storage';
 import {MatSnackBar} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-card-edit',
@@ -11,6 +12,8 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./card-edit.component.css']
 })
 export class CardEditComponent implements OnInit {
+  title = '';
+  error_message = '';
   public cardId;
   public card = new Card(0, 0, '', '', '');
   public themeId;
@@ -25,12 +28,18 @@ export class CardEditComponent implements OnInit {
   constructor(private cardService: CardService,
               private route: ActivatedRoute,
               private userIdStorage: UseridStorage,
-              private router: Router, private snackBar: MatSnackBar) {
+              private router: Router,
+              private snackBar: MatSnackBar,
+              private translate: TranslateService) {
     this.userId = userIdStorage.getUserId();
   }
 
   ngOnInit() {
-    window.document.title = 'Cardeditor';
+    this.translate.get('Kandoe.Themedetail.cards.edit.page_title', {value: 'world'}).subscribe(e => {
+      this.title = e;
+    });
+    window.document.title = this.title;
+
     this.themeId = this.route.parent.snapshot.params['themeId'];
     this.cardId = this.route.snapshot.params['cardId'];
     this.categoryId = this.route.snapshot.params['categoryId'];
@@ -55,7 +64,7 @@ export class CardEditComponent implements OnInit {
             this.snackBar.open('Fout bij ophalen kaartjes!', 'x', {duration: 2000});
 
           }, () => {
-            let index = 0;
+            const index = 0;
             for (let i = 0; i < this.oldCards.length; i++) {
               if (this.oldCards[i].name === this.card.name) {
 
