@@ -7,12 +7,6 @@
         <input style="width: 100%" matInput placeholder="{{ 'Kandoe.Themedetail.cards.new.ph_desc' | translate }}" type="text" name="editcarddescription" [(ngModel)]="card.description">
       </mat-form-field>
   <table class="table" style="width: 100%">
-  <tr>
-      <td class="descCol">{{ 'Kandoe.Themedetail.cards.new.lbl_image' | translate }}</td>
-      <td class="editCol">
-        <app-file-upload name="upload" [(ngModel)]="card.image"></app-file-upload>
-      </td>
-    </tr>
   </table>
         <button [disabled]="!cardForm.form.valid || !correctName" style="width: 49%;" mat-raised-button color="primary" (click)="createCard()">{{ 'Kandoe.Themedetail.cards.new.button_create' | translate }}</button>
         <button mat-raised-button color="warn" style="width: 49%" (click)="navigateAbort()">{{ 'Kandoe.Themedetail.cards.new.button_delete' | translate }}</button>
