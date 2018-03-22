@@ -1,6 +1,6 @@
 <div class ="main-container">
   <div class=" highlight" style="margin-left:0;">
-    <h2>WINNAAR</h2>
+    <h2>{{ 'Kandoe.Session.winning_card.winner' | translate }}</h2>
     <div class="row">
       <img src="../../../../../assets/images/giphy.gif" />
       <ul *ngFor="let currentCard of winningCards">
@@ -8,9 +8,9 @@
       </ul>
     </div>
     <div class="row detailrow">
-      <p [hidden]="!earlyStop">De sessie is vroegtijdig gestopt door een organiser</p>
-      <p [hidden]="earlyStop">Het ziet er naar uit dat bovenstaande kaart(en) de meeste stemmen had(den) van deze Kandoe brainstorm sessie.</p>
-      <button class="btn btn-primary" (click)="toDashboard()">Haal me hier weg</button>
+      <p [hidden]="!earlyStop">{{ 'Kandoe.Session.winning_card.early_stop' | translate }}</p>
+      <p [hidden]="earlyStop">{{ 'Kandoe.Session.winning_card.winner_msg' | translate }}</p>
+      <button class="btn btn-primary" (click)="toDashboard()">{{ 'Kandoe.Session.winning_card.exit' | translate }}</button>
     </div>
   </div>
 </div>

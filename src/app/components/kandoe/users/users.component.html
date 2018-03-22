@@ -1,29 +1,29 @@
 <div class="container">
   <form #userform="ngForm" class="formcontainer">
     <mat-form-field class="form-group" style="width: 100%;">
-      <input style="width: 100%;" matInput placeholder="Username" id="username" type="text" required disabled
+      <input style="width: 100%;" matInput placeholder="{{ 'Kandoe.Users.ph_username' | translate }}" id="username" type="text" required disabled
              [(ngModel)]="user.username" name="username" #username="ngModel">
     </mat-form-field>
     <mat-form-field class="form-group" style="width: 100%;">
-      <input style="width: 100%;" matInput placeholder="First name" id="firstname" type="text" required
+      <input style="width: 100%;" matInput placeholder="{{ 'Kandoe.Users.ph_first_name' | translate }}" id="firstname" type="text" required
              [(ngModel)]="user.firstname" name="firstname" #firstname="ngModel">
     </mat-form-field>
     <mat-form-field class="form-group" style="width: 100%;">
-      <input style="width: 100%;" matInput placeholder="Last name" id="lastname" type="text" required
+      <input style="width: 100%;" matInput placeholder="{{ 'Kandoe.Users.ph_name' | translate }}" id="lastname" type="text" required
              [(ngModel)]="user.lastname" name="lastname" #lastname="ngModel">
     </mat-form-field>
     <mat-form-field class="form-group" style="width: 100%;">
-      <input style="width: 100%;" matInput placeholder="Email" id="email" type="email" required
+      <input style="width: 100%;" matInput placeholder="{{ 'Kandoe.Users.ph_email' | translate }}" id="email" type="email" required
              [(ngModel)]="user.email" name="email" #email="ngModel">
     </mat-form-field>
     <mat-form-field class="form-group" style="width: 100%;">
-      <input style="width: 100%;" matInput placeholder="Password" id="pwOne" type="password" required
+      <input style="width: 100%;" matInput placeholder="{{ 'Kandoe.Users.ph_pw' | translate }}" id="pwOne" type="password" required
              [(ngModel)]="user.password" name="pwOne" #pwOne="ngModel">
     </mat-form-field>
     <div style="width: 100%; text-align: center">
       <button mat-raised-button color="primary" style="width: 30%"
               [disabled]="!userform.form.valid" (click)="saveChanges()">
-        Save changes
+        {{ 'Kandoe.Users.button_save' | translate }}
       </button>
     </div>
   </form>

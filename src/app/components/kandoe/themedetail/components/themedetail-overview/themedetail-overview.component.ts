@@ -4,6 +4,7 @@ import {ThemeService} from '../../../../../services/theme.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {UseridStorage} from '../../../../../sessionStorage/userid-storage';
 import {MatSnackBar} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-themedetail-overview',
@@ -13,6 +14,8 @@ import {MatSnackBar} from '@angular/material';
 
 })
 export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
+  title = '';
+  error_message = '';
   public theme: Theme = {
     id: 0,
     name: '',
@@ -29,13 +32,19 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
   public themeTags;
   public themeDescription;
 
-  constructor(private themeService: ThemeService, private route: ActivatedRoute, private useridStorage: UseridStorage, private router: Router, public snackBar: MatSnackBar) {
+  constructor(private themeService: ThemeService,
+              private route: ActivatedRoute,
+              private useridStorage: UseridStorage,
+              private router: Router,
+              public snackBar: MatSnackBar,
+              private translate: TranslateService) {
     this.themeId = this.route.parent.snapshot.params['themeId'];
     console.log('themeId = ' + this.themeId);
 
   }
 
   ngOnInit() {
+
     this.themeService.getTheme(this.themeId, this.useridStorage.getUserId()).subscribe(data => {
         this.theme = data;
       },

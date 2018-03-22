@@ -3,6 +3,7 @@ import {Theme} from '../../../model/theme';
 import {ThemeService} from '../../../services/theme.service';
 import {Router} from '@angular/router';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-new-theme',
@@ -11,18 +12,26 @@ import {UseridStorage} from '../../../sessionStorage/userid-storage';
   providers: [ThemeService, UseridStorage]
 })
 export class NewThemeComponent implements OnInit {
-  public theme = new Theme(null, '', '',  [], '');
+  public theme = new Theme(null, '', '', [], '');
   private userId;
   public tagValue = '';
+  title = '';
+  error_message = '';
 
   submitted = false;
 
-  constructor(private themeService: ThemeService, private router: Router, private userIdStorage: UseridStorage) {
+  constructor(private themeService: ThemeService,
+              private router: Router,
+              private userIdStorage: UseridStorage,
+              private translate: TranslateService) {
     this.userId = userIdStorage.getUserId();
   }
 
   ngOnInit() {
-    window.document.title = 'Nieuw thema';
+    this.translate.get('Kandoe.New-theme.page_title', {value: 'world'}).subscribe(e => {
+      this.title = e;
+    });
+    window.document.title = this.title;
   }
 
   createTheme() {
@@ -32,9 +41,12 @@ export class NewThemeComponent implements OnInit {
         this.router.navigate(['kandoe/themes/' + data.id + '/overview']); // id van teruggekregen thema
       },
       error => {
-        console.error('Error creating theme!');
+        this.translate.get('Kandoe.New-theme.error_message', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Error creating theme');
+        alert(this.error_message);
       });
   }
 

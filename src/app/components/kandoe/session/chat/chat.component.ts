@@ -7,6 +7,7 @@ import {Message} from '../../../../model/message';
 import {MessageService} from '../../../../services/message.service';
 import {ActivatedRoute, Route} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
 
 
 @Component({
@@ -21,9 +22,14 @@ export class ChatComponent implements OnInit {
   private stompClient;
   public username;
   public messages = [new Message('')];
+  private error_message= '';
 
 
-  constructor(private userIdStorage: UseridStorage, private messageService: MessageService, private route: ActivatedRoute,private snackBar: MatSnackBar) {
+  constructor(private userIdStorage: UseridStorage,
+              private messageService: MessageService,
+              private route: ActivatedRoute,
+              private snackBar: MatSnackBar,
+              private translate: TranslateService) {
     // this.sessionId = this.route.parent.snapshot.params['sessionId'];
     this.username = userIdStorage.getUsername();
   }
@@ -75,9 +81,12 @@ export class ChatComponent implements OnInit {
         console.log('message successfully send to database');
       },
       error => {
-        console.error('Error sending message!');
+        this.translate.get('package.component.error_message', {value: 'world'}).subscribe(e => {
+          this.error_message = e;
+        });
+        console.error(this.error_message);
         console.log(error);
-        alert('Error sending message');
+        alert(this.error_message);
       });
     this.stompClient.send('/app/send/message/' + this.sessionId, {}, usernameMessage); // ipv 2 -> sessionId
     $('#input').val('');

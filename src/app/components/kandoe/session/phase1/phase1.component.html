@@ -1,7 +1,7 @@
 <div *ngIf="editing===0">
-<h1>Selecteer kaarten</h1>
-<h2>{{selectedCards.length}} van de {{session.maxCards}} kaarten geselecteerd!</h2>
-  <button mat-raised-button color="primary" *ngIf="session.allowCardCreation" (click)="editing=1">Nieuwe kaart</button>
+<h1>{{ 'Kandoe.Session.p1.select_cards' | translate }}</h1>
+<h2>{{selectedCards.length}}{{ 'Kandoe.Session.p1.h1_of' | translate }}{{session.maxCards}}{{ 'Kandoe.Session.p1.h1_cards_selected' | translate }}</h2>
+  <button mat-raised-button color="primary" *ngIf="session.allowCardCreation" (click)="editing=1">{{ 'Kandoe.Session.p1.button_new_card' | translate }}</button>
   <br>
   <mat-card *ngFor="let card of cards;let i = index" class="cardBox"
             style="background-size: 100% 100%">
@@ -14,31 +14,35 @@
       </p>
     </mat-card-content>
     <mat-card-actions style="padding-bottom: 4%">
-      <button style="width: 80%;" mat-raised-button color="primary" *ngIf="!buttonStates[i]" (click)="selectCard(card, i)" [disabled]="selectedCards.length === session.maxCards">Selecteer</button>
-      <button style="width: 80%;" mat-raised-button color="warn" *ngIf="buttonStates[i]" (click)="deselectCard(card, i)">Verwijder</button>
+      <button style="width: 80%;" mat-raised-button color="primary" *ngIf="!buttonStates[i]" (click)="selectCard(card, i)" [disabled]="selectedCards.length === session.maxCards">
+        {{ 'Kandoe.Session.p1.button_select' | translate }}
+      </button>
+      <button style="width: 80%;" mat-raised-button color="warn" *ngIf="buttonStates[i]" (click)="deselectCard(card, i)">
+        {{ 'Kandoe.Session.p1.button_delete' | translate }}
+      </button>
     </mat-card-actions>
   </mat-card>
 <br>
-<button mat-raised-button color="primary" (click)="saveCards()">Klaar</button>
+<button mat-raised-button color="primary" (click)="saveCards()">{{ 'Kandoe.Session.p1.button_ready' | translate }}</button>
 </div>
 <div *ngIf="editing===1">
   <form #cardForm="ngForm" class="form-group cardNewContainer">
     <mat-form-field class="form-group" style="width: 100%">
-      <input (input)="checkName()" style="width: 100%" matInput placeholder="Kaart naam" type="text" required class="editInput" name="editcardtitle" [(ngModel)]="card.name">
-      <span *ngIf="!correctName" style="color: red; padding-top: 5px; font-size: small">Kaartnaam is reeds gebruikt in deze categorie!</span>
+      <input (input)="checkName()" style="width: 100%" matInput placeholder="{{ 'Kandoe.Session.p1.ph_card_name' | translate }}" type="text" required class="editInput" name="editcardtitle" [(ngModel)]="card.name">
+      <span *ngIf="!correctName" style="color: red; padding-top: 5px; font-size: small">{{ 'Kandoe.Session.p1.span_cardname_inuse' | translate }}</span>
     </mat-form-field>
     <mat-form-field class="form-group" style="width: 100%">
-      <input style="width: 100%" matInput placeholder="Kaart beschrijving" type="text" name="editcarddescription" [(ngModel)]="card.description">
+      <input style="width: 100%" matInput placeholder="{{ 'Kandoe.Session.p1.ph_card_desc' | translate }}" type="text" name="editcarddescription" [(ngModel)]="card.description">
     </mat-form-field>
     <table class="table" style="width: 100%">
       <tr>
-        <td class="descCol">Image</td>
+        <td class="descCol">{{ 'Kandoe.Session.p1.lbl_image' | translate }}</td>
         <td class="editCol">
           <app-file-upload name="upload" [(ngModel)]="card.image"></app-file-upload>
         </td>
       </tr>
     </table>
-    <button [disabled]="!cardForm.form.valid || !correctName" style="width: 49%;" mat-raised-button color="primary" (click)="createCard()">Maak kaart</button>
+    <button [disabled]="!cardForm.form.valid || !correctName" style="width: 49%;" mat-raised-button color="primary" (click)="createCard()">{{ 'Kandoe.Session.p1.button_create_card' | translate }}</button>
     <button mat-raised-button color="warn" style="width: 49%" (click)="navigateAbort()">Verwijder</button>
   </form>
 </div>

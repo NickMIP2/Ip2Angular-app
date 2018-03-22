@@ -1,33 +1,44 @@
+<div class="organiserButtons" id="OrganiserButtons" [hidden]="gameIsFinished">
+  <div>
+    <button mat-raised-button color="primary" id="snapshotButton" class="button_inline" *ngIf="isOrganiser"
+            (click)="takeSnapshot()">
+      {{ 'Kandoe.Session.circle.take_snap' | translate }}
+    </button>
+    <button mat-raised-button color="warn" id="endSessionButton" *ngIf="isOrganiser" class="button_inline"
+            (click)="endSession()">
+      {{ 'Kandoe.Session.circle.end_session' | translate }}
+    </button>
+  </div>
+  <div class="text-center margin-top2">
+    <p [hidden]="isMyTurn">
+      {{ 'Kandoe.Session.circle.your_turn' | translate }}{{username}}!
+    </p>
+  </div>
+  <div class="" id="selectedCardDetails"
+       [style.visibility]="selectedCard.name !== '' ? 'visible': 'hidden'">
+    <p class="marginauto">
+      <b>{{ 'Kandoe.Session.circle.selected_card' | translate }}</b>:
+      {{selectedCard.name}}
+      <button mat-raised-button color="primary" id="confirmCardButton" *ngIf="!isMyTurn" (click)="confirmMoveCard()">
+        {{ 'Kandoe.Session.circle.move_selected_Card' | translate }}
+      </button>
+    </p>
+  </div>
+</div>
 <div class="container game" [hidden]="gameIsFinished">
-
-  <div class="circle">
+  <div class="circle circlewidth" id="Circle">
     <div *ngFor="let ring of rings" class="subcircle"
          [style.width]="ring.width + '%'" [style.height]="ring.height + '%'"
          [style.z-index]="ring.z">
     </div>
-
-
     <div class="sessioncard" *ngFor="let card of sessionCards; let i = index" (click)="selectCard(card,i)"
          [style.left]="card.x + 'px'" [style.top]="card.y + 'px'">
       <span>{{i+1}}</span>
       <span id="hovercarddetails"><br>{{card.name}}</span>
     </div>
-
   </div>
-
-  <div class="col-md-4 cards">
-    <p class="row currentTurn" [hidden]="isMyTurn">
-      Het is jouw beurt {{username}}!
-    </p>
-    <div class="row" id="selectedCardDetails" [style.visibility]="selectedCard.name !== '' ? 'visible': 'hidden'">
-      <b>Geselecteerde kaart</b>:
-      {{selectedCard.name}}
-
-      <button mat-raised-button color="primary" id="confirmCardButton" *ngIf="!isMyTurn" (click)="confirmMoveCard()">
-        Geselecteerde kaart verplaatsen
-      </button>
-    </div>
-    <div class="row carddetails">
+  <div class="cards cardwidth" id="Cards">
+    <div class="row carddetails ">
       <mat-card *ngFor="let card of sessionCards;let i = index" class="cardBox"
                 style="background-size: 100% 100%">
         <mat-card-content>
@@ -39,18 +50,17 @@
           </p>
         </mat-card-content>
         <mat-card-actions style="padding-bottom: 4%">
-          <button style="width: 80%;" mat-raised-button color="primary" (click)="selectCard(card, i)">Selecteer</button>
+          <button style="width: 80%;" mat-raised-button color="primary" (click)="selectCard(card, i)">
+            {{ 'Kandoe.Session.circle.select' | translate }}
+          </button>
         </mat-card-actions>
       </mat-card>
     </div>
-    <div class="organiserButtons">
-      <button mat-raised-button color="primary" id="snapshotButton" *ngIf="isOrganiser" (click)="takeSnapshot()"> Snapshot nemen
-      </button> <br>
-      <button class="btn btn-danger" id="endSessionButton" *ngIf="isOrganiser" (click)="endSession()"> Sessie beëindigen
-      </button>
-    </div>
+
   </div>
+
+
 </div>
-<div class="winningCards"[hidden]="!gameIsFinished">
-  <app-winning-card [earlyStop]="earlyStop" [winningCards]="winningCards" ></app-winning-card>
+<div class="winningCards" [hidden]="!gameIsFinished">
+  <app-winning-card [earlyStop]="earlyStop" [winningCards]="winningCards"></app-winning-card>
 </div>

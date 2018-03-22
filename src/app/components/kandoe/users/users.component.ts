@@ -4,6 +4,7 @@ import {UserService} from '../../../services/user.service';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-users',
@@ -22,7 +23,11 @@ export class UsersComponent implements OnInit, AfterViewChecked {
   pwHash: any;
   public userId: number;
 
-  constructor(private userService: UserService, private  useridStorage: UseridStorage, private router: Router, private snackBar:MatSnackBar) {
+  constructor(private userService: UserService,
+              private  useridStorage: UseridStorage,
+              private router: Router,
+              private snackBar: MatSnackBar,
+              private translate: TranslateService) {
     this.userId = this.useridStorage.getUserId();
   }
 

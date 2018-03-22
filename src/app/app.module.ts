@@ -54,6 +54,13 @@ import { UsersComponent } from './components/kandoe/users/users.component';
 import {UserService} from './services/user.service';
 import { WinningCardComponent } from './components/kandoe/session/winning-card/winning-card.component';
 import { PhaseReviewComponent } from './components/kandoe/session/phase-review/phase-review.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {ImageB64ConvertService} from './services/image-b64-convert.service';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -106,7 +113,14 @@ import { PhaseReviewComponent } from './components/kandoe/session/phase-review/p
     MatSelectModule,
     MatRadioModule,
     MatSliderModule,
-    HttpClientModule
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     TokenStorage,
@@ -123,7 +137,8 @@ import { PhaseReviewComponent } from './components/kandoe/session/phase-review/p
     Interceptor,
     UseridStorage,
     MessageService,
-    UserService
+    UserService,
+    ImageB64ConvertService
   ],
 
   bootstrap: [AppComponent]
