@@ -60,10 +60,6 @@ export class ChatComponent implements OnInit, OnDestroy {
         if (message.body) {
           $('.chat-body').append(
             '<div class=\'message\'>' +
-            '<div class="header">' +
-            /*'<strong class="primary-font">' + 'Nick' + '</strong>' +*/
-            '</div>'
-            +
             '<p>' +
             message.body
             +
@@ -71,7 +67,6 @@ export class ChatComponent implements OnInit, OnDestroy {
             +
             '</div>'
           );
-          console.log(message.body);
         }
       });
     });
