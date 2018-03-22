@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, OnDestroy} from '@angular/core';
 import * as $ from 'jquery';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
@@ -16,13 +16,15 @@ import {TranslateService} from '@ngx-translate/core';
   styleUrls: ['./chat.component.css'],
   providers: [UseridStorage, MessageService]
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
+
   private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
   @Input() private sessionId;
   private stompClient;
   public username;
   public messages = [new Message('')];
   private error_message= '';
+  public subscription;
 
 
   constructor(private userIdStorage: UseridStorage,
@@ -52,6 +54,7 @@ export class ChatComponent implements OnInit {
     const ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
     const that = this;
+
     this.stompClient.connect({}, function (frame) {
       that.stompClient.subscribe('/chat/' + id, (message) => { // ipv 2 -> sessionId
         if (message.body) {
@@ -77,7 +80,7 @@ export class ChatComponent implements OnInit {
   sendMessage(message) {
     const usernameMessage = this.userIdStorage.getUsername() + ': ' + message;
     const dbMessage = new Message(usernameMessage);
-    this.messageService.sendMessage(dbMessage, this.sessionId, this.userIdStorage.getUserId()).subscribe(data => { // ipv 2 naar sessionId
+    this.messageService.sendMessage(dbMessage, this.sessionId, this.userIdStorage.getUserId()).subscribe(data => {
         console.log('message successfully send to database');
       },
       error => {
@@ -85,11 +88,14 @@ export class ChatComponent implements OnInit {
           this.error_message = e;
         });
         console.error(this.error_message);
-        console.log(error);
-        alert(this.error_message);
+      }, () => {
+        this.stompClient.send('/app/send/message/' + this.sessionId, {}, usernameMessage); // ipv 2 -> sessionId
+        $('#input').val('');
       });
-    this.stompClient.send('/app/send/message/' + this.sessionId, {}, usernameMessage); // ipv 2 -> sessionId
-    $('#input').val('');
+  }
+
+  ngOnDestroy(): void {
+    this.stompClient.disconnect();
   }
 
 }
