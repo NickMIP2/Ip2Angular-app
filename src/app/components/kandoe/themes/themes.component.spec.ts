@@ -11,6 +11,7 @@ import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import {provide} from 'angular2/core';
 
 describe('ThemeComponent', () => {
   let component: ThemesComponent;
@@ -26,7 +27,7 @@ describe('ThemeComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ThemesComponent],
       imports: [RouterTestingModule, HttpClientModule, FormsModule],
-      providers: [ThemeService]
+      providers: [{provide: ThemeService}]
     })
       .compileComponents();
   }));

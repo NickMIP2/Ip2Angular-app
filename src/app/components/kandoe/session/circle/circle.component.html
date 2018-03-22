@@ -9,7 +9,7 @@
 
     <div class="sessioncard" *ngFor="let card of sessionCards; let i = index" (click)="selectCard(card,i)"
          [style.left]="card.x + 'px'" [style.top]="card.y + 'px'">
-      <span>{{card.id}}</span>
+      <span>{{i+1}}</span>
       <span id="hovercarddetails"><br>{{card.name}}</span>
     </div>
 
