@@ -33,7 +33,7 @@
           'Kandoe.Session.New.copy_existing_session' | translate }}
         </button>
         <br>
-        <<<<<<< HEAD
+
         <br>
       </div>
       <mat-card class="sessionBox">
@@ -150,25 +150,8 @@
       {{newSession.totalRounds}}
       <br>
       <br>
-      <span style="font-weight: bold">{{ 'Kandoe.Session.New.span_time_move_hour' | translate }}</span>
-      <br>
-      <mat-slider
-        class="sliderCss"
-        [disabled]="disabled"
-        [invert]="invert"
-        [max]="maxTime"
-        [min]="min"
-        [step]="step"
-        [thumb-label]="thumbLabel"
-        [tick-interval]="tickInterval"
-        [(ngModel)]="newSession.timeForMove"
-        name="inputTimePerMoveHour"
-        [vertical]="vertical">
-      </mat-slider>
-      {{newSession.timeForMove}}
+
     </div>
-<!--    </mat-card-content>
-    </mat-card>-->
   </div>
 
 <!--

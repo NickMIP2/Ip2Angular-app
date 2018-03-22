@@ -1,6 +1,7 @@
 
 #navbarsDefault{
   margin: auto;
+
 }
 .root{
   margin-left: 1%;
@@ -15,10 +16,11 @@
 
 }
 .activeitem{
-
-  background-color: #ff6d02;
+  border-radius: 7px;
+  background-color: #ff6d02
 }
 
 a:hover{
   background-color: darkorange;
+  border-radius: 7px;
 }
