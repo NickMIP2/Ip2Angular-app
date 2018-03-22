@@ -12,7 +12,7 @@
     </p>
   </mat-card-content>
   <mat-card-actions style="padding-bottom: 4%">
-    <button style="width: 80%;" mat-raised-button color="warn" [disabled] (click)="removeCard(card, i)">{{ 'Kandoe.Session.review.delete' | translate }}</button>
+    <button style="width: 80%;" mat-raised-button color="warn" (click)="unRemoveCard(card, i)">{{ 'Kandoe.Session.review.delete' | translate }}</button>
   </mat-card-actions>
 </mat-card>
   <mat-card *ngIf="!removedCards[i]" class="cardBox"

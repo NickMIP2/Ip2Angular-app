@@ -1,0 +1,33 @@
+<div class="masterCircleContainer" *ngIf="!noData">
+<div style="display: inline-block; float: left">
+  <div class="circleContainer">
+    <div class="circle">
+      <div *ngFor="let ring of rings" class="subcircle"
+           [style.width]="ring.width + '%'" [style.height]="ring.height + '%'"
+           [style.z-index]="ring.z">
+      </div>
+      <div class="sessioncard" *ngFor="let card of sessionCards; let i = index"
+           [style.left]="card.x + 'px'" [style.top]="card.y + 'px'">
+        <span>{{card.id}}</span>
+        <span id="hovercarddetails"><br>{{card.name}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="selectedBox">
+  <mat-card *ngFor="let card of sessionCards;let i = index" class="cardBox">
+    <mat-card-content>
+      <p style="text-align: center">
+        <span style="font-weight: bold; font-size: large">{{card.name}}</span>
+      </p>
+      <p style="text-align: center">
+        <span>{{card.description}}</span>
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
+</div>
+<div *ngIf="noData">
+  <h2 style="margin-top: 2%">Geen afgelopen sessies</h2>
+  <img src="../../../../../assets/images/errorperson.png" class="noDataImage" />
+</div>

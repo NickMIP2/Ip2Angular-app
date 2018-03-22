@@ -1,0 +1,12 @@
+.analyseContainer {
+  width: 80%;
+  margin: auto;
+  margin-top: 2%;
+  background: #E2E0FB;
+  border-radius: 10px;
+  padding: 2%;
+}
+
+.tabAnalyseContainer {
+  align-items: center;
+}

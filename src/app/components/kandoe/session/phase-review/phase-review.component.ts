@@ -13,9 +13,9 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class PhaseReviewComponent implements OnInit {
 
+  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, null, 0,[]);
   title = '';
   error_message = '';
-  public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, null, 0);
   public sessionId = 0;
   private userId;
   public removedCards = [];
@@ -58,6 +58,11 @@ export class PhaseReviewComponent implements OnInit {
     this.removedCards[id] = true;
     const temp = this.correctSessionCards.indexOf(card);
     this.correctSessionCards.splice(temp, 1);
+  }
+
+  unRemoveCard(card, id) {
+    this.removedCards[id] = false;
+    this.correctSessionCards.push(card);
   }
 
   saveSelection() {

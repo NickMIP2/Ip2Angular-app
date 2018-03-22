@@ -81,10 +81,26 @@ export class DashboardComponent implements OnInit, OnDestroy {
       } else if (session.state === 1 || session.state === 2 || session.state === 3) {
         this.currentSessions.push(session);
       } else if (session.state === 4) {
+      let highestPriority = 0;
+      let winningCards = [];
+        for (const card of session.sessionCardDtos) {
+          if (card.priority > highestPriority) {
+            highestPriority = card.priority;
+          }
+        }
+        for (let card of session.sessionCardDtos) {
+          if (card.priority === highestPriority) {
+            winningCards.push(card.name);
+          }
+        }
+        session.winningCard = winningCards;
+
         this.pastSessions.push(session);
+
       }
     }
-  }
+    }
+
 
   startSession(session: Session) {
     this.sessionService.startSession(session.id, this.userId).subscribe();

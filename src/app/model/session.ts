@@ -22,6 +22,7 @@ export class Session {
               public allowCardCreation: boolean,
               public currentUserId: number,
               public snapshotDtos: Snapshot[],
-              public amountSubmitted: number) {
+              public amountSubmitted: number,
+              public winningCard: string[]) {
   }
 }

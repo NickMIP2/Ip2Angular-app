@@ -41,18 +41,18 @@
     </div>
   </div>
   <div class="selectedBox">
-      <mat-card *ngFor="let card of sessionCards;let i = index" class="cardBox"
-                style="width: 15%">
-        <mat-card-content>
-          <p style="text-align: center">
-            <span style="font-weight: bold; font-size: large">{{card.name}}</span>
-          </p>
-          <p style="text-align: center">
-            <span>{{card.description}}</span>
-          </p>
-        </mat-card-content>
-      </mat-card>
-  </div>
+  <mat-card *ngFor="let card of sessionCards;let i = index" class="cardBox"
+            style="min-width: 15%">
+    <mat-card-content>
+      <p style="text-align: center">
+        <span style="font-weight: bold; font-size: large">{{card.name}}</span>
+      </p>
+      <p style="text-align: center">
+        <span>{{card.description}}</span>
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>
 </div>
 <div *ngIf="noSnapshots">
   <h1 style="margin-top: 2%">{{ 'Kandoe.Session.snapshots.no_snap' | translate }}</h1>

@@ -35,6 +35,7 @@ import {ChatComponent} from './components/kandoe/session/chat/chat.component';
 import {FileUploadComponent} from './file-upload/file-upload.component';
 import {MessageService} from './services/message.service';
 import {CircleComponent} from './components/kandoe/session/circle/circle.component';
+import { ChartsModule } from 'ng2-charts';
 import {
   MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatNativeDateModule, MatRadioModule, MatSelectModule, MatSliderModule,
   MatSnackBar,
@@ -52,8 +53,11 @@ import {MatSnackBarModule} from '@angular/material';
 import { SnapshotsComponent } from './components/kandoe/session/snapshots/snapshots.component';
 import { UsersComponent } from './components/kandoe/users/users.component';
 import {UserService} from './services/user.service';
+import { AnalyticsComponent } from './components/kandoe/analytics/analytics.component';
 import { WinningCardComponent } from './components/kandoe/session/winning-card/winning-card.component';
 import { PhaseReviewComponent } from './components/kandoe/session/phase-review/phase-review.component';
+import { MastercircleComponent } from './components/kandoe/analytics/mastercircle/mastercircle.component';
+import { BarChartComponent } from './components/kandoe/analytics/bar-chart/bar-chart.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ImageB64ConvertService} from './services/image-b64-convert.service';
@@ -84,7 +88,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     CardNewComponent,
     ChatComponent,
     FileUploadComponent,
-
     CircleComponent,
     Phase1Component,
     Phase2Component,
@@ -93,9 +96,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     UsersComponent,
     WinningCardComponent,
     SnapshotsComponent,
+    AnalyticsComponent,
     PhaseReviewComponent,
+    MastercircleComponent,
+    BarChartComponent
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

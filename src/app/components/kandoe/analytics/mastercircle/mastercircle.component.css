@@ -1,13 +1,3 @@
-.snapShotContainer {
-  width: 100%;
-  padding: 2%;
-}
-
-.snapShotHeader {
-  margin: auto;
-  text-align: center;
-}
-
 .circleContainer {
   display: table-cell;
   width: 685px;
@@ -70,102 +60,36 @@
 
 #hovercarddetails {
   opacity: 0.0;
+  padding-top: 200px;
   -webkit-transition: all 1000ms ease-in, all 50ms ease-out;
   -moz-transition: all 1000ms ease-in, all 50ms ease-out;;
   -o-transition: all 1000ms ease-in, all 50ms ease-out;;
   transition: all 1000ms ease-in, all 50ms ease-out;;
-
 }
 
 .selectedBox {
-  width: 100%;
-  overflow: auto;
-  height: 250px;
-  white-space: nowrap;
-}
-
-.cardBox{
-  display: inline-block;
-  width: 30%;
-  min-height: 30%;
-  max-height: 80%;
-  margin: 1%;
-  padding: 1%;
-}
-
-.container{
+  overflow: scroll;
   display: inline-block;
   width: 40%;
   height: 700px;
   float: right;
 }
 
-.chat
-{
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.cardBox{
+  display: inline-block;
+  width: 40%;
+  min-height: 100px;
+  margin: 1%;
+  padding: 1%;
 }
 
-.chat li
-{
-  margin-bottom: 10px;
-  padding-bottom: 5px;
-  border-bottom: 1px dotted #B3A9A9;
+.masterCircleContainer {
+  width: 100%;
+  padding: 2%;
 }
 
-.chat li.right .chat-body
-{
-  margin-right: 60px;
-}
-
-
-.chat li .chat-body p
-{
-  margin: 0;
-  color: #777777;
-}
-
-.panel .slidedown .glyphicon, .chat .glyphicon
-{
-  margin-right: 5px;
-}
-
-.panel-body
-{
-  overflow-y: scroll;
-  height: 40em;
-}
-
-::-webkit-scrollbar-track
-{
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  background-color: #F5F5F5;
-}
-
-::-webkit-scrollbar
-{
-  width: 12px;
-  background-color: #F5F5F5;
-}
-
-::-webkit-scrollbar-thumb
-{
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-  background-color: #555;
-}
-
-p{
-  text-align: left;
-}
-
-#btn-chat{
-  height: 100%;
-}
-
-.noSnapshotImage {
+.noDataImage {
   width: 70%;
   height: 400px;
   margin-top: 3%;
 }
-
