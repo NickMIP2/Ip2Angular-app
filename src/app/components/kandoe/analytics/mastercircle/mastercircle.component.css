@@ -60,7 +60,6 @@
 
 #hovercarddetails {
   opacity: 0.0;
-  padding-top: 200px;
   -webkit-transition: all 1000ms ease-in, all 50ms ease-out;
   -moz-transition: all 1000ms ease-in, all 50ms ease-out;;
   -o-transition: all 1000ms ease-in, all 50ms ease-out;;
@@ -88,7 +87,7 @@
   padding: 2%;
 }
 
-.noSnapshotImage {
+.noDataImage {
   width: 70%;
   height: 400px;
   margin-top: 3%;
