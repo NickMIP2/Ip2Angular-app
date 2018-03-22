@@ -60,6 +60,11 @@ export class PhaseReviewComponent implements OnInit {
     this.correctSessionCards.splice(temp, 1);
   }
 
+  unRemoveCard(card, id) {
+    this.removedCards[id] = false;
+    this.correctSessionCards.push(card);
+  }
+
   saveSelection() {
     this.sessionService.saveReview(this.correctSessionCards, this.session.id, this.userId).subscribe(data => {
         this.router.navigate(['kandoe/sessions/' + this.sessionId + '/phase2']);

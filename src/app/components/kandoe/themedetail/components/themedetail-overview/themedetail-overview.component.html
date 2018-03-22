@@ -57,7 +57,8 @@
       <button [disabled]="!themeform.form.valid" style="width: 49%" mat-raised-button color="primary" (click)="editing ===1 ? save() : editing=1">
         {{editing===1 ? "Opslaan" : "Wijzigen"}}
       </button>
-      <button style="width: 49%" mat-raised-button color="warn" (click)="editing === 0 ? deleteTheme(theme.id) : cancelEditing()">{{editing===0 ? "Verwijderen" : "Wijzigingen annuleren"}} </button>
+      <button style="width: 49%" mat-raised-button *ngIf="editing === 0" color="warn" (click)="deleteTheme(theme.id)">Verwijderen</button>
+      <button style="width: 49%" mat-raised-button *ngIf="editing !== 0" (click)="cancelEditing()">Ga terug</button>
     </div>
   </form>
 </div>
