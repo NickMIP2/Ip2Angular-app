@@ -17,6 +17,7 @@
   margin-bottom: 10px;
   padding-bottom: 5px;
   border-bottom: 1px dotted #B3A9A9;
+  float: left;
 }
 
 /*.chat li.left .chat-body
@@ -24,16 +25,11 @@
   margin-left: 60px;
 }*/
 
-.chat li.right .chat-body
-{
-  margin-right: 60px;
-}
-
 
 .chat li .chat-body p
 {
-  margin: 0;
-  color: #777777;
+  float: left;
+  color: black;
 }
 
 .panel .slidedown .glyphicon, .chat .glyphicon

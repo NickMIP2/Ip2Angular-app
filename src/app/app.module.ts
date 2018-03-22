@@ -38,7 +38,6 @@ import {CircleComponent} from './components/kandoe/session/circle/circle.compone
 import { ChartsModule } from 'ng2-charts';
 import {
   MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatNativeDateModule, MatRadioModule, MatSelectModule, MatSliderModule,
-  MatSnackBar,
   MatTabsModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';

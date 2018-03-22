@@ -1,5 +1,5 @@
-<button class="float-right" mat-raised-button color="primary" (click)="togglechat()">Chat</button>
-<div class="row">
+<button class="float-right" mat-raised-button color="primary" (click)="togglechat()"><i class="material-icons">chat</i></button>
+<div class="row ">
   <app-circle [sessionId]="sessionId" [currentUserTurnId]="session.currentUserId" [isOrganiser]="userOrganiser"
               [sessionCards]="session.sessionCardDtos" class="col-md-12 circlerow"></app-circle>
   <app-chat class="chatrow absolute" [sessionId]="sessionId" *ngIf="viewchat"></app-chat>

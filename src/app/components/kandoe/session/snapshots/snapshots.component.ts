@@ -64,6 +64,7 @@ export class SnapshotsComponent implements OnInit, OnChanges {
         this.snackBar.open('Fout bij ophalen sessie', 'x', {duration: 2000});
 
       }, () => {
+      this.session.sessionCardDtos.sort((a, b) => a.id - b.id);
       if (this.session.snapshotDtos.length > this.snapShotIndex) {
         this.currentSnapshot = this.session.snapshotDtos[this.snapShotIndex];
 
