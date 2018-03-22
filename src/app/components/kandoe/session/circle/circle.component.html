@@ -1,4 +1,4 @@
-<div class="organiserButtons" id="CurrentPlayerInfo" [hidden]="gameIsFinished">
+<div id="CurrentPlayerInfo" class="organiserButtons" [hidden]="gameIsFinished">
   <div id="OrganiserButtons">
     <button mat-raised-button color="primary" id="snapshotButton" class="button_inline" *ngIf="isOrganiser"
             (click)="takeSnapshot()">
@@ -27,8 +27,8 @@
     </p>
   </div>
 </div>
-<div class="container game" [hidden]="gameIsFinished">
-  <div class="circle circlewidth" id="Circle">
+<div id="Circle_Cards" class="container game " [hidden]="gameIsFinished">
+  <div class="circle circlewidth " id="Circle" [hidden]="gameIsFinished">
     <div *ngFor="let ring of rings" class="subcircle"
          [style.width]="ring.width + '%'" [style.height]="ring.height + '%'"
          [style.z-index]="ring.z">
@@ -39,17 +39,15 @@
       <span id="hovercarddetails"><br>{{card.name}}</span>
     </div>
   </div>
-  <div class="cards cardwidth" id="Cards">
+  <div class="cards cardwidth" id="Cards" [hidden]="gameIsFinished">
     <div class="row carddetails ">
       <mat-card *ngFor="let card of sessionCards;let i = index" class="cardBox"
                 style="background-size: 100% 100%">
-        <mat-card-content>
-          <p style="text-align: center">
-            <span style="font-weight: bold; font-size: large">{{card.name}}</span>
-          </p>
-          <p style="text-align: center">
-            <span>{{card.description}}</span>
-          </p>
+        <mat-card-title class="text-center" style="height: 50%;">
+          <span style="font-weight: bold; font-size: large">{{card.name}}</span>
+        </mat-card-title>
+        <mat-card-content class="text-left text-overflow">
+          <span class="">{{card.description}}</span>
         </mat-card-content>
         <mat-card-actions style="padding-bottom: 4%">
           <button style="width: 80%;" mat-raised-button color="primary" (click)="selectCard(card, i)">
@@ -58,11 +56,8 @@
         </mat-card-actions>
       </mat-card>
     </div>
-
   </div>
-
-
 </div>
-<div class="winningCards" [hidden]="!gameIsFinished">
+<div id="Winner" class="winningCards" [hidden]="!gameIsFinished">
   <app-winning-card [earlyStop]="earlyStop" [winningCards]="winningCards"></app-winning-card>
 </div>

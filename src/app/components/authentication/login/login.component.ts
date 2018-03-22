@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['kandoe/dashboard']);
       },
       error => {
-        this.translate.get('Authentication.Login.error_message', {value: 'world'}).subscribe(e => {
+        this.translate.get('Authentication.Login.error_login', {value: 'world'}).subscribe(e => {
           this.error_message = e;
         });
         console.error(this.error_message);
