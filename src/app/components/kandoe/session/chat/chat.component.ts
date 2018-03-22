@@ -83,8 +83,8 @@ export class ChatComponent implements OnInit, OnDestroy {
         console.error(this.error_message);
       }, () => {
         let datePipe = new DatePipe();
-        let date = datePipe.transform(new Date(), 'MM/dd/yyyy hh:mm');
-        this.stompClient.send('/app/send/message/' + this.sessionId, {}, date+ " " + usernameMessage);
+        let date = datePipe.transform(new Date(), 'MM/dd/yyyy');
+        this.stompClient.send('/app/send/message/' + this.sessionId, {}, date + " " + usernameMessage);
         $('#input').val('');
       });
   }

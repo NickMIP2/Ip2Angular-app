@@ -29,7 +29,7 @@
               routerLinkActive="activeuser" [routerLinkActiveOptions]="{exact:true}">
         <i class="material-icons">settings</i>{{ 'Kandoe.Navbar.link_acc_settings' | translate }}
       </button>
-      <button class="btn btn-outline-danger my-2 my-sm-0 text-bold" routerLink="/login">
+      <button class="btn btn-outline-danger my-2 my-sm-0 text-bold" (click)="logout()">
         <i class="material-icons">exit_to_app</i>{{ 'Kandoe.Navbar.link_logout' | translate }}
       </button>
     </form>
