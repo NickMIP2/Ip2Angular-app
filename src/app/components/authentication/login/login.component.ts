@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         this.translate.get('Authentication.Login.error_login', {value: 'world'}).subscribe(e => {
           this.error_message = e;
         });
-
+        this.loading = false;
         this.snackBar.open(this.error_message, 'x', {duration: 2000});
 
       });
