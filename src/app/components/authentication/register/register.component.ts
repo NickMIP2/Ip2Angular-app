@@ -42,7 +42,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/login']);
       },
       error => {
-        this.translate.get('Authentication.Register.error_message', {value: 'world'}).subscribe(e => {
+        this.translate.get('Authentication.Register.error_register', {value: 'world'}).subscribe(e => {
           this.error_message = e;
         });
         this.snackBar.open(this.error_message, 'x', {duration: 2000});

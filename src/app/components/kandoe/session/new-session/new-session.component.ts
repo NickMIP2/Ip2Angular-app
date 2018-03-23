@@ -1,13 +1,10 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {Session} from '../../../../model/session';
 import {ThemeService} from '../../../../services/theme.service';
-import {log} from 'util';
 import {CategoryService} from '../../../../services/category.service';
 import {UseridStorage} from '../../../../sessionStorage/userid-storage';
-import {Theme} from '../../../../model/theme';
 import {SessionService} from '../../../../services/session.service';
 import {Router} from '@angular/router';
-import {DatePipe} from '@angular/common';
 import {MatSnackBar} from '@angular/material';
 import {TranslateService} from '@ngx-translate/core';
 

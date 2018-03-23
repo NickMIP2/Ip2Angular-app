@@ -51,6 +51,11 @@
             </td>
           </tr>
         </table>
+        <div *ngIf="editing === 1">
+          <br>
+          <label>{{ 'Kandoe.New-theme.lbl_image' | translate }}</label>
+          <app-file-upload name="upload" [(ngModel)]="theme.image"></app-file-upload>
+        </div>
       </tr>
     </table>
     <div style="width: 100%">

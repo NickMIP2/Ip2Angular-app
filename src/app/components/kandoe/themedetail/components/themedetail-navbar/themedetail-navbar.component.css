@@ -24,3 +24,7 @@ a:hover{
   background-color: darkorange;
   border-radius: 7px;
 }
+
+.marginauto{
+  margin: auto;
+}

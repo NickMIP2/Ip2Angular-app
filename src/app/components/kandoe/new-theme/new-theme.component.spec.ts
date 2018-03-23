@@ -5,20 +5,14 @@ import {FormsModule} from '@angular/forms';
 import {RouterTestingModule} from '@angular/router/testing';
 import {HttpClientModule} from '@angular/common/http';
 import {ThemeService} from '../../../services/theme.service';
-import {DebugElement, NgModule} from '@angular/core';
+import {DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {FileUploadComponent} from '../../../file-upload/file-upload.component';
 import {Theme} from '../../../model/theme';
 import {Observable} from 'rxjs/Observable';
-import {MatFormField, MatFormFieldModule, MatInputModule, MatSelectModule} from '@angular/material';
+import {MatFormFieldModule, MatInputModule, MatSelectModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-// @NgModule({
-//   imports: [
-//     MatFormFieldModule,
-//     MatInputModule
-//   ]
-// })
 
 describe('NewThemeComponent', () => {
   let component: NewThemeComponent;

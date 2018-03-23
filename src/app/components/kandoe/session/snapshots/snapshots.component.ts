@@ -6,7 +6,6 @@ import {Session} from '../../../../model/session';
 import {Snapshot} from '../../../../model/snapshot';
 import {Ring} from '../../../../model/ring';
 import {SessionCard} from '../../../../model/sessioncard';
-import { DatePipe } from '@angular/common';
 import {Message} from '../../../../model/message';
 import {MatSnackBar} from '@angular/material';
 import {TranslateService} from '@ngx-translate/core';

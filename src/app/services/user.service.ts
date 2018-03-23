@@ -13,15 +13,7 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  getUser(userId: number): /*User*/Observable<any> {
-    /*return {
-      'id': 0,
-      'email': 'email',
-      'lastname': 'lastname',
-      'firstname': 'firstname',
-      'username': 'username',
-      'password': 'password',
-    };*/
+  getUser(userId: number): Observable<any> {
     return this.http.get('https://kandoe-backend.herokuapp.com/users/' + userId);
   }
 

@@ -1,20 +1,31 @@
 <h3 style="margin-top: 2%;">{{categoryName}}</h3>
 <div class="cardContainer">
-<button mat-raised-button color="primary" (click)="navigateNewCard()">{{ 'Kandoe.Themedetail.cards.overview.button_add_card' | translate }}</button>
-<div class="cardBoxContainer">
-  <mat-card *ngFor="let card of cards" class="cardBox">
-    <mat-card-content>
-      <p style="text-align: center">
-        <span style="font-weight: bold; font-size: large">{{card.name}}</span>
-      </p>
-      <p style="text-align: center">
-        <span>{{card.description}}</span>
-      </p>
-    </mat-card-content>
-    <mat-card-actions style="padding-bottom: 4%">
-      <button style="width: 40%" mat-raised-button color="primary" (click)="editCard(card.id)">{{ 'Kandoe.Themedetail.cards.overview.button_edit' | translate }}</button>
-      <button style="width: 40%;" mat-raised-button color="warn" (click)="deleteCard(card.id)">{{ 'Kandoe.Themedetail.cards.overview.button_delete' | translate }}</button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+  <div>
+    <button mat-raised-button color="primary" class="float-left" (click)="navigateBack()">
+      <i class="material-icons">keyboard_backspace</i>
+    </button>
+    <button mat-raised-button color="primary" style="position: absolute; left: 45%;" (click)="navigateNewCard()">{{
+      'Kandoe.Themedetail.cards.overview.button_add_card' | translate }}
+    </button>
+  </div>
+  <div class="cardBoxContainer">
+    <mat-card *ngFor="let card of cards" class="cardBox">
+      <mat-card-content>
+        <p style="text-align: center">
+          <span style="font-weight: bold; font-size: large">{{card.name}}</span>
+        </p>
+        <p style="text-align: center">
+          <span>{{card.description}}</span>
+        </p>
+      </mat-card-content>
+      <mat-card-actions style="padding-bottom: 4%">
+        <button style="width: 40%" mat-raised-button color="primary" (click)="editCard(card.id)">{{
+          'Kandoe.Themedetail.cards.overview.button_edit' | translate }}
+        </button>
+        <button style="width: 40%;" mat-raised-button color="warn" (click)="deleteCard(card.id)">{{
+          'Kandoe.Themedetail.cards.overview.button_delete' | translate }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

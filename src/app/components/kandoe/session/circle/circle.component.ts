@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {SessionCard} from '../../../../model/sessioncard';
 import {Ring} from '../../../../model/ring';
 import * as SockJS from 'sockjs-client';

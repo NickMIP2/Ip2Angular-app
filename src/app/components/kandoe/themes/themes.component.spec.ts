@@ -4,14 +4,12 @@ import {ThemesComponent} from './themes.component';
 import {Theme} from '../../../model/theme';
 import {RouterTestingModule} from '@angular/router/testing';
 import {ThemeService} from '../../../services/theme.service';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {HttpClient, HttpClientModule, HttpHandler} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import {DebugElement} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import {provide} from 'angular2/core';
 
 describe('ThemeComponent', () => {
   let component: ThemesComponent;
