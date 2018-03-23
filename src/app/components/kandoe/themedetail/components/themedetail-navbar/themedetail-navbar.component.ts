@@ -1,5 +1,5 @@
 import {TranslateService} from '@ngx-translate/core';
-import {Component, OnInit, Input, AfterViewInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ThemeService} from '../../../../../services/theme.service';
 import {MatSnackBar} from '@angular/material';

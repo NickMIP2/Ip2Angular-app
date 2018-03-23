@@ -3,8 +3,6 @@ import {ActivatedRoute} from '@angular/router';
 import {SessionService} from '../../../../services/session.service';
 import {Session} from '../../../../model/session';
 import {UseridStorage} from '../../../../sessionStorage/userid-storage';
-import * as SockJS from 'sockjs-client';
-import * as Stomp from 'stompjs';
 import {MatSnackBar} from '@angular/material';
 import {TranslateService} from '@ngx-translate/core';
 
@@ -20,13 +18,7 @@ export class Phase2Component implements OnInit {
   title = '';
   error_message = '';
   viewchat = false;
-  private stompClient;
-  private serverUrl = 'https://kandoe-backend.herokuapp.com/socket';
-
-  public userTurn: boolean;
-
   public userOrganiser = false;
-  public currentCardId;
   public session = new Session(0, '', 0, 0, 0, 0, 0, [''], [''], [], [], 0, [], null, false, new Date(), false, 0, null, 0,[]);
   public sessionCards;
 

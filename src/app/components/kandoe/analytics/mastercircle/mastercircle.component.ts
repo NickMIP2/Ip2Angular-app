@@ -1,7 +1,6 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {SessionService} from '../../../../services/session.service';
 import {UseridStorage} from '../../../../sessionStorage/userid-storage';
-import {ActivatedRoute} from '@angular/router';
 import {Ring} from '../../../../model/ring';
 
 @Component({

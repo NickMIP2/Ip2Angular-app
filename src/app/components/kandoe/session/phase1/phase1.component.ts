@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UseridStorage} from '../../../../sessionStorage/userid-storage';
 import {SessionService} from '../../../../services/session.service';
-import {ThemeService} from '../../../../services/theme.service';
-import {CategoryService} from '../../../../services/category.service';
 import {CardService} from '../../../../services/card.service';
 import {Session} from '../../../../model/session';
 import {Card} from '../../../../model/card';
