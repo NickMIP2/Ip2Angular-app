@@ -39,7 +39,6 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
               public snackBar: MatSnackBar,
               private translate: TranslateService) {
     this.themeId = this.route.parent.snapshot.params['themeId'];
-    console.log('themeId = ' + this.themeId);
 
   }
 
@@ -49,8 +48,6 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
         this.theme = data;
       },
       error => {
-        console.error('Error loading theme details!');
-        console.log(error);
         this.snackBar.open('Er ging iets mis bij het ophalen van dit thema', 'x', {duration: 2000});
 
       }, () => this.setValues());
@@ -73,8 +70,6 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
 
       },
       error => {
-        console.error('Error saving Theme!');
-        console.log(error);
         this.snackBar.open('Opslaan van wijzigingen mislukt!', 'x', {duration: 2000});
 
       }, () => {
@@ -89,8 +84,6 @@ export class ThemedetailOverviewComponent implements OnInit, AfterViewChecked {
         this.router.navigate(['kandoe/themes']);
       },
       error => {
-        console.error('Error deleting theme!' + this.themeId);
-        console.log(error);
         this.snackBar.open('Fout bij verwijderen thema!', 'x', {duration: 3000});
 
       });

@@ -40,8 +40,7 @@ export class ChatComponent implements OnInit {
         this.messages = data;
       },
       error => {
-        console.error('Error loading messages!');
-        console.log(error);
+
         this.snackBar.open('Fout bij ophalen berichten', 'x', {duration: 2000});
       },
       () => this.initializeWebSocketConnection(this.sessionId));
@@ -78,15 +77,14 @@ export class ChatComponent implements OnInit {
     const usernameMessage = this.userIdStorage.getUsername() + ': ' + message;
     const dbMessage = new Message(usernameMessage);
     this.messageService.sendMessage(dbMessage, this.sessionId, this.userIdStorage.getUserId()).subscribe(data => { // ipv 2 naar sessionId
-        console.log('message successfully send to database');
       },
       error => {
         this.translate.get('package.component.error_message', {value: 'world'}).subscribe(e => {
           this.error_message = e;
         });
-        console.error(this.error_message);
-        console.log(error);
-        alert(this.error_message);
+
+        this.snackBar.open(this.error_message, 'x', {duration: 2000});
+
       });
     this.stompClient.send('/app/send/message/' + this.sessionId, {}, usernameMessage); // ipv 2 -> sessionId
     $('#input').val('');

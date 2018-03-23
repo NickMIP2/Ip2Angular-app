@@ -51,16 +51,12 @@ export class CardEditComponent implements OnInit {
         this.card = data;
       },
       error => {
-        console.error('Error loading card!');
-        console.log(error);
         this.snackBar.open('Fout bij ophalen kaart', 'x', {duration: 2000});
       }, () => {
         this.cardService.getCardsByCategory(this.categoryId, this.themeId, this.userId).subscribe(data => {
             this.oldCards = data;
           },
           error => {
-            console.error('Error loading cards!');
-            console.log(error);
             this.snackBar.open('Fout bij ophalen kaartjes!', 'x', {duration: 2000});
 
           }, () => {
@@ -76,15 +72,12 @@ export class CardEditComponent implements OnInit {
   }
 
   updateCard() {
-    console.log('cardName: ' + this.card.name + '; image: ');
     if (this.correctName) {
       this.cardService.updateCard(this.categoryId, this.card, this.themeId, this.userId).subscribe(data => {
           this.card = data;
           this.router.navigate(['kandoe/themes/' + this.themeId + '/categories/' + this.categoryId + '/overview'], {queryParams: {themeName: this.themeName, categoryName: this.categoryName}});
         },
         error => {
-          console.error('Error saving card!');
-          console.log(error);
           this.snackBar.open('Fout bij opslaan wijzigingen', 'x', {duration: 2000});
         }, () => {
           this.snackBar.open('Wijzigingen opgeslagen', 'x', {duration: 2000});

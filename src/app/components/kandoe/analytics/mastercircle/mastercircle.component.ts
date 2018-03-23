@@ -1,8 +1,8 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {SessionService} from '../../../../services/session.service';
 import {UseridStorage} from '../../../../sessionStorage/userid-storage';
-import {ActivatedRoute} from '@angular/router';
 import {Ring} from '../../../../model/ring';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-mastercircle',
@@ -28,7 +28,7 @@ export class MastercircleComponent implements OnInit, OnChanges {
   public angles = [];
   public noData = false;
 
-  constructor(private sessionService: SessionService, private useridStorage: UseridStorage) {
+  constructor(private sessionService: SessionService, private useridStorage: UseridStorage, private snackBar: MatSnackBar) {
     this.userId = useridStorage.getUserId();
   }
 
@@ -40,10 +40,10 @@ export class MastercircleComponent implements OnInit, OnChanges {
     if (!this.selecting) {
       this.sessionService.getSessionsOfTheme(this.themeId, this.userId).subscribe(data => {
         this.sessions = data;
-        console.log(data);
       }, error => {
-        console.error('Error loading sessions!');
-        console.log(error);
+
+        this.snackBar.open('Fout bij ophalen sessies', 'x', {duration: 2000});
+
       }, () => {
         this.calculateSessionCards();
 

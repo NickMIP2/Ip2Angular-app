@@ -12,7 +12,6 @@ import {ThemedetailOverviewComponent} from './components/kandoe/themedetail/comp
 import {ThemedetailOrganiserComponent} from './components/kandoe/themedetail/components/themedetail-organiser/themedetail-organiser.component';
 import {ThemedetailCategoriesComponent} from './components/kandoe/themedetail/components/themedetail-categories/themedetail-categories.component';
 import {ThemedetailNavbarComponent} from './components/kandoe/themedetail/components/themedetail-navbar/themedetail-navbar.component';
-import {HomeComponent} from './components/kandoe/home/home.component';
 import {NavbarComponent} from './components/kandoe/navbar/navbar.component';
 import {LoginComponent} from './components/authentication/login/login.component';
 import {AuthenticationService} from './services/authentication.service';
@@ -20,7 +19,6 @@ import {KandoeComponent} from './components/kandoe/kandoe.component';
 import {RegisterComponent} from './components/authentication/register/register.component';
 import {ThemeService} from './services/theme.service';
 import {NewSessionComponent} from './components/kandoe/session/new-session/new-session.component';
-import {RouterLinkDirectiveStub} from './testing/router-link-directive-stub';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {Interceptor} from './interceptor';
 import {TokenStorage} from './sessionStorage/token-storage';
@@ -35,7 +33,7 @@ import {ChatComponent} from './components/kandoe/session/chat/chat.component';
 import {FileUploadComponent} from './file-upload/file-upload.component';
 import {MessageService} from './services/message.service';
 import {CircleComponent} from './components/kandoe/session/circle/circle.component';
-import { ChartsModule } from 'ng2-charts';
+import {ChartsModule} from 'ng2-charts';
 import {
   MatButtonModule, MatCardModule, MatCheckboxModule, MatInputModule, MatNativeDateModule, MatRadioModule, MatSelectModule, MatSliderModule,
   MatTabsModule
@@ -49,14 +47,14 @@ import {CardOverviewComponent} from './components/kandoe/themedetail/components/
 import {MatFormFieldModule} from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSnackBarModule} from '@angular/material';
-import { SnapshotsComponent } from './components/kandoe/session/snapshots/snapshots.component';
-import { UsersComponent } from './components/kandoe/users/users.component';
+import {SnapshotsComponent} from './components/kandoe/session/snapshots/snapshots.component';
+import {UsersComponent} from './components/kandoe/users/users.component';
 import {UserService} from './services/user.service';
-import { AnalyticsComponent } from './components/kandoe/analytics/analytics.component';
-import { WinningCardComponent } from './components/kandoe/session/winning-card/winning-card.component';
-import { PhaseReviewComponent } from './components/kandoe/session/phase-review/phase-review.component';
-import { MastercircleComponent } from './components/kandoe/analytics/mastercircle/mastercircle.component';
-import { BarChartComponent } from './components/kandoe/analytics/bar-chart/bar-chart.component';
+import {AnalyticsComponent} from './components/kandoe/analytics/analytics.component';
+import {WinningCardComponent} from './components/kandoe/session/winning-card/winning-card.component';
+import {PhaseReviewComponent} from './components/kandoe/session/phase-review/phase-review.component';
+import {MastercircleComponent} from './components/kandoe/analytics/mastercircle/mastercircle.component';
+import {BarChartComponent} from './components/kandoe/analytics/bar-chart/bar-chart.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ImageB64ConvertService} from './services/image-b64-convert.service';
@@ -68,7 +66,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     NavbarComponent,
     DashboardComponent,
     ThemesComponent,
@@ -81,7 +78,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     KandoeComponent,
     RegisterComponent,
     NewSessionComponent,
-    RouterLinkDirectiveStub,
     CardEditComponent,
     ThemedetailComponent,
     CardNewComponent,

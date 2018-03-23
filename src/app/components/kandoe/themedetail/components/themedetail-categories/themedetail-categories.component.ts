@@ -53,8 +53,6 @@ export class ThemedetailCategoriesComponent implements OnInit {
         this.theme = data;
       },
       error => {
-        console.error('Error loading theme!');
-        console.log(error);
         this.snackBar.open('Er ging iets mis bij het ophalen van dit thema', 'x', {duration: 2000});
       });
     // get categories of theme
@@ -62,8 +60,6 @@ export class ThemedetailCategoriesComponent implements OnInit {
         this.categories = data;
       },
       error => {
-        console.error('Error loading categories!');
-        console.log(error);
         this.snackBar.open('Er ging iets mis bij het ophalen van deze categorie', 'x', {duration: 2000});
       });
   }
@@ -78,8 +74,6 @@ export class ThemedetailCategoriesComponent implements OnInit {
         this.editfield = '';
       },
       error => {
-        console.error('Error creating category!');
-        console.log(error);
         this.snackBar.open('Fout bij aanmaken categorie!', 'x', {duration: 2000});
 
       }, () => {
@@ -92,8 +86,6 @@ export class ThemedetailCategoriesComponent implements OnInit {
         this.categories = data;
       },
       error => {
-        console.error('Error deleting category!' + id);
-        console.log(error);
         this.snackBar.open('Categorie verwijderen mislukt!', 'x', {duration: 2000});
       }, () => {
         this.snackBar.open('Categorie verwijderd', 'x', {duration: 2000});
@@ -107,8 +99,6 @@ export class ThemedetailCategoriesComponent implements OnInit {
         this.currentCategory = data;
       },
       error => {
-        console.error('Error saving Category!');
-        console.log(error);
         this.snackBar.open('Wijzigingen opslaan mislukt!', 'x', {duration: 2000});
       }, () => {
         this.snackBar.open('Wijzigingen opgeslagen!', 'x', {duration: 2000});

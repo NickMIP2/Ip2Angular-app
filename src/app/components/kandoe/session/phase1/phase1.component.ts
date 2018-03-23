@@ -8,6 +8,7 @@ import {CardService} from '../../../../services/card.service';
 import {Session} from '../../../../model/session';
 import {Card} from '../../../../model/card';
 import {TranslateService} from '@ngx-translate/core';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-phase1',
@@ -33,7 +34,8 @@ export class Phase1Component implements OnInit {
               private route: ActivatedRoute,
               private sessionService: SessionService,
               private useridStorage: UseridStorage,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private snackBar: MatSnackBar) {
     this.userId = useridStorage.getUserId();
     this.sessionId = this.route.parent.snapshot.params['sessionId'];
   }
@@ -48,17 +50,15 @@ export class Phase1Component implements OnInit {
         this.session = data;
       },
       error => {
-        console.error('Error loading session!');
-        console.log(error);
-        alert('Error loading session');
+        this.snackBar.open('Fout bij ophalen berichten', 'x', {duration: 2000});
+
       }, () => {
         this.cardService.getCardsByCategory(this.session.categoryId, this.session.themeId, this.userId).subscribe(data => {
             this.cards = data;
           },
           error => {
-            console.error('Error loading cards!');
-            console.log(error);
-            alert('Error loading cards');
+            this.snackBar.open('Fout bij ophalen sessies', 'x', {duration: 2000});
+
           }, () => {
             this.fillButtonStates();
           });
@@ -85,16 +85,11 @@ export class Phase1Component implements OnInit {
   }
 
   saveCards() {
-    console.log(this.selectedCards);
     this.sessionService.saveSessionCards(this.selectedCards, this.session.id, this.userId).subscribe(data => {
-      console.log('selectedcard' + this.selectedCards.toString());
-      console.log('sessioncards' + data.sessionCardDtos[0]);
         this.router.navigate(['kandoe/dashboard']);
       },
       error => {
-        console.error('Error saving selected cards!');
-        console.log(error);
-        alert('Error saving selected cards');
+        this.snackBar.open('Fout bij ophalen sessies', 'x', {duration: 2000});
       });
   }
 

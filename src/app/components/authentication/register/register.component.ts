@@ -3,6 +3,7 @@ import {User} from '../../../model/user';
 import {Router, ActivatedRoute} from '@angular/router';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {TranslateService} from '@ngx-translate/core';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,8 @@ export class RegisterComponent implements OnInit {
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
               private authService: AuthenticationService,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -43,9 +45,8 @@ export class RegisterComponent implements OnInit {
         this.translate.get('Authentication.Register.error_message', {value: 'world'}).subscribe(e => {
           this.error_message = e;
         });
-        console.error(this.error_message);
-        console.log(error);
-        alert(this.error_message);
+        this.snackBar.open(this.error_message, 'x', {duration: 2000});
+
       });
   }
 

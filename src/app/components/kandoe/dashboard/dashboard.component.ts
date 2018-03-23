@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/interval';
 import {TranslateService} from '@ngx-translate/core';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,7 +29,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private userId: number;
   private pollingSessions: any;
 
-  constructor(private router: Router, private translate: TranslateService, titleService: Title, private sessionService: SessionService, private useridStorage: UseridStorage) {
+  constructor(private router: Router, private translate: TranslateService, titleService: Title, private sessionService: SessionService, private snackBar: MatSnackBar, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
   }
 
@@ -46,9 +47,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
         this.translate.get('Kandoe.Dashboard.error_message', {value: 'world'}).subscribe(e => {
           this.error_message = e;
         });
-        console.error(this.error_message);
-        console.log(error);
-        alert(this.error_message);
+
+        this.snackBar.open(this.error_message, 'x', {duration: 2000});
+
       },
       () => {
         console.log(this.oldSessions);
@@ -81,8 +82,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
       } else if (session.state === 1 || session.state === 2 || session.state === 3) {
         this.currentSessions.push(session);
       } else if (session.state === 4) {
-      let highestPriority = 0;
-      let winningCards = [];
+        let highestPriority = 0;
+        let winningCards = [];
         for (const card of session.sessionCardDtos) {
           if (card.priority > highestPriority) {
             highestPriority = card.priority;
@@ -99,7 +100,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
       }
     }
-    }
+  }
 
 
   startSession(session: Session) {
@@ -127,7 +128,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     const organiserIds = session.organisersIds;
     if (organiserIds.indexOf(this.userId) === -1) {
       return false;
-    } else { return true; }
+    } else {
+      return true;
+    }
   }
 
   ngOnDestroy(): void {

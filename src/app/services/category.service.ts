@@ -17,15 +17,11 @@ export class CategoryService {
 
   createCategory(category: Category, themeId: number, userId: number): Observable<any> {
     const body = JSON.stringify(category);
-    console.log('theme id: ' + themeId);
-    console.log('json body:' + body);
     return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/categories', body, httpOptions);
   }
 
   updateCategory(category: Category, themeId: number, userId: number): Observable<any> {
     const body = JSON.stringify(category);
-    console.log('theme id: ' + themeId);
-    console.log('json body:' + body);
     return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/categories/' + category.id, body, httpOptions);
   }
 

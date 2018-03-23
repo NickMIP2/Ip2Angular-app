@@ -43,8 +43,6 @@ export class PhaseReviewComponent implements OnInit {
         this.session = data;
       },
       error => {
-        console.error('Error loading Session!');
-        console.log(error);
         this.snackBar.open('Fout bij ophalen sessie', 'x', {duration: 2000});
       }, () => {
         for (const card of this.session.sessionCardDtos) {
@@ -70,8 +68,6 @@ export class PhaseReviewComponent implements OnInit {
         this.router.navigate(['kandoe/sessions/' + this.sessionId + '/phase2']);
       },
       error => {
-        console.error('Error saving selected cards!');
-        console.log(error);
         this.snackBar.open('Fout bij opslaan geselecteerde kaartjes', 'x', {duration: 2000});
       });
   }

@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {SessionService} from '../../../../services/session.service';
 import {UseridStorage} from '../../../../sessionStorage/userid-storage';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-bar-chart',
@@ -8,7 +9,7 @@ import {UseridStorage} from '../../../../sessionStorage/userid-storage';
   styleUrls: ['./bar-chart.component.css']
 })
 export class BarChartComponent implements OnInit, OnChanges {
-  public barChartOptions:any = {
+  public barChartOptions: any = {
     scaleShowVerticalLines: false,
     responsive: true,
     scales: {
@@ -18,23 +19,25 @@ export class BarChartComponent implements OnInit, OnChanges {
         }
       }]
 
-  }};
-  public sessions= [];
+    }
+  };
+  public sessions = [];
   public userId;
   @Input() public themeId;
   @Input() public selecting;
   public sessionCardsMap = new Map();
-  public barChartLabels:string[] = [];
-  public barChartType:string = 'bar';
-  public barChartLegend:boolean = true;
-  public barChartData:any[] = [
+  public barChartLabels: string[] = [];
+  public barChartType: string = 'bar';
+  public barChartLegend: boolean = true;
+  public barChartData: any[] = [
     {data: [], label: 'Meest gebruikte kaarten'}
   ];
   public noData = false;
 
-  constructor(private sessionService: SessionService, private useridStorage: UseridStorage) {
+  constructor(private sessionService: SessionService, private useridStorage: UseridStorage, private snackBar: MatSnackBar) {
     this.userId = useridStorage.getUserId();
   }
+
   ngOnInit() {
   }
 
@@ -44,8 +47,8 @@ export class BarChartComponent implements OnInit, OnChanges {
         this.sessions = data;
         console.log(data);
       }, error => {
-        console.error('Error loading sessions!');
-        console.log(error);
+        this.snackBar.open('Fout bij ophalen sessies', 'x', {duration: 2000});
+
       }, () => {
         this.calculateMostPriority();
         if (this.sessions.length == 0) {
@@ -58,17 +61,16 @@ export class BarChartComponent implements OnInit, OnChanges {
   calculateMostPriority() {
     for (const session of this.sessions) {
       for (const sessionCard of session.sessionCardDtos) {
-        if (this.sessionCardsMap.has(sessionCard.name)){
+        if (this.sessionCardsMap.has(sessionCard.name)) {
           let currentAmount = this.sessionCardsMap.get(sessionCard.name);
           this.sessionCardsMap.set(sessionCard.name, currentAmount + 1);
-        } else{
+        } else {
           this.sessionCardsMap.set(sessionCard.name, 1);
         }
       }
     }
     let data = [];
-    this.sessionCardsMap.forEach((value: number, key:string) => {
-      console.log(key);
+    this.sessionCardsMap.forEach((value: number, key: string) => {
       this.barChartLabels.push(key);
       data.push(value);
     });

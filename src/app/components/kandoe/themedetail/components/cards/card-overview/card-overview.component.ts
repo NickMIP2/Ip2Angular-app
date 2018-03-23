@@ -49,14 +49,11 @@ export class CardOverviewComponent implements OnInit {
         this.cards = data;
       },
       error => {
-        console.error('Error loading cards!');
-        console.log(error);
         this.snackBar.open('Fout bij ophalen kaartjes', 'x', {duration: 2000});
 
       });
     for (const card of this.cards) {
       card.image = this.imageb64convert.convert(card.image);
-      console.log(card.image.substring(0, 30));
     }
   }
 
@@ -65,8 +62,6 @@ export class CardOverviewComponent implements OnInit {
         this.cards = data;
       },
       error => {
-        console.error('Error deleting card!' + id);
-        console.log(error);
         this.snackBar.open('Fout bij verwijderen kaart', 'x', {duration: 2000});
       }, () => {
         this.snackBar.open('Verwijderen succesvol', 'x', {duration: 2000});

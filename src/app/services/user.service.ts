@@ -27,7 +27,7 @@ export class UserService {
 
   updateUser(user: User, userId: number): Observable<any> {
     const body = JSON.stringify(user);
-    console.log('body: ' + body);
+
     return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId, body, httpOptions);
   }
 }

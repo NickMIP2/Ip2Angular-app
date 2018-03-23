@@ -35,8 +35,6 @@ export class ThemesComponent implements OnInit {
         this.themes = data;
       },
       error => {
-        console.error('Error loading themes!');
-        console.log(error);
         this.snackBar.open('Er ging iets mis bij het ophalen van themas!', 'x', {duration: 2000});
       });
 
@@ -56,8 +54,6 @@ export class ThemesComponent implements OnInit {
         this.themes = data;
       },
       error => {
-        console.error('Error deleting theme!');
-        console.log(error);
         this.snackBar.open('Thema verwijderen mislukt!', 'x', {duration: 2000});
 
       }, () => {

@@ -84,24 +84,19 @@ export class NewSessionComponent implements OnInit {
       this.title = e;
     });
     window.document.title = this.title;
-    console.log(this.participantEmail);
     this.themeService.getThemesOfUser(this.userId).subscribe(data => {
         this.themes = data;
       },
       error => {
-        console.error('Error loading themes!');
-        console.log(error);
+
         this.snackBar.open('Fout bij ophalen themas', 'x', {duration: 2000});
       }, () => {
         // this.setCategory();
       });
     this.sessionService.getSessionsOfUser(this.userId).subscribe(data => {
         this.oldSessions = data;
-        console.log(this.oldSessions);
       },
       error => {
-        console.error('Error loading sessions!');
-        console.log(error);
         this.snackBar.open('Fout bij ophalen sessies', 'x', {duration: 2000});
 
       });
@@ -113,8 +108,6 @@ export class NewSessionComponent implements OnInit {
         this.categoryArray = data;
       },
       error => {
-        console.error('Error loading categories!');
-        console.log(error);
         this.snackBar.open('Fout bij ophalen categorieën', 'x', {duration: 2000});
       });
   }
@@ -123,7 +116,6 @@ export class NewSessionComponent implements OnInit {
     this.newSession.startDate.toUTCString();
     if (this.newSession.type === 0 || this.newSession.type === 1) {
       this.newSession.themeId = this.themeIndexId;
-      console.log(this.categoryIndexId);
       if (!(typeof this.categoryIndexId === 'string') && this.categoryIndexId != null && this.categoryIndexId !== undefined) {
         this.newSession.categoryId = this.categoryIndexId;
       } else {
@@ -132,12 +124,9 @@ export class NewSessionComponent implements OnInit {
       this.newSession.id = 0;
       this.sessionService.createSession(this.newSession, this.userId).subscribe(
         data => {
-          console.log(data);
           this.router.navigate(['kandoe/dashboard']);
         },
         error => {
-          console.error('Error creating session!');
-          console.log(error);
           this.snackBar.open('Fout bij aanmaken van sessie', 'x', {duration: 2000});
         });
     }

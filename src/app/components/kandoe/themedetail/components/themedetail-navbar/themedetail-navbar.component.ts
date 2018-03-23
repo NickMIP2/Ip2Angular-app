@@ -19,7 +19,6 @@ export class ThemedetailNavbarComponent implements OnInit, AfterViewInit {
               private translate: TranslateService) {
 
     this.themeId = this.route.snapshot.params['themeId'];
-    console.log('undefined waarshcijnlijk:' + this.themeId);
   }
 
   ngAfterViewInit() {}
@@ -27,10 +26,6 @@ export class ThemedetailNavbarComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.themeService.getTheme(this.themeId, this.useridStorage.getUserId()).subscribe(data => {
         this.theme = data;
-      }, error => {
-        console.error('Error loading theme details!');
-        console.log(error);
-        this.snackBar.open('Er ging iets mis bij het ophalen van dit thema', 'x', {duration: 2000});
       });
   }
 

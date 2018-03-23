@@ -37,8 +37,6 @@ export class UsersComponent implements OnInit, AfterViewChecked {
       this.pwHash = this.user.password;
       this.user.password = '';
     }, error => {
-      console.error('Error loading user!');
-      console.log(error);
       this.snackBar.open('Fout bij ophalen gebruiker', 'x', {duration: 2000});
 
     });
@@ -63,8 +61,6 @@ export class UsersComponent implements OnInit, AfterViewChecked {
         this.ngOnInit();
       }
     }, error => {
-      console.error('Error updating user!');
-      console.log(error);
       this.snackBar.open('Fout bij opslaan wijzigingen', 'x', {duration: 2000});
     });
   }

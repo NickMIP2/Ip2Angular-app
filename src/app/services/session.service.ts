@@ -18,8 +18,6 @@ export class SessionService {
 
   createSession(session: Session, userId: number): Observable<any> {
     const body = JSON.stringify(session);
-    console.log('user id: ' + userId);
-    console.log('json body:' + body);
     return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions', body, httpOptions);
   }
 
@@ -29,8 +27,6 @@ export class SessionService {
 
   updateSession(session: Session, userId: number): Observable<any> {
     const body = JSON.stringify(session);
-    console.log('user id: ' + userId);
-    console.log('json body:' + body);
     return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/sessions/' + session.id, body, httpOptions);
   }
 

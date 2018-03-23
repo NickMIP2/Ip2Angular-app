@@ -18,8 +18,6 @@ export class ThemeService {
 
   createTheme(theme: Theme, userId: number): Observable<any> {
     const body = JSON.stringify(theme);
-    console.log('user id: ' + userId);
-    console.log('json body:' + body);
     return this.http.post('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes', body, httpOptions);
   }
 
@@ -29,8 +27,6 @@ export class ThemeService {
 
   updateTheme(theme: Theme, userId: number): Observable<any> {
     const body = JSON.stringify(theme);
-    console.log('user id: ' + userId);
-    console.log('json body:' + body);
     return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + theme.id, body, httpOptions);
   }
 
@@ -51,8 +47,7 @@ export class ThemeService {
   }
 
   addUserToTheme(email: string, themeId: number, userId: number): Observable<any> {
-    console.log('user id: ' + userId);
-    console.log('json body:' + email);
+
     return this.http.put('https://kandoe-backend.herokuapp.com/users/' + userId + '/themes/' + themeId + '/users', email, httpOptions);
   }
 

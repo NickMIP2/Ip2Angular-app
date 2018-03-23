@@ -4,6 +4,7 @@ import {AuthenticationService} from '../../../services/authentication.service';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
 import {TokenStorage} from '../../../sessionStorage/token-storage';
 import {TranslateService} from '@ngx-translate/core';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
               private authService: AuthenticationService,
               private userIdStorage: UseridStorage,
               private tokenStorage: TokenStorage,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private snackBar: MatSnackBar) {
   }
 
   title = '';
@@ -41,9 +43,9 @@ export class LoginComponent implements OnInit {
         this.translate.get('Authentication.Login.error_login', {value: 'world'}).subscribe(e => {
           this.error_message = e;
         });
-        console.error(this.error_message);
-        console.log(error);
-        alert(this.error_message);
+
+        this.snackBar.open(this.error_message, 'x', {duration: 2000});
+
       });
   }
 

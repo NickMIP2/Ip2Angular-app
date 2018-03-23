@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
 import {SessionService} from '../../../services/session.service';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
 import {ThemeService} from '../../../services/theme.service';
 import {Theme} from '../../../model/theme';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-analytics',
@@ -15,10 +16,10 @@ export class AnalyticsComponent implements OnInit {
 
   public userId;
   public themes = [];
-  public theme = new Theme(null, '', '',  [''], '');
+  public theme = new Theme(null, '', '', [''], '');
   public selecting = true;
 
-  constructor(private themeService: ThemeService, private router: Router, private titleService: Title, private sessionService: SessionService, private useridStorage: UseridStorage) {
+  constructor(private themeService: ThemeService, private snackBar: MatSnackBar, private router: Router, private titleService: Title, private sessionService: SessionService, private useridStorage: UseridStorage) {
     this.userId = useridStorage.getUserId();
   }
 
@@ -29,9 +30,7 @@ export class AnalyticsComponent implements OnInit {
         this.themes = data;
       },
       error => {
-        console.error('Error loading themes!');
-        console.log(error);
-        alert('Error loading themes');
+        this.snackBar.open('Fout bij ophalen themas', 'x', {duration: 2000});
       });
   }
 

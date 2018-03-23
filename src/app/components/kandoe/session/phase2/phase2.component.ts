@@ -52,11 +52,9 @@ export class Phase2Component implements OnInit {
 
       },
       error => {
-        console.error('Error loading Session!');
-        console.log(error);
         this.snackBar.open('Fout bij ophalen sessie', 'x', {duration: 2000});
       }, () => {
-        this.userOrganiser = (this.session.organisersIds.indexOf(this.userId) != -1 );
+        this.userOrganiser = (this.session.organisersIds.indexOf(this.userId) !== -1 );
         this.sessionCards = this.session.sessionCardDtos.sort((a, b) => a.id - b.id);
 
       });

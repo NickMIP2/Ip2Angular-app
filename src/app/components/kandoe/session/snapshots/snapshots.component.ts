@@ -59,8 +59,6 @@ export class SnapshotsComponent implements OnInit, OnChanges {
         this.session = data;
       },
       error => {
-        console.error('Error loading session!');
-        console.log(error);
         this.snackBar.open('Fout bij ophalen sessie', 'x', {duration: 2000});
 
       }, () => {
@@ -72,8 +70,6 @@ export class SnapshotsComponent implements OnInit, OnChanges {
             this.messages = data;
           },
           error => {
-            console.error('Error loading messages!');
-            console.log(error);
             this.snackBar.open('Fout bij ophalen berichten', 'x', {duration: 2000});
           }, () => {
 
@@ -115,8 +111,6 @@ export class SnapshotsComponent implements OnInit, OnChanges {
           this.messages = data;
         },
         error => {
-          console.error('Error loading messages!');
-          console.log(error);
           this.snackBar.open('Fout bij ophalen berichten', 'x', {duration: 2000});
         }, () => {
           this.setCorrectSessionCards();
@@ -136,8 +130,6 @@ export class SnapshotsComponent implements OnInit, OnChanges {
           this.messages = data;
         },
         error => {
-          console.error('Error loading messages!');
-          console.log(error);
           this.snackBar.open('Fout bij ophalen berichten', 'x', {duration: 2000});
         }, () => {
           this.setCorrectSessionCards();
@@ -171,7 +163,6 @@ export class SnapshotsComponent implements OnInit, OnChanges {
     this.setCards();
   }
 
-  // circle methods
 
   ngOnChanges(changes: SimpleChanges): void {
 

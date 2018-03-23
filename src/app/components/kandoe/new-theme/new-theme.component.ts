@@ -4,6 +4,7 @@ import {ThemeService} from '../../../services/theme.service';
 import {Router} from '@angular/router';
 import {UseridStorage} from '../../../sessionStorage/userid-storage';
 import {TranslateService} from '@ngx-translate/core';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-new-theme',
@@ -23,7 +24,8 @@ export class NewThemeComponent implements OnInit {
   constructor(private themeService: ThemeService,
               private router: Router,
               private userIdStorage: UseridStorage,
-              private translate: TranslateService) {
+              private translate: TranslateService,
+              private snackBar: MatSnackBar) {
     this.userId = userIdStorage.getUserId();
   }
 
@@ -35,7 +37,6 @@ export class NewThemeComponent implements OnInit {
   }
 
   createTheme() {
-    console.log('themeName: ' + this.theme.name + '; image: ' + this.theme.image.substring(0, 100) + '...');
     this.themeService.createTheme(this.theme, this.userId).subscribe(
       data => {
         this.router.navigate(['kandoe/themes/' + data.id + '/overview']); // id van teruggekregen thema
@@ -44,9 +45,8 @@ export class NewThemeComponent implements OnInit {
         this.translate.get('Kandoe.New-theme.error_message', {value: 'world'}).subscribe(e => {
           this.error_message = e;
         });
-        console.error(this.error_message);
-        console.log(error);
-        alert(this.error_message);
+        this.snackBar.open(this.error_message, 'x', {duration: 2000});
+
       });
   }
 

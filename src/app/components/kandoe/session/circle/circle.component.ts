@@ -49,7 +49,7 @@ export class CircleComponent implements OnInit, OnChanges {
 
 
   ngOnInit() {
-    console.log('length' + this.sessionCards.length);
+
     this.userId = this.userIdStorage.getUserId();
     this.username = this.userIdStorage.getUsername();
 
@@ -77,7 +77,7 @@ export class CircleComponent implements OnInit, OnChanges {
   public setCards() {
     this.circleRingSize = this.circleRadius / (this.amountOfRings);
     let index = 0;
-    console.log('setcard' + this.sessionCards.length);
+
     for (index; index < this.sessionCards.length; index++) {
 
       const angleDegrees = ((360 / this.sessionCards.length) * index);
@@ -85,11 +85,9 @@ export class CircleComponent implements OnInit, OnChanges {
       const angleRadians = angleDegrees * (Math.PI / 180);
       this.angles.push(angleRadians);
 
-      console.log(this.circleRingSize);
 
       const ringRadius = (this.circleRadius - ((this.circleRadius) - (this.sessionCards[index].distance + 1 - this.sessionCards[index].priority) * this.circleRingSize)) - this.cardThickness;
 
-      console.log(ringRadius);
 
       const circleStart = this.circleRadius - this.cardThickness;
 
@@ -114,7 +112,7 @@ export class CircleComponent implements OnInit, OnChanges {
   }
 
   initializeWebSocketConnection(id: number, userId: number, comp: CircleComponent) {
-    console.log('completed + sessionId:' + this.sessionId);
+
     const ws = new SockJS(this.serverUrl);
     this.stompClient = Stomp.over(ws);
     const that = this;
@@ -170,7 +168,6 @@ export class CircleComponent implements OnInit, OnChanges {
     }
     for (const card of this.sessionCards) {
       if (card.priority === highestPriority) {
-        console.log(card.name);
         this.winningCards.push(card);
       }
     }
@@ -193,7 +190,7 @@ export class CircleComponent implements OnInit, OnChanges {
     }
     for (const card of this.sessionCards) {
       if (card.priority === highestPriority) {
-        console.log(card.name);
+
         this.winningCards.push(card);
       }
     }

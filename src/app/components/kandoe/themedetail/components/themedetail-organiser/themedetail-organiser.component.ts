@@ -36,15 +36,14 @@ export class ThemedetailOrganiserComponent implements OnInit {
     this.translate.get('Kandoe.Themedetail.organiser.page_title', {value: 'world'}).subscribe(e => {
       this.title = e;
     });
-    window.document.title = this.title;    this.themeId = this.route.parent.snapshot.params['themeId'];
+    window.document.title = this.title;
+    this.themeId = this.route.parent.snapshot.params['themeId'];
 
     this.themeService.getUsersOfTheme(this.themeId, this.userId).subscribe(
       data => {
         this.users = data;
       },
       error => {
-        console.error('Error loading users!');
-        console.log(error);
         this.snackBar.open('Er ging iets mis bij het ophalen van deze gegevens', 'x', {duration: 2000});
 
       }, () => {
@@ -56,12 +55,9 @@ export class ThemedetailOrganiserComponent implements OnInit {
     this.themeService.addUserToTheme(this.newOrganiser, this.themeId, this.userId).subscribe(
       data => {
         this.users = data;
-        console.log(data);
         this.newOrganiser = '';
       },
       error => {
-        console.error('Error adding user!');
-        console.log(error);
         this.snackBar.open('Er ging iets mis bij het opslaan van deze gegevens', 'x', {duration: 2000});
       }, () => {
         this.checkIfLastOrganiser();
@@ -92,8 +88,6 @@ export class ThemedetailOrganiserComponent implements OnInit {
           this.users = data;
         },
         error => {
-          console.error('Error removing user!');
-          console.log(error);
           this.snackBar.open('Fout bij verwijderen organisator', 'x', {duration: 2000});
         }, () => {
           this.checkIfLastOrganiser();
